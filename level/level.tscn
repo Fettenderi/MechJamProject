@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjytct6r77p37"]
+
+[ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="1_snh6g"]
+[ext_resource type="Script" path="res://level/player_follower.gd" id="2_82ujg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k1txa"]
+sky_horizon_color = Color(0.692328, 0.727225, 0.774755, 1)
+ground_bottom_color = Color(0.384314, 0.454902, 0.54902, 1)
+ground_horizon_color = Color(0.692328, 0.727225, 0.774755, 1)
+
+[sub_resource type="Sky" id="Sky_53jql"]
+sky_material = SubResource("ProceduralSkyMaterial_k1txa")
+
+[sub_resource type="Environment" id="Environment_ohbxq"]
+background_mode = 2
+sky = SubResource("Sky_53jql")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wd0r0"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q261p"]
+size = Vector3(20, 1, 20)
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ohbxq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_wd0r0")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_q261p")
+
+[node name="Player" parent="." instance=ExtResource("1_snh6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PlayerFollower" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_82ujg")
+player = NodePath("../Player")
+lerp_weight = 0.3
+
+[node name="Camera3D" type="Camera3D" parent="PlayerFollower"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 7, 4)
+current = true
+size = 10.0

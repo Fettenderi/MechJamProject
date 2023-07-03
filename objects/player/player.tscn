@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://0kc0gxu63wag"]
+
+[ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmqky"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.34902, 1, 0.67451, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_stj56"]
+material = SubResource("StandardMaterial3D_nmqky")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_wi0po")
+metadata/_edit_group_ = true
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_stj56")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_m7l1m")
+metadata/_edit_lock_ = true
+
+[node name="JumpCooldown" type="Timer" parent="."]
+wait_time = 3.0
