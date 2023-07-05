@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd2li80rf5gwo"]
+
+[ext_resource type="Script" path="res://objects/common/health_bar.gd" id="1_h660n"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0jfql"]
+viewport_path = NodePath("HealthBarViewport")
+
+[node name="HealthBarSprite" type="Sprite3D"]
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_0jfql")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 30)
+script = ExtResource("1_h660n")
+
+[node name="HealthBarViewport" type="SubViewport" parent="."]
+size = Vector2i(200, 30)
+
+[node name="BaseColor" type="ColorRect" parent="HealthBarViewport"]
+offset_right = 200.0
+offset_bottom = 30.0
+
+[node name="HealthColor" type="ColorRect" parent="HealthBarViewport"]
+offset_right = 134.0
+offset_bottom = 30.0
+color = Color(0.478431, 1, 0.419608, 1)

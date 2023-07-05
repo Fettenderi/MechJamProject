@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmd03mfrn325s"]
+
+[ext_resource type="Script" path="res://objects/common/attack.gd" id="1_peo2u"]
+
+[node name="Attack" type="Area3D"]
+script = ExtResource("1_peo2u")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+disabled = true
+
+[node name="DurationTimer" type="Timer" parent="."]

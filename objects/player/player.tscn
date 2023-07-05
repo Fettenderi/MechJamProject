@@ -1,6 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=11 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
+[ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
+[ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_sih12"]
+[ext_resource type="Script" path="res://objects/common/hitbox.gd" id="4_q888k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmqky"]
 diffuse_mode = 3
@@ -10,19 +15,59 @@ albedo_color = Color(0.34902, 1, 0.67451, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_stj56"]
 material = SubResource("StandardMaterial3D_nmqky")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dyf46"]
+size = Vector3(4, 0.5, 2.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4vv1y"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2ewaw"]
+height = 0.5
+radius = 3.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_wi0po")
 metadata/_edit_group_ = true
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_stj56")
-metadata/_edit_lock_ = true
-
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_m7l1m")
-metadata/_edit_lock_ = true
+
+[node name="Rotating" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Rotating"]
+mesh = SubResource("CapsuleMesh_stj56")
+skeleton = NodePath("../..")
+
+[node name="NormalAttack" parent="Rotating" instance=ExtResource("2_7spae")]
+collision_layer = 2
+collision_mask = 4
+duration_time = 1.0
+
+[node name="Shape" parent="Rotating/NormalAttack" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+shape = SubResource("BoxShape3D_dyf46")
+
+[node name="Fixed" type="Node3D" parent="."]
+
+[node name="Hitbox" parent="Fixed" instance=ExtResource("3_sih12")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("4_q888k")
+
+[node name="Shape" parent="Fixed/Hitbox" index="0"]
+shape = SubResource("CapsuleShape3D_4vv1y")
+
+[node name="AreaAttack" parent="Fixed" instance=ExtResource("2_7spae")]
+collision_layer = 2
+collision_mask = 4
+duration_time = 3.0
+
+[node name="Shape" parent="Fixed/AreaAttack" index="0"]
+shape = SubResource("CylinderShape3D_2ewaw")
 
 [node name="JumpCooldown" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.001
+one_shot = true
+
+[editable path="Rotating/NormalAttack"]
+[editable path="Fixed/Hitbox"]
+[editable path="Fixed/AreaAttack"]

@@ -1,7 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjytct6r77p37"]
+[gd_scene load_steps=10 format=3 uid="uid://bjytct6r77p37"]
 
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="1_snh6g"]
 [ext_resource type="Script" path="res://level/player_follower.gd" id="2_82ujg"]
+[ext_resource type="PackedScene" uid="uid://csr6yuev0c4o2" path="res://objects/enemies/test_enemy.tscn" id="4_st45f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwau"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wd0r0"]
+material = SubResource("StandardMaterial3D_kqwau")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q261p"]
+size = Vector3(50, 1, 50)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k1txa"]
 sky_horizon_color = Color(0.692328, 0.727225, 0.774755, 1)
@@ -15,41 +28,43 @@ sky_material = SubResource("ProceduralSkyMaterial_k1txa")
 background_mode = 2
 sky = SubResource("Sky_53jql")
 tonemap_mode = 2
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_wd0r0"]
-size = Vector2(20, 20)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q261p"]
-size = Vector3(20, 1, 20)
+fog_enabled = true
+fog_light_color = Color(0.607843, 0.505882, 0.654902, 1)
 
 [node name="Level" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ohbxq")
+[node name="PlayerFollower" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_82ujg")
+player = NodePath("../Entities/Player")
+lerp_weight = 10.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
+[node name="Camera3D" type="Camera3D" parent="PlayerFollower"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7, 6)
+current = true
+size = 10.0
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="WorldElements" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="Floor" type="StaticBody3D" parent="WorldElements"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldElements/Floor"]
 mesh = SubResource("PlaneMesh_wd0r0")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldElements/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_q261p")
 
-[node name="Player" parent="." instance=ExtResource("1_snh6g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldElements"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
-[node name="PlayerFollower" type="Node3D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_82ujg")
-player = NodePath("../Player")
-lerp_weight = 0.3
+[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldElements"]
+environment = SubResource("Environment_ohbxq")
 
-[node name="Camera3D" type="Camera3D" parent="PlayerFollower"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 7, 4)
-current = true
-size = 10.0
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_snh6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84557, 1, 0)
+
+[node name="TestEnemy" parent="Entities" instance=ExtResource("4_st45f")]

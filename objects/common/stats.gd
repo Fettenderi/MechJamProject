@@ -1,7 +1,9 @@
+class_name Stats
+
 extends Node
 
-@export_range(1,100) var max_health: int
-var health: int:
+@export_range(1,100) var max_health: float
+@onready var health := max_health :
 	get:
 		return health
 	set(value):
@@ -11,7 +13,7 @@ var health: int:
 		emit_signal("health_changed", value)
 		
 
-@export_range(1,20) var damage: int
+@export_range(0.0,20.0) var damage: float
 
 signal health_changed(value)
 signal dead

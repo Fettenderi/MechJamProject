@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://i8jl71e5ibdd"]
+[gd_scene load_steps=2 format=3 uid="uid://cwc7qr3qs01po"]
 
-[ext_resource type="Script" path="res://player_stats.gd" id="1_rnaba"]
+[ext_resource type="Script" path="res://singletons/player_stats.gd" id="1_8txsw"]
 
 [node name="PlayerStats" type="Node"]
-script = ExtResource("1_rnaba")
+script = ExtResource("1_8txsw")
+max_health = 10.0
+damage = 1.0

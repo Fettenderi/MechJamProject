@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpj7a2nd0a5ai"]
+
+[ext_resource type="PackedScene" uid="uid://byauwebm0255x" path="res://models/Incudine.glb" id="1_dcv3u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2m8e"]
+size = Vector3(1, 0.75412, 0.561154)
+
+[node name="IncudineProp" type="StaticBody3D"]
+
+[node name="Incudine" parent="." instance=ExtResource("1_dcv3u")]
+transform = Transform3D(0.198237, 0, -0.147347, 0, 0.247, 0, 0.147347, 0, 0.198237, -1.71487, 0.253988, -0.179241)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358563, 0)
+shape = SubResource("BoxShape3D_k2m8e")
