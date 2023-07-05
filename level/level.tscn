@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjytct6r77p37"]
+[gd_scene load_steps=11 format=3 uid="uid://bjytct6r77p37"]
 
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="1_snh6g"]
 [ext_resource type="Script" path="res://level/player_follower.gd" id="2_82ujg"]
+[ext_resource type="PackedScene" uid="uid://c4el6ays1mlvi" path="res://models/test.glb" id="4_hy0jv"]
 [ext_resource type="PackedScene" uid="uid://csr6yuev0c4o2" path="res://objects/enemies/test_enemy.tscn" id="4_st45f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwau"]
@@ -68,3 +69,6 @@ environment = SubResource("Environment_ohbxq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84557, 1, 0)
 
 [node name="TestEnemy" parent="Entities" instance=ExtResource("4_st45f")]
+
+[node name="test" parent="." instance=ExtResource("4_hy0jv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23539, 0, -2.76419)

@@ -6,7 +6,6 @@
 script = ExtResource("1_peo2u")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 disabled = true
 
 [node name="DurationTimer" type="Timer" parent="."]
