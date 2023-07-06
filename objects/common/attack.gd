@@ -21,8 +21,8 @@ func start_attack(particle_parameter: float = 1.0) -> void:
 	primary_particles.amount = particle_parameter * max_prim_particles
 	secondary_particles.amount = particle_parameter * max_seco_particles
 	
-	primary_particles.restart()
-	secondary_particles.restart()
+	primary_particles.call_deferred("set_emitting", true)
+	secondary_particles.call_deferred("set_emitting", true)
 	
 	shape.set_deferred("disabled", false)
 

@@ -14,15 +14,15 @@ path = "bank:/Master.strings"
 guid = "{fcee2631-dc64-03d5-10a8-5d167737c50b}"
 name = "Master.strings"
 
-[sub_resource type="BusAsset" id="BusAsset_id4md"]
-path = "bus:/"
-guid = "{5e22bac0-3f00-4935-8a02-38325683d9fc}"
-name = "Master"
-
 [sub_resource type="BusAsset" id="BusAsset_h8b2q"]
 path = "bus:/Reverb"
 guid = "{33081084-5725-4053-a870-42ec617217f5}"
 name = "Reverb"
+
+[sub_resource type="BusAsset" id="BusAsset_id4md"]
+path = "bus:/"
+guid = "{5e22bac0-3f00-4935-8a02-38325683d9fc}"
+name = "Master"
 
 [sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_wi4iw"]
 data1 = 4248561914
