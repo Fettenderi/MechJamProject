@@ -8,4 +8,8 @@ script = ExtResource("1_peo2u")
 [node name="Shape" type="CollisionShape3D" parent="."]
 disabled = true
 
+[node name="PrimaryParticles" type="GPUParticles3D" parent="."]
+
+[node name="SecondaryParticles" type="GPUParticles3D" parent="."]
+
 [node name="DurationTimer" type="Timer" parent="."]

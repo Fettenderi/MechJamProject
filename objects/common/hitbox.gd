@@ -4,10 +4,12 @@ extends Area3D
 
 func _ready():
 	self.connect("area_entered", take_damage)
-#	stats.connect("dead", die)
 
 func take_damage(area: Area3D):
-	stats.health -= area.get_stats().damage
+	stats.health -= area.get_damage()
+
+func get_damage() -> float:
+	return stats.get_damage(Stats.AttackType.NORMAL)
 
 func die():
 	get_parent().queue_free()

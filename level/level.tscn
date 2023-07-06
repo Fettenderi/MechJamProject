@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjytct6r77p37"]
+[gd_scene load_steps=10 format=3 uid="uid://bjytct6r77p37"]
 
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="1_snh6g"]
 [ext_resource type="Script" path="res://level/player_follower.gd" id="2_82ujg"]
-[ext_resource type="PackedScene" uid="uid://c4el6ays1mlvi" path="res://models/test.glb" id="4_hy0jv"]
 [ext_resource type="PackedScene" uid="uid://csr6yuev0c4o2" path="res://objects/enemies/test_enemy.tscn" id="4_st45f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwau"]
@@ -41,7 +40,6 @@ lerp_weight = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="PlayerFollower"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7, 6)
-current = true
 size = 10.0
 
 [node name="WorldElements" type="Node3D" parent="."]
@@ -70,5 +68,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84557, 1, 0)
 
 [node name="TestEnemy" parent="Entities" instance=ExtResource("4_st45f")]
 
-[node name="test" parent="." instance=ExtResource("4_hy0jv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23539, 0, -2.76419)
+[node name="TestEnemy2" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
+
+[node name="TestEnemy3" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 0)
+
+[node name="TestEnemy4" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
+
+[node name="TestEnemy5" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 3)
+
+[node name="TestEnemy6" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 3)
+
+[node name="TestEnemy7" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+
+[node name="TestEnemy10" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, 0)
+
+[node name="TestEnemy11" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, 3)
+
+[node name="TestEnemy12" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, -3)
+
+[node name="TestEnemy8" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -3)
+
+[node name="TestEnemy9" parent="Entities" instance=ExtResource("4_st45f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -3)
