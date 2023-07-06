@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csr6yuev0c4o2"]
+[gd_scene load_steps=9 format=3 uid="uid://csr6yuev0c4o2"]
 
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="1_3onlp"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="2_sfmwt"]
@@ -15,9 +15,6 @@ material = SubResource("StandardMaterial3D_i5fhh")
 height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s1s7y"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_staa0"]
-viewport_path = NodePath("HealthBarViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv7y8"]
 
@@ -38,7 +35,6 @@ shape = SubResource("SphereShape3D_s1s7y")
 
 [node name="HealthBarSprite" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("2_sfmwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968417, 0)
-texture = SubResource("ViewportTexture_staa0")
 stats = NodePath("../Stats")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
@@ -54,4 +50,5 @@ shape = SubResource("SphereShape3D_kv7y8")
 
 [connection signal="dead" from="Stats" to="HitBox" method="die"]
 
+[editable path="HealthBarSprite"]
 [editable path="HitBox"]

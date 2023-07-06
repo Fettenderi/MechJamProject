@@ -9,7 +9,11 @@ script = ExtResource("1_peo2u")
 disabled = true
 
 [node name="PrimaryParticles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
 
 [node name="SecondaryParticles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
 
 [node name="DurationTimer" type="Timer" parent="."]

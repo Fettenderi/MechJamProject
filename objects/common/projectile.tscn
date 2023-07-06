@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsi5foppdmbhe"]
+
+[ext_resource type="Script" path="res://objects/common/projectile.gd" id="1_ynmx4"]
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_ynmx4")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+emitting = false
+
+[node name="DurationTimer" type="Timer" parent="."]

@@ -46,7 +46,7 @@ func _physics_process(delta) -> void:
 		if PlayerStats.run_selected_weapons == Stats.AttackType.POUND:
 			PlayerStats.run_selected_weapons = previous_weapon
 			PlayerStats.damage_boosts[Stats.AttackType.POUND] = pow(2, PlayerStats.jump_charge / float(MAX_JUMP_CHARGE)) * 1.3 - 1
-			area_attack.start_attack()
+			area_attack.start_attack(PlayerStats.jump_charge / float(MAX_JUMP_CHARGE))
 			moving_elapsed = 0
 			PlayerStats.jump_charge = 0
 		elif Input.is_action_just_pressed("player_attack"):
