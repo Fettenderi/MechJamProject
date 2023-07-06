@@ -1,3 +1,132 @@
-[gd_resource type="ProjectCache" format=3 uid="uid://da8oc2k57j45c"]
+[gd_resource type="ProjectCache" load_steps=12 format=3 uid="uid://da8oc2k57j45c"]
+
+[sub_resource type="BankAsset" id="BankAsset_6gtbx"]
+file_path = "res://banks/Desktop/Master.bank"
+modified_time = 1688667878
+path = "bank:/Master"
+guid = "{64f306e5-ad1f-4f97-96e1-d7e886c4c393}"
+name = "Master"
+
+[sub_resource type="BankAsset" id="BankAsset_h4cs4"]
+file_path = "res://banks/Desktop/Master.strings.bank"
+modified_time = 1688667878
+path = "bank:/Master.strings"
+guid = "{fcee2631-dc64-03d5-10a8-5d167737c50b}"
+name = "Master.strings"
+
+[sub_resource type="BusAsset" id="BusAsset_id4md"]
+path = "bus:/"
+guid = "{5e22bac0-3f00-4935-8a02-38325683d9fc}"
+name = "Master"
+
+[sub_resource type="BusAsset" id="BusAsset_h8b2q"]
+path = "bus:/Reverb"
+guid = "{33081084-5725-4053-a870-42ec617217f5}"
+name = "Reverb"
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_wi4iw"]
+data1 = 4248561914
+data2 = 2925814567
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_4lj4r"]
+name = "Game Starts"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_wi4iw")
+maximum = 1.0
+flags = 8
+guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_rwwhu"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_4lj4r")
+path = "parameter:/Game Starts"
+guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
+name = "Game Starts"
+
+[sub_resource type="EventAsset" id="EventAsset_m2uat"]
+min_distance = 1.0
+max_distance = 20.0
+parameters = {
+"{ce84adbf-057d-4527-9fcd-c12ce71f87db}": SubResource("ParameterAsset_rwwhu")
+}
+path = "event:/Music/Music"
+guid = "{5ac1685c-50ab-4658-92ec-904a2f551098}"
+name = "Music"
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_ha4ap"]
+data1 = 1743397414
+data2 = 2430799958
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_4dbeb"]
+name = "Intensity"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_ha4ap")
+maximum = 4.0
+flags = 28
+guid = "{dc034953-c562-401b-9c83-c5cfa0b8e436}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_0b5tw"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_4dbeb")
+labels = ["Intensity 0", "Intensity 1", "Intensity 2", "Intensity 3", "Intensity 4"]
+path = "parameter:/Intensity"
+guid = "{dc034953-c562-401b-9c83-c5cfa0b8e436}"
+name = "Intensity"
 
 [resource]
+banks = {
+"{64f306e5-ad1f-4f97-96e1-d7e886c4c393}": SubResource("BankAsset_6gtbx"),
+"{fcee2631-dc64-03d5-10a8-5d167737c50b}": SubResource("BankAsset_h4cs4")
+}
+events = {
+"{5ac1685c-50ab-4658-92ec-904a2f551098}": SubResource("EventAsset_m2uat")
+}
+busses = {
+"{33081084-5725-4053-a870-42ec617217f5}": SubResource("BusAsset_h8b2q"),
+"{5e22bac0-3f00-4935-8a02-38325683d9fc}": SubResource("BusAsset_id4md")
+}
+parameters = {
+"{dc034953-c562-401b-9c83-c5cfa0b8e436}": SubResource("ParameterAsset_0b5tw")
+}
+bank_tree = [{
+"children": [],
+"item_type": 3,
+"node_name": "Master",
+"path": "bank:/Master",
+"resource": SubResource("BankAsset_6gtbx")
+}, {
+"children": [],
+"item_type": 3,
+"node_name": "Master.strings",
+"path": "bank:/Master.strings",
+"resource": SubResource("BankAsset_h4cs4")
+}]
+event_tree = [{
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Music",
+"path": "event:/Music/Music",
+"resource": SubResource("EventAsset_m2uat")
+}],
+"item_type": 7,
+"node_name": "Music",
+"path": "",
+"resource": null
+}]
+bus_tree = [{
+"children": [{
+"children": [],
+"item_type": 4,
+"node_name": "Reverb",
+"path": "bus:/Reverb",
+"resource": SubResource("BusAsset_h8b2q")
+}],
+"item_type": 4,
+"node_name": "bus:",
+"path": "bus:/",
+"resource": SubResource("BusAsset_id4md")
+}]
+parameter_tree = [{
+"children": [],
+"item_type": 6,
+"node_name": "Intensity",
+"path": "parameter:/Intensity",
+"resource": SubResource("ParameterAsset_0b5tw")
+}]

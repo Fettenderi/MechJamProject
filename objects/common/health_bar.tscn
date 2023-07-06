@@ -1,17 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd2li80rf5gwo"]
+[gd_scene load_steps=2 format=3 uid="uid://cd2li80rf5gwo"]
 
 [ext_resource type="Script" path="res://objects/common/health_bar.gd" id="1_h660n"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0jfql"]
-viewport_path = NodePath("HealthBarViewport")
+[node name="HealthBar" type="Node3D"]
+script = ExtResource("1_h660n")
 
-[node name="HealthBarSprite" type="Sprite3D"]
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
 billboard = 1
 texture_filter = 0
-texture = SubResource("ViewportTexture_0jfql")
 region_enabled = true
 region_rect = Rect2(0, 0, 200, 30)
-script = ExtResource("1_h660n")
 
 [node name="HealthBarViewport" type="SubViewport" parent="."]
 size = Vector2i(200, 30)

@@ -1,0 +1,28 @@
+[gd_resource type="EventAsset" load_steps=4 format=3 uid="uid://c8frcyj4q37nj"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_wi4iw"]
+data1 = 4248561914
+data2 = 2925814567
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_4lj4r"]
+name = "Game Starts"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_wi4iw")
+maximum = 1.0
+flags = 8
+guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_rwwhu"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_4lj4r")
+path = "parameter:/Game Starts"
+guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
+name = "Game Starts"
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+parameters = {
+"{ce84adbf-057d-4527-9fcd-c12ce71f87db}": SubResource("ParameterAsset_rwwhu")
+}
+path = "event:/Music/Music"
+guid = "{5ac1685c-50ab-4658-92ec-904a2f551098}"
+name = "Music"

@@ -1,4 +1,4 @@
-extends Sprite3D
+extends Node3D
 
 @export var stats: Stats
 
@@ -7,8 +7,9 @@ extends Sprite3D
 
 @export var max_size: Vector2 = Vector2(200, 30)
 
+@onready var health_bar_sprite:= $HealthBarSprite
 @onready var health_color:= $HealthBarViewport/HealthColor
-@onready var base:= $HealthBarViewport/BaseColor
+@onready var base_color:= $HealthBarViewport/BaseColor
 @onready var health_bar_viewport:= $HealthBarViewport
 
 func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop: Color) -> Color:
@@ -17,11 +18,11 @@ func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop
 func _ready():
 	stats.connect("health_changed", update_health_bar)
 	
-	base.size = max_size
+	base_color.size = max_size
 	health_color.size = max_size
 	health_color.color = color_high
 	health_bar_viewport.size = max_size
-	region_rect.size = max_size
+	health_bar_sprite.region_rect.size = max_size
 
 
 func update_health_bar(new_health):
