@@ -53,6 +53,7 @@ settings/enable_memory_tracking=false
 settings/encryption_key=""
 settings/distance_scale_2d=1.0
 settings/init_with_3d_righthanded=true
+settings/banks_to_load_at_startup=Array[String]([])
 
 [input]
 
