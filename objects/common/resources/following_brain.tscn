@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dokek0pfjolrv"]
+
+[ext_resource type="Script" path="res://objects/common/resources/following_brain.gd" id="1_1kn2e"]
+
+[node name="FollowingBrain" type="Node3D"]
+script = ExtResource("1_1kn2e")
+
+[node name="FollowArea" type="Area3D" parent="."]
+
+[node name="FollowShape" type="CollisionShape3D" parent="FollowArea"]

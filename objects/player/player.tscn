@@ -162,7 +162,7 @@ attack_type = 2
 [node name="Fixed" type="Node3D" parent="."]
 
 [node name="Hitbox" parent="Fixed" instance=ExtResource("3_sih12")]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 4
 script = ExtResource("4_q888k")
 

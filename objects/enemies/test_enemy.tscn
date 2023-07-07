@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://csr6yuev0c4o2"]
+[gd_scene load_steps=11 format=3 uid="uid://csr6yuev0c4o2"]
 
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="1_3onlp"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="2_sfmwt"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_iqysl"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="4_20qrd"]
+[ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/resources/following_brain.tscn" id="4_tmfp0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5fhh"]
 diffuse_mode = 3
@@ -18,8 +19,13 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv7y8"]
 
-[node name="TestEnemy" type="RigidBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t7h5b"]
+radius = 5.0
+
+[node name="TestEnemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 16
+collision_mask = 0
 metadata/_edit_group_ = true
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
@@ -43,6 +49,16 @@ stats = NodePath("../Stats")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
+[node name="FollowingBrain" parent="." instance=ExtResource("4_tmfp0")]
+too_close_distance = 3
+
+[node name="FollowArea" parent="FollowingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="FollowShape" parent="FollowingBrain/FollowArea" index="0"]
+shape = SubResource("CylinderShape3D_t7h5b")
+
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("1_3onlp")
 max_health = 10.0
@@ -51,3 +67,4 @@ damage = 1.0
 [connection signal="dead" from="Stats" to="HitBox" method="die"]
 
 [editable path="HitBox"]
+[editable path="FollowingBrain"]
