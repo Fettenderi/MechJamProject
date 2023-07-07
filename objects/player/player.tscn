@@ -1,12 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=29 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
-[ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/player/particles/sparkles_colors_1.tres" id="3_aeqr8"]
+[ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="3_jybm2"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_sih12"]
-[ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/player/particles/particles_material.tres" id="4_ljsgm"]
+[ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="4_5jfvx"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="4_q888k"]
-[ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/player/particles/sparkles_colors_2.tres" id="7_bc1hf"]
+[ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="5_auxup"]
+[ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/resources/basic_projectile.tscn" id="6_um3ir"]
+[ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/common/particles/sparkles_colors_2.tres" id="8_5fb3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
 
@@ -47,7 +49,7 @@ scale_curve = SubResource("CurveTexture_4g3ka")
 color_ramp = SubResource("GradientTexture1D_tbydk")
 
 [sub_resource type="BoxMesh" id="BoxMesh_spa0c"]
-material = ExtResource("4_ljsgm")
+material = ExtResource("3_jybm2")
 size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijw4i"]
@@ -56,7 +58,7 @@ spread = 180.0
 initial_velocity_min = 1.5
 initial_velocity_max = 1.5
 scale_curve = SubResource("CurveTexture_4g3ka")
-color_ramp = ExtResource("3_aeqr8")
+color_ramp = ExtResource("4_5jfvx")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4vv1y"]
 
@@ -83,10 +85,10 @@ linear_accel_max = 5.0
 damping_min = 1.0
 damping_max = 2.0
 scale_curve = SubResource("CurveTexture_bth36")
-color_ramp = ExtResource("3_aeqr8")
+color_ramp = ExtResource("4_5jfvx")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ic7o4"]
-material = ExtResource("4_ljsgm")
+material = ExtResource("3_jybm2")
 size = Vector3(0.2, 0.1, 0.2)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipu32"]
@@ -101,7 +103,7 @@ linear_accel_max = 5.0
 damping_min = 1.0
 damping_max = 2.0
 scale_curve = SubResource("CurveTexture_bth36")
-color_ramp = ExtResource("7_bc1hf")
+color_ramp = ExtResource("8_5fb3j")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_wi0po")
@@ -149,6 +151,12 @@ speed_scale = 2.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ijw4i")
 draw_pass_1 = SubResource("BoxMesh_spa0c")
+
+[node name="Gun" parent="Rotating" instance=ExtResource("5_auxup")]
+projectile = ExtResource("6_um3ir")
+layer = 2
+mask = 4
+attack_type = 2
 
 [node name="Fixed" type="Node3D" parent="."]
 

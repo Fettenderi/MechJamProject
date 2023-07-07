@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MechJamProject"
-run/main_scene="res://level/level.tscn"
+run/main_scene="res://start.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 PlayerStats="*res://singletons/player_stats.tscn"
 Gui="*res://ui/gui.tscn"
+GameMachine="*res://singletons/game_machine.tscn"
 
 [display]
 
@@ -105,8 +106,8 @@ debug_exit={
 [layer_names]
 
 3d_physics/layer_1="InteractionBox"
-3d_physics/layer_2="PlayerHitbox"
-3d_physics/layer_3="EnemyHitbox"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Enemy"
 
 [rendering]
 

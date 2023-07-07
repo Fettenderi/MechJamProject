@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0dqe05b86gyt"]
 
-[ext_resource type="Script" path="res://objects/common/attack.gd" id="1_4blpk"]
+[ext_resource type="Script" path="res://objects/common/gun.gd" id="1_q86a8"]
 
-[node name="Attack" type="Area3D"]
-script = ExtResource("1_4blpk")
+[node name="Gun" type="Area3D"]
+script = ExtResource("1_q86a8")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 disabled = true
@@ -16,4 +16,4 @@ one_shot = true
 emitting = false
 one_shot = true
 
-[node name="DurationTimer" type="Timer" parent="."]
+[node name="ReloadTimer" type="Timer" parent="."]

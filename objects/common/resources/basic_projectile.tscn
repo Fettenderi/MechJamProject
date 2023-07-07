@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://cft83snc22ixv"]
+
+[ext_resource type="Script" path="res://objects/common/projectile.gd" id="1_3imxn"]
+[ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="2_x0y7j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ilb7k"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jhs0"]
+
+[sub_resource type="Gradient" id="Gradient_ya7su"]
+colors = PackedColorArray(0.026012, 0.0690966, 0.156857, 1, 0.843208, 0.889371, 0.972609, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w0gsi"]
+gradient = SubResource("Gradient_ya7su")
+
+[sub_resource type="Curve" id="Curve_lr20f"]
+_data = [Vector2(0, 0.881818), 0.0, 0.0, 0, 0, Vector2(1, 0.527273), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gv00d"]
+curve = SubResource("Curve_lr20f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdylk"]
+gravity = Vector3(0, -1, 0)
+scale_curve = SubResource("CurveTexture_gv00d")
+color_ramp = SubResource("GradientTexture1D_w0gsi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dvdg4"]
+material = ExtResource("2_x0y7j")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Projectile" type="Area3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_3imxn")
+duration_time = 10.0
+attack_type = 2
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ilb7k")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2jhs0")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+amount = 50
+lifetime = 0.3
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_kdylk")
+draw_pass_1 = SubResource("BoxMesh_dvdg4")
+
+[node name="DurationTimer" type="Timer" parent="."]

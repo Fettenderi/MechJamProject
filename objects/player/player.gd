@@ -11,9 +11,12 @@ const MAX_JUMP_CHARGE = 200
 const ROTATION_SPEED = 7.5
 
 @onready var jump_cooldown := $JumpCooldown
+
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
 @onready var drill_attack := $Rotating/DrillAttack
+@onready var gun := $Rotating/Gun
+
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
 
@@ -28,6 +31,7 @@ func _ready():
 	normal_attack.stats = get_node("/root/PlayerStats")
 	drill_attack.stats = get_node("/root/PlayerStats")
 	hitbox.stats = get_node("/root/PlayerStats")
+	gun.stats = get_node("/root/PlayerStats")
 	
 	jump_cooldown.connect("timeout", jump_cooldown_ended)
 
@@ -49,12 +53,14 @@ func _physics_process(delta) -> void:
 			area_attack.start_attack(PlayerStats.jump_charge / float(MAX_JUMP_CHARGE))
 			moving_elapsed = 0
 			PlayerStats.jump_charge = 0
-		elif Input.is_action_just_pressed("player_attack"):
+		elif Input.is_action_pressed("player_attack"):
 			match PlayerStats.run_selected_weapons:
 				Stats.AttackType.NORMAL:
 					normal_attack.start_attack()
 				Stats.AttackType.DRILL:
 					drill_attack.start_attack()
+				Stats.AttackType.GUN:
+					gun.start_attack()
 		elif Input.is_action_just_pressed("player_switch_weapon"):
 			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.menu_selected_weapons))
 	

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn1n3236ap2am"]
+[gd_scene load_steps=3 format=3 uid="uid://bn1n3236ap2am"]
 
 [ext_resource type="Script" path="res://singletons/game_machine.gd" id="1_8f465"]
+[ext_resource type="PackedScene" uid="uid://bjytct6r77p37" path="res://level/level.tscn" id="2_5oq24"]
 
 [node name="GameMachine" type="Node"]
 script = ExtResource("1_8f465")
+
+[node name="Level" parent="." instance=ExtResource("2_5oq24")]
