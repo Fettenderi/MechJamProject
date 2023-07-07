@@ -33,6 +33,7 @@ func _ready():
 	hitbox.stats = get_node("/root/PlayerStats")
 	gun.stats = get_node("/root/PlayerStats")
 	
+	PlayerStats.connect("dead", die)
 	jump_cooldown.connect("timeout", jump_cooldown_ended)
 
 func _physics_process(delta) -> void:
@@ -66,7 +67,6 @@ func _physics_process(delta) -> void:
 						# Aggiungere shake screen effect
 						pass
 		elif Input.is_action_just_pressed("player_switch_weapon"):
-			$StudioGlobalParameterTrigger.value += 1
 			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.menu_selected_weapons))
 	
 	# Handle Jump.
@@ -80,11 +80,6 @@ func _physics_process(delta) -> void:
 			velocity.y = JUMP_VELOCITY * PlayerStats.jump_charge / MAX_JUMP_CHARGE
 			jump_cooldown.start()
 			can_jump = false
-	
-	# Handle Exit.
-	if Input.is_action_just_pressed("debug_exit"):
-		get_tree().quit()
-	
 	
 	# Handle Direction and Movement
 	var input_dir := Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
@@ -135,3 +130,6 @@ func update_rotation(direction: Vector3, delta: float) -> void:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, -final_angle, delta * ROTATION_SPEED)
 	else:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, final_angle, delta * ROTATION_SPEED)
+
+func die():
+	queue_free()

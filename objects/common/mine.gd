@@ -1,33 +1,31 @@
 extends Area3D
 
-@export_range(0.0, 3.0) var duration_time : float
-@export var stats : Stats
-@export var attack_type : Stats.AttackType
+@export var damage : int = 1
+@export var despawn_time : float = 1.0
 
 @onready var shape := $Shape
-@onready var duration_timer := $DurationTimer
+@onready var mesh := $Mesh
 @onready var primary_particles := $PrimaryParticles
 @onready var secondary_particles := $SecondaryParticles
+@onready var despawn_timer := $DespawnTimer
 
 @onready var max_prim_particles : int = primary_particles.amount
 @onready var max_seco_particles : int = secondary_particles.amount
 
-func _ready() -> void:
-	duration_timer.connect("timeout", end_attack)
 
-func start_attack(particle_parameter: float = 1.0) -> void:
-	duration_timer.start(duration_time)
-	
-	primary_particles.amount = particle_parameter * max_prim_particles
-	secondary_particles.amount = particle_parameter * max_seco_particles
-	
+func _ready() -> void:
+	despawn_timer.connect("timeout", despawn)
+	connect("area_entered", explode)
+
+func explode(_area: Area3D = null) -> void:
 	primary_particles.call_deferred("set_emitting", true)
 	secondary_particles.call_deferred("set_emitting", true)
-	
-	shape.set_deferred("disabled", false)
-
-func end_attack() -> void:
-	shape.set_deferred("disabled", true)
+	mesh.visible = false
+	despawn_timer.start(despawn_time)
+	# Inserire shake screen
 
 func get_damage() -> float:
-	return stats.get_damage(attack_type)
+	return damage
+
+func despawn():
+	queue_free()

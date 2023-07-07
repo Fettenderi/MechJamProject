@@ -1,17 +1,64 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb765ivlpooki"]
+[gd_scene load_steps=9 format=3 uid="uid://bb765ivlpooki"]
 
 [ext_resource type="Script" path="res://objects/common/mine.gd" id="1_xcnvx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chdyt"]
+albedo_color = Color(0.909804, 0.2, 0.247059, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_alip7"]
+material = SubResource("StandardMaterial3D_chdyt")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u2ec1"]
+size = Vector3(1.5, 1, 1.5)
+
+[sub_resource type="Curve" id="Curve_ituy7"]
+_data = [Vector2(0.161049, 1), 0.0, -6.47273, 0, 0, Vector2(0.58427, 0), -0.125548, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l8lh3"]
+curve = SubResource("Curve_ituy7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8w1w1"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_curve = SubResource("CurveTexture_l8lh3")
+
+[sub_resource type="SphereMesh" id="SphereMesh_g6b83"]
+radius = 1.0
+height = 2.0
 
 [node name="Mine" type="Area3D"]
 script = ExtResource("1_xcnvx")
 
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0525044, 0)
+mesh = SubResource("BoxMesh_alip7")
+
 [node name="Shape" type="CollisionShape3D" parent="."]
-disabled = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_u2ec1")
 
 [node name="PrimaryParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.510671, 0)
 emitting = false
-one_shot = true
+amount = 50
+lifetime = 5.0
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8w1w1")
+draw_pass_1 = SubResource("SphereMesh_g6b83")
 
 [node name="SecondaryParticles" type="GPUParticles3D" parent="."]
 emitting = false
+one_shot = true
+
+[node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true

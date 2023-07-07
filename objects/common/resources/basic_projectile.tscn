@@ -54,7 +54,7 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_kdylk")
 draw_pass_1 = SubResource("BoxMesh_dvdg4")
 
-[node name="DurationTimer" type="Timer" parent="."]
+[node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
