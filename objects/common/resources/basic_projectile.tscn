@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cft83snc22ixv"]
+[gd_scene load_steps=12 format=3 uid="uid://cft83snc22ixv"]
 
 [ext_resource type="Script" path="res://objects/common/projectile.gd" id="1_3imxn"]
 [ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="2_x0y7j"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ilb7k"]
-size = Vector3(0.5, 0.5, 0.5)
+material = ExtResource("2_x0y7j")
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2jhs0"]
 
@@ -26,15 +27,18 @@ gravity = Vector3(0, -1, 0)
 scale_curve = SubResource("CurveTexture_gv00d")
 color_ramp = SubResource("GradientTexture1D_w0gsi")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxu0a"]
+albedo_color = Color(0.129412, 0.129412, 0.129412, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_dvdg4"]
-material = ExtResource("2_x0y7j")
+material = SubResource("StandardMaterial3D_fxu0a")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Projectile" type="Area3D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3imxn")
-duration_time = 10.0
+duration_time = 5.0
 attack_type = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
@@ -51,3 +55,6 @@ process_material = SubResource("ParticleProcessMaterial_kdylk")
 draw_pass_1 = SubResource("BoxMesh_dvdg4")
 
 [node name="DurationTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true

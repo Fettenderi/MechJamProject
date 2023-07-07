@@ -153,6 +153,7 @@ process_material = SubResource("ParticleProcessMaterial_ijw4i")
 draw_pass_1 = SubResource("BoxMesh_spa0c")
 
 [node name="Gun" parent="Rotating" instance=ExtResource("5_auxup")]
+duration_time = 0.1
 projectile = ExtResource("6_um3ir")
 layer = 2
 mask = 4

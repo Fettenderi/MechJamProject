@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb765ivlpooki"]
+
+[ext_resource type="Script" path="res://objects/common/mine.gd" id="1_xcnvx"]
+
+[node name="Mine" type="Area3D"]
+script = ExtResource("1_xcnvx")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+disabled = true
+
+[node name="PrimaryParticles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
+
+[node name="SecondaryParticles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true

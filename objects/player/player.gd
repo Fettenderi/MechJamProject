@@ -8,7 +8,7 @@ const DECELERATION = 80.0
 const JUMP_VELOCITY = 7.0
 const MAX_JUMP_CHARGE = 200
 
-const ROTATION_SPEED = 7.5
+const ROTATION_SPEED = 8.0
 
 @onready var jump_cooldown := $JumpCooldown
 
@@ -60,15 +60,17 @@ func _physics_process(delta) -> void:
 				Stats.AttackType.DRILL:
 					drill_attack.start_attack()
 				Stats.AttackType.GUN:
-					gun.start_attack()
+					if PlayerStats.weapon_ammos[Stats.AttackType.GUN] > 0:
+						gun.start_attack()
+					else:
+						# Aggiungere shake screen effect
+						pass
 		elif Input.is_action_just_pressed("player_switch_weapon"):
+			$StudioGlobalParameterTrigger.value += 1
 			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.menu_selected_weapons))
 	
 	# Handle Jump.
-#	Fare in modo che il salto si debba caricare, quando rilasciato in base a quanto è carico appena 
-#	si fa il ground pound fa progressivamente più danno, da 5s in poi fa sempre lo stesso danno (inverse_lerp o remap?? clampato)
-#
-
+	
 	if is_on_floor() and can_jump:
 		if Input.is_action_just_pressed("player_jump"):
 			PlayerStats.jump_charge = 0
@@ -78,32 +80,47 @@ func _physics_process(delta) -> void:
 			velocity.y = JUMP_VELOCITY * PlayerStats.jump_charge / MAX_JUMP_CHARGE
 			jump_cooldown.start()
 			can_jump = false
-
+	
 	# Handle Exit.
 	if Input.is_action_just_pressed("debug_exit"):
 		get_tree().quit()
 	
 	
 	# Handle Direction and Movement
-	var input_dir = Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
+	var input_dir := Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction and not PlayerStats.run_selected_weapons == Stats.AttackType.POUND:
-		update_rotating(delta, direction)
-		if is_on_floor():
-			var saw_movement : float = saw_tooth(moving_elapsed) * clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0)
-			velocity.x = move_toward(velocity.x, direction.x * MAX_SPEED * saw_movement, ACCELERATION * delta)
-			velocity.z = move_toward(velocity.z, direction.z * MAX_SPEED * saw_movement, ACCELERATION * delta)
-			moving_elapsed += delta
-		else:
-			velocity.x = move_toward(velocity.x, direction.x * MAX_SPEED, ACCELERATION * delta)
-			velocity.z = move_toward(velocity.z, direction.z * MAX_SPEED, ACCELERATION * delta)
+	var is_crouching := Input.is_action_pressed("player_crouch")
+	var is_pounding := PlayerStats.run_selected_weapons == Stats.AttackType.POUND
+	
+	if is_pounding or is_crouching:
+		if direction:
+			update_rotation(direction, delta)
+		stop_moving(delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
-		velocity.z = move_toward(velocity.z, 0, DECELERATION * delta)
-		moving_elapsed = 0
-
+		if direction:
+			update_rotation(direction, delta)
+			move(direction, delta)
+		else:
+			stop_moving(delta)
+	
 	move_and_slide()
+
+func move(direction : Vector3, delta: float):
+	if is_on_floor():
+		var saw_movement : float = saw_tooth(moving_elapsed) * clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0)
+		velocity_lerp(direction * MAX_SPEED * saw_movement, ACCELERATION * delta)
+		moving_elapsed += delta
+	else:
+		velocity_lerp(direction * MAX_SPEED, ACCELERATION * delta)
+
+func stop_moving(delta: float):
+	velocity_lerp(Vector3.ZERO, DECELERATION * delta)
+	moving_elapsed = 0
+
+func velocity_lerp(end_velocity: Vector3, delta: float):
+	velocity.x = move_toward(velocity.x, end_velocity.x, delta)
+	velocity.z = move_toward(velocity.z, end_velocity.z, delta)
 
 func saw_tooth(value: float) -> float:
 	value *= 0.7
@@ -112,7 +129,7 @@ func saw_tooth(value: float) -> float:
 func jump_cooldown_ended() -> void:
 	can_jump = true
 
-func update_rotating(delta: float, direction: Vector3) -> void:
+func update_rotation(direction: Vector3, delta: float) -> void:
 	var final_angle := acos(Vector3.RIGHT.dot(direction))
 	if direction.z > 0:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, -final_angle, delta * ROTATION_SPEED)

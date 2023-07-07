@@ -21,8 +21,13 @@ func start_attack() -> void:
 	if can_shoot:
 		var projectile_node : Projectile = projectile.instantiate()
 		
+		if stats == PlayerStats:
+			stats.weapon_ammos[Stats.AttackType.GUN] -= 1
+			# Aggiungere shake screen effect
+
 		projectile_node.position = global_position
-		projectile_node.stats = stats
+		projectile_node.direction = Vector3(cos(global_rotation.y), 0, -sin(global_rotation.y))
+		projectile_node.stats = stats 
 		projectile_node.collision_layer = layer
 		projectile_node.collision_mask = mask
 #		projectile_node.direction = rotation

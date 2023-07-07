@@ -1,9 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn1n3236ap2am"]
+[gd_scene load_steps=6 format=3 uid="uid://bn1n3236ap2am"]
 
 [ext_resource type="Script" path="res://singletons/game_machine.gd" id="1_8f465"]
 [ext_resource type="PackedScene" uid="uid://bjytct6r77p37" path="res://level/level.tscn" id="2_5oq24"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_0gakw"]
+data1 = 1743397414
+data2 = 2430799958
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_5q14g"]
+name = "Intensity"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_0gakw")
+maximum = 4.0
+flags = 28
+guid = "{dc034953-c562-401b-9c83-c5cfa0b8e436}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_k1djb"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_5q14g")
+labels = ["Intensity 0", "Intensity 1", "Intensity 2", "Intensity 3", "Intensity 4"]
+path = "parameter:/Intensity"
+guid = "{dc034953-c562-401b-9c83-c5cfa0b8e436}"
+name = "Intensity"
 
 [node name="GameMachine" type="Node"]
 script = ExtResource("1_8f465")
 
 [node name="Level" parent="." instance=ExtResource("2_5oq24")]
+
+[node name="StudioGlobalParameterTrigger" type="StudioGlobalParameterTrigger" parent="."]
+parameter = SubResource("ParameterAsset_k1djb")
+value = 2

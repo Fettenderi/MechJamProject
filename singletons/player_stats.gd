@@ -16,8 +16,14 @@ var run_selected_weapons : int = 0 :
 		run_selected_weapons = value
 		emit_signal("change_selected_weapon", value)
 
+var weapon_ammos : Array[float] = [0,0,10,0,0] :
+	set(value):
+		weapon_ammos = value
+		emit_signal("weapon_ammos_updated", value)
+
 signal change_selected_weapon(value)
 signal charge_jump(value)
+signal weapon_ammos_updated(value)
 
 func menu_select_weapon(new: int, prev:= -1) -> void:
 	if prev >= 0:

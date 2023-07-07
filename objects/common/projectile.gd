@@ -2,7 +2,7 @@ class_name Projectile
 
 extends Area3D
 
-const BULLET_SPEED = 1.0
+const BULLET_SPEED = 20.0
 
 @export_range(0.0, 10.0) var duration_time : float
 @export var attack_type : Stats.AttackType
@@ -24,7 +24,7 @@ func _physics_process(delta):
 func start_attack() -> void:
 	duration_timer.start(duration_time)
 	
-func despawn() -> void:
+func despawn(area: Area3D = null) -> void:
 	queue_free()
 
 func get_damage() -> float:
