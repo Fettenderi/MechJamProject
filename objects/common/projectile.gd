@@ -9,12 +9,13 @@ extends Area3D
 @onready var particles := $Particles
 
 func _ready() -> void:
-	connect("area_entered", end_attack)
+	connect("area_entered", despawn)
+	duration_timer.connect("timeout", despawn)
 
 func start_attack(particle_parameter: float = 1.0) -> void:
 	duration_timer.start(duration_time)
 	
-func end_attack() -> void:
+func despawn() -> void:
 	queue_free()
 
 func get_damage() -> float:
