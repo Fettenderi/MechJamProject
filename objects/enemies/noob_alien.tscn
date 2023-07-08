@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://c762fmdasbdxk"]
+
+[ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_ku4gj"]
+[ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_mgllf"]
+[ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/resources/basic_projectile.tscn" id="2_g608w"]
+[ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_xfy16"]
+[ext_resource type="CapsuleMesh" uid="uid://bmykacdclpibs" path="res://objects/enemies/debug_enemy_mesh.tres" id="3_sq6tb"]
+[ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_xabsb"]
+[ext_resource type="Script" path="res://objects/common/stats.gd" id="4_2omcr"]
+[ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/resources/following_brain.tscn" id="6_ogdb3"]
+[ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/resources/attacking_brain.tscn" id="8_8k36b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xytjn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
+radius = 11.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6tlqf"]
+radius = 8.0
+
+[node name="NoobAlien" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+
+[node name="Rotating" type="Node3D" parent="."]
+
+[node name="Gun" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("1_mgllf")]
+duration_time = 1.5
+stats = NodePath("../../Stats")
+projectile = ExtResource("2_g608w")
+layer = 4
+mask = 2
+
+[node name="Fixed" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Fixed"]
+mesh = ExtResource("3_sq6tb")
+skeleton = NodePath("../..")
+
+[node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_ku4gj")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_xfy16")
+stats = NodePath("../../Stats")
+
+[node name="Shape" parent="Fixed/HitBox" index="0"]
+shape = SubResource("SphereShape3D_xytjn")
+
+[node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("3_xabsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stats = NodePath("../../Stats")
+color_low = Color(0.74902, 0.203922, 0.203922, 1)
+color_high = Color(0.301961, 0.952941, 0.301961, 1)
+
+[node name="FollowingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("6_ogdb3")]
+rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 4
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/FollowingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/FollowingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_dxb0f")
+
+[node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("far_attack", "stats") instance=ExtResource("8_8k36b")]
+far_attack = NodePath("../../Rotating/Gun")
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/AttackingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/AttackingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_6tlqf")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("4_2omcr")
+max_health = 10.0
+damage = 1.0
+speed = 0.5
+
+[connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
+
+[editable path="Fixed/HitBox"]
+[editable path="Fixed/FollowingBrain"]
+[editable path="Fixed/AttackingBrain"]

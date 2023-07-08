@@ -12,4 +12,4 @@ func get_damage() -> float:
 	return stats.get_damage(Stats.AttackType.NORMAL)
 
 func die():
-	get_parent().queue_free()
+	get_parent().get_parent().queue_free()

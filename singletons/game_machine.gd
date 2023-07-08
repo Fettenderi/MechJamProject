@@ -1,7 +1,7 @@
 extends Node
 
-func add_projectile(projectile: Node3D):
-	get_node("Level/Projectiles").add_child(projectile)
+func add_prop(prop: Node3D):
+	get_node("Level/Props").add_child(prop)
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("debug_exit"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=31 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -22,6 +22,49 @@ material = SubResource("StandardMaterial3D_nmqky")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dyf46"]
 size = Vector3(4, 0.5, 2.5)
+
+[sub_resource type="Curve" id="Curve_6bv2f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bth36"]
+curve = SubResource("Curve_6bv2f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nj1a5"]
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_box_extents = Vector3(0, 0, 1)
+spread = 22.0
+flatness = 0.9
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+linear_accel_min = 5.0
+linear_accel_max = 5.0
+damping_min = 1.0
+damping_max = 2.0
+scale_curve = SubResource("CurveTexture_bth36")
+color_ramp = ExtResource("4_5jfvx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ic7o4"]
+material = ExtResource("3_jybm2")
+size = Vector3(0.2, 0.1, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipu32"]
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_box_extents = Vector3(0, 0, 1)
+spread = 22.0
+flatness = 0.9
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+linear_accel_min = 5.0
+linear_accel_max = 5.0
+damping_min = 1.0
+damping_max = 2.0
+scale_curve = SubResource("CurveTexture_bth36")
+color_ramp = ExtResource("8_5fb3j")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1pjrq"]
 size = Vector3(2.09875, 0.5, 2)
@@ -66,20 +109,13 @@ color_ramp = ExtResource("4_5jfvx")
 height = 0.5
 radius = 3.0
 
-[sub_resource type="Curve" id="Curve_6bv2f"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_bth36"]
-curve = SubResource("Curve_6bv2f")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nj1a5"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8yool"]
 lifetime_randomness = 0.2
 spread = 180.0
 flatness = 0.9
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
 linear_accel_min = 5.0
 linear_accel_max = 5.0
 damping_min = 1.0
@@ -87,17 +123,13 @@ damping_max = 2.0
 scale_curve = SubResource("CurveTexture_bth36")
 color_ramp = ExtResource("4_5jfvx")
 
-[sub_resource type="BoxMesh" id="BoxMesh_ic7o4"]
-material = ExtResource("3_jybm2")
-size = Vector3(0.2, 0.1, 0.2)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipu32"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a4gsu"]
 lifetime_randomness = 0.2
 spread = 180.0
 flatness = 0.9
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
 linear_accel_min = 5.0
 linear_accel_max = 5.0
 damping_min = 1.0
@@ -121,11 +153,32 @@ skeleton = NodePath("../..")
 [node name="NormalAttack" parent="Rotating" instance=ExtResource("2_7spae")]
 collision_layer = 2
 collision_mask = 4
-duration_time = 0.2
 
 [node name="Shape" parent="Rotating/NormalAttack" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 shape = SubResource("BoxShape3D_dyf46")
+
+[node name="PrimaryParticles" parent="Rotating/NormalAttack" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0384386, -0.861358, -0.0179459)
+visible = false
+amount = 500
+lifetime = 1.1
+speed_scale = 3.0
+explosiveness = 0.53
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_nj1a5")
+draw_pass_1 = SubResource("BoxMesh_ic7o4")
+
+[node name="SecondaryParticles" parent="Rotating/NormalAttack" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0384386, -0.861358, -0.0179459)
+visible = false
+amount = 50
+lifetime = 1.1
+speed_scale = 3.0
+explosiveness = 0.53
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_ipu32")
+draw_pass_1 = SubResource("BoxMesh_ic7o4")
 
 [node name="DrillAttack" parent="Rotating" instance=ExtResource("2_7spae")]
 collision_layer = 2
@@ -172,7 +225,6 @@ shape = SubResource("CapsuleShape3D_4vv1y")
 [node name="AreaAttack" parent="Fixed" instance=ExtResource("2_7spae")]
 collision_layer = 2
 collision_mask = 4
-duration_time = 0.5
 attack_type = 4
 
 [node name="Shape" parent="Fixed/AreaAttack" index="0"]
@@ -185,7 +237,7 @@ lifetime = 1.1
 speed_scale = 2.0
 explosiveness = 0.53
 randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_nj1a5")
+process_material = SubResource("ParticleProcessMaterial_8yool")
 draw_pass_1 = SubResource("BoxMesh_ic7o4")
 
 [node name="SecondaryParticles" parent="Fixed/AreaAttack" index="2"]
@@ -195,12 +247,16 @@ lifetime = 1.1
 speed_scale = 3.0
 explosiveness = 0.53
 randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_ipu32")
+process_material = SubResource("ParticleProcessMaterial_a4gsu")
 draw_pass_1 = SubResource("BoxMesh_ic7o4")
 
 [node name="JumpCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="EnergyTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [editable path="Rotating/NormalAttack"]
 [editable path="Rotating/DrillAttack"]

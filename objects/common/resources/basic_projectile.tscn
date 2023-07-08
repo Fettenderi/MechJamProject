@@ -34,11 +34,10 @@ albedo_color = Color(0.129412, 0.129412, 0.129412, 1)
 material = SubResource("StandardMaterial3D_fxu0a")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="Projectile" type="Area3D"]
+[node name="BasicProjectile" type="Area3D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3imxn")
-duration_time = 5.0
 attack_type = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]

@@ -19,19 +19,26 @@ color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
 [node name="Weapon" type="Label" parent="."]
 layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 58.0
+offset_top = 66.0
+offset_right = 64.0
+offset_bottom = 92.0
 text = "Weapon"
 
 [node name="JumpCharge" type="Label" parent="."]
 layout_mode = 0
-offset_top = 57.0
-offset_right = 40.0
-offset_bottom = 83.0
+offset_top = 91.0
+offset_right = 95.0
+offset_bottom = 117.0
 text = "JumpCharge"
 
 [node name="HealthBar" type="ColorRect" parent="."]
-layout_mode = 0
+layout_mode = 2
 offset_right = 200.0
-offset_bottom = 30.0
+offset_bottom = 20.0
+
+[node name="EnergyBar" type="ColorRect" parent="."]
+layout_mode = 2
+offset_top = 31.0
+offset_right = 200.0
+offset_bottom = 51.0
+color = Color(0.121569, 0.92549, 1, 1)

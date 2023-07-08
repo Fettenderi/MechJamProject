@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-const MAX_SPEED = 7.0
-
 const ACCELERATION = 40.0
 const DECELERATION = 80.0
 
@@ -11,6 +9,7 @@ const MAX_JUMP_CHARGE = 200
 const ROTATION_SPEED = 8.0
 
 @onready var jump_cooldown := $JumpCooldown
+@onready var energy_timer := $EnergyTimer
 
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
@@ -34,10 +33,11 @@ func _ready():
 	gun.stats = get_node("/root/PlayerStats")
 	
 	PlayerStats.connect("dead", die)
+	PlayerStats.connect("jump_fully_charged", jump_fully_charged_effect)
 	jump_cooldown.connect("timeout", jump_cooldown_ended)
+	energy_timer.connect("timeout", energy_timer_ended)
 
 func _physics_process(delta) -> void:
-	
 	# Add gravity or attack.
 	if not is_on_floor():
 		if Input.is_action_just_pressed("player_attack"):
@@ -101,17 +101,19 @@ func _physics_process(delta) -> void:
 	
 	move_and_slide()
 
+
 func move(direction : Vector3, delta: float):
 	if is_on_floor():
 		var saw_movement : float = saw_tooth(moving_elapsed) * clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0)
-		velocity_lerp(direction * MAX_SPEED * saw_movement, ACCELERATION * delta)
+		velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
 		moving_elapsed += delta
 	else:
-		velocity_lerp(direction * MAX_SPEED, ACCELERATION * delta)
+		velocity_lerp(direction * PlayerStats.speed, ACCELERATION * delta)
 
 func stop_moving(delta: float):
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)
 	moving_elapsed = 0
+
 
 func velocity_lerp(end_velocity: Vector3, delta: float):
 	velocity.x = move_toward(velocity.x, end_velocity.x, delta)
@@ -121,15 +123,23 @@ func saw_tooth(value: float) -> float:
 	value *= 0.7
 	return (pow(2.5, value - floor(value)) - 1) * 2 / 3
 
-func jump_cooldown_ended() -> void:
-	can_jump = true
-
 func update_rotation(direction: Vector3, delta: float) -> void:
 	var final_angle := acos(Vector3.RIGHT.dot(direction))
 	if direction.z > 0:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, -final_angle, delta * ROTATION_SPEED)
 	else:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, final_angle, delta * ROTATION_SPEED)
+
+
+func energy_timer_ended() -> void:
+	if PlayerStats.can_discharge:
+		PlayerStats.energy = clamp(PlayerStats.energy - 1, 0, PlayerStats.max_energy)
+
+func jump_cooldown_ended() -> void:
+	can_jump = true
+
+func jump_fully_charged_effect() -> void:
+	area_attack.emit_particles()
 
 func die():
 	queue_free()

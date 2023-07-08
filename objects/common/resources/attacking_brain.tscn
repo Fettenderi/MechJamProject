@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ir1rhi0onuum"]
+
+[ext_resource type="Script" path="res://objects/common/resources/attacking_brain.gd" id="1_nnbdh"]
+
+[node name="AttackingBrain" type="Node3D"]
+script = ExtResource("1_nnbdh")
+
+[node name="TargetRangeArea" type="Area3D" parent="."]
+
+[node name="TargetRangeShape" type="CollisionShape3D" parent="TargetRangeArea"]

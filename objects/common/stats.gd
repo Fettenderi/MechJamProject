@@ -7,6 +7,7 @@ enum AttackType {
 	DRILL,
 	GUN,
 	DUBSTEP,
+	MINE,
 	POUND
 }
 
@@ -21,10 +22,18 @@ enum AttackType {
 		emit_signal("health_changed", value)
 
 @export_range(0.0,20.0) var damage: float
-var damage_boosts : Array[float] = [0,0,0,0,0]
+var damage_boosts : Array[float] = zeros(AttackType.size())
+
+@export var speed: float
 
 signal health_changed(value)
 signal dead
+
+func zeros(n: int) -> Array[float]:
+	var result : Array[float] = []
+	for i in range(n):
+		result.append(0)
+	return result
 
 func get_damage(type: AttackType) -> float:
 	var result := damage

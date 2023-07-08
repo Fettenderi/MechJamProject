@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://buq2o51m8rjoq"]
+
+[ext_resource type="Script" path="res://objects/common/mine_deployer.gd" id="1_44ay1"]
+
+[node name="MineDeployer" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+script = ExtResource("1_44ay1")
+
+[node name="PrimaryParticles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
+
+[node name="SecondaryParticles" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]

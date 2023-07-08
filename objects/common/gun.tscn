@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" path="res://objects/common/gun.gd" id="1_q86a8"]
 
-[node name="Gun" type="Area3D"]
+[node name="Gun" type="Node3D"]
 script = ExtResource("1_q86a8")
-
-[node name="Shape" type="CollisionShape3D" parent="."]
-disabled = true
 
 [node name="PrimaryParticles" type="GPUParticles3D" parent="."]
 emitting = false

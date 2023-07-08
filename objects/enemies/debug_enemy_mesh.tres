@@ -1,0 +1,10 @@
+[gd_resource type="CapsuleMesh" load_steps=2 format=3 uid="uid://bmykacdclpibs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5fhh"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.435294, 0.278431, 1, 1)
+
+[resource]
+material = SubResource("StandardMaterial3D_i5fhh")
+height = 1.0

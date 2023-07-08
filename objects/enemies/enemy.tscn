@@ -9,19 +9,24 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 metadata/_edit_group_ = true
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 
-[node name="HitBox" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("1_uhd3n")]
+[node name="Rotating" type="Node3D" parent="."]
+
+[node name="Fixed" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Fixed"]
+skeleton = NodePath("../..")
+
+[node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_uhd3n")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("2_qqxsi")
-stats = NodePath("../Stats")
+stats = NodePath("../../Stats")
 
-[node name="HealthBar" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("3_hsnel")]
+[node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("3_hsnel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-stats = NodePath("../Stats")
+stats = NodePath("../../Stats")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
@@ -30,6 +35,6 @@ script = ExtResource("4_3nbby")
 max_health = 10.0
 damage = 1.0
 
-[connection signal="dead" from="Stats" to="HitBox" method="die"]
+[connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
-[editable path="HitBox"]
+[editable path="Fixed/HitBox"]

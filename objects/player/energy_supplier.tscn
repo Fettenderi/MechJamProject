@@ -1,16 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb765ivlpooki"]
+[gd_scene load_steps=10 format=3 uid="uid://dx6yf3f0ghhw8"]
 
-[ext_resource type="Script" path="res://objects/common/mine.gd" id="1_xcnvx"]
+[ext_resource type="Script" path="res://objects/player/energy_supplier.gd" id="1_nsgsv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chdyt"]
-albedo_color = Color(0.909804, 0.2, 0.247059, 1)
+albedo_color = Color(0.113725, 0.658824, 0.690196, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_alip7"]
+[sub_resource type="BoxMesh" id="BoxMesh_3l88t"]
 material = SubResource("StandardMaterial3D_chdyt")
 size = Vector3(1, 0.1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u2ec1"]
-size = Vector3(1.5, 1, 1.5)
+size = Vector3(3, 2, 3)
 
 [sub_resource type="Curve" id="Curve_ituy7"]
 _data = [Vector2(0.101504, 0.65343), 0.0, -4.5832, 0, 0, Vector2(0.58427, 0), -0.125548, 0.0, 0, 0]
@@ -19,46 +19,50 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_l8lh3"]
 curve = SubResource("Curve_ituy7")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8w1w1"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i2hac"]
 lifetime_randomness = 0.5
 emission_shape = 1
 emission_sphere_radius = 0.3
 direction = Vector3(0, 1, 0)
 spread = 180.0
-gravity = Vector3(0, -2, 0)
+gravity = Vector3(0, 3, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 scale_curve = SubResource("CurveTexture_l8lh3")
 
-[sub_resource type="SphereMesh" id="SphereMesh_g6b83"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n2he"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.0235294, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_oouj1"]
+material = SubResource("StandardMaterial3D_0n2he")
 radius = 1.0
 height = 2.0
 
-[node name="Mine" type="Area3D"]
-script = ExtResource("1_xcnvx")
+[node name="EnergySupplier" type="Area3D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_nsgsv")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0525044, 0)
-mesh = SubResource("BoxMesh_alip7")
+mesh = SubResource("BoxMesh_3l88t")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_u2ec1")
 
 [node name="PrimaryParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.510671, 0)
 emitting = false
-amount = 50
-lifetime = 5.0
-speed_scale = 2.0
-explosiveness = 1.0
+amount = 10
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_8w1w1")
-draw_pass_1 = SubResource("SphereMesh_g6b83")
+process_material = SubResource("ParticleProcessMaterial_i2hac")
+draw_pass_1 = SubResource("SphereMesh_oouj1")
 
 [node name="SecondaryParticles" type="GPUParticles3D" parent="."]
 emitting = false
 one_shot = true
 
-[node name="DespawnTimer" type="Timer" parent="."]
-one_shot = true
+[node name="ChargeTimer" type="Timer" parent="."]

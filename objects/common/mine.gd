@@ -1,3 +1,5 @@
+class_name Mine
+
 extends Area3D
 
 @export var damage : int = 1
@@ -14,18 +16,16 @@ extends Area3D
 
 
 func _ready() -> void:
-	despawn_timer.connect("timeout", despawn)
+	despawn_timer.connect("timeout", queue_free)
 	connect("area_entered", explode)
 
 func explode(_area: Area3D = null) -> void:
 	primary_particles.call_deferred("set_emitting", true)
 	secondary_particles.call_deferred("set_emitting", true)
 	mesh.visible = false
+	shape.call_deferred("set_disabled", true)
 	despawn_timer.start(despawn_time)
 	# Inserire shake screen
 
 func get_damage() -> float:
 	return damage
-
-func despawn():
-	queue_free()
