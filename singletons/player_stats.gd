@@ -31,7 +31,7 @@ var run_selected_weapons : int = 0 :
 		run_selected_weapons = value
 		emit_signal("change_selected_weapon", value)
 
-var weapon_ammos : Array[float] = zeros(AttackType.size()) :
+@export var weapon_ammos : Array[float] = zeros(AttackType.size()) :
 	set(value):
 		weapon_ammos = value
 		emit_signal("weapon_ammos_updated", value)

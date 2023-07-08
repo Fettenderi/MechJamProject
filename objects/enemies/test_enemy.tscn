@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://csr6yuev0c4o2"]
+[gd_scene load_steps=14 format=3 uid="uid://csr6yuev0c4o2"]
 
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="1_3onlp"]
-[ext_resource type="PackedScene" uid="uid://buq2o51m8rjoq" path="res://objects/common/mine_deployer.tscn" id="1_ogcnv"]
-[ext_resource type="PackedScene" uid="uid://bb765ivlpooki" path="res://objects/common/mine.tscn" id="2_4xx2f"]
+[ext_resource type="PackedScene" uid="uid://bqjcj417e22e0" path="res://objects/common/shield.tscn" id="1_gltt4"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="2_sfmwt"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_iqysl"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="4_20qrd"]
-[ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/resources/attacking_brain.tscn" id="5_wly8n"]
-[ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/resources/wandering_brain.tscn" id="7_ouo5a"]
+[ext_resource type="PackedScene" uid="uid://dpkytjeiftwqx" path="res://objects/common/avoiding_brain.tscn" id="5_egac1"]
+[ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="6_pga3i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s1s7y"]
 
@@ -22,11 +21,11 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv7y8"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_75e1n"]
-radius = 8.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ktsny"]
+radius = 10.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_j7yn2"]
-radius = 8.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tsmjr"]
+radius = 10.0
 
 [node name="TestEnemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -45,11 +44,16 @@ skeleton = NodePath("../..")
 
 [node name="Fixed" type="Node3D" parent="."]
 
-[node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("3_iqysl")]
+[node name="Shield" parent="Fixed" instance=ExtResource("1_gltt4")]
+levels = 3
+max_health = 3.0
+
+[node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats", "shields") instance=ExtResource("3_iqysl")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("4_20qrd")
 stats = NodePath("../../Stats")
+shields = NodePath("../Shield")
 
 [node name="Shape" parent="Fixed/HitBox" index="0"]
 shape = SubResource("SphereShape3D_kv7y8")
@@ -60,31 +64,29 @@ stats = NodePath("../../Stats")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
-[node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("far_attack", "stats") instance=ExtResource("5_wly8n")]
-far_attack = NodePath("../MineDeployer")
-switching_behaviour_distance = 3
+[node name="AvoidingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("5_egac1")]
+rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 6
 stats = NodePath("../../Stats")
 
-[node name="TargetRangeArea" parent="Fixed/AttackingBrain" index="0"]
+[node name="TargetRangeArea" parent="Fixed/AvoidingBrain" index="0"]
 collision_layer = 16
 collision_mask = 8
 
-[node name="TargetRangeShape" parent="Fixed/AttackingBrain/TargetRangeArea" index="0"]
-shape = SubResource("CylinderShape3D_75e1n")
+[node name="TargetRangeShape" parent="Fixed/AvoidingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_ktsny")
 
-[node name="MineDeployer" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_ogcnv")]
-duration_time = 5.0
-stats = NodePath("../../Stats")
-mine = ExtResource("2_4xx2f")
-layer = 4
-mask = 2
-
-[node name="WanderingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("7_ouo5a")]
+[node name="FollowingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("6_pga3i")]
 rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 7
 stats = NodePath("../../Stats")
 
-[node name="TargetRangeShape" parent="Fixed/WanderingBrain/TargetRangeArea" index="0"]
-shape = SubResource("CylinderShape3D_j7yn2")
+[node name="TargetRangeArea" parent="Fixed/FollowingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/FollowingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_tsmjr")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("1_3onlp")
@@ -95,5 +97,5 @@ speed = 1.5
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
 [editable path="Fixed/HitBox"]
-[editable path="Fixed/AttackingBrain"]
-[editable path="Fixed/WanderingBrain"]
+[editable path="Fixed/AvoidingBrain"]
+[editable path="Fixed/FollowingBrain"]

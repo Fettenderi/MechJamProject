@@ -29,7 +29,7 @@ func set_can_charge():
 		can_charge = true
 		charge_timer.start(charge_time)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if can_charge:
 		can_charge = false
 		primary_particles.call_deferred("set_emitting", true)

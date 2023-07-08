@@ -16,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_6pff1")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
+disable_jump = true
 
 [node name="Weapon" type="Label" parent="."]
 layout_mode = 0

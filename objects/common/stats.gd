@@ -22,7 +22,7 @@ enum AttackType {
 		emit_signal("health_changed", value)
 
 @export_range(0.0,20.0) var damage: float
-var damage_boosts : Array[float] = zeros(AttackType.size())
+@export var damage_boosts : Array[float] = zeros(AttackType.size())
 
 @export var speed: float
 

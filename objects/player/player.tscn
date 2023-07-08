@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="4_5jfvx"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="4_q888k"]
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="5_auxup"]
-[ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/resources/basic_projectile.tscn" id="6_um3ir"]
+[ext_resource type="PackedScene" uid="uid://cdwg87jteg8ev" path="res://objects/common/drill_projectile.tscn" id="7_w63f6"]
 [ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/common/particles/sparkles_colors_2.tres" id="8_5fb3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
@@ -206,8 +206,8 @@ process_material = SubResource("ParticleProcessMaterial_ijw4i")
 draw_pass_1 = SubResource("BoxMesh_spa0c")
 
 [node name="Gun" parent="Rotating" instance=ExtResource("5_auxup")]
-duration_time = 0.1
-projectile = ExtResource("6_um3ir")
+duration_time = 1.0
+projectile = ExtResource("7_w63f6")
 layer = 2
 mask = 4
 attack_type = 2

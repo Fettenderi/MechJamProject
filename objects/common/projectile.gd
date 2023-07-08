@@ -17,12 +17,10 @@ var direction := Vector3.FORWARD
 func _ready() -> void:
 	connect("area_entered", despawn)
 	despawn_timer.connect("timeout", despawn)
+	despawn_timer.start(despawn_time)
 
 func _physics_process(delta):
 	position += direction * BULLET_SPEED * delta
-
-func start_attack() -> void:
-	despawn_timer.start(despawn_time)
 
 func despawn(_area : Area3D = null):
 	queue_free()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://cft83snc22ixv"]
 
-[ext_resource type="Script" path="res://objects/common/projectile.gd" id="1_3imxn"]
-[ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="2_x0y7j"]
+[ext_resource type="Script" path="res://objects/common/projectile.gd" id="1_oi00f"]
+[ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="2_3tgyl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ilb7k"]
-material = ExtResource("2_x0y7j")
+material = ExtResource("2_3tgyl")
 size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2jhs0"]
@@ -37,7 +37,8 @@ size = Vector3(0.1, 0.1, 0.1)
 [node name="BasicProjectile" type="Area3D"]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_3imxn")
+script = ExtResource("1_oi00f")
+despawn_time = 3.0
 attack_type = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
@@ -56,4 +57,3 @@ draw_pass_1 = SubResource("BoxMesh_dvdg4")
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-autostart = true

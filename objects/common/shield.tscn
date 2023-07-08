@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqjcj417e22e0"]
+
+[ext_resource type="Script" path="res://objects/common/shield.gd" id="1_gbx8d"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0h6g3"]
+transparency = 1
+albedo_color = Color(0.34902, 1, 1, 0.309804)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u2mt6"]
+material = SubResource("ORMMaterial3D_0h6g3")
+radius = 1.5
+height = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_x6xdr"]
+material = SubResource("ORMMaterial3D_0h6g3")
+radius = 1.5
+height = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_gjgoq"]
+material = SubResource("ORMMaterial3D_0h6g3")
+radius = 1.5
+height = 3.0
+
+[node name="Shield" type="Node3D"]
+script = ExtResource("1_gbx8d")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("SphereMesh_u2mt6")
+
+[node name="Mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("SphereMesh_x6xdr")
+
+[node name="Mesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("SphereMesh_gjgoq")

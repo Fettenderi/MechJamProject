@@ -9,6 +9,12 @@ extends Control
 @onready var weapon:= $Weapon
 @onready var jump_charge:= $JumpCharge
 
+@export_group("Switches")
+@export var disable_health := false
+@export var disable_energy := false
+@export var disable_weapon := false
+@export var disable_jump := false
+
 func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop: Color) -> Color:
 	return Color(remap(value, istart, istop, ostart.r, ostop.r), remap(value, istart, istop, ostart.g, ostop.g), remap(value, istart, istop, ostart.b, ostop.b))
 
@@ -22,6 +28,15 @@ func _ready():
 	
 	health_bar.size = max_size
 	health_bar.color = color_high
+	
+	if disable_health:
+		health_bar.visible = false
+	if disable_energy:
+		energy_bar.visible = false
+	if disable_weapon:
+		weapon.visible = false
+	if disable_jump:
+		jump_charge.visible = false
 
 func update_health(new_health):
 	health_bar.size.x = (float(new_health) / float(PlayerStats.max_health)) * float(max_size.x)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dokek0pfjolrv"]
 
-[ext_resource type="Script" path="res://objects/common/resources/following_brain.gd" id="1_1kn2e"]
+[ext_resource type="Script" path="res://objects/common/following_brain.gd" id="1_1kn2e"]
 
 [node name="FollowingBrain" type="Node3D"]
 script = ExtResource("1_1kn2e")

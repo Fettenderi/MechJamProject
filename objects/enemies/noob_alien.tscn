@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_ku4gj"]
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_mgllf"]
-[ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/resources/basic_projectile.tscn" id="2_g608w"]
+[ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/basic_projectile.tscn" id="2_g608w"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_xfy16"]
 [ext_resource type="CapsuleMesh" uid="uid://bmykacdclpibs" path="res://objects/enemies/debug_enemy_mesh.tres" id="3_sq6tb"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_xabsb"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="4_2omcr"]
-[ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/resources/following_brain.tscn" id="6_ogdb3"]
-[ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/resources/attacking_brain.tscn" id="8_8k36b"]
+[ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="6_ogdb3"]
+[ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_8k36b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xytjn"]
 

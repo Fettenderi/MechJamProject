@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6i15mylsminn"]
 
-[ext_resource type="Script" path="res://objects/common/resources/wandering_brain.gd" id="1_hfmst"]
+[ext_resource type="Script" path="res://objects/common/wandering_brain.gd" id="1_hfmst"]
 
 [node name="WanderingBrain" type="Node3D"]
 script = ExtResource("1_hfmst")
