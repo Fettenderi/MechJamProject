@@ -28,6 +28,7 @@ func start_attack() -> void:
 		mine_node.position = global_position
 		mine_node.collision_layer = layer
 		mine_node.collision_mask = mask
+		mine_node.damage = stats.damage_boosts[Stats.AttackType.MINE]
 		
 		GameMachine.add_prop(mine_node)
 		reload_timer.start(duration_time)

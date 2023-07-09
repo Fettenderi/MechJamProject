@@ -15,6 +15,7 @@ const ROTATION_SPEED = 8.0
 @onready var normal_attack := $Rotating/NormalAttack
 @onready var drill_attack := $Rotating/DrillAttack
 @onready var gun := $Rotating/Gun
+@onready var drill_gun := $Rotating/DrillGun
 
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
@@ -46,7 +47,7 @@ func _physics_process(delta) -> void:
 			PlayerStats.run_selected_weapons = Stats.AttackType.POUND
 		else:
 			velocity.y -= gravity * delta
-		PlayerStats.jump_charge -= 1
+		PlayerStats.jump_charge = clamp(PlayerStats.jump_charge - 3 * PlayerStats.jump_charge_speed * delta, 0, MAX_JUMP_CHARGE)
 	else:
 		if PlayerStats.run_selected_weapons == Stats.AttackType.POUND:
 			PlayerStats.run_selected_weapons = previous_weapon
@@ -59,15 +60,23 @@ func _physics_process(delta) -> void:
 				Stats.AttackType.NORMAL:
 					normal_attack.start_attack()
 				Stats.AttackType.DRILL:
-					drill_attack.start_attack()
+					PlayerStats.drill_gun_charge += delta
+					if PlayerStats.drill_gun_charge >= PlayerStats.min_drill_gun_charge:
+						drill_gun.start_attack()
 				Stats.AttackType.GUN:
 					if PlayerStats.weapon_ammos[Stats.AttackType.GUN] > 0:
 						gun.start_attack()
 					else:
-						# Aggiungere shake screen effect
-						pass
+						GameMachine.add_trauma(1)
 		elif Input.is_action_just_pressed("player_switch_weapon"):
 			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.menu_selected_weapons))
+	
+	if Input.is_action_just_released("player_attack"):
+		if PlayerStats.drill_gun_charge >= PlayerStats.min_drill_gun_charge:
+			drill_gun.start_attack()
+		else:
+			drill_attack.start_attack()
+		PlayerStats.drill_gun_charge = 0
 	
 	# Handle Jump.
 	
@@ -75,7 +84,7 @@ func _physics_process(delta) -> void:
 		if Input.is_action_just_pressed("player_jump"):
 			PlayerStats.jump_charge = 0
 		if Input.is_action_pressed("player_jump"):
-			PlayerStats.jump_charge = clamp(PlayerStats.jump_charge + PlayerStats.jump_charge_speed, 0, MAX_JUMP_CHARGE)
+			PlayerStats.jump_charge = clamp(PlayerStats.jump_charge + PlayerStats.jump_charge_speed * delta, 0, MAX_JUMP_CHARGE)
 		if Input.is_action_just_released("player_jump"):
 			velocity.y = JUMP_VELOCITY * PlayerStats.jump_charge / MAX_JUMP_CHARGE
 			jump_cooldown.start()

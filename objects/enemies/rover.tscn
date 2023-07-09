@@ -136,6 +136,7 @@ shape = SubResource("CylinderShape3D_vy3oj")
 script = ExtResource("8_hitik")
 max_health = 10.0
 damage = 0.5
+damage_boosts = Array[float]([0.0, 0.0, 0.0, 0.0, 10.0, 0.0])
 speed = 1.5
 
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]

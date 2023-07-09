@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cjgcqq3o1837l"]
+[gd_scene load_steps=31 format=3 uid="uid://cjgcqq3o1837l"]
 
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_aybfs"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_nlux1"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="9_q1fbs"]
 [ext_resource type="PackedScene" uid="uid://bqjcj417e22e0" path="res://objects/common/shield.tscn" id="12_2fip4"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="13_bb7j5"]
+[ext_resource type="PackedScene" uid="uid://dpkytjeiftwqx" path="res://objects/common/avoiding_brain.tscn" id="14_6tyvy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ews13"]
 
@@ -64,6 +65,9 @@ radius = 11.0
 radius = 8.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1wxwy"]
+radius = 20.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m3a5c"]
 radius = 20.0
 
 [node name="MK1" type="CharacterBody3D"]
@@ -135,7 +139,7 @@ color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
 [node name="FollowingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("7_5nhoc")]
 rotating = NodePath("../../Rotating")
-switching_behaviour_distance = 4
+switching_behaviour_distance = 5
 stats = NodePath("../../Stats")
 
 [node name="TargetRangeArea" parent="Fixed/FollowingBrain" index="0"]
@@ -148,7 +152,7 @@ shape = SubResource("CylinderShape3D_dxb0f")
 [node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("far_attack", "near_attack", "stats") instance=ExtResource("8_okm3w")]
 far_attack = NodePath("../../Rotating/Gun")
 near_attack = NodePath("../../Rotating/DrillAttack")
-switching_behaviour_distance = 3
+switching_behaviour_distance = 2
 stats = NodePath("../../Stats")
 
 [node name="TargetRangeArea" parent="Fixed/AttackingBrain" index="0"]
@@ -170,6 +174,18 @@ collision_mask = 8
 [node name="TargetRangeShape" parent="Fixed/WanderingBrain/TargetRangeArea" index="0"]
 shape = SubResource("CylinderShape3D_1wxwy")
 
+[node name="AvoidingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("14_6tyvy")]
+rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 5
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/AvoidingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/AvoidingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_m3a5c")
+
 [node name="Shield" parent="Fixed" instance=ExtResource("12_2fip4")]
 max_health = 5.0
 
@@ -186,3 +202,4 @@ speed = 0.3
 [editable path="Fixed/FollowingBrain"]
 [editable path="Fixed/AttackingBrain"]
 [editable path="Fixed/WanderingBrain"]
+[editable path="Fixed/AvoidingBrain"]
