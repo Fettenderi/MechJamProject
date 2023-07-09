@@ -1,0 +1,188 @@
+[gd_scene load_steps=29 format=3 uid="uid://cjgcqq3o1837l"]
+
+[ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_aybfs"]
+[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_nlux1"]
+[ext_resource type="PackedScene" uid="uid://cdwg87jteg8ev" path="res://objects/common/drill_projectile.tscn" id="2_ffnnq"]
+[ext_resource type="CapsuleMesh" uid="uid://bmykacdclpibs" path="res://objects/enemies/debug_enemy_mesh.tres" id="3_ey70e"]
+[ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="3_stq0h"]
+[ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="4_16kiu"]
+[ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="4_ioxtw"]
+[ext_resource type="Script" path="res://objects/common/hitbox.gd" id="5_akkc2"]
+[ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="5_ny0xu"]
+[ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="6_kvpei"]
+[ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="7_5nhoc"]
+[ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_okm3w"]
+[ext_resource type="Script" path="res://objects/common/stats.gd" id="9_q1fbs"]
+[ext_resource type="PackedScene" uid="uid://bqjcj417e22e0" path="res://objects/common/shield.tscn" id="12_2fip4"]
+[ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="13_bb7j5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ews13"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c8hlm"]
+size = Vector3(2.09875, 0.5, 2)
+
+[sub_resource type="Gradient" id="Gradient_p53yb"]
+offsets = PackedFloat32Array(0.309322, 1)
+colors = PackedColorArray(1, 0.704208, 0.63597, 1, 0.971742, 0.952957, 0.883089, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tbydk"]
+gradient = SubResource("Gradient_p53yb")
+
+[sub_resource type="Curve" id="Curve_msc6w"]
+_data = [Vector2(0, 0.845455), 0.0, 0.0, 0, 0, Vector2(1, 0.490909), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4g3ka"]
+curve = SubResource("Curve_msc6w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufa6u"]
+lifetime_randomness = 0.5
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_curve = SubResource("CurveTexture_4g3ka")
+color_ramp = SubResource("GradientTexture1D_tbydk")
+
+[sub_resource type="BoxMesh" id="BoxMesh_24xbq"]
+material = ExtResource("4_ioxtw")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0yrqs"]
+lifetime_randomness = 0.5
+spread = 180.0
+initial_velocity_min = 1.5
+initial_velocity_max = 1.5
+scale_curve = SubResource("CurveTexture_4g3ka")
+color_ramp = ExtResource("5_ny0xu")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xytjn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
+radius = 11.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6tlqf"]
+radius = 8.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1wxwy"]
+radius = 20.0
+
+[node name="MK1" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_nlux1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ews13")
+
+[node name="Rotating" type="Node3D" parent="."]
+
+[node name="Gun" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("1_aybfs")]
+duration_time = 1.5
+stats = NodePath("../../Stats")
+projectile = ExtResource("2_ffnnq")
+layer = 4
+mask = 8
+attack_type = 1
+
+[node name="DrillAttack" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("3_stq0h")]
+collision_layer = 4
+collision_mask = 2
+duration_time = 0.5
+stats = NodePath("../../Stats")
+attack_type = 1
+
+[node name="Shape" parent="Rotating/DrillAttack" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602568, 0, 0)
+shape = SubResource("BoxShape3D_c8hlm")
+
+[node name="PrimaryParticles" parent="Rotating/DrillAttack" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.828849, -0.00934613, 0)
+amount = 100
+speed_scale = 2.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_ufa6u")
+draw_pass_1 = SubResource("BoxMesh_24xbq")
+
+[node name="SecondaryParticles" parent="Rotating/DrillAttack" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.828849, -0.00934613, 0)
+amount = 50
+speed_scale = 2.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_0yrqs")
+draw_pass_1 = SubResource("BoxMesh_24xbq")
+
+[node name="Fixed" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Fixed"]
+mesh = ExtResource("3_ey70e")
+skeleton = NodePath("../..")
+
+[node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats", "shields") instance=ExtResource("4_16kiu")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("5_akkc2")
+stats = NodePath("../../Stats")
+shields = NodePath("../Shield")
+
+[node name="Shape" parent="Fixed/HitBox" index="0"]
+shape = SubResource("SphereShape3D_xytjn")
+
+[node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("6_kvpei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stats = NodePath("../../Stats")
+color_low = Color(0.74902, 0.203922, 0.203922, 1)
+color_high = Color(0.301961, 0.952941, 0.301961, 1)
+
+[node name="FollowingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("7_5nhoc")]
+rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 4
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/FollowingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/FollowingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_dxb0f")
+
+[node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("far_attack", "near_attack", "stats") instance=ExtResource("8_okm3w")]
+far_attack = NodePath("../../Rotating/Gun")
+near_attack = NodePath("../../Rotating/DrillAttack")
+switching_behaviour_distance = 3
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/AttackingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/AttackingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_6tlqf")
+
+[node name="WanderingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("13_bb7j5")]
+rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 11
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/WanderingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/WanderingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_1wxwy")
+
+[node name="Shield" parent="Fixed" instance=ExtResource("12_2fip4")]
+max_health = 5.0
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("9_q1fbs")
+max_health = 20.0
+damage = 1.5
+speed = 0.3
+
+[connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
+
+[editable path="Rotating/DrillAttack"]
+[editable path="Fixed/HitBox"]
+[editable path="Fixed/FollowingBrain"]
+[editable path="Fixed/AttackingBrain"]
+[editable path="Fixed/WanderingBrain"]

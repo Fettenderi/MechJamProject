@@ -1,5 +1,9 @@
 extends Brain
 
+const ROTATION_SPEED = 8.0
+
+@export var rotating : Node3D
+
 @export var far_attack : Node3D
 @export var near_attack : Node3D
 

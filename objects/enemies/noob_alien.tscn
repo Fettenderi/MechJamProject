@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c762fmdasbdxk"]
+[gd_scene load_steps=17 format=3 uid="uid://c762fmdasbdxk"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_ku4gj"]
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_mgllf"]
+[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_xmwm6"]
 [ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/basic_projectile.tscn" id="2_g608w"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_xfy16"]
 [ext_resource type="CapsuleMesh" uid="uid://bmykacdclpibs" path="res://objects/enemies/debug_enemy_mesh.tres" id="3_sq6tb"]
@@ -9,6 +10,9 @@
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="4_2omcr"]
 [ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="6_ogdb3"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_8k36b"]
+[ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="10_w6dty"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_64k0r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xytjn"]
 
@@ -18,20 +22,25 @@ radius = 11.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6tlqf"]
 radius = 8.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_otoo4"]
+radius = 17.0
+
 [node name="NoobAlien" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_xmwm6")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_64k0r")
 
 [node name="Rotating" type="Node3D" parent="."]
 
 [node name="Gun" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("1_mgllf")]
-duration_time = 1.5
+duration_time = 1.0
 stats = NodePath("../../Stats")
 projectile = ExtResource("2_g608w")
 layer = 4
-mask = 2
+mask = 8
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -77,6 +86,18 @@ collision_mask = 8
 [node name="TargetRangeShape" parent="Fixed/AttackingBrain/TargetRangeArea" index="0"]
 shape = SubResource("CylinderShape3D_6tlqf")
 
+[node name="WanderingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("10_w6dty")]
+rotating = NodePath("../../Rotating")
+switching_behaviour_distance = 8
+stats = NodePath("../../Stats")
+
+[node name="TargetRangeArea" parent="Fixed/WanderingBrain" index="0"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="TargetRangeShape" parent="Fixed/WanderingBrain/TargetRangeArea" index="0"]
+shape = SubResource("CylinderShape3D_otoo4")
+
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("4_2omcr")
 max_health = 10.0
@@ -88,3 +109,4 @@ speed = 0.5
 [editable path="Fixed/HitBox"]
 [editable path="Fixed/FollowingBrain"]
 [editable path="Fixed/AttackingBrain"]
+[editable path="Fixed/WanderingBrain"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cacw160g18oyo"]
+[gd_scene load_steps=21 format=3 uid="uid://cacw160g18oyo"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_413aq"]
 [ext_resource type="CapsuleMesh" uid="uid://bmykacdclpibs" path="res://objects/enemies/debug_enemy_mesh.tres" id="1_e20mq"]
+[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_vipsk"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_x7bhh"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_k67lf"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="4_p4dgr"]
@@ -48,8 +49,7 @@ radius = 10.0
 
 [node name="Rover" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 16
-collision_mask = 0
+script = ExtResource("1_vipsk")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -84,6 +84,7 @@ stats = NodePath("../../Stats")
 mine = ExtResource("6_bd11u")
 layer = 4
 mask = 2
+attack_type = 4
 
 [node name="PrimaryParticles" parent="Fixed/MineDeployer" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.510671, 0)
@@ -94,6 +95,9 @@ explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mr8mn")
 draw_pass_1 = SubResource("SphereMesh_g6b83")
+
+[node name="ReloadTimer" parent="Fixed/MineDeployer" index="2"]
+wait_time = 2.0
 
 [node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("far_attack", "stats") instance=ExtResource("4_p4dgr")]
 far_attack = NodePath("../MineDeployer")

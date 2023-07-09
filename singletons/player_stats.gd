@@ -36,11 +36,17 @@ var run_selected_weapons : int = 0 :
 		weapon_ammos = value
 		emit_signal("weapon_ammos_updated", value)
 
+var kills : int = 0 :
+	set(value):
+		kills = value
+		emit_signal("kills_changed", value)
+
 signal energy_changed(value)
 signal change_selected_weapon(value)
 signal charge_jump(value)
 signal jump_fully_charged()
 signal weapon_ammos_updated(value)
+signal kills_changed(value)
 
 func menu_select_weapon(new: int, prev:= -1) -> void:
 	if prev >= 0:

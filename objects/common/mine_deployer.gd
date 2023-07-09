@@ -12,7 +12,7 @@ extends Node3D
 @onready var primary_particles := $PrimaryParticles
 @onready var secondary_particles := $SecondaryParticles
 
-var can_deploy := true
+var can_deploy := false
 
 func _ready() -> void:
 	reload_timer.connect("timeout", end_attack)

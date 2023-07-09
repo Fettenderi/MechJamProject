@@ -73,14 +73,14 @@ size = Vector3(2.09875, 0.5, 2)
 offsets = PackedFloat32Array(0.309322, 1)
 colors = PackedColorArray(1, 0.704208, 0.63597, 1, 0.971742, 0.952957, 0.883089, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tbydk"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b84ge"]
 gradient = SubResource("Gradient_ytian")
 
 [sub_resource type="Curve" id="Curve_dek2m"]
 _data = [Vector2(0, 0.845455), 0.0, 0.0, 0, 0, Vector2(1, 0.490909), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_4g3ka"]
+[sub_resource type="CurveTexture" id="CurveTexture_58plm"]
 curve = SubResource("Curve_dek2m")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yshgs"]
@@ -88,8 +88,8 @@ lifetime_randomness = 0.5
 spread = 180.0
 initial_velocity_min = 3.0
 initial_velocity_max = 3.0
-scale_curve = SubResource("CurveTexture_4g3ka")
-color_ramp = SubResource("GradientTexture1D_tbydk")
+scale_curve = SubResource("CurveTexture_58plm")
+color_ramp = SubResource("GradientTexture1D_b84ge")
 
 [sub_resource type="BoxMesh" id="BoxMesh_spa0c"]
 material = ExtResource("3_jybm2")
@@ -100,7 +100,7 @@ lifetime_randomness = 0.5
 spread = 180.0
 initial_velocity_min = 1.5
 initial_velocity_max = 1.5
-scale_curve = SubResource("CurveTexture_4g3ka")
+scale_curve = SubResource("CurveTexture_58plm")
 color_ramp = ExtResource("4_5jfvx")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4vv1y"]
@@ -209,7 +209,7 @@ draw_pass_1 = SubResource("BoxMesh_spa0c")
 duration_time = 1.0
 projectile = ExtResource("7_w63f6")
 layer = 2
-mask = 4
+mask = 16
 attack_type = 2
 
 [node name="Fixed" type="Node3D" parent="."]

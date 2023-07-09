@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://lsy3alsw8mo8"]
+[gd_scene load_steps=6 format=3 uid="uid://lsy3alsw8mo8"]
 
+[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_3daww"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_uhd3n"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_qqxsi"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_hsnel"]
@@ -7,6 +8,7 @@
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_3daww")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]

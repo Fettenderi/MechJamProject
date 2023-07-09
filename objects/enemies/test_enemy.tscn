@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://csr6yuev0c4o2"]
+[gd_scene load_steps=15 format=3 uid="uid://csr6yuev0c4o2"]
 
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="1_3onlp"]
+[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_6rcfx"]
 [ext_resource type="PackedScene" uid="uid://bqjcj417e22e0" path="res://objects/common/shield.tscn" id="1_gltt4"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="2_sfmwt"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_iqysl"]
@@ -31,6 +32,7 @@ radius = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 16
 collision_mask = 0
+script = ExtResource("1_6rcfx")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]

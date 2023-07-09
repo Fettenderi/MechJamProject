@@ -8,12 +8,14 @@ extends Control
 @onready var energy_bar:= $EnergyBar
 @onready var weapon:= $Weapon
 @onready var jump_charge:= $JumpCharge
+@onready var kill_counter:= $KillCounter
 
 @export_group("Switches")
 @export var disable_health := false
 @export var disable_energy := false
 @export var disable_weapon := false
 @export var disable_jump := false
+@export var disable_kills := false
 
 func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop: Color) -> Color:
 	return Color(remap(value, istart, istop, ostart.r, ostop.r), remap(value, istart, istop, ostart.g, ostop.g), remap(value, istart, istop, ostart.b, ostop.b))
@@ -23,8 +25,10 @@ func _ready():
 	PlayerStats.connect("energy_changed", update_energy)
 	PlayerStats.connect("change_selected_weapon", update_selected_weapon)
 	PlayerStats.connect("charge_jump", update_jump_charge)
+	PlayerStats.connect("kills_changed", update_kill_counter)
 	
 	weapon.text = "Normal"
+	kill_counter.text = "0"
 	
 	health_bar.size = max_size
 	health_bar.color = color_high
@@ -37,6 +41,8 @@ func _ready():
 		weapon.visible = false
 	if disable_jump:
 		jump_charge.visible = false
+	if disable_kills:
+		kill_counter.visible = false
 
 func update_health(new_health):
 	health_bar.size.x = (float(new_health) / float(PlayerStats.max_health)) * float(max_size.x)
@@ -62,3 +68,6 @@ func update_selected_weapon(new_selected_weapon):
 
 func update_jump_charge(new_charge):
 	jump_charge.text = str(new_charge)
+
+func update_kill_counter(new_kills):
+	kill_counter.text = str(new_kills)

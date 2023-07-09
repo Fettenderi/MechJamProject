@@ -13,6 +13,8 @@ func far_behaviour(delta: float):
 	move(direction, delta)
 
 func near_behaviour(delta: float):
+	var direction = puppet.global_position.direction_to(target.global_position)
+	update_rotation(direction, delta)
 	stop_moving(delta)
 
 func out_of_range(delta: float):

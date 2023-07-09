@@ -35,8 +35,6 @@ material = SubResource("StandardMaterial3D_fxu0a")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="BasicProjectile" type="Area3D"]
-collision_layer = 0
-collision_mask = 0
 script = ExtResource("1_oi00f")
 despawn_time = 3.0
 attack_type = 2
