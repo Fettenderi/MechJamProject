@@ -9,6 +9,7 @@ frequency = 0.3388
 
 [node name="GameMachine" type="Node"]
 script = ExtResource("1_8f465")
+max_level_size = Vector2(20, 20)
 max_x = 5.0
 max_y = 5.0
 noise = SubResource("FastNoiseLite_mukuy")

@@ -1,8 +1,6 @@
 extends Node
 
-const MAX_LEVEL_SIZE = Vector2(100, 100)
-
-
+@export var max_level_size = Vector2(100, 100)
 @export var trauma_reduction_rate := 1.0
 
 @export var max_x := 10.0
@@ -12,14 +10,13 @@ const MAX_LEVEL_SIZE = Vector2(100, 100)
 @export var noise : FastNoiseLite
 @export var noise_speed := 50.0
 
-var trauma := 0.0
-var time := 0.0
-
 @onready var camera := get_node("Level/PlayerFollower/CameraPlayer")
 @onready var spaceship := preload("res://objects/enemies/spaceship.tscn")
 
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
 
+var trauma := 0.0
+var time := 0.0
 var is_screen_shaking := false
 
 func _ready():
@@ -38,7 +35,7 @@ func add_spaceship(_value: int = 0):
 	var spaceship_node : CharacterBody3D = spaceship.instantiate()
 	
 	@warning_ignore("narrowing_conversion")
-	spaceship_node.position = Vector3(randi_range(-MAX_LEVEL_SIZE.x, MAX_LEVEL_SIZE.x), 5, randi_range(-MAX_LEVEL_SIZE.y, MAX_LEVEL_SIZE.y))
+	spaceship_node.position = Vector3(randi_range(-max_level_size.x, max_level_size.x), 5, randi_range(-max_level_size.y, max_level_size.y))
 	
 	get_node("Level/Entities").add_child(spaceship_node)
 

@@ -30,7 +30,6 @@ func start_attack() -> void:
 		projectile_node.stats = stats 
 		projectile_node.collision_layer = layer
 		projectile_node.collision_mask = mask
-#		projectile_node.direction = rotation
 		
 		GameMachine.add_prop(projectile_node)
 		reload_timer.start(duration_time)

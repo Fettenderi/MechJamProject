@@ -30,6 +30,7 @@ func _ready():
 	area_attack.stats = get_node("/root/PlayerStats")
 	normal_attack.stats = get_node("/root/PlayerStats")
 	drill_attack.stats = get_node("/root/PlayerStats")
+	drill_gun.stats = get_node("/root/PlayerStats")
 	hitbox.stats = get_node("/root/PlayerStats")
 	gun.stats = get_node("/root/PlayerStats")
 	
@@ -71,7 +72,7 @@ func _physics_process(delta) -> void:
 		elif Input.is_action_just_pressed("player_switch_weapon"):
 			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.menu_selected_weapons))
 	
-	if Input.is_action_just_released("player_attack"):
+	if Input.is_action_just_released("player_attack") and PlayerStats.run_selected_weapons == Stats.AttackType.DRILL:
 		if PlayerStats.drill_gun_charge >= PlayerStats.min_drill_gun_charge:
 			drill_gun.start_attack()
 		else:

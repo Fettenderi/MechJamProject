@@ -20,7 +20,7 @@ func _ready() -> void:
 	connect("area_entered", explode)
 
 func explode(_area: Area3D = null) -> void:
-	GameMachine.add_trauma(5)
+	GameMachine.add_trauma(3)
 	primary_particles.call_deferred("set_emitting", true)
 	secondary_particles.call_deferred("set_emitting", true)
 	mesh.visible = false
