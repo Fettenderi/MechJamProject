@@ -113,12 +113,12 @@ func _physics_process(delta) -> void:
 
 
 func move(direction : Vector3, delta: float):
-	if is_on_floor():
+	if is_on_floor() and PlayerStats.health <= PlayerStats.max_health / 4:
 		var saw_movement : float = clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0) * saw_tooth(moving_elapsed)
 		velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
 		moving_elapsed += delta
 	else:
-		velocity_lerp(direction * PlayerStats.speed, ACCELERATION * delta)
+		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
 
 func stop_moving(delta: float):
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)
