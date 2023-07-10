@@ -11,6 +11,9 @@ extends Node
 @export var noise_speed := 50.0
 
 @onready var camera := get_node("Level/PlayerFollower/CameraPlayer")
+@onready var event_emitter := $EventEmitter
+@onready var player_died_controller := $PlayerDiedController
+@onready var intensity_controller := $IntensityController
 @onready var spaceship := preload("res://objects/enemies/spaceship.tscn")
 
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
@@ -44,7 +47,12 @@ func _physics_process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("debug_button"):
-		add_trauma(5)
+		intensity_controller.value = float((int(intensity_controller.value) + 1) % 6)
+		intensity_controller.trigger()
+	
+	if Input.is_action_just_pressed("debug_button_1"):
+		player_died_controller.value = float((int(player_died_controller.value) + 1) % 2)
+		player_died_controller.trigger()
 	
 	if is_screen_shaking:
 		screen_shake(delta)

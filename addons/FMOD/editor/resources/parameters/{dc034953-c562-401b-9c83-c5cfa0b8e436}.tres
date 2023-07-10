@@ -1,19 +1,19 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://c1x3w7sjhnrmb"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_0gakw"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_eivgs"]
 data1 = 1743397414
 data2 = 2430799958
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_5q14g"]
-name = "Intensity"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_0gakw")
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_ioh2r"]
+name = "Intensity (old)"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_eivgs")
 maximum = 4.0
 flags = 28
 guid = "{dc034953-c562-401b-9c83-c5cfa0b8e436}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_5q14g")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_ioh2r")
 labels = ["Intensity 0", "Intensity 1", "Intensity 2", "Intensity 3", "Intensity 4"]
-path = "parameter:/Intensity"
+path = "parameter:/intensity (old)"
 guid = "{dc034953-c562-401b-9c83-c5cfa0b8e436}"
-name = "Intensity"
+name = "Intensity (old)"
