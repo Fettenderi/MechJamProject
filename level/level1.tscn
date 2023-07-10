@@ -89,7 +89,10 @@ text = "<^v> per muoversi
 SHIFT stai fermo
 Z attacca o carica attacco
 X carichi il salto
-C cambi arma"
+C cambi arma
+
+H aumenta intensità
+J cambia ost  tra morto e non morto "
 font_size = 128
 
 [node name="Entities" type="Node3D" parent="."]
