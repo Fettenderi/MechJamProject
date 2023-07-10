@@ -2,7 +2,7 @@ class_name Mine
 
 extends Area3D
 
-@export var damage : int = 1
+@export var damage : float = 1.0
 @export var despawn_time : float = 1.0
 
 @onready var shape := $Shape

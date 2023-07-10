@@ -65,7 +65,7 @@ skeleton = NodePath("../..")
 
 [node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_413aq")]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 34
 script = ExtResource("2_x7bhh")
 stats = NodePath("../../Stats")
 
@@ -126,7 +126,7 @@ switching_behaviour_distance = 4
 stats = NodePath("../../Stats")
 
 [node name="TargetRangeArea" parent="Fixed/FollowingBrain" index="0"]
-collision_layer = 16
+collision_layer = 0
 collision_mask = 16
 
 [node name="TargetRangeShape" parent="Fixed/FollowingBrain/TargetRangeArea" index="0"]

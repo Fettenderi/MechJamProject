@@ -10,6 +10,7 @@ const BULLET_SPEED = 10.0
 @onready var shape := $Shape
 @onready var despawn_timer := $DespawnTimer
 @onready var particles := $Particles
+@onready var damage := stats.get_damage(attack_type)
 
 var stats : Stats
 var direction := Vector3.FORWARD
@@ -26,4 +27,4 @@ func despawn(_area : Area3D = null):
 	queue_free()
 
 func get_damage() -> float:
-	return stats.get_damage(attack_type)
+	return damage

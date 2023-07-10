@@ -39,8 +39,9 @@ shape = SubResource("SphereShape3D_64k0r")
 duration_time = 1.0
 stats = NodePath("../../Stats")
 projectile = ExtResource("2_g608w")
-layer = 4
-mask = 8
+layer = 64
+mask = 2
+attack_type = 2
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -49,8 +50,8 @@ mesh = ExtResource("3_sq6tb")
 skeleton = NodePath("../..")
 
 [node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_ku4gj")]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 20
+collision_mask = 34
 script = ExtResource("2_xfy16")
 stats = NodePath("../../Stats")
 

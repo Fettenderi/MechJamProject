@@ -209,14 +209,14 @@ draw_pass_1 = SubResource("BoxMesh_spa0c")
 [node name="Gun" parent="Rotating" instance=ExtResource("5_auxup")]
 duration_time = 1.0
 projectile = ExtResource("7_ynqj5")
-layer = 2
+layer = 32
 mask = 4
 attack_type = 2
 
 [node name="DrillGun" parent="Rotating" instance=ExtResource("5_auxup")]
 duration_time = 1.0
 projectile = ExtResource("7_w63f6")
-layer = 2
+layer = 32
 mask = 4
 attack_type = 1
 
@@ -224,7 +224,7 @@ attack_type = 1
 
 [node name="Hitbox" parent="Fixed" instance=ExtResource("3_sih12")]
 collision_layer = 10
-collision_mask = 4
+collision_mask = 68
 script = ExtResource("4_q888k")
 
 [node name="Shape" parent="Fixed/Hitbox" index="0"]

@@ -125,6 +125,8 @@ debug_button_1={
 3d_physics/layer_3="Enemy"
 3d_physics/layer_4="PlayerFlag"
 3d_physics/layer_5="EnemyFlag"
+3d_physics/layer_6="PlayerProjectile"
+3d_physics/layer_7="EnemyProjectile"
 
 [rendering]
 

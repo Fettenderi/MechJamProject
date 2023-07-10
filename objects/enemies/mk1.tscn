@@ -84,8 +84,8 @@ shape = SubResource("SphereShape3D_ews13")
 duration_time = 1.5
 stats = NodePath("../../Stats")
 projectile = ExtResource("2_ffnnq")
-layer = 4
-mask = 8
+layer = 64
+mask = 2
 attack_type = 1
 
 [node name="DrillAttack" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("3_stq0h")]
@@ -122,8 +122,8 @@ mesh = ExtResource("3_ey70e")
 skeleton = NodePath("../..")
 
 [node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats", "shields") instance=ExtResource("4_16kiu")]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 20
+collision_mask = 34
 script = ExtResource("5_akkc2")
 stats = NodePath("../../Stats")
 shields = NodePath("../Shield")
