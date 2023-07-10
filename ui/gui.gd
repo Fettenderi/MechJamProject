@@ -6,10 +6,10 @@ extends Control
 
 @onready var health_bar:= $HealthBar
 @onready var energy_bar:= $EnergyBar
-@onready var weapon:= $Weapon
-@onready var jump_charge:= $JumpCharge
+@onready var weapon:= $Container/Weapon
+@onready var jump_charge:= $Container/JumpCharge
 @onready var kill_counter:= $KillCounter
-@onready var drill_gun_charge:= $DrillGunCharge
+@onready var drill_gun_charge:= $Container/DrillGunCharge
 
 @export_group("Switches")
 @export var disable_health := false
@@ -32,8 +32,8 @@ func _ready():
 	
 	weapon.text = "Normal"
 	kill_counter.text = "0"
-	drill_gun_charge.text = "0"
-	jump_charge.text = "0"
+#	drill_gun_charge.text = "0"
+#	jump_charge.text = "0"
 	
 	health_bar.size = max_size
 	health_bar.color = color_high
@@ -74,10 +74,10 @@ func update_selected_weapon(new_selected_weapon):
 			weapon.text = "Pound"
 
 func update_jump_charge(new_charge):
-	jump_charge.text = str(new_charge)
+	jump_charge.text = str(int(new_charge))
 
 func update_drill_gun_charge(new_drill_gun):
-	drill_gun_charge.text = str(new_drill_gun)
+	drill_gun_charge.text = str(int(new_drill_gun))
 
 func update_kill_counter(new_kills):
 	kill_counter.text = str(new_kills)
