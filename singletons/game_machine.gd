@@ -26,6 +26,7 @@ func _ready():
 	randomize()
 	
 	PlayerStats.connect("waves_changed", add_spaceship)
+	PlayerStats.connect("dead", add_spaceship)
 	add_spaceship()
 
 func add_prop(prop: Node3D):
@@ -35,6 +36,8 @@ func add_entity(entity: Node3D):
 	get_node("Level/Entities").add_child(entity)
 
 func add_spaceship(_value: int = 0):
+	intensity_controller.value = float((int(intensity_controller.value) + 1) % 6)
+	intensity_controller.trigger()
 	var spaceship_node : CharacterBody3D = spaceship.instantiate()
 	
 	@warning_ignore("narrowing_conversion")
@@ -47,7 +50,7 @@ func _physics_process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("debug_button"):
-		intensity_controller.value = float((int(intensity_controller.value) + 1) % 6)
+		intensity_controller.value = float((int(intensity_controller.value) + 1) % 7)
 		intensity_controller.trigger()
 	
 	if Input.is_action_just_pressed("debug_button_1"):
@@ -56,6 +59,10 @@ func _physics_process(delta):
 	
 	if is_screen_shaking:
 		screen_shake(delta)
+
+func player_died():
+	player_died_controller.value = float((int(player_died_controller.value) + 1) % 2)
+	player_died_controller.trigger()
 
 
 func screen_shake(delta):
