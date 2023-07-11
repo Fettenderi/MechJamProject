@@ -36,7 +36,7 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="BasicProjectile" type="Area3D"]
 script = ExtResource("1_oi00f")
-despawn_time = 3.0
+despawn_time = 5.0
 attack_type = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=31 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
+[ext_resource type="PackedScene" uid="uid://ibqvhtecmth4" path="res://models/mecha/mecha.gltf" id="2_tuhuw"]
 [ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="3_jybm2"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_sih12"]
 [ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="4_5jfvx"]
@@ -12,14 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/common/particles/sparkles_colors_2.tres" id="8_5fb3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmqky"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.34902, 1, 0.67451, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_stj56"]
-material = SubResource("StandardMaterial3D_nmqky")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dyf46"]
 size = Vector3(4, 0.5, 2.5)
@@ -147,9 +140,8 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 
 [node name="Rotating" type="Node3D" parent="."]
 
-[node name="Mesh" type="MeshInstance3D" parent="Rotating"]
-mesh = SubResource("CapsuleMesh_stj56")
-skeleton = NodePath("../..")
+[node name="mecha" parent="Rotating" instance=ExtResource("2_tuhuw")]
+transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, -0.988365, 0)
 
 [node name="NormalAttack" parent="Rotating" instance=ExtResource("2_7spae")]
 collision_layer = 2
@@ -158,6 +150,7 @@ collision_mask = 4
 [node name="Shape" parent="Rotating/NormalAttack" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 shape = SubResource("BoxShape3D_dyf46")
+disabled = false
 
 [node name="PrimaryParticles" parent="Rotating/NormalAttack" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0384386, -0.861358, -0.0179459)

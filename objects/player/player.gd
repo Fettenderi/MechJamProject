@@ -6,7 +6,7 @@ const DECELERATION = 80.0
 const JUMP_VELOCITY = 7.0
 const MAX_JUMP_CHARGE = 200
 
-const ROTATION_SPEED = 8.0
+const ROTATION_SPEED = 10.0
 
 @onready var jump_cooldown := $JumpCooldown
 @onready var energy_timer := $EnergyTimer
@@ -113,10 +113,13 @@ func _physics_process(delta) -> void:
 
 
 func move(direction : Vector3, delta: float):
-	if is_on_floor() and PlayerStats.health <= PlayerStats.max_health / 4:
-		var saw_movement : float = clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0) * saw_tooth(moving_elapsed)
-		velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
-		moving_elapsed += delta
+	if is_on_floor():
+		if PlayerStats.health <= PlayerStats.max_health / 4:
+			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0) * saw_tooth(moving_elapsed)
+			velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
+			moving_elapsed += delta
+		else:
+			velocity_lerp(direction * PlayerStats.speed * 0.6 * clamp(1 - PlayerStats.jump_charge / MAX_JUMP_CHARGE, 0.2, 1.0), ACCELERATION * delta)
 	else:
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
 

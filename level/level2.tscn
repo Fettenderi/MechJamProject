@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://btrios0aarsv"]
+
+[ext_resource type="Script" path="res://level/player_follower.gd" id="1_gldgd"]
+[ext_resource type="Shader" path="res://level/level2.gdshader" id="2_6ysjp"]
+[ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="2_pxlxk"]
+[ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="3_nbgyd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
+render_priority = 0
+shader = ExtResource("2_6ysjp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a8j7f"]
+material = SubResource("ShaderMaterial_haw7x")
+size = Vector2(20, 20)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwau"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wd0r0"]
+material = SubResource("StandardMaterial3D_kqwau")
+size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q261p"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k1txa"]
+sky_horizon_color = Color(0.692328, 0.727225, 0.774755, 1)
+ground_bottom_color = Color(0.384314, 0.454902, 0.54902, 1)
+ground_horizon_color = Color(0.692328, 0.727225, 0.774755, 1)
+
+[sub_resource type="Sky" id="Sky_53jql"]
+sky_material = SubResource("ProceduralSkyMaterial_k1txa")
+
+[sub_resource type="Environment" id="Environment_ohbxq"]
+background_mode = 2
+sky = SubResource("Sky_53jql")
+tonemap_mode = 2
+fog_light_color = Color(0.607843, 0.505882, 0.654902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve0ce"]
+albedo_color = Color(1, 0.541176, 0.0784314, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s1fhp"]
+material = SubResource("StandardMaterial3D_ve0ce")
+height = 6.0
+
+[node name="Level" type="Node3D"]
+
+[node name="PlayerFollower" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_gldgd")
+player = NodePath("../Entities/Player")
+lerp_weight = 10.0
+
+[node name="CameraPlayer" type="Camera3D" parent="PlayerFollower"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 6, 5)
+current = true
+size = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerFollower/CameraPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565686, -0.464466)
+mesh = SubResource("PlaneMesh_a8j7f")
+skeleton = NodePath("../..")
+
+[node name="WorldElements" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="WorldElements"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldElements/Floor"]
+mesh = SubResource("PlaneMesh_wd0r0")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldElements/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_q261p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldElements"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldElements"]
+environment = SubResource("Environment_ohbxq")
+
+[node name="EnergySupplier" parent="WorldElements" instance=ExtResource("2_pxlxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldElements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)
+mesh = SubResource("CylinderMesh_s1fhp")
+skeleton = NodePath("../..")
+
+[node name="Label3D" type="Label3D" parent="WorldElements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
+billboard = 1
+text = "<^v> per muoversi
+SHIFT stai fermo
+Z attacca o carica attacco
+X carichi il salto
+C cambi arma
+
+H aumenta intensità
+J cambia ost  tra morto e non morto "
+font_size = 128
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("3_nbgyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15443, 1, 3)
+
+[node name="Props" type="Node3D" parent="."]
