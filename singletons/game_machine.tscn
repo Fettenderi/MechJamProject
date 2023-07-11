@@ -60,6 +60,7 @@ noise = SubResource("FastNoiseLite_mukuy")
 [node name="Level" parent="." instance=ExtResource("2_264o7")]
 
 [node name="EventEmitter" type="StudioEventEmitter3D" parent="."]
+play_event = 1
 event = SubResource("EventAsset_p0ic5")
 
 [node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
