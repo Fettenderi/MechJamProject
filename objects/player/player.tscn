@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=70 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
+[ext_resource type="PackedScene" uid="uid://qoadharoyqua" path="res://models/mecha/MechaMesh.tscn" id="2_1ugwr"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
-[ext_resource type="PackedScene" uid="uid://ibqvhtecmth4" path="res://models/mecha/mecha.gltf" id="2_tuhuw"]
 [ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="3_jybm2"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="3_sih12"]
 [ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="4_5jfvx"]
@@ -13,6 +13,132 @@
 [ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/common/particles/sparkles_colors_2.tres" id="8_5fb3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sf4h3"]
+animation = &"cannon_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nl2ms"]
+animation = &"drill_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qi3kx"]
+animation = &"drill_charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k8c7p"]
+animation = &"drill_release"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_186nc"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qyvwo"]
+animation = &"gun_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lp837"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_08f2t"]
+animation = &"jump_charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_umyqw"]
+animation = &"jump_land"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gb5vs"]
+animation = &"normal_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbhsm"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sd2wq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wigkb"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbw4c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ctcqt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ljvcg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uitdb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7elln"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqx7s"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0e3mo"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8yogd"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_63wfc"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ach1k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_keptg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m6s55"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k4sp3"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5u5m5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1mem8"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hcxtt"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yvyhb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mohnc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxpwi"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agvk4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3vivb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_763t1"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3yfj5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_88xi2"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rj1cx"]
+states/End/position = Vector2(1365.6, 61.2941)
+states/Start/position = Vector2(53.6, 98.4744)
+states/cannon_attack/node = SubResource("AnimationNodeAnimation_sf4h3")
+states/cannon_attack/position = Vector2(472.765, -99.2159)
+states/drill_attack/node = SubResource("AnimationNodeAnimation_nl2ms")
+states/drill_attack/position = Vector2(473.681, 298)
+states/drill_charge/node = SubResource("AnimationNodeAnimation_qi3kx")
+states/drill_charge/position = Vector2(291.067, 223.501)
+states/drill_release/node = SubResource("AnimationNodeAnimation_k8c7p")
+states/drill_release/position = Vector2(666.92, 223.794)
+states/fall/node = SubResource("AnimationNodeAnimation_186nc")
+states/fall/position = Vector2(848.36, 7)
+states/gun_attack/node = SubResource("AnimationNodeAnimation_qyvwo")
+states/gun_attack/position = Vector2(291.002, -102.643)
+states/idle/node = SubResource("AnimationNodeAnimation_lp837")
+states/idle/position = Vector2(290.774, 99.3332)
+states/jump_charge/node = SubResource("AnimationNodeAnimation_08f2t")
+states/jump_charge/position = Vector2(848.2, -49)
+states/jump_land/node = SubResource("AnimationNodeAnimation_umyqw")
+states/jump_land/position = Vector2(848.328, 69.624)
+states/normal_attack/node = SubResource("AnimationNodeAnimation_gb5vs")
+states/normal_attack/position = Vector2(666.496, -99.7587)
+states/walk/node = SubResource("AnimationNodeAnimation_kbhsm")
+states/walk/position = Vector2(667.6, 98.2494)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_sd2wq"), "drill_charge", "drill_attack", SubResource("AnimationNodeStateMachineTransition_wigkb"), "drill_attack", "drill_release", SubResource("AnimationNodeStateMachineTransition_nbw4c"), "idle", "drill_charge", SubResource("AnimationNodeStateMachineTransition_ctcqt"), "idle", "normal_attack", SubResource("AnimationNodeStateMachineTransition_ljvcg"), "idle", "cannon_attack", SubResource("AnimationNodeStateMachineTransition_uitdb"), "idle", "gun_attack", SubResource("AnimationNodeStateMachineTransition_7elln"), "gun_attack", "idle", SubResource("AnimationNodeStateMachineTransition_kqx7s"), "cannon_attack", "idle", SubResource("AnimationNodeStateMachineTransition_0e3mo"), "normal_attack", "idle", SubResource("AnimationNodeStateMachineTransition_8yogd"), "drill_release", "idle", SubResource("AnimationNodeStateMachineTransition_63wfc"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_ach1k"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_keptg"), "walk", "gun_attack", SubResource("AnimationNodeStateMachineTransition_m6s55"), "gun_attack", "walk", SubResource("AnimationNodeStateMachineTransition_k4sp3"), "walk", "cannon_attack", SubResource("AnimationNodeStateMachineTransition_5u5m5"), "cannon_attack", "walk", SubResource("AnimationNodeStateMachineTransition_1mem8"), "normal_attack", "walk", SubResource("AnimationNodeStateMachineTransition_hcxtt"), "walk", "normal_attack", SubResource("AnimationNodeStateMachineTransition_yvyhb"), "walk", "drill_charge", SubResource("AnimationNodeStateMachineTransition_mohnc"), "drill_release", "walk", SubResource("AnimationNodeStateMachineTransition_lxpwi"), "jump_charge", "fall", SubResource("AnimationNodeStateMachineTransition_agvk4"), "fall", "jump_land", SubResource("AnimationNodeStateMachineTransition_3vivb"), "jump_land", "walk", SubResource("AnimationNodeStateMachineTransition_763t1"), "jump_land", "idle", SubResource("AnimationNodeStateMachineTransition_3yfj5"), "idle", "jump_charge", SubResource("AnimationNodeStateMachineTransition_88xi2")]
+graph_offset = Vector2(-86, -41)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_80d1m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dyf46"]
 size = Vector3(4, 0.5, 2.5)
@@ -140,8 +266,62 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 
 [node name="Rotating" type="Node3D" parent="."]
 
-[node name="mecha" parent="Rotating" instance=ExtResource("2_tuhuw")]
-transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, -0.988365, 0)
+[node name="AnimationTree" type="AnimationTree" parent="Rotating"]
+tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
+anim_player = NodePath("../mecha/AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_80d1m")
+
+[node name="mecha" parent="Rotating" instance=ExtResource("2_1ugwr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997394, 0)
+
+[node name="mecha" parent="Rotating/mecha/Node2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228054, 0.203125)
+
+[node name="chest" parent="Rotating/mecha/Node2/mecha/body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
+
+[node name="leftUpperArm" parent="Rotating/mecha/Node2/mecha" index="1"]
+transform = Transform3D(0.923879, 0.0660976, 0.376932, 0, 0.984971, -0.172721, -0.382683, 0.159574, 0.909994, -0.6875, 3.375, 0.15625)
+
+[node name="leftLowerArm" parent="Rotating/mecha/Node2/mecha/leftUpperArm" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.125, -0.125)
+
+[node name="leftHand" parent="Rotating/mecha/Node2/mecha/leftUpperArm/leftLowerArm" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382684, 0, -0.382684, 0.92388, -0.3125, -0.875, -1)
+
+[node name="drill" parent="Rotating/mecha/Node2/mecha/leftUpperArm/leftLowerArm/leftHand" index="1"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707106, 0, 0, 0, 1, 0.0999148, -0.164281, -1.21577)
+
+[node name="drill_head" parent="Rotating/mecha/Node2/mecha/leftUpperArm/leftLowerArm/leftHand/drill" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.31404)
+
+[node name="rightUpperArm" parent="Rotating/mecha/Node2/mecha" index="2"]
+transform = Transform3D(0.92388, -0.0660976, -0.376932, 0, 0.984971, -0.172721, 0.382684, 0.159574, 0.909994, 0.6875, 3.375, 0.15625)
+
+[node name="rightLowerArm" parent="Rotating/mecha/Node2/mecha/rightUpperArm" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.125, -0.125)
+
+[node name="rightHand" parent="Rotating/mecha/Node2/mecha/rightUpperArm/rightLowerArm" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.923879, 0.3125, -0.875, -1)
+
+[node name="leftUpperLeg" parent="Rotating/mecha/Node2/mecha/lowerBody" index="1"]
+transform = Transform3D(0.953717, 0.218475, 0.206622, 0, 0.687125, -0.72654, -0.300706, 0.692913, 0.655323, -0.5, -0.1875, -0.0625)
+
+[node name="leftLowerLeg" parent="Rotating/mecha/Node2/mecha/lowerBody/leftUpperLeg" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.520732, 0.85372, 0, -0.85372, 0.520732, 0, -1.1875, -5.55112e-17)
+
+[node name="leftFoot" parent="Rotating/mecha/Node2/mecha/lowerBody/leftUpperLeg/leftLowerLeg" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.978069, -0.20828, 0, 0.20828, 0.978069, 0, -1.20833, 0.0275673)
+
+[node name="rightUpperLeg" parent="Rotating/mecha/Node2/mecha/lowerBody" index="2"]
+transform = Transform3D(0.953717, -0.218475, -0.206622, 0, 0.687125, -0.726539, 0.300706, 0.692913, 0.655322, 0.625, -0.1875, -0.0625)
+
+[node name="rightLowerLeg" parent="Rotating/mecha/Node2/mecha/lowerBody/rightUpperLeg" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.520732, 0.85372, 0, -0.85372, 0.520732, 0, -1.1875, -5.55112e-17)
+
+[node name="rightFoot" parent="Rotating/mecha/Node2/mecha/lowerBody/rightUpperLeg/rightLowerLeg" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.978069, -0.20828, 0, 0.20828, 0.978069, 0, -1.20833, 0.0275673)
 
 [node name="NormalAttack" parent="Rotating" instance=ExtResource("2_7spae")]
 collision_layer = 2
@@ -259,6 +439,7 @@ one_shot = true
 wait_time = 3.0
 autostart = true
 
+[editable path="Rotating/mecha"]
 [editable path="Rotating/NormalAttack"]
 [editable path="Rotating/DrillAttack"]
 [editable path="Fixed/Hitbox"]

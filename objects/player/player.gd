@@ -19,6 +19,9 @@ const ROTATION_SPEED = 10.0
 
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
+@onready var animation_tree := $Rotating/AnimationTree
+@onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -41,7 +44,10 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	# Add gravity or attack.
-	if not is_on_floor():
+	var is_falling := not is_on_floor()
+	var is_attacking := false
+	
+	if is_falling:
 		if Input.is_action_just_pressed("player_attack"):
 			velocity.y = - JUMP_VELOCITY * PlayerStats.jump_charge / MAX_JUMP_CHARGE
 			previous_weapon = PlayerStats.run_selected_weapons
@@ -57,6 +63,7 @@ func _physics_process(delta) -> void:
 			moving_elapsed = 0
 			PlayerStats.jump_charge = 0
 		elif Input.is_action_pressed("player_attack"):
+			is_attacking = true
 			match PlayerStats.run_selected_weapons:
 				Stats.AttackType.NORMAL:
 					normal_attack.start_attack()
@@ -81,7 +88,7 @@ func _physics_process(delta) -> void:
 	
 	# Handle Jump.
 	
-	if is_on_floor() and can_jump:
+	if not is_falling and can_jump:
 		if Input.is_action_just_pressed("player_jump"):
 			PlayerStats.jump_charge = 0
 		if Input.is_action_pressed("player_jump"):
@@ -95,10 +102,9 @@ func _physics_process(delta) -> void:
 	var input_dir := Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	var is_crouching := Input.is_action_pressed("player_crouch")
 	var is_pounding := PlayerStats.run_selected_weapons == Stats.AttackType.POUND
 	
-	if is_pounding or is_crouching:
+	if is_pounding or is_attacking:
 		if direction:
 			update_rotation(direction, delta)
 		stop_moving(delta)
@@ -109,8 +115,38 @@ func _physics_process(delta) -> void:
 		else:
 			stop_moving(delta)
 	
+	var weapon_state = PlayerStats.run_selected_weapons
+	
+	handle_animations(is_falling, is_attacking, is_pounding, weapon_state, direction)
+	
+	is_attacking = false
+	
 	move_and_slide()
 
+
+func handle_animations(is_falling: bool, is_attacking: bool, is_pounding: bool, weapon_state: Stats.AttackType, direction: Vector3):
+	if is_attacking:
+		match weapon_state:
+			Stats.AttackType.NORMAL:
+				state_machine.travel("normal_attack")
+			Stats.AttackType.POUND:
+				state_machine.travel("jump_land")
+			Stats.AttackType.DRILL:
+				state_machine.travel("drill_charge")
+			Stats.AttackType.GUN:
+				state_machine.travel("gun_attack")
+			_:
+				state_machine.travel("idle")
+	else:
+		if is_falling and not is_pounding:
+			state_machine.travel("jump_land")
+		elif is_falling and is_pounding:
+			state_machine.travel("fall")
+		else:
+			if direction:
+				state_machine.travel("walk")
+			else:
+				state_machine.travel("idle")
 
 func move(direction : Vector3, delta: float):
 	if is_on_floor():
