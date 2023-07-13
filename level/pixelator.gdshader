@@ -14,7 +14,7 @@ void fragment() {
 
 	x = FRAGCOORD.x + floor(float(pixel_size) / 2.0) - x;
 	y = FRAGCOORD.y + floor(float(pixel_size) / 2.0) - y;
-	
+
 	// set albedo value on the current coordinate based on vec2(x,y) / viewport_size 
 	ALBEDO = texture(SCREEN_TEXTURE, vec2(x, y) / VIEWPORT_SIZE).xyz;
 }

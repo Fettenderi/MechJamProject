@@ -1,20 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://c762fmdasbdxk"]
+[gd_scene load_steps=18 format=3 uid="uid://c762fmdasbdxk"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_ku4gj"]
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_mgllf"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_xmwm6"]
 [ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/basic_projectile.tscn" id="2_g608w"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_xfy16"]
-[ext_resource type="CapsuleMesh" uid="uid://bmykacdclpibs" path="res://objects/enemies/debug_enemy_mesh.tres" id="3_sq6tb"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_xabsb"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="4_2omcr"]
+[ext_resource type="PackedScene" uid="uid://csyixh8fqh0ui" path="res://models/alien/alien_mesh.tscn" id="4_or6g4"]
+[ext_resource type="PackedScene" uid="uid://cuthnbuh2wmht" path="res://objects/common/attacker_animation_tree.tscn" id="5_uip58"]
 [ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="6_ogdb3"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_8k36b"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="10_w6dty"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_64k0r"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spnsk"]
+height = 1.6
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_xytjn"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_uw3lf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
 radius = 11.0
@@ -31,7 +33,8 @@ script = ExtResource("1_xmwm6")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_64k0r")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304878, 0)
+shape = SubResource("CapsuleShape3D_spnsk")
 
 [node name="Rotating" type="Node3D" parent="."]
 
@@ -43,11 +46,48 @@ layer = 64
 mask = 2
 attack_type = 2
 
-[node name="Fixed" type="Node3D" parent="."]
+[node name="AlienMesh" parent="Rotating" instance=ExtResource("4_or6g4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="Mesh" type="MeshInstance3D" parent="Fixed"]
-mesh = ExtResource("3_sq6tb")
-skeleton = NodePath("../..")
+[node name="alien" parent="Rotating/AlienMesh/Node2" index="0"]
+transform = Transform3D(0.999995, -0.00327654, -0.000160872, 0.00326951, 0.999457, -0.032777, 0.00026818, 0.0327763, 0.999462, 0, -0.0652447, -0.0430444)
+
+[node name="body" parent="Rotating/AlienMesh/Node2/alien" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 2.125, 0)
+
+[node name="leftArm" parent="Rotating/AlienMesh/Node2/alien/body" index="2"]
+transform = Transform3D(0.382755, -0.92385, 0, 0.92385, 0.382755, 0, 0, 0, 1, -0.4375, 0.15625, 0)
+
+[node name="rightArm" parent="Rotating/AlienMesh/Node2/alien/body" index="3"]
+transform = Transform3D(0.362473, 0.931995, 0, -0.931995, 0.362473, 0, 0, 0, 1, 0.4375, 0.15625, 0)
+
+[node name="leftUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="4"]
+transform = Transform3D(0.991445, 0.0602703, 0.115778, 9.31323e-09, 0.887011, -0.461749, -0.130526, 0.457798, 0.879422, -0.25, -0.5, 0)
+
+[node name="leftLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.854852, 0.518871, 0, -0.518871, 0.854852, 0, -0.75, 0)
+
+[node name="leftFoot" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg/leftLowerLeg" index="1"]
+transform = Transform3D(0.999866, -0.0163293, 0.00125642, 0.0161268, 0.968277, -0.249358, 0.00285529, 0.249345, 0.968411, 0, -0.75, 0)
+
+[node name="rightUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="5"]
+transform = Transform3D(0.991445, -0.0602703, -0.115778, -9.31323e-09, 0.88701, -0.461749, 0.130526, 0.457798, 0.879422, 0.25, -0.5, 0)
+
+[node name="rightLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.851448, 0.524438, 0, -0.524438, 0.851448, 0, -0.75, 0)
+
+[node name="rightFoot" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg/rightLowerLeg" index="1"]
+transform = Transform3D(0.999465, 0.0327082, -0.000792412, -0.0318401, 0.966793, -0.253567, -0.00752764, 0.253457, 0.967317, 0, -0.75, 0)
+
+[node name="head" parent="Rotating/AlienMesh/Node2/alien/body" index="6"]
+transform = Transform3D(0.999961, -0.00881101, -0.000763608, 0.00820276, 0.956268, -0.292374, 0.00330632, 0.292356, 0.956304, 0.00852273, 0.436506, 0)
+
+[node name="AlienAnimationTree" parent="Rotating" instance=ExtResource("5_uip58")]
+anim_player = NodePath("../AlienMesh/AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_uw3lf")
+
+[node name="Fixed" type="Node3D" parent="."]
 
 [node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_ku4gj")]
 collision_layer = 20
@@ -56,10 +96,11 @@ script = ExtResource("2_xfy16")
 stats = NodePath("../../Stats")
 
 [node name="Shape" parent="Fixed/HitBox" index="0"]
-shape = SubResource("SphereShape3D_xytjn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304878, 0)
+shape = SubResource("CapsuleShape3D_spnsk")
 
 [node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("3_xabsb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61186, 0)
 stats = NodePath("../../Stats")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
@@ -107,6 +148,7 @@ speed = 0.5
 
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
+[editable path="Rotating/AlienMesh"]
 [editable path="Fixed/HitBox"]
 [editable path="Fixed/FollowingBrain"]
 [editable path="Fixed/AttackingBrain"]

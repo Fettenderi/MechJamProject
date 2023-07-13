@@ -1,0 +1,48 @@
+[gd_scene load_steps=14 format=3 uid="uid://cuthnbuh2wmht"]
+
+[ext_resource type="Script" path="res://objects/common/attacker_animation_tree.gd" id="1_r5fyd"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jr8fo"]
+animation = &"gun_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r7qar"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s5okn"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_warw4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oq04v"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gvemq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tns3a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yjua5"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jp05w"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uugu1"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hdwvs"]
+states/gun_attack/node = SubResource("AnimationNodeAnimation_jr8fo")
+states/gun_attack/position = Vector2(544.2, -18.6)
+states/idle/node = SubResource("AnimationNodeAnimation_r7qar")
+states/idle/position = Vector2(420, 99.6)
+states/walk/node = SubResource("AnimationNodeAnimation_s5okn")
+states/walk/position = Vector2(647.2, 98.64)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_warw4"), "idle", "gun_attack", SubResource("AnimationNodeStateMachineTransition_oq04v"), "gun_attack", "idle", SubResource("AnimationNodeStateMachineTransition_gvemq"), "walk", "gun_attack", SubResource("AnimationNodeStateMachineTransition_tns3a"), "gun_attack", "walk", SubResource("AnimationNodeStateMachineTransition_yjua5"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_jp05w"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uugu1")]
+graph_offset = Vector2(-35, -79)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_h0lfj"]
+
+[node name="AttackerAnimationTree" type="AnimationTree"]
+tree_root = SubResource("AnimationNodeStateMachine_hdwvs")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_h0lfj")
+script = ExtResource("1_r5fyd")

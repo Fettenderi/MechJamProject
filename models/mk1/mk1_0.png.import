@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsb5lt2ji5hp0"
-path.s3tc="res://.godot/imported/drill_model_0.png-21a8f6d9877b950f0d8ad9b9c30090d2.s3tc.ctex"
+uid="uid://dbe8su1xggoc"
+path.s3tc="res://.godot/imported/mk1_0.png-43e5c9f44876fa373c408c1861ade6f0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/drill/drill_model_0.png"
-dest_files=["res://.godot/imported/drill_model_0.png-21a8f6d9877b950f0d8ad9b9c30090d2.s3tc.ctex"]
+source_file="res://models/mk1/mk1_0.png"
+dest_files=["res://.godot/imported/mk1_0.png-43e5c9f44876fa373c408c1861ade6f0.s3tc.ctex"]
 
 [params]
 

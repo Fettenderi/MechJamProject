@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cjaqmcdbxuvyh"
-path="res://.godot/imported/drill_model.gltf-c07f01f21f3f3db49e148950f52a4307.scn"
+uid="uid://dk5pntj3illfp"
+path="res://.godot/imported/rover.gltf-ca281588b0fae7ccb90f4050a9ce9598.scn"
 
 [deps]
 
-source_file="res://models/drill/drill_model.gltf"
-dest_files=["res://.godot/imported/drill_model.gltf-c07f01f21f3f3db49e148950f52a4307.scn"]
+source_file="res://models/alien/rover.gltf"
+dest_files=["res://.godot/imported/rover.gltf-ca281588b0fae7ccb90f4050a9ce9598.scn"]
 
 [params]
 

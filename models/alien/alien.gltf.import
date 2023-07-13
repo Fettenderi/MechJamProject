@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://byjirpa2ifdht"
-path="res://.godot/imported/gun.gltf-9236819ca593f9e5857f566a2ee19293.scn"
+uid="uid://wobn242mnsn8"
+path="res://.godot/imported/alien.gltf-c6d8a1548d89e4a4f342f028a16154a9.scn"
 
 [deps]
 
-source_file="res://models/gun/gun.gltf"
-dest_files=["res://.godot/imported/gun.gltf-9236819ca593f9e5857f566a2ee19293.scn"]
+source_file="res://models/alien/alien.gltf"
+dest_files=["res://.godot/imported/alien.gltf-c6d8a1548d89e4a4f342f028a16154a9.scn"]
 
 [params]
 

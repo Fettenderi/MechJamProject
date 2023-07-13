@@ -14,14 +14,17 @@ extends Area3D
 @onready var max_prim_particles : int = primary_particles.amount
 @onready var max_seco_particles : int = secondary_particles.amount
 
-var is_attacking := false
+var attacking := false
+
+signal is_attacking
 
 func _ready() -> void:
 	duration_timer.connect("timeout", end_attack)
 
 func start_attack(particle_parameter: float = 1.0) -> void:
-	if not is_attacking:
-		is_attacking = true
+	if not attacking:
+		emit_signal("is_attacking")
+		attacking = true
 		duration_timer.start(duration_time)
 		
 		emit_particles(particle_parameter)
@@ -29,7 +32,7 @@ func start_attack(particle_parameter: float = 1.0) -> void:
 		shape.set_deferred("disabled", false)
 
 func end_attack() -> void:
-	is_attacking = false
+	attacking = false
 	shape.set_deferred("disabled", true)
 
 func emit_particles(particle_parameter: float = 1.0) -> void:

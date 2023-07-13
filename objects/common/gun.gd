@@ -14,16 +14,15 @@ extends Node3D
 
 var can_shoot := true
 
+signal is_attacking
+
 func _ready() -> void:
 	reload_timer.connect("timeout", end_attack)
 
 func start_attack() -> void:
 	if can_shoot:
+		emit_signal("is_attacking")
 		var projectile_node : Projectile = projectile.instantiate()
-		
-		if stats == PlayerStats:
-			stats.weapon_ammos[Stats.AttackType.GUN] -= 1
-			# Aggiungere shake screen effect
 
 		projectile_node.position = global_position
 		projectile_node.direction = Vector3(cos(global_rotation.y), 0, -sin(global_rotation.y))
