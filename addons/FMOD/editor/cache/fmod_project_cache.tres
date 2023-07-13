@@ -1,70 +1,14 @@
-[gd_resource type="ProjectCache" load_steps=16 format=3 uid="uid://brkpamkfn8adt"]
+[gd_resource type="ProjectCache" load_steps=10 format=3 uid="uid://brkpamkfn8adt"]
 
 [ext_resource type="BankAsset" uid="uid://cn3dyi01ahsri" path="res://addons/FMOD/editor/resources/banks/{64f306e5-ad1f-4f97-96e1-d7e886c4c393}.tres" id="1_rg3f4"]
 [ext_resource type="BankAsset" uid="uid://boh83y8yln5dn" path="res://addons/FMOD/editor/resources/banks/{fcee2631-dc64-03d5-10a8-5d167737c50b}.tres" id="2_3w7un"]
 [ext_resource type="BusAsset" uid="uid://dgy4bt0lm21kc" path="res://addons/FMOD/editor/resources/busses/{5e22bac0-3f00-4935-8a02-38325683d9fc}.tres" id="3_slqr4"]
 [ext_resource type="BusAsset" uid="uid://dpjir305bqqge" path="res://addons/FMOD/editor/resources/busses/{33081084-5725-4053-a870-42ec617217f5}.tres" id="4_7tx6x"]
 [ext_resource type="ParameterAsset" uid="uid://c1x3w7sjhnrmb" path="res://addons/FMOD/editor/resources/parameters/{dc034953-c562-401b-9c83-c5cfa0b8e436}.tres" id="5_8ivsl"]
-
-[sub_resource type="EventAsset" id="EventAsset_p0ic5"]
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/Music"
-guid = "{f3850399-665b-48be-bf11-33033c90cf47}"
-name = "Music"
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_8cuff"]
-data1 = 4248561914
-data2 = 2925814567
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_7y1em"]
-name = "Game Starts"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_8cuff")
-maximum = 1.0
-flags = 12
-guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_tswds"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_7y1em")
-path = "parameter:/Game Starts"
-guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
-name = "Game Starts"
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_0eksj"]
-data1 = 3132564451
-data2 = 2962156741
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_cq4l2"]
-name = "intensity"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_0eksj")
-minimum = 1.0
-maximum = 10.0
-default_value = 1.0
-flags = 12
-guid = "{01f40d11-8630-4966-92fe-eb44b9b83cfe}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_ha0ng"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_cq4l2")
-path = "parameter:/intensity"
-guid = "{01f40d11-8630-4966-92fe-eb44b9b83cfe}"
-name = "intensity"
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_2c7tx"]
-data1 = 2601016181
-data2 = 3254717881
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_46c8y"]
-name = "player_dead"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_2c7tx")
-maximum = 1.0
-flags = 12
-guid = "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_qqt0c"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_46c8y")
-path = "parameter:/player_dead"
-guid = "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}"
-name = "player_dead"
+[ext_resource type="EventAsset" uid="uid://d2u4uwvhcisap" path="res://addons/FMOD/editor/resources/events/{f3850399-665b-48be-bf11-33033c90cf47}.tres" id="5_46i4q"]
+[ext_resource type="ParameterAsset" uid="uid://1c3i6ow1e21g" path="res://addons/FMOD/editor/resources/parameters/{ce84adbf-057d-4527-9fcd-c12ce71f87db}.tres" id="6_niucd"]
+[ext_resource type="ParameterAsset" uid="uid://7vo5twaru018" path="res://addons/FMOD/editor/resources/parameters/{01f40d11-8630-4966-92fe-eb44b9b83cfe}.tres" id="7_24vfp"]
+[ext_resource type="ParameterAsset" uid="uid://byk6gypu4xfcf" path="res://addons/FMOD/editor/resources/parameters/{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}.tres" id="9_ekh6l"]
 
 [resource]
 banks = {
@@ -72,16 +16,16 @@ banks = {
 "{fcee2631-dc64-03d5-10a8-5d167737c50b}": ExtResource("2_3w7un")
 }
 events = {
-"{f3850399-665b-48be-bf11-33033c90cf47}": SubResource("EventAsset_p0ic5")
+"{f3850399-665b-48be-bf11-33033c90cf47}": ExtResource("5_46i4q")
 }
 busses = {
 "{33081084-5725-4053-a870-42ec617217f5}": ExtResource("4_7tx6x"),
 "{5e22bac0-3f00-4935-8a02-38325683d9fc}": ExtResource("3_slqr4")
 }
 parameters = {
-"{01f40d11-8630-4966-92fe-eb44b9b83cfe}": SubResource("ParameterAsset_ha0ng"),
-"{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": SubResource("ParameterAsset_qqt0c"),
-"{ce84adbf-057d-4527-9fcd-c12ce71f87db}": SubResource("ParameterAsset_tswds"),
+"{01f40d11-8630-4966-92fe-eb44b9b83cfe}": ExtResource("7_24vfp"),
+"{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": ExtResource("9_ekh6l"),
+"{ce84adbf-057d-4527-9fcd-c12ce71f87db}": ExtResource("6_niucd"),
 "{dc034953-c562-401b-9c83-c5cfa0b8e436}": ExtResource("5_8ivsl")
 }
 bank_tree = [{
@@ -102,7 +46,7 @@ event_tree = [{
 "item_type": 1,
 "node_name": "Music",
 "path": "event:/Music",
-"resource": SubResource("EventAsset_p0ic5")
+"resource": ExtResource("5_46i4q")
 }]
 bus_tree = [{
 "children": [{
@@ -122,13 +66,13 @@ parameter_tree = [{
 "item_type": 6,
 "node_name": "Game Starts",
 "path": "parameter:/Game Starts",
-"resource": SubResource("ParameterAsset_tswds")
+"resource": ExtResource("6_niucd")
 }, {
 "children": [],
 "item_type": 6,
 "node_name": "intensity",
 "path": "parameter:/intensity",
-"resource": SubResource("ParameterAsset_ha0ng")
+"resource": ExtResource("7_24vfp")
 }, {
 "children": [],
 "item_type": 6,
@@ -140,5 +84,5 @@ parameter_tree = [{
 "item_type": 6,
 "node_name": "player_dead",
 "path": "parameter:/player_dead",
-"resource": SubResource("ParameterAsset_qqt0c")
+"resource": ExtResource("9_ekh6l")
 }]
