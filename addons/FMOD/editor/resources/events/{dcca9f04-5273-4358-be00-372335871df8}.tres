@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cn2yfxtnygwod"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Laser Gun Short"
+guid = "{dcca9f04-5273-4358-be00-372335871df8}"
+name = "Laser Gun Short"

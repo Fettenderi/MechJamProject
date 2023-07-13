@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://b46gp5thkm00i"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Shield Removed"
+guid = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
+name = "Shield Removed"

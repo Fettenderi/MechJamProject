@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://ccr3nn13gnl2u"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mine Deployed"
+guid = "{5886d81e-0d2d-4b80-a5f9-b5951b325f95}"
+name = "Mine Deployed"

@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://28ow7w04xojo"]
+
+[resource]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Drill Long"
+guid = "{cc94d5ab-f44b-4107-8d6f-9bba0057010b}"
+name = "Drill Long"

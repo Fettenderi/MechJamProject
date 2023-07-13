@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=10 format=3 uid="uid://brkpamkfn8adt"]
+[gd_resource type="ProjectCache" load_steps=20 format=3 uid="uid://brkpamkfn8adt"]
 
 [ext_resource type="BankAsset" uid="uid://cn3dyi01ahsri" path="res://addons/FMOD/editor/resources/banks/{64f306e5-ad1f-4f97-96e1-d7e886c4c393}.tres" id="1_rg3f4"]
 [ext_resource type="BankAsset" uid="uid://boh83y8yln5dn" path="res://addons/FMOD/editor/resources/banks/{fcee2631-dc64-03d5-10a8-5d167737c50b}.tres" id="2_3w7un"]
@@ -10,12 +10,98 @@
 [ext_resource type="ParameterAsset" uid="uid://7vo5twaru018" path="res://addons/FMOD/editor/resources/parameters/{01f40d11-8630-4966-92fe-eb44b9b83cfe}.tres" id="7_24vfp"]
 [ext_resource type="ParameterAsset" uid="uid://byk6gypu4xfcf" path="res://addons/FMOD/editor/resources/parameters/{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}.tres" id="9_ekh6l"]
 
+[sub_resource type="EventAsset" id="EventAsset_i0lng"]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Drill Long"
+guid = "{cc94d5ab-f44b-4107-8d6f-9bba0057010b}"
+name = "Drill Long"
+
+[sub_resource type="EventAsset" id="EventAsset_uq4tv"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Explosion"
+guid = "{3e3ae0df-22b2-415b-862a-13fc792bef92}"
+name = "Explosion"
+
+[sub_resource type="EventAsset" id="EventAsset_8ewyl"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Laser Gun Long"
+guid = "{b7203881-92e6-4b1b-a4cf-d2369fb46842}"
+name = "Laser Gun Long"
+
+[sub_resource type="EventAsset" id="EventAsset_ywcqc"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Laser Gun Short"
+guid = "{dcca9f04-5273-4358-be00-372335871df8}"
+name = "Laser Gun Short"
+
+[sub_resource type="EventAsset" id="EventAsset_gjynd"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech Damage"
+guid = "{20211b87-581d-42a4-9c0e-863c6366b234}"
+name = "Mech Damage"
+
+[sub_resource type="EventAsset" id="EventAsset_0sddm"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mine Deployed"
+guid = "{5886d81e-0d2d-4b80-a5f9-b5951b325f95}"
+name = "Mine Deployed"
+
+[sub_resource type="EventAsset" id="EventAsset_4q81y"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Shield Removed"
+guid = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
+name = "Shield Removed"
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_q2iv4"]
+data1 = 3146805909
+data2 = 3937067150
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_r25i2"]
+name = "drill_attack"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_q2iv4")
+maximum = 1.0
+flags = 12
+guid = "{89602517-ea96-466b-8fec-3b8a0513cf39}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_bsp65"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_r25i2")
+path = "parameter:/drill_attack"
+guid = "{89602517-ea96-466b-8fec-3b8a0513cf39}"
+name = "drill_attack"
+
 [resource]
 banks = {
 "{64f306e5-ad1f-4f97-96e1-d7e886c4c393}": ExtResource("1_rg3f4"),
 "{fcee2631-dc64-03d5-10a8-5d167737c50b}": ExtResource("2_3w7un")
 }
 events = {
+"{20211b87-581d-42a4-9c0e-863c6366b234}": SubResource("EventAsset_gjynd"),
+"{3e3ae0df-22b2-415b-862a-13fc792bef92}": SubResource("EventAsset_uq4tv"),
+"{5886d81e-0d2d-4b80-a5f9-b5951b325f95}": SubResource("EventAsset_0sddm"),
+"{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}": SubResource("EventAsset_4q81y"),
+"{b7203881-92e6-4b1b-a4cf-d2369fb46842}": SubResource("EventAsset_8ewyl"),
+"{cc94d5ab-f44b-4107-8d6f-9bba0057010b}": SubResource("EventAsset_i0lng"),
+"{dcca9f04-5273-4358-be00-372335871df8}": SubResource("EventAsset_ywcqc"),
 "{f3850399-665b-48be-bf11-33033c90cf47}": ExtResource("5_46i4q")
 }
 busses = {
@@ -25,6 +111,7 @@ busses = {
 parameters = {
 "{01f40d11-8630-4966-92fe-eb44b9b83cfe}": ExtResource("7_24vfp"),
 "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": ExtResource("9_ekh6l"),
+"{89602517-ea96-466b-8fec-3b8a0513cf39}": SubResource("ParameterAsset_bsp65"),
 "{ce84adbf-057d-4527-9fcd-c12ce71f87db}": ExtResource("6_niucd"),
 "{dc034953-c562-401b-9c83-c5cfa0b8e436}": ExtResource("5_8ivsl")
 }
@@ -47,6 +134,54 @@ event_tree = [{
 "node_name": "Music",
 "path": "event:/Music",
 "resource": ExtResource("5_46i4q")
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Drill Long",
+"path": "event:/SFX/Drill Long",
+"resource": SubResource("EventAsset_i0lng")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Explosion",
+"path": "event:/SFX/Explosion",
+"resource": SubResource("EventAsset_uq4tv")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Laser Gun Long",
+"path": "event:/SFX/Laser Gun Long",
+"resource": SubResource("EventAsset_8ewyl")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Laser Gun Short",
+"path": "event:/SFX/Laser Gun Short",
+"resource": SubResource("EventAsset_ywcqc")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Damage",
+"path": "event:/SFX/Mech Damage",
+"resource": SubResource("EventAsset_gjynd")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mine Deployed",
+"path": "event:/SFX/Mine Deployed",
+"resource": SubResource("EventAsset_0sddm")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Shield Removed",
+"path": "event:/SFX/Shield Removed",
+"resource": SubResource("EventAsset_4q81y")
+}],
+"item_type": 7,
+"node_name": "SFX",
+"path": "",
+"resource": null
 }]
 bus_tree = [{
 "children": [{
@@ -62,6 +197,12 @@ bus_tree = [{
 "resource": ExtResource("3_slqr4")
 }]
 parameter_tree = [{
+"children": [],
+"item_type": 6,
+"node_name": "drill_attack",
+"path": "parameter:/drill_attack",
+"resource": SubResource("ParameterAsset_bsp65")
+}, {
 "children": [],
 "item_type": 6,
 "node_name": "Game Starts",
