@@ -16,7 +16,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spnsk"]
 height = 1.6
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_uw3lf"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_4div5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
 radius = 11.0
@@ -39,7 +39,9 @@ shape = SubResource("CapsuleShape3D_spnsk")
 [node name="Rotating" type="Node3D" parent="."]
 
 [node name="Gun" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("1_mgllf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.769407, 0.471376, 0.104841)
 duration_time = 1.0
+delay_time = 0.75
 stats = NodePath("../../Stats")
 projectile = ExtResource("2_g608w")
 layer = 64
@@ -50,42 +52,42 @@ attack_type = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="alien" parent="Rotating/AlienMesh/Node2" index="0"]
-transform = Transform3D(0.999995, -0.00327654, -0.000160872, 0.00326951, 0.999457, -0.032777, 0.00026818, 0.0327763, 0.999462, 0, -0.0652447, -0.0430444)
+transform = Transform3D(1, -0.000165022, -1.06792e-05, 0.000165005, 0.999998, -0.00165247, 1.09519e-05, 0.00165247, 0.999998, 0, -0.0596709, -0.00216955)
 
 [node name="body" parent="Rotating/AlienMesh/Node2/alien" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 2.125, 0)
 
 [node name="leftArm" parent="Rotating/AlienMesh/Node2/alien/body" index="2"]
-transform = Transform3D(0.382755, -0.92385, 0, 0.92385, 0.382755, 0, 0, 0, 1, -0.4375, 0.15625, 0)
+transform = Transform3D(0.34409, -0.938937, 0, 0.938937, 0.34409, 0, 0, 0, 1, -0.4375, 0.15625, 0)
 
 [node name="rightArm" parent="Rotating/AlienMesh/Node2/alien/body" index="3"]
-transform = Transform3D(0.362473, 0.931995, 0, -0.931995, 0.362473, 0, 0, 0, 1, 0.4375, 0.15625, 0)
+transform = Transform3D(0.343056, 0.939316, 0, -0.939316, 0.343056, 0, 0, 0, 1, 0.4375, 0.15625, 0)
 
 [node name="leftUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="4"]
 transform = Transform3D(0.991445, 0.0602703, 0.115778, 9.31323e-09, 0.887011, -0.461749, -0.130526, 0.457798, 0.879422, -0.25, -0.5, 0)
 
 [node name="leftLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.854852, 0.518871, 0, -0.518871, 0.854852, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.885479, 0.464677, 0, -0.464677, 0.885479, 0, -0.75, 0)
 
 [node name="leftFoot" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(0.999866, -0.0163293, 0.00125642, 0.0161268, 0.968277, -0.249358, 0.00285529, 0.249345, 0.968411, 0, -0.75, 0)
+transform = Transform3D(0.99967, -0.0256817, 7.13186e-05, 0.025079, 0.975603, -0.218106, 0.00553175, 0.218035, 0.975925, 0, -0.75, 0)
 
 [node name="rightUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="5"]
 transform = Transform3D(0.991445, -0.0602703, -0.115778, -9.31323e-09, 0.88701, -0.461749, 0.130526, 0.457798, 0.879422, 0.25, -0.5, 0)
 
 [node name="rightLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.851448, 0.524438, 0, -0.524438, 0.851448, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.8775, 0.479576, 0, -0.479576, 0.8775, 0, -0.75, 0)
 
 [node name="rightFoot" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(0.999465, 0.0327082, -0.000792412, -0.0318401, 0.966793, -0.253567, -0.00752764, 0.253457, 0.967317, 0, -0.75, 0)
+transform = Transform3D(0.999395, 0.0347894, -4.10443e-05, -0.0338293, 0.971536, -0.234463, -0.00811696, 0.234323, 0.972125, 0, -0.75, 0)
 
 [node name="head" parent="Rotating/AlienMesh/Node2/alien/body" index="6"]
-transform = Transform3D(0.999961, -0.00881101, -0.000763608, 0.00820276, 0.956268, -0.292374, 0.00330632, 0.292356, 0.956304, 0.00852273, 0.436506, 0)
+transform = Transform3D(0.999161, 0.0409783, -2.7536e-05, -0.0390954, 0.953047, -0.300285, -0.0122789, 0.300034, 0.95385, 0.00852273, 0.436506, 0)
 
 [node name="AlienAnimationTree" parent="Rotating" instance=ExtResource("5_uip58")]
 anim_player = NodePath("../AlienMesh/AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_uw3lf")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4div5")
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -146,6 +148,7 @@ max_health = 10.0
 damage = 1.0
 speed = 0.5
 
+[connection signal="is_attacking" from="Rotating/Gun" to="Rotating/AlienAnimationTree" method="set_attacking"]
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
 [editable path="Rotating/AlienMesh"]

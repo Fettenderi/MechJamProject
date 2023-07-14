@@ -51,8 +51,4 @@ text = "Weapon"
 
 [node name="JumpCharge" type="Label" parent="Container"]
 layout_mode = 2
-text = "Carica fino a 200 e quando sei in aria rilascia"
-
-[node name="DrillGunCharge" type="Label" parent="Container"]
-layout_mode = 2
-text = "Carica il Drill fino a 5 e mantieni"
+text = "0"

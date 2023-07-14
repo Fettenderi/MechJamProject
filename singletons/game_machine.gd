@@ -27,6 +27,7 @@ var trauma := 0.0
 var time := 0.0
 var is_screen_shaking := false
 
+signal new_weapon_unlocked
 
 
 func add_prop(prop: Node3D):
@@ -54,15 +55,15 @@ func _ready():
 	PlayerStats.connect("waves_changed", add_spaceship)
 	PlayerStats.connect("kills_changed", increase_intensity)
 	PlayerStats.connect("dead", player_died)
-	add_spaceship()
+#	add_spaceship()
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("debug_exit"):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("debug_button"):
-		intensity_controller.value = float((int(intensity_controller.value) + 1) % 7)
-		intensity_controller.trigger()
+		PlayerStats.available_weapons.append(Stats.AttackType.DRILL)
+		emit_signal("new_weapon_unlocked")
 	
 	if Input.is_action_just_pressed("debug_button_1"):
 		intensity_controller.value = float((int(intensity_controller.value) - 1) % 7)

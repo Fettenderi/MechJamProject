@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cjgcqq3o1837l"]
+[gd_scene load_steps=32 format=3 uid="uid://cjgcqq3o1837l"]
 
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_aybfs"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_nlux1"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="13_bb7j5"]
 [ext_resource type="PackedScene" uid="uid://dpkytjeiftwqx" path="res://objects/common/avoiding_brain.tscn" id="14_6tyvy"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ews13"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mjw7r"]
+radius = 1.0
+height = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c8hlm"]
 size = Vector3(2.09875, 0.5, 2)
@@ -57,9 +59,7 @@ initial_velocity_max = 1.5
 scale_curve = SubResource("CurveTexture_4g3ka")
 color_ramp = ExtResource("5_ny0xu")
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lhx00"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_xytjn"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_steev"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
 radius = 11.0
@@ -79,22 +79,27 @@ script = ExtResource("1_nlux1")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_ews13")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00298, 0)
+shape = SubResource("CapsuleShape3D_mjw7r")
 
 [node name="Rotating" type="Node3D" parent="."]
 
 [node name="Gun" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("1_aybfs")]
-duration_time = 1.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.7, 0.200305)
+duration_time = 1.0
+delay_time = 0.5
 stats = NodePath("../../Stats")
 projectile = ExtResource("2_ffnnq")
 layer = 64
 mask = 2
-attack_type = 1
+attack_type = 3
 
 [node name="DrillAttack" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("3_stq0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567953, 1.7099, 0.20543)
 collision_layer = 4
 collision_mask = 2
 duration_time = 0.5
+delay_time = 0.2
 stats = NodePath("../../Stats")
 attack_type = 1
 
@@ -121,61 +126,60 @@ draw_pass_1 = SubResource("BoxMesh_24xbq")
 [node name="MK1" parent="Rotating" instance=ExtResource("7_v8gqy")]
 
 [node name="mk1" parent="Rotating/MK1/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0431283, -0.00656339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0579445, -0.010561)
 
 [node name="body" parent="Rotating/MK1/Node2/mk1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.999507, 0.0314151, 0, -0.0314151, 0.999507, 0, 3.20313, 0.265625)
+transform = Transform3D(1, 0, 0, 0, 0.998722, 0.0505359, 0, -0.0505359, 0.998722, 0, 3.20313, 0.265625)
 
 [node name="bodyJoint" parent="Rotating/MK1/Node2/mk1/body" index="3"]
-transform = Transform3D(1, 0, 0, 0, 0.999585, -0.0287979, 0, 0.0287979, 0.999585, 0, -0.0776786, 0)
+transform = Transform3D(1, 0, 0, 0, 0.998926, -0.0463277, 0, 0.0463277, 0.998926, 0, -0.0776786, 0)
 
 [node name="leftUpperLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/leftLegJoint" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.969761, -0.244056, 0, 0.244056, 0.969761, -0.357812, 8.88178e-16, 5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.968387, -0.249453, 0, 0.249453, 0.968387, -0.357812, 8.88178e-16, 5.55112e-17)
 
 [node name="leftLowerLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/leftLegJoint/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.913002, 0.407954, 0, -0.407954, 0.913002, -2.22045e-16, -1.00082, 0)
+transform = Transform3D(1, 0, 0, 0, 0.909999, 0.41461, 0, -0.41461, 0.909999, -2.22045e-16, -1.00082, 0)
 
 [node name="leftFeet" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/leftLegJoint/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.984655, -0.174514, 0, 0.174514, 0.984655, 0, -1.56064, 0.0078125)
+transform = Transform3D(1, 0, 0, 0, 0.98409, -0.17767, 0, 0.17767, 0.98409, 0, -1.56064, 0.0078125)
 
 [node name="rightUpperLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/rightLegJoint" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.970397, -0.241513, 0, 0.241513, 0.970397, 0.357812, 8.88178e-16, 5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.969281, -0.245954, 0, 0.245954, 0.969281, 0.357812, 8.88178e-16, 5.55112e-17)
 
 [node name="rightLowerLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/rightLegJoint/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.925201, 0.379478, 0, -0.379478, 0.925201, 2.22045e-16, -1.00082, 0)
+transform = Transform3D(1, 0, 0, 0, 0.922549, 0.385881, 0, -0.385881, 0.922549, 2.22045e-16, -1.00082, 0)
 
 [node name="rightFeet" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/rightLegJoint/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.988624, -0.150405, 0, 0.150405, 0.988624, 0, -1.56064, 0.0078125)
+transform = Transform3D(1, 0, 0, 0, 0.987007, -0.16068, 0, 0.16068, 0.987007, 0, -1.56064, 0.0078125)
 
 [node name="leftArmJoint" parent="Rotating/MK1/Node2/mk1/body" index="4"]
 transform = Transform3D(1, 0, 0, 0, 0.21644, 0.976296, 0, -0.976296, 0.21644, -0.842188, 1.44844, 0.028125)
 
 [node name="leftUpperArm" parent="Rotating/MK1/Node2/mk1/body/leftArmJoint" index="1"]
-transform = Transform3D(0.97437, 0.0116766, 0.224648, 2.32831e-08, 0.998652, -0.0519074, -0.224952, 0.050577, 0.973056, -0.140625, 0.009375, 1.11022e-16)
+transform = Transform3D(0.97437, 0.0126368, 0.224595, -2.18861e-08, 0.998421, -0.0561758, -0.22495, 0.0547361, 0.972831, -0.140625, 0.009375, 1.11022e-16)
 
 [node name="leftLowerArm" parent="Rotating/MK1/Node2/mk1/body/leftArmJoint/leftUpperArm" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.997533, 0.0702013, 0, -0.0702013, 0.997533, 0, 0, -0.99926)
+transform = Transform3D(1, 0, 0, 0, 0.997199, 0.0747979, 0, -0.0747979, 0.997199, 0, 0, -0.99926)
 
 [node name="rightArmJoint" parent="Rotating/MK1/Node2/mk1/body" index="5"]
 transform = Transform3D(0.976296, 2.08616e-07, -0.216439, 0.216233, 0.0436184, 0.975367, 0.00944094, -0.999048, 0.0425845, 0.842188, 1.44844, 0.028125)
 
 [node name="rightUpperArm" parent="Rotating/MK1/Node2/mk1/body/rightArmJoint" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.992167, -0.124917, 0, 0.124917, 0.992167, 0.140625, 0.009375, 1.11022e-16)
+transform = Transform3D(1, 0, 0, 0, 0.99152, -0.12995, 0, 0.12995, 0.99152, 0.140625, 0.009375, 1.11022e-16)
 
 [node name="rightLowerArm" parent="Rotating/MK1/Node2/mk1/body/rightArmJoint/rightUpperArm" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.98803, -0.154265, 0, 0.154265, 0.98803, 0, 0, -0.99926)
+transform = Transform3D(1, 0, 0, 0, 0.98869, -0.149984, 0, 0.149984, 0.98869, 0, 0, -0.99926)
 
 [node name="rightHand" parent="Rotating/MK1/Node2/mk1/body/rightArmJoint/rightUpperArm/rightLowerArm" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.991445, -0.130526, 0, 0.130526, 0.991445, 7.77156e-16, 0.0078125, -1.56845)
 
 [node name="head" parent="Rotating/MK1/Node2/mk1/body" index="6"]
-transform = Transform3D(0.873934, 0, -0.486044, 0, 1, 0, 0.486044, 0, 0.873934, -0.0625, 2.1875, 5.55112e-17)
+transform = Transform3D(0.756203, 0, -0.654337, 0, 1, 0, 0.654337, 0, 0.756203, -0.0625, 2.1875, 5.55112e-17)
 
 [node name="AttackerAnimationTree" parent="Rotating" instance=ExtResource("8_2jfml")]
 anim_player = NodePath("../MK1/AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_lhx00")
-attacking_nodes = Array[Node3D]([null, null])
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_steev")
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -187,7 +191,8 @@ stats = NodePath("../../Stats")
 shields = NodePath("../Shield")
 
 [node name="Shape" parent="Fixed/HitBox" index="0"]
-shape = SubResource("SphereShape3D_xytjn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00259, 0)
+shape = SubResource("CapsuleShape3D_mjw7r")
 
 [node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("6_kvpei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0)
@@ -253,6 +258,8 @@ max_health = 20.0
 damage = 1.5
 speed = 0.3
 
+[connection signal="is_attacking" from="Rotating/Gun" to="Rotating/AttackerAnimationTree" method="set_attacking"]
+[connection signal="is_attacking" from="Rotating/DrillAttack" to="Rotating/AttackerAnimationTree" method="set_attacking"]
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
 [editable path="Rotating/DrillAttack"]

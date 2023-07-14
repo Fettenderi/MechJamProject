@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://buq2o51m8rjoq"]
+[gd_scene load_steps=3 format=3 uid="uid://buq2o51m8rjoq"]
 
 [ext_resource type="Script" path="res://objects/common/mine_deployer.gd" id="1_44ay1"]
+
+[sub_resource type="EventAsset" id="EventAsset_0sddm"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mine Deployed"
+guid = "{5886d81e-0d2d-4b80-a5f9-b5951b325f95}"
+name = "Mine Deployed"
 
 [node name="MineDeployer" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -15,3 +24,6 @@ emitting = false
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
+event = SubResource("EventAsset_0sddm")

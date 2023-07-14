@@ -37,4 +37,4 @@ func _physics_process(_delta):
 		
 		charge_timer.start(charge_time)
 		
-		PlayerStats.energy = clamp(PlayerStats.energy + 1, 0, PlayerStats.max_energy)
+		PlayerStats.energy = clamp(PlayerStats.energy + 5, 0, PlayerStats.max_energy)

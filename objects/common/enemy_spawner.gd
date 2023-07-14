@@ -10,6 +10,7 @@ extends Node3D
 @onready var secondary_particles := $SecondaryParticles
 
 var can_deploy := true
+var can_attack := true
 var deployied_enemies := 0
 
 func _ready() -> void:
@@ -17,7 +18,7 @@ func _ready() -> void:
 	despawn_timer.connect("timeout", despawn)
 
 func start_attack() -> void:
-	if can_deploy:
+	if can_deploy and can_attack:
 		can_deploy = false
 		
 		var enemy_node : CharacterBody3D
@@ -26,6 +27,7 @@ func start_attack() -> void:
 			deploy_timer.start()
 			enemy_node = normal_enemies_pool.pick_random().instantiate()
 		else:
+			can_attack = false
 			despawn_timer.start()
 			enemy_node = special_enemies_pool.pick_random().instantiate()
 		

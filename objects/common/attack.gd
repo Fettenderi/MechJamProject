@@ -3,11 +3,13 @@ class_name Attack
 extends Area3D
 
 @export var duration_time : float
+@export var delay_time : float
 @export var stats : Stats
 @export var attack_type : Stats.AttackType
 
 @onready var shape := $Shape
 @onready var duration_timer := $DurationTimer
+@onready var delay_timer := $DelayTimer
 @onready var primary_particles := $PrimaryParticles
 @onready var secondary_particles := $SecondaryParticles
 
@@ -15,21 +17,27 @@ extends Area3D
 @onready var max_seco_particles : int = secondary_particles.amount
 
 var attacking := false
+var particle_parameters := 0.0
 
 signal is_attacking
 
 func _ready() -> void:
+	delay_timer.connect("timeout", initiate_attack)
 	duration_timer.connect("timeout", end_attack)
 
 func start_attack(particle_parameter: float = 1.0) -> void:
 	if not attacking:
-		emit_signal("is_attacking")
+		particle_parameters = particle_parameter
+		delay_timer.start(delay_time)
 		attacking = true
-		duration_timer.start(duration_time)
-		
-		emit_particles(particle_parameter)
-		
-		shape.set_deferred("disabled", false)
+
+func initiate_attack():
+	emit_signal("is_attacking")
+	duration_timer.start(duration_time)
+	
+	emit_particles(particle_parameters)
+	
+	shape.set_deferred("disabled", false)
 
 func end_attack() -> void:
 	attacking = false
