@@ -12,7 +12,8 @@ extends Node
 
 @export_group("FMod")
 @export var enemies_per_intensity := 5.0
-
+@export var bus_asset: BusAsset
+@export_range(0.0, 1.0) var volume: float = 1.0
 @onready var intensity_delta := 1.0 / enemies_per_intensity
 
 @onready var camera := get_node("Level/PlayerFollower/CameraPlayer")
@@ -23,11 +24,39 @@ extends Node
 
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
 
+var bus: Bus
 var trauma := 0.0
 var time := 0.0
 var is_screen_shaking := false
 
 signal new_weapon_unlocked
+
+func _ready():
+	randomize()
+	
+	PlayerStats.connect("waves_changed", add_spaceship)
+	PlayerStats.connect("kills_changed", increase_intensity)
+	PlayerStats.connect("dead", player_died)
+	
+	bus = FMODStudioModule.get_studio_system().get_bus(bus_asset.path)
+	bus.set_volume(volume)
+#	add_spaceship()
+
+func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("debug_exit"):
+		get_tree().quit()
+	
+	if Input.is_action_just_pressed("debug_button"):
+		volume = clamp(volume + 0.1, 0.0, 1.0)
+		bus.set_volume(volume)
+	
+	if Input.is_action_just_pressed("debug_button_1"):
+		volume = clamp(volume - 0.1, 0.0, 1.0)
+		bus.set_volume(volume)
+	
+	if is_screen_shaking:
+		screen_shake(delta)
 
 
 func add_prop(prop: Node3D):
@@ -45,33 +74,6 @@ func add_spaceship(_value: int = 0):
 	spaceship_node.position = Vector3(randi_range(-max_level_size.x, max_level_size.x), 5, randi_range(-max_level_size.y, max_level_size.y))
 	
 	get_node("Level/Entities").add_child(spaceship_node)
-
-
-
-
-func _ready():
-	randomize()
-	
-	PlayerStats.connect("waves_changed", add_spaceship)
-	PlayerStats.connect("kills_changed", increase_intensity)
-	PlayerStats.connect("dead", player_died)
-#	add_spaceship()
-
-func _physics_process(delta):
-	if Input.is_action_just_pressed("debug_exit"):
-		get_tree().quit()
-	
-	if Input.is_action_just_pressed("debug_button"):
-		PlayerStats.available_weapons.append(Stats.AttackType.DRILL)
-		emit_signal("new_weapon_unlocked")
-	
-	if Input.is_action_just_pressed("debug_button_1"):
-		intensity_controller.value = float((int(intensity_controller.value) - 1) % 7)
-		intensity_controller.trigger()
-	
-	if is_screen_shaking:
-		screen_shake(delta)
-
 
 
 
@@ -109,5 +111,19 @@ func get_noise_from_seed(seed : int) -> float:
 	return noise.get_noise_1d(time * noise_speed)
 
 
+# Sblocca DRILL
 
+#		PlayerStats.available_weapons.append(Stats.AttackType.DRILL)
+#		emit_signal("new_weapon_unlocked")
+
+
+# Aumenta e diminusici volume
+
+#	if Input.is_action_just_pressed("debug_button"):
+#		volume = clamp(volume + 0.1, 0.0, 1.0)
+#		bus.set_volume(volume)
+#
+#	if Input.is_action_just_pressed("debug_button_1"):
+#		volume = clamp(volume - 0.1, 0.0, 1.0)
+#		bus.set_volume(volume)
 

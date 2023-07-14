@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cjgcqq3o1837l"]
+[gd_scene load_steps=36 format=3 uid="uid://cjgcqq3o1837l"]
 
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_aybfs"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_nlux1"]
@@ -6,15 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="3_stq0h"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="4_16kiu"]
 [ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="4_ioxtw"]
+[ext_resource type="EventAsset" uid="uid://m46ixpnvs7qm" path="res://addons/FMOD/editor/resources/events/{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}.tres" id="4_tif1u"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="5_akkc2"]
 [ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="5_ny0xu"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="6_kvpei"]
 [ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="7_5nhoc"]
 [ext_resource type="PackedScene" uid="uid://dppkquprcvclq" path="res://models/mk1/mk1_mesh.tscn" id="7_v8gqy"]
 [ext_resource type="PackedScene" uid="uid://cuthnbuh2wmht" path="res://objects/common/attacker_animation_tree.tscn" id="8_2jfml"]
+[ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="8_em8a2"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_okm3w"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="9_q1fbs"]
+[ext_resource type="EventAsset" uid="uid://b5lwuu2q5t7ya" path="res://addons/FMOD/editor/resources/events/{35370fea-686f-4097-8ec6-d51475762293}.tres" id="11_mumii"]
 [ext_resource type="PackedScene" uid="uid://bqjcj417e22e0" path="res://objects/common/shield.tscn" id="12_2fip4"]
+[ext_resource type="EventAsset" uid="uid://bfsgc7pl13n55" path="res://addons/FMOD/editor/resources/events/{84c5df55-5467-400c-9ff7-c0a47971c23d}.tres" id="12_5capb"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="13_bb7j5"]
 [ext_resource type="PackedScene" uid="uid://dpkytjeiftwqx" path="res://objects/common/avoiding_brain.tscn" id="14_6tyvy"]
 
@@ -59,7 +63,7 @@ initial_velocity_max = 1.5
 scale_curve = SubResource("CurveTexture_4g3ka")
 color_ramp = ExtResource("5_ny0xu")
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_steev"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_o0ltr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
 radius = 11.0
@@ -94,6 +98,9 @@ layer = 64
 mask = 2
 attack_type = 3
 
+[node name="SFXEmitter" parent="Rotating/Gun" index="4"]
+event = ExtResource("4_tif1u")
+
 [node name="DrillAttack" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("3_stq0h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567953, 1.7099, 0.20543)
 collision_layer = 4
@@ -123,63 +130,66 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_0yrqs")
 draw_pass_1 = SubResource("BoxMesh_24xbq")
 
+[node name="SFXEmitter" parent="Rotating/DrillAttack" index="5"]
+event = ExtResource("8_em8a2")
+
 [node name="MK1" parent="Rotating" instance=ExtResource("7_v8gqy")]
 
 [node name="mk1" parent="Rotating/MK1/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0579445, -0.010561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057203, -0.0103527)
 
 [node name="body" parent="Rotating/MK1/Node2/mk1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.998722, 0.0505359, 0, -0.0505359, 0.998722, 0, 3.20313, 0.265625)
+transform = Transform3D(1, 0, 0, 0, 0.998772, 0.0495402, 0, -0.0495402, 0.998772, 0, 3.20313, 0.265625)
 
 [node name="bodyJoint" parent="Rotating/MK1/Node2/mk1/body" index="3"]
-transform = Transform3D(1, 0, 0, 0, 0.998926, -0.0463277, 0, 0.0463277, 0.998926, 0, -0.0776786, 0)
+transform = Transform3D(1, 0, 0, 0, 0.998968, -0.0454148, 0, 0.0454148, 0.998968, 0, -0.0776786, 0)
 
 [node name="leftUpperLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/leftLegJoint" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.968387, -0.249453, 0, 0.249453, 0.968387, -0.357812, 8.88178e-16, 5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.965622, -0.25995, 0, 0.25995, 0.965622, -0.357812, 8.88178e-16, 5.55112e-17)
 
 [node name="leftLowerLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/leftLegJoint/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.909999, 0.41461, 0, -0.41461, 0.909999, -2.22045e-16, -1.00082, 0)
+transform = Transform3D(1, 0, 0, 0, 0.904006, 0.427519, 0, -0.427519, 0.904006, -2.22045e-16, -1.00082, 0)
 
 [node name="leftFeet" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/leftLegJoint/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.98409, -0.17767, 0, 0.17767, 0.98409, 0, -1.56064, 0.0078125)
+transform = Transform3D(1, 0, 0, 0, 0.983457, -0.181142, 0, 0.181142, 0.983457, 0, -1.56064, 0.0078125)
 
 [node name="rightUpperLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/rightLegJoint" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.969281, -0.245954, 0, 0.245954, 0.969281, 0.357812, 8.88178e-16, 5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.967047, -0.254595, 0, 0.254595, 0.967047, 0.357812, 8.88178e-16, 5.55112e-17)
 
 [node name="rightLowerLeg" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/rightLegJoint/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.922549, 0.385881, 0, -0.385881, 0.922549, 2.22045e-16, -1.00082, 0)
+transform = Transform3D(1, 0, 0, 0, 0.917252, 0.398308, 0, -0.398308, 0.917252, 2.22045e-16, -1.00082, 0)
 
 [node name="rightFeet" parent="Rotating/MK1/Node2/mk1/body/bodyJoint/rightLegJoint/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.987007, -0.16068, 0, 0.16068, 0.987007, 0, -1.56064, 0.0078125)
+transform = Transform3D(1, 0, 0, 0, 0.986198, -0.165576, 0, 0.165576, 0.986198, 0, -1.56064, 0.0078125)
 
 [node name="leftArmJoint" parent="Rotating/MK1/Node2/mk1/body" index="4"]
 transform = Transform3D(1, 0, 0, 0, 0.21644, 0.976296, 0, -0.976296, 0.21644, -0.842188, 1.44844, 0.028125)
 
 [node name="leftUpperArm" parent="Rotating/MK1/Node2/mk1/body/leftArmJoint" index="1"]
-transform = Transform3D(0.97437, 0.0126368, 0.224595, -2.18861e-08, 0.998421, -0.0561758, -0.22495, 0.0547361, 0.972831, -0.140625, 0.009375, 1.11022e-16)
+transform = Transform3D(0.97437, 0.0134262, 0.224549, -2.65427e-08, 0.998217, -0.0596851, -0.22495, 0.0581554, 0.972632, -0.140625, 0.009375, 1.11022e-16)
 
 [node name="leftLowerArm" parent="Rotating/MK1/Node2/mk1/body/leftArmJoint/leftUpperArm" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.997199, 0.0747979, 0, -0.0747979, 0.997199, 0, 0, -0.99926)
+transform = Transform3D(1, 0, 0, 0, 0.996807, 0.0798556, 0, -0.0798556, 0.996807, 0, 0, -0.99926)
 
 [node name="rightArmJoint" parent="Rotating/MK1/Node2/mk1/body" index="5"]
 transform = Transform3D(0.976296, 2.08616e-07, -0.216439, 0.216233, 0.0436184, 0.975367, 0.00944094, -0.999048, 0.0425845, 0.842188, 1.44844, 0.028125)
 
 [node name="rightUpperArm" parent="Rotating/MK1/Node2/mk1/body/rightArmJoint" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.99152, -0.12995, 0, 0.12995, 0.99152, 0.140625, 0.009375, 1.11022e-16)
+transform = Transform3D(1, 0, 0, 0, 0.990186, -0.13975, 0, 0.13975, 0.990186, 0.140625, 0.009375, 1.11022e-16)
 
 [node name="rightLowerArm" parent="Rotating/MK1/Node2/mk1/body/rightArmJoint/rightUpperArm" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.98869, -0.149984, 0, 0.149984, 0.98869, 0, 0, -0.99926)
+transform = Transform3D(1, 0, 0, 0, 0.989921, -0.141631, 0, 0.141631, 0.989921, 0, 0, -0.99926)
 
 [node name="rightHand" parent="Rotating/MK1/Node2/mk1/body/rightArmJoint/rightUpperArm/rightLowerArm" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.991445, -0.130526, 0, 0.130526, 0.991445, 7.77156e-16, 0.0078125, -1.56845)
 
 [node name="head" parent="Rotating/MK1/Node2/mk1/body" index="6"]
-transform = Transform3D(0.756203, 0, -0.654337, 0, 1, 0, 0.654337, 0, 0.756203, -0.0625, 2.1875, 5.55112e-17)
+transform = Transform3D(0.727615, 0, -0.685986, 0, 1, 0, 0.685986, 0, 0.727615, -0.0625, 2.1875, 5.55112e-17)
 
 [node name="AttackerAnimationTree" parent="Rotating" instance=ExtResource("8_2jfml")]
 anim_player = NodePath("../MK1/AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_steev")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_o0ltr")
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -193,6 +203,12 @@ shields = NodePath("../Shield")
 [node name="Shape" parent="Fixed/HitBox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00259, 0)
 shape = SubResource("CapsuleShape3D_mjw7r")
+
+[node name="HitSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]
+event = ExtResource("11_mumii")
+
+[node name="DeadSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]
+event = ExtResource("12_5capb")
 
 [node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("6_kvpei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0)
@@ -262,6 +278,7 @@ speed = 0.3
 [connection signal="is_attacking" from="Rotating/DrillAttack" to="Rotating/AttackerAnimationTree" method="set_attacking"]
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
+[editable path="Rotating/Gun"]
 [editable path="Rotating/DrillAttack"]
 [editable path="Rotating/MK1"]
 [editable path="Fixed/HitBox"]

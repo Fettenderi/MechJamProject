@@ -13,6 +13,11 @@ const ROTATION_SPEED = 10.0
 @onready var energy_timer := $EnergyTimer
 @onready var weapon_consumption_timer := $WeaponConsumptionTimer
 
+@onready var charging_sfx := $ChargingSfx
+@onready var healing_sfx := $HealingSfx
+@onready var low_battery_sfx := $LowBatterySfx
+@onready var low_health_sfx := $LowHealthSfx
+
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
 @onready var drill_attack := $Rotating/DrillAttack
@@ -22,6 +27,7 @@ const ROTATION_SPEED = 10.0
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
 @onready var animation_tree := $Rotating/AnimationTree
+
 @onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var cursor_image := preload("res://objects/player/cursor.png")
 
@@ -38,6 +44,10 @@ var attacking := false
 var ray_origin := Vector3.ZERO
 var ray_target := Vector3.ZERO
 
+var previous_energy := PlayerStats.max_energy
+var previous_health := PlayerStats.max_health
+
+
 func _ready():
 	Input.set_custom_mouse_cursor(cursor_image)
 	
@@ -48,12 +58,15 @@ func _ready():
 	hitbox.stats = get_node("/root/PlayerStats")
 	gun.stats = get_node("/root/PlayerStats")
 	
-	PlayerStats.connect("dead", die)
-	PlayerStats.connect("jump_fully_charged", jump_fully_charged_effect)
 	GameMachine.connect("new_weapon_unlocked", available_weapons_changed)
 	jump_cooldown.connect("timeout", jump_cooldown_ended)
 	energy_timer.connect("timeout", energy_timer_ended)
 	weapon_consumption_timer.connect("timeout", can_remove_energy_for_weapon)
+	PlayerStats.connect("jump_fully_charged", jump_fully_charged_effect)
+	PlayerStats.connect("dead", die)
+	
+	PlayerStats.connect("energy_changed", energy_has_changed)
+	PlayerStats.connect("health_changed", health_has_changed)
 
 func _physics_process(delta) -> void:
 	# Add gravity or attack.
@@ -237,6 +250,28 @@ func set_signal_recieved():
 func available_weapons_changed():
 	if PlayerStats.available_weapons.has(Stats.AttackType.DRILL):
 		$Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand/drill.set_deferred("visible", true) 
+
+
+func energy_has_changed(new_energy):
+	if new_energy > PlayerStats.max_energy / 4:
+		low_battery_sfx.stop()
+	else:
+		low_battery_sfx.play()
+	
+	if new_energy > previous_energy:
+		charging_sfx.play()
+	previous_energy = new_energy
+
+func health_has_changed(new_health):
+	if new_health > PlayerStats.max_health / 4:
+		low_health_sfx.stop()
+	else:
+		low_health_sfx.play()
+	
+	if new_health > previous_health:
+		healing_sfx.play()
+	previous_health = new_health
+
 
 func die():
 	queue_free()

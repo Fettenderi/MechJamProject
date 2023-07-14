@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=80 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -8,9 +8,19 @@
 [ext_resource type="Texture2D" uid="uid://wladwpjjgaa" path="res://objects/common/particles/sparkles_colors_1.tres" id="4_5jfvx"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="4_q888k"]
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="5_auxup"]
+[ext_resource type="EventAsset" uid="uid://yohivhck8srv" path="res://addons/FMOD/editor/resources/events/{bc2c4842-224d-4564-8258-1640169b9d5c}.tres" id="7_pxqah"]
 [ext_resource type="PackedScene" uid="uid://cdwg87jteg8ev" path="res://objects/common/drill_projectile.tscn" id="7_w63f6"]
 [ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/basic_projectile.tscn" id="7_ynqj5"]
 [ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/common/particles/sparkles_colors_2.tres" id="8_5fb3j"]
+[ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="8_xrhl3"]
+[ext_resource type="EventAsset" uid="uid://cjj5rmmhkokbb" path="res://addons/FMOD/editor/resources/events/{b7203881-92e6-4b1b-a4cf-d2369fb46842}.tres" id="11_u8q1e"]
+[ext_resource type="EventAsset" uid="uid://coc7vr025c2jb" path="res://addons/FMOD/editor/resources/events/{20211b87-581d-42a4-9c0e-863c6366b234}.tres" id="12_jtkdk"]
+[ext_resource type="EventAsset" uid="uid://d3uafrow3peip" path="res://addons/FMOD/editor/resources/events/{0daeace2-dcef-435c-a668-e5575642b6f0}.tres" id="16_kq6hf"]
+[ext_resource type="EventAsset" uid="uid://do0ktyve22hc4" path="res://addons/FMOD/editor/resources/events/{94d34c99-1460-45e3-857f-581ccf531ce4}.tres" id="16_ngku1"]
+[ext_resource type="EventAsset" uid="uid://gg6rckoxf8nn" path="res://addons/FMOD/editor/resources/events/{91a06109-16c7-40cd-9d3f-49f8cdd7730b}.tres" id="18_h4w7v"]
+[ext_resource type="EventAsset" uid="uid://bnnc1iswvvvl0" path="res://addons/FMOD/editor/resources/events/{215f14e0-eb51-40d5-bf9b-6ba380860e00}.tres" id="19_r8yee"]
+[ext_resource type="EventAsset" uid="uid://luqu4o1sd0fk" path="res://addons/FMOD/editor/resources/events/{f37614f7-3b8a-4f28-86ed-79a7a860a162}.tres" id="20_yqf51"]
+[ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="21_x7iqi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
 
@@ -232,15 +242,6 @@ color_ramp = ExtResource("4_5jfvx")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4vv1y"]
 
-[sub_resource type="EventAsset" id="EventAsset_gjynd"]
-is_3d = true
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/SFX/Mech Damage"
-guid = "{20211b87-581d-42a4-9c0e-863c6366b234}"
-name = "Mech Damage"
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2ewaw"]
 height = 0.5
 radius = 3.0
@@ -286,37 +287,37 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 1.77636e-15, 0, 0.6, 0, -1.77636e-15, 0, 0.6, 0, -1.02798, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325535, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.385839, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0446083, 0.380074, -8.38191e-08, 0.993184, -0.116567, -0.382683, 0.107694, 0.917582, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0284583, 0.381624, 3.1665e-08, 0.997232, -0.0743651, -0.382684, 0.0687044, 0.921322, -0.6875, 3.375, 0.15625)
 
 [node name="drill" parent="Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand" index="0"]
 visible = false
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0446083, -0.380074, 8.38191e-08, 0.993184, -0.116567, 0.382683, 0.107694, 0.917582, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0284583, -0.381624, -3.1665e-08, 0.997232, -0.0743651, 0.382684, 0.0687044, 0.921322, 0.6875, 3.375, 0.15625)
 
 [node name="leftUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="0"]
-transform = Transform3D(0.953717, 0.238409, 0.183263, 1.04308e-07, 0.609443, -0.79283, -0.300706, 0.756136, 0.581235, -0.5, -0.1875, -0.0625)
+transform = Transform3D(0.953717, 0.249508, 0.167839, 2.08616e-07, 0.558149, -0.82974, -0.300706, 0.791337, 0.532316, -0.5, -0.1875, -0.0625)
 
 [node name="leftLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.410349, 0.911928, 0, -0.911928, 0.410349, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.338751, 0.940876, 0, -0.940876, 0.338751, 0, -1.1875, -5.55112e-17)
 
 [node name="leftFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg/leftLowerLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.973089, -0.23043, 0, 0.23043, 0.973089, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.968532, -0.248888, 0, 0.248888, 0.968532, 0, -1.20833, 0.0275673)
 
 [node name="rightUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="1"]
-transform = Transform3D(0.953717, -0.238409, -0.183263, -1.04308e-07, 0.609442, -0.79283, 0.300706, 0.756135, 0.581235, 0.625, -0.1875, -0.0625)
+transform = Transform3D(0.953717, -0.249508, -0.167839, -2.08616e-07, 0.558149, -0.82974, 0.300706, 0.791336, 0.532316, 0.625, -0.1875, -0.0625)
 
 [node name="rightLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.410349, 0.911929, 0, -0.911929, 0.410349, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.338751, 0.940876, 0, -0.940876, 0.338751, 0, -1.1875, -5.55112e-17)
 
 [node name="rightFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg/rightLowerLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.973089, -0.23043, 0, 0.23043, 0.973089, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.968532, -0.248888, 0, 0.248888, 0.968532, 0, -1.20833, 0.0275673)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -357,6 +358,9 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ipu32")
 draw_pass_1 = SubResource("BoxMesh_ic7o4")
 
+[node name="SFXEmitter" parent="Rotating/NormalAttack" index="5"]
+event = ExtResource("7_pxqah")
+
 [node name="DrillAttack" parent="Rotating" instance=ExtResource("2_7spae")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.3, 0.2, -1.5)
 collision_layer = 2
@@ -384,6 +388,9 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_ijw4i")
 draw_pass_1 = SubResource("BoxMesh_spa0c")
 
+[node name="SFXEmitter" parent="Rotating/DrillAttack" index="5"]
+event = ExtResource("8_xrhl3")
+
 [node name="Gun" parent="Rotating" instance=ExtResource("5_auxup")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, 0.37606, -2.00706)
 duration_time = 0.8
@@ -392,6 +399,9 @@ projectile = ExtResource("7_ynqj5")
 layer = 32
 mask = 4
 attack_type = 2
+
+[node name="SFXEmitter" parent="Rotating/Gun" index="4"]
+event = ExtResource("11_u8q1e")
 
 [node name="FotonicCannon" parent="Rotating" instance=ExtResource("5_auxup")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, 0.4, -2)
@@ -412,8 +422,11 @@ script = ExtResource("4_q888k")
 [node name="Shape" parent="Fixed/Hitbox" index="0"]
 shape = SubResource("CapsuleShape3D_4vv1y")
 
-[node name="SFXEmitter" type="StudioEventEmitter3D" parent="Fixed/Hitbox"]
-event = SubResource("EventAsset_gjynd")
+[node name="HitSfx" type="StudioEventEmitter3D" parent="Fixed/Hitbox"]
+event = ExtResource("12_jtkdk")
+
+[node name="DeadSfx" type="StudioEventEmitter3D" parent="Fixed/Hitbox"]
+event = ExtResource("16_ngku1")
 
 [node name="AreaAttack" parent="Fixed" instance=ExtResource("2_7spae")]
 collision_layer = 2
@@ -443,6 +456,9 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_a4gsu")
 draw_pass_1 = SubResource("BoxMesh_ic7o4")
 
+[node name="SFXEmitter" parent="Fixed/AreaAttack" index="5"]
+event = ExtResource("16_kq6hf")
+
 [node name="JumpCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -454,6 +470,20 @@ autostart = true
 [node name="WeaponConsumptionTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ChargingSfx" type="StudioEventEmitter3D" parent="."]
+event = ExtResource("18_h4w7v")
+
+[node name="HealingSfx" type="StudioEventEmitter3D" parent="."]
+event = ExtResource("19_r8yee")
+
+[node name="LowBatterySfx" type="StudioEventEmitter3D" parent="."]
+event = ExtResource("20_yqf51")
+
+[node name="LowHealthSfx" type="StudioEventEmitter3D" parent="."]
+event = ExtResource("21_x7iqi")
+
+[node name="StudioListener3D" type="StudioListener3D" parent="."]
+
 [connection signal="is_attacking" from="Rotating/DrillAttack" to="." method="set_signal_recieved"]
 [connection signal="is_attacking" from="Rotating/Gun" to="." method="set_signal_recieved"]
 [connection signal="is_attacking" from="Rotating/FotonicCannon" to="." method="set_signal_recieved"]
@@ -461,5 +491,6 @@ one_shot = true
 [editable path="Rotating/PlayerMesh"]
 [editable path="Rotating/NormalAttack"]
 [editable path="Rotating/DrillAttack"]
+[editable path="Rotating/Gun"]
 [editable path="Fixed/Hitbox"]
 [editable path="Fixed/AreaAttack"]

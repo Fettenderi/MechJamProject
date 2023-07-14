@@ -14,6 +14,7 @@ extends Node3D
 @onready var delay_timer := $DelayTimer
 @onready var primary_particles := $PrimaryParticles
 @onready var secondary_particles := $SecondaryParticles
+@onready var sfx_emitter := $SFXEmitter
 
 var can_shoot := true
 
@@ -32,6 +33,7 @@ func start_attack() -> void:
 func initiate_attack():
 	var projectile_node : Projectile = projectile.instantiate()
 
+	sfx_emitter.play()
 	projectile_node.position = global_position
 	projectile_node.direction = Vector3(cos(global_rotation.y), 0, -sin(global_rotation.y))
 	projectile_node.stats = stats 
