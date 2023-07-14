@@ -10,7 +10,6 @@
 [ext_resource type="ParameterAsset" uid="uid://1c3i6ow1e21g" path="res://addons/FMOD/editor/resources/parameters/{ce84adbf-057d-4527-9fcd-c12ce71f87db}.tres" id="6_niucd"]
 [ext_resource type="EventAsset" uid="uid://cpktxna20m6rx" path="res://addons/FMOD/editor/resources/events/{8356e32e-72b4-4c26-a3c9-ece918b05206}.tres" id="6_wt7ow"]
 [ext_resource type="ParameterAsset" uid="uid://7vo5twaru018" path="res://addons/FMOD/editor/resources/parameters/{01f40d11-8630-4966-92fe-eb44b9b83cfe}.tres" id="7_24vfp"]
-[ext_resource type="EventAsset" uid="uid://coc7vr025c2jb" path="res://addons/FMOD/editor/resources/events/{20211b87-581d-42a4-9c0e-863c6366b234}.tres" id="7_eqnio"]
 [ext_resource type="EventAsset" uid="uid://ck8f3jijjxcml" path="res://addons/FMOD/editor/resources/events/{b5e70fca-0543-46e9-9385-d02ca7b3a26b}.tres" id="7_xt8xb"]
 [ext_resource type="EventAsset" uid="uid://n5648sh2lq6d" path="res://addons/FMOD/editor/resources/events/{2c74d59d-7ce6-4636-a3cb-25e3ce94a8cf}.tres" id="8_dumol"]
 [ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="8_xyrqt"]
@@ -25,6 +24,7 @@
 [ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="13_hhnax"]
 [ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="13_xl3qp"]
 [ext_resource type="EventAsset" uid="uid://d3uafrow3peip" path="res://addons/FMOD/editor/resources/events/{0daeace2-dcef-435c-a668-e5575642b6f0}.tres" id="15_iulv2"]
+[ext_resource type="EventAsset" uid="uid://c7k3gfcpj3lq4" path="res://addons/FMOD/editor/resources/events/{02de4315-4de9-400b-a53e-61a01bd40ad2}.tres" id="15_n13sq"]
 [ext_resource type="EventAsset" uid="uid://do0ktyve22hc4" path="res://addons/FMOD/editor/resources/events/{94d34c99-1460-45e3-857f-581ccf531ce4}.tres" id="16_43s2p"]
 [ext_resource type="EventAsset" uid="uid://duu3otvamiqyb" path="res://addons/FMOD/editor/resources/events/{321924e5-e46b-4cfc-8fbd-fc2d7e17e3bb}.tres" id="18_rsnm7"]
 [ext_resource type="EventAsset" uid="uid://nmvwo6baoh6a" path="res://addons/FMOD/editor/resources/events/{0f128135-8b1b-4b7d-a006-dd9575b8a1da}.tres" id="19_iwl1a"]
@@ -49,10 +49,10 @@ banks = {
 "{fcee2631-dc64-03d5-10a8-5d167737c50b}": ExtResource("2_3w7un")
 }
 events = {
+"{02de4315-4de9-400b-a53e-61a01bd40ad2}": ExtResource("15_n13sq"),
 "{0daeace2-dcef-435c-a668-e5575642b6f0}": ExtResource("15_iulv2"),
 "{0f128135-8b1b-4b7d-a006-dd9575b8a1da}": ExtResource("19_iwl1a"),
 "{1c4f5690-8aae-455e-83f0-cbcc1f63f5b6}": ExtResource("24_482nk"),
-"{20211b87-581d-42a4-9c0e-863c6366b234}": ExtResource("7_eqnio"),
 "{215f14e0-eb51-40d5-bf9b-6ba380860e00}": ExtResource("11_08u4r"),
 "{247e961d-b559-41b2-858e-123e77e8dc67}": ExtResource("33_6irce"),
 "{27442397-ff6a-4853-b2bd-eb10cf8b7e3b}": ExtResource("29_nt25n"),
@@ -175,18 +175,18 @@ event_tree = [{
 "path": "",
 "resource": null
 }, {
-"children": [],
-"item_type": 1,
-"node_name": "Mech Damage",
-"path": "event:/SFX/Mech Damage",
-"resource": ExtResource("7_eqnio")
-}, {
 "children": [{
 "children": [],
 "item_type": 1,
 "node_name": "Mech Area Attack",
 "path": "event:/SFX/Mech/Mech Area Attack",
 "resource": ExtResource("15_iulv2")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Damage",
+"path": "event:/SFX/Mech/Mech Damage",
+"resource": ExtResource("15_n13sq")
 }, {
 "children": [],
 "item_type": 1,
