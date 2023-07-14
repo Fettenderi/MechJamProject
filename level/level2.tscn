@@ -88,7 +88,7 @@ environment = SubResource("Environment_ohbxq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldElements"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -13)
 mesh = SubResource("CylinderMesh_s1fhp")
 skeleton = NodePath("../..")
 
@@ -112,6 +112,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15443, 1, 3)
 camera = NodePath("../../PlayerFollower/CameraPlayer")
 
 [node name="MK1" parent="Entities" instance=ExtResource("5_rdcpf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -9)
 
 [node name="Props" type="Node3D" parent="."]
