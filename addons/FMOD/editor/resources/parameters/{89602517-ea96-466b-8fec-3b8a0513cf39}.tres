@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://dh3h0icqu2yim"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_4l1by"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_1fbd4"]
 data1 = 3146805909
 data2 = 3937067150
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_805wp"]
-name = "?b*ÿ"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_4l1by")
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_321rw"]
+name = "drill_attack"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_1fbd4")
 maximum = 1.0
 flags = 12
 guid = "{89602517-ea96-466b-8fec-3b8a0513cf39}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_805wp")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_321rw")
 path = "parameter:/drill_attack"
 guid = "{89602517-ea96-466b-8fec-3b8a0513cf39}"
 name = "drill_attack"

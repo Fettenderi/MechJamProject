@@ -3,17 +3,21 @@
 [ext_resource type="Script" path="res://objects/common/projectile.gd" id="1_oi00f"]
 [ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="2_3tgyl"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fqk1"]
+albedo_color = Color(0.458824, 0.764706, 1, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_ilb7k"]
-material = ExtResource("2_3tgyl")
-size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_5fqk1")
+size = Vector3(0.8, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2jhs0"]
+size = Vector3(1.5, 1.5, 0.816332)
 
-[sub_resource type="Gradient" id="Gradient_ya7su"]
-colors = PackedColorArray(0.026012, 0.0690966, 0.156857, 1, 0.843208, 0.889371, 0.972609, 1)
+[sub_resource type="Gradient" id="Gradient_o1ski"]
+colors = PackedColorArray(0.458824, 0.764706, 1, 1, 0.843208, 0.889371, 0.972609, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w0gsi"]
-gradient = SubResource("Gradient_ya7su")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hbfty"]
+gradient = SubResource("Gradient_o1ski")
 
 [sub_resource type="Curve" id="Curve_lr20f"]
 _data = [Vector2(0, 0.881818), 0.0, 0.0, 0, 0, Vector2(1, 0.527273), 0.0, 0.0, 0, 0]
@@ -25,13 +29,10 @@ curve = SubResource("Curve_lr20f")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdylk"]
 gravity = Vector3(0, -1, 0)
 scale_curve = SubResource("CurveTexture_gv00d")
-color_ramp = SubResource("GradientTexture1D_w0gsi")
+color_ramp = SubResource("GradientTexture1D_hbfty")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxu0a"]
-albedo_color = Color(0.129412, 0.129412, 0.129412, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_dvdg4"]
-material = SubResource("StandardMaterial3D_fxu0a")
+[sub_resource type="BoxMesh" id="BoxMesh_38epe"]
+material = ExtResource("2_3tgyl")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="BasicProjectile" type="Area3D"]
@@ -40,6 +41,7 @@ despawn_time = 5.0
 attack_type = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("BoxMesh_ilb7k")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
@@ -50,7 +52,7 @@ amount = 50
 lifetime = 0.3
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_kdylk")
-draw_pass_1 = SubResource("BoxMesh_dvdg4")
+draw_pass_1 = SubResource("BoxMesh_38epe")
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 3.0

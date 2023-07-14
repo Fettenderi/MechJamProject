@@ -4,9 +4,9 @@ extends Node
 
 enum AttackType {
 	NORMAL,
-	DRILL,
 	GUN,
-	DUBSTEP,
+	DRILL,
+	FOTONIC,
 	MINE,
 	POUND
 }
@@ -39,11 +39,9 @@ func get_damage(type: AttackType) -> float:
 	var result := damage
 	
 	match type:
-		AttackType.DRILL:
-			result = result * 1.2
 		AttackType.GUN:
 			result = result * 1.4
-		AttackType.DUBSTEP:
+		AttackType.FOTONIC:
 			result = result * 1.7
 		AttackType.POUND:
 			result = result * 1.5

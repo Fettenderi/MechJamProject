@@ -16,7 +16,7 @@ const MAX_WAVES_TO_BOSS = 5
 var can_discharge := true
 
 @export var jump_charge_speed : float = 20
-@export var max_jump_charge : float = 200
+@export var max_jump_charge : float = 100
 var jump_charge := 0.0 :
 	set(value):
 		if value == max_jump_charge and value != jump_charge:
@@ -24,28 +24,32 @@ var jump_charge := 0.0 :
 		jump_charge = value
 		emit_signal("charge_jump", value)
 
-@export var drill_gun_charge_speed : float = 20
-@export var min_drill_gun_charge : float = 5
-var drill_gun_charge := 0.0 :
+@export var drill_usage_speed : float = 20
+@export var min_drill_usage : float = 2
+var drill_usage := 0.0 :
 	set(value):
-		drill_gun_charge = value
-		emit_signal("charge_drill_gun", value)
+		drill_usage = value
+		emit_signal("charge_drill_usage", value)
 
 
 var unlocked_weapons : Array[int] = [0] :
 	set(value):
 		unlocked_weapons.append(value)
 
-var menu_selected_weapons : Array[int] = [0, 1, 2]
+var available_weapons : Array[int] = [
+	Stats.AttackType.NORMAL,
+	Stats.AttackType.GUN
+]
+
 var run_selected_weapons : int = 0 :
 	set(value):
 		run_selected_weapons = value
 		emit_signal("change_selected_weapon", value)
 
-@export var weapon_ammos : Array[float] = zeros(AttackType.size()) :
-	set(value):
-		weapon_ammos = value
-		emit_signal("weapon_ammos_updated", value)
+@export var weapon_energy_consumption : Array[float] = zeros(AttackType.size()) # :
+#	set(value):
+#		weapon_energy_consumption = value
+#		emit_signal("weapon_ammos_updated", value)
 
 var kills : int = 0 :
 	set(value):
@@ -65,14 +69,14 @@ var waves : int = 0 :
 signal energy_changed(value)
 signal change_selected_weapon(value)
 signal charge_jump(value)
-signal charge_drill_gun(value)
+signal charge_drill_usage(value)
 signal jump_fully_charged()
-signal weapon_ammos_updated(value)
+#signal weapon_ammos_updated(value)
 signal kills_changed(value)
 signal waves_changed(value)
 signal summon_boss
 
-func menu_select_weapon(new: int, prev:= -1) -> void:
+func select_weapon(new: int, prev:= -1) -> void:
 	if prev >= 0:
-		menu_selected_weapons.remove_at(menu_selected_weapons.find(prev))
-	menu_selected_weapons.append(new)
+		available_weapons.remove_at(available_weapons.find(prev))
+	available_weapons.append(new)

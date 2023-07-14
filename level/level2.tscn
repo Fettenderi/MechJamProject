@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_oje66"]
 [ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="2_pxlxk"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="3_nbgyd"]
-[ext_resource type="PackedScene" uid="uid://cacw160g18oyo" path="res://objects/enemies/rover.tscn" id="5_5hfbj"]
+[ext_resource type="PackedScene" uid="uid://cjgcqq3o1837l" path="res://objects/enemies/mk1.tscn" id="5_rdcpf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -12,7 +12,7 @@ shader = ExtResource("2_oje66")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a8j7f"]
 material = SubResource("ShaderMaterial_haw7x")
-size = Vector2(20, 20)
+size = Vector2(40, 30)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwau"]
@@ -56,7 +56,7 @@ player = NodePath("../Entities/Player")
 lerp_weight = 10.0
 
 [node name="CameraPlayer" type="Camera3D" parent="PlayerFollower"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8, 4)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8.02416, 4.83808)
 current = true
 size = 10.0
 
@@ -107,13 +107,11 @@ font_size = 128
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="Player" parent="Entities" instance=ExtResource("3_nbgyd")]
+[node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("3_nbgyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15443, 1, 3)
+camera = NodePath("../../PlayerFollower/CameraPlayer")
 
-[node name="Rover" parent="Entities" instance=ExtResource("5_5hfbj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 0)
-
-[node name="Rover2" parent="Entities" instance=ExtResource("5_5hfbj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 3)
+[node name="MK1" parent="Entities" instance=ExtResource("5_rdcpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -10)
 
 [node name="Props" type="Node3D" parent="."]
