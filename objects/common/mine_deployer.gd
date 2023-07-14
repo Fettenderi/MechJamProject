@@ -11,6 +11,7 @@ extends Node3D
 @onready var reload_timer := $ReloadTimer
 @onready var primary_particles := $PrimaryParticles
 @onready var secondary_particles := $SecondaryParticles
+@onready var sfx_emitter : StudioEventEmitter3D = $SFXEmitter
 
 var can_deploy := false
 
@@ -25,6 +26,7 @@ func start_attack() -> void:
 			stats.weapon_ammos[Stats.AttackType.MINE] -= 1
 			# Aggiungere shake screen effect
 
+		sfx_emitter.play()
 		mine_node.position = global_position
 		mine_node.collision_layer = layer
 		mine_node.collision_mask = mask

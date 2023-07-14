@@ -1,37 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqjcj417e22e0"]
+[gd_scene load_steps=10 format=3 uid="uid://bqjcj417e22e0"]
 
 [ext_resource type="Script" path="res://objects/common/shield.gd" id="1_gbx8d"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0h6g3"]
-transparency = 1
-albedo_color = Color(0.34902, 1, 1, 0.309804)
+[sub_resource type="Gradient" id="Gradient_xrgle"]
+colors = PackedColorArray(0.34902, 1, 1, 0.309804, 0.901961, 1, 1, 0.309804)
 
-[sub_resource type="SphereMesh" id="SphereMesh_u2mt6"]
-material = SubResource("ORMMaterial3D_0h6g3")
-radius = 1.5
-height = 3.0
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iktkj"]
+gradient = SubResource("Gradient_xrgle")
 
-[sub_resource type="SphereMesh" id="SphereMesh_x6xdr"]
-material = SubResource("ORMMaterial3D_0h6g3")
-radius = 1.5
-height = 3.0
+[sub_resource type="Curve" id="Curve_d4cuf"]
+_data = [Vector2(0, 0.855596), 0.0, 0.0, 0, 0, Vector2(1, 0.212996), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="SphereMesh" id="SphereMesh_gjgoq"]
-material = SubResource("ORMMaterial3D_0h6g3")
-radius = 1.5
-height = 3.0
+[sub_resource type="CurveTexture" id="CurveTexture_bvqe0"]
+curve = SubResource("Curve_d4cuf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ln8gy"]
+lifetime_randomness = 0.5
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.5
+emission_ring_inner_radius = 1.5
+gravity = Vector3(0, 2, 0)
+scale_curve = SubResource("CurveTexture_bvqe0")
+color_ramp = SubResource("GradientTexture1D_iktkj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je7lu"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_mx8mv"]
+material = SubResource("StandardMaterial3D_je7lu")
+radius = 0.4
+height = 0.8
+
+[sub_resource type="EventAsset" id="EventAsset_4q81y"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Shield Removed"
+guid = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
+name = "Shield Removed"
 
 [node name="Shield" type="Node3D"]
 script = ExtResource("1_gbx8d")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("SphereMesh_u2mt6")
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 100
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_ln8gy")
+draw_pass_1 = SubResource("SphereMesh_mx8mv")
 
-[node name="Mesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("SphereMesh_x6xdr")
-
-[node name="Mesh3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("SphereMesh_gjgoq")
+[node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
+event = SubResource("EventAsset_4q81y")

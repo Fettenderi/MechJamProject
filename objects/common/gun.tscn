@@ -14,3 +14,7 @@ emitting = false
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DelayTimer" type="Timer" parent="."]
+one_shot = true

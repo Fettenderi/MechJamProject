@@ -2,7 +2,6 @@ class_name Projectile
 
 extends Area3D
 
-const BULLET_SPEED = 10.0
 
 @export_range(0.0, 10.0) var despawn_time : float
 @export var attack_type : Stats.AttackType
@@ -12,6 +11,7 @@ const BULLET_SPEED = 10.0
 @onready var particles := $Particles
 @onready var damage := stats.get_damage(attack_type)
 
+var speed := 10.0
 var stats : Stats
 var direction := Vector3.FORWARD
 
@@ -20,8 +20,11 @@ func _ready() -> void:
 	despawn_timer.connect("timeout", despawn)
 	despawn_timer.start(despawn_time)
 
+func _enter_tree():
+	look_at(direction + global_position, Vector3.UP)
+	
 func _physics_process(delta):
-	position += direction * BULLET_SPEED * delta
+	position += direction * speed * delta
 
 func despawn(_area : Area3D = null):
 	queue_free()
