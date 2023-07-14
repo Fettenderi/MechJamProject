@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://1c3i6ow1e21g"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_m202h"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_eppaa"]
 data1 = 4248561914
 data2 = 2925814567
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_lrt81"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_6omao"]
 name = "Game Starts"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_m202h")
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_eppaa")
 maximum = 1.0
 flags = 12
 guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_lrt81")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_6omao")
 path = "parameter:/Game Starts"
 guid = "{ce84adbf-057d-4527-9fcd-c12ce71f87db}"
 name = "Game Starts"
