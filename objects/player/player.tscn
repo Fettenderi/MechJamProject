@@ -286,43 +286,37 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 1.77636e-15, 0, 0.6, 0, -1.77636e-15, 0, 0.6, 0, -1.02798, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.126562, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325535, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0874965, 0.372548, 2.75672e-07, 0.973512, -0.228639, -0.382684, 0.211235, 0.899407, -0.6875, 3.375, 0.15625)
-
-[node name="leftHand" parent="Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, -0.3125, -0.875, -1)
+transform = Transform3D(0.92388, 0.0446083, 0.380074, -8.38191e-08, 0.993184, -0.116567, -0.382683, 0.107694, 0.917582, -0.6875, 3.375, 0.15625)
 
 [node name="drill" parent="Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand" index="0"]
 visible = false
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0874965, -0.372548, -2.75672e-07, 0.973512, -0.228639, 0.382684, 0.211235, 0.899407, 0.6875, 3.375, 0.15625)
-
-[node name="rightHand" parent="Rotating/PlayerMesh/Node2/mecha/rightUpperArm/rightLowerArm" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 0.3125, -0.875, -1)
+transform = Transform3D(0.92388, -0.0446083, -0.380074, 8.38191e-08, 0.993184, -0.116567, 0.382683, 0.107694, 0.917582, 0.6875, 3.375, 0.15625)
 
 [node name="leftUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="0"]
-transform = Transform3D(0.953717, 0.195303, 0.22865, -2.38419e-07, 0.760379, -0.64948, -0.300706, 0.619421, 0.725186, -0.5, -0.1875, -0.0625)
+transform = Transform3D(0.953717, 0.238409, 0.183263, 1.04308e-07, 0.609443, -0.79283, -0.300706, 0.756136, 0.581235, -0.5, -0.1875, -0.0625)
 
 [node name="leftLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.627015, 0.779006, 0, -0.779006, 0.627015, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.410349, 0.911928, 0, -0.911928, 0.410349, 0, -1.1875, -5.55112e-17)
 
 [node name="leftFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg/leftLowerLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.98257, -0.185893, 0, 0.185893, 0.98257, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.973089, -0.23043, 0, 0.23043, 0.973089, 0, -1.20833, 0.0275673)
 
 [node name="rightUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="1"]
-transform = Transform3D(0.953717, -0.195302, -0.22865, 2.38419e-07, 0.760378, -0.64948, 0.300706, 0.61942, 0.725186, 0.625, -0.1875, -0.0625)
+transform = Transform3D(0.953717, -0.238409, -0.183263, -1.04308e-07, 0.609442, -0.79283, 0.300706, 0.756135, 0.581235, 0.625, -0.1875, -0.0625)
 
 [node name="rightLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.627016, 0.779007, 0, -0.779007, 0.627016, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.410349, 0.911929, 0, -0.911929, 0.410349, 0, -1.1875, -5.55112e-17)
 
 [node name="rightFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg/rightLowerLeg" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.98257, -0.185893, 0, 0.185893, 0.98257, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.973089, -0.23043, 0, 0.23043, 0.973089, 0, -1.20833, 0.0275673)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
