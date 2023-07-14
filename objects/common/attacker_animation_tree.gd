@@ -9,7 +9,7 @@ var attacking := false
 
 func _ready():
 	for node in attacking_nodes:
-		node.connect("is_attacking", set_attacking)
+xxxxxxxx		node.connect("is_attacking", set_attacking)
 
 func _physics_process(_delta):
 	var velocity = puppet.velocity

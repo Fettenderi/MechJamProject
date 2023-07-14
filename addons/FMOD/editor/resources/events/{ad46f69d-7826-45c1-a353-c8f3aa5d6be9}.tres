@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://5fy4ne3r1ntw"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/UI/Navigate"
+guid = "{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}"
+name = "Navigate"

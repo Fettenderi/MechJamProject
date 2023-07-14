@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://do0ktyve22hc4"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Dies"
+guid = "{94d34c99-1460-45e3-857f-581ccf531ce4}"
+name = "Mech Dies"

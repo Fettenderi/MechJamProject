@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=20 format=3 uid="uid://brkpamkfn8adt"]
+[gd_resource type="ProjectCache" load_steps=43 format=3 uid="uid://brkpamkfn8adt"]
 
 [ext_resource type="BankAsset" uid="uid://cn3dyi01ahsri" path="res://addons/FMOD/editor/resources/banks/{64f306e5-ad1f-4f97-96e1-d7e886c4c393}.tres" id="1_rg3f4"]
 [ext_resource type="BankAsset" uid="uid://boh83y8yln5dn" path="res://addons/FMOD/editor/resources/banks/{fcee2631-dc64-03d5-10a8-5d167737c50b}.tres" id="2_3w7un"]
@@ -6,88 +6,231 @@
 [ext_resource type="BusAsset" uid="uid://dpjir305bqqge" path="res://addons/FMOD/editor/resources/busses/{33081084-5725-4053-a870-42ec617217f5}.tres" id="4_7tx6x"]
 [ext_resource type="ParameterAsset" uid="uid://c1x3w7sjhnrmb" path="res://addons/FMOD/editor/resources/parameters/{dc034953-c562-401b-9c83-c5cfa0b8e436}.tres" id="5_8ivsl"]
 [ext_resource type="EventAsset" uid="uid://d2u4uwvhcisap" path="res://addons/FMOD/editor/resources/events/{f3850399-665b-48be-bf11-33033c90cf47}.tres" id="5_46i4q"]
+[ext_resource type="EventAsset" uid="uid://cn2yfxtnygwod" path="res://addons/FMOD/editor/resources/events/{dcca9f04-5273-4358-be00-372335871df8}.tres" id="6_h3iry"]
 [ext_resource type="ParameterAsset" uid="uid://1c3i6ow1e21g" path="res://addons/FMOD/editor/resources/parameters/{ce84adbf-057d-4527-9fcd-c12ce71f87db}.tres" id="6_niucd"]
 [ext_resource type="ParameterAsset" uid="uid://7vo5twaru018" path="res://addons/FMOD/editor/resources/parameters/{01f40d11-8630-4966-92fe-eb44b9b83cfe}.tres" id="7_24vfp"]
+[ext_resource type="EventAsset" uid="uid://coc7vr025c2jb" path="res://addons/FMOD/editor/resources/events/{20211b87-581d-42a4-9c0e-863c6366b234}.tres" id="7_eqnio"]
+[ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="8_xyrqt"]
 [ext_resource type="ParameterAsset" uid="uid://byk6gypu4xfcf" path="res://addons/FMOD/editor/resources/parameters/{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}.tres" id="9_ekh6l"]
+[ext_resource type="EventAsset" uid="uid://cjj5rmmhkokbb" path="res://addons/FMOD/editor/resources/events/{b7203881-92e6-4b1b-a4cf-d2369fb46842}.tres" id="9_t12gb"]
+[ext_resource type="EventAsset" uid="uid://b46gp5thkm00i" path="res://addons/FMOD/editor/resources/events/{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}.tres" id="10_aai4p"]
+[ext_resource type="EventAsset" uid="uid://ccr3nn13gnl2u" path="res://addons/FMOD/editor/resources/events/{5886d81e-0d2d-4b80-a5f9-b5951b325f95}.tres" id="11_imhla"]
+[ext_resource type="EventAsset" uid="uid://cla5ty2u2isf5" path="res://addons/FMOD/editor/resources/events/{3e3ae0df-22b2-415b-862a-13fc792bef92}.tres" id="12_agrfs"]
+[ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="13_hhnax"]
 
-[sub_resource type="EventAsset" id="EventAsset_i0lng"]
-is_3d = true
+[sub_resource type="EventAsset" id="EventAsset_tgtqw"]
+is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Drill Long"
-guid = "{cc94d5ab-f44b-4107-8d6f-9bba0057010b}"
-name = "Drill Long"
+path = "event:/SFX/Alien/Alien Damage"
+guid = "{8356e32e-72b4-4c26-a3c9-ece918b05206}"
+name = "Alien Damage"
 
-[sub_resource type="EventAsset" id="EventAsset_uq4tv"]
+[sub_resource type="EventAsset" id="EventAsset_wln0e"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Alien/Alien Dies"
+guid = "{b5e70fca-0543-46e9-9385-d02ca7b3a26b}"
+name = "Alien Dies"
+
+[sub_resource type="EventAsset" id="EventAsset_rp580"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Alien/Alien Footsteps"
+guid = "{2c74d59d-7ce6-4636-a3cb-25e3ce94a8cf}"
+name = "Alien Footsteps"
+
+[sub_resource type="EventAsset" id="EventAsset_onm82"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Gameplay/Charging"
+guid = "{91a06109-16c7-40cd-9d3f-49f8cdd7730b}"
+name = "Charging"
+
+[sub_resource type="EventAsset" id="EventAsset_kjffq"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Gameplay/Healing"
+guid = "{215f14e0-eb51-40d5-bf9b-6ba380860e00}"
+name = "Healing"
+
+[sub_resource type="EventAsset" id="EventAsset_6lgnm"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Gameplay/Low Battery"
+guid = "{f37614f7-3b8a-4f28-86ed-79a7a860a162}"
+name = "Low Battery"
+
+[sub_resource type="EventAsset" id="EventAsset_0uu18"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Gameplay/Low Health"
+guid = "{eac5da5e-3481-41ec-9eff-383b007c980d}"
+name = "Low Health"
+
+[sub_resource type="EventAsset" id="EventAsset_lpdx7"]
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Explosion"
-guid = "{3e3ae0df-22b2-415b-862a-13fc792bef92}"
-name = "Explosion"
+path = "event:/SFX/Mech/Mech Area Attack"
+guid = "{0daeace2-dcef-435c-a668-e5575642b6f0}"
+name = "Mech Area Attack"
 
-[sub_resource type="EventAsset" id="EventAsset_8ewyl"]
+[sub_resource type="EventAsset" id="EventAsset_pe2av"]
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Laser Gun Long"
-guid = "{b7203881-92e6-4b1b-a4cf-d2369fb46842}"
-name = "Laser Gun Long"
+path = "event:/SFX/Mech/Mech Dies"
+guid = "{94d34c99-1460-45e3-857f-581ccf531ce4}"
+name = "Mech Dies"
 
-[sub_resource type="EventAsset" id="EventAsset_ywcqc"]
+[sub_resource type="EventAsset" id="EventAsset_ob4un"]
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Laser Gun Short"
-guid = "{dcca9f04-5273-4358-be00-372335871df8}"
-name = "Laser Gun Short"
+path = "event:/SFX/Mech/Mech Footsteps"
+guid = "{321924e5-e46b-4cfc-8fbd-fc2d7e17e3bb}"
+name = "Mech Footsteps"
 
-[sub_resource type="EventAsset" id="EventAsset_gjynd"]
+[sub_resource type="EventAsset" id="EventAsset_36s8w"]
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Mech Damage"
-guid = "{20211b87-581d-42a4-9c0e-863c6366b234}"
-name = "Mech Damage"
+path = "event:/SFX/Mech/Mech Jump"
+guid = "{0f128135-8b1b-4b7d-a006-dd9575b8a1da}"
+name = "Mech Jump"
 
-[sub_resource type="EventAsset" id="EventAsset_0sddm"]
+[sub_resource type="EventAsset" id="EventAsset_7elgk"]
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Mine Deployed"
-guid = "{5886d81e-0d2d-4b80-a5f9-b5951b325f95}"
-name = "Mine Deployed"
+path = "event:/SFX/Mech/Mech Normal Attack"
+guid = "{bc2c4842-224d-4564-8258-1640169b9d5c}"
+name = "Mech Normal Attack"
 
-[sub_resource type="EventAsset" id="EventAsset_4q81y"]
+[sub_resource type="EventAsset" id="EventAsset_ra5sl"]
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Shield Removed"
-guid = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
-name = "Shield Removed"
+path = "event:/SFX/MK1/MK1 Damage"
+guid = "{35370fea-686f-4097-8ec6-d51475762293}"
+name = "MK1 Damage"
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_q2iv4"]
-data1 = 3146805909
-data2 = 3937067150
+[sub_resource type="EventAsset" id="EventAsset_uy3r6"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/MK1/MK1 Dies"
+guid = "{84c5df55-5467-400c-9ff7-c0a47971c23d}"
+name = "MK1 Dies"
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_r25i2"]
-name = "drill_attack"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_q2iv4")
-maximum = 1.0
-flags = 12
-guid = "{89602517-ea96-466b-8fec-3b8a0513cf39}"
+[sub_resource type="EventAsset" id="EventAsset_t0jpv"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/MK1/MK1 Footsteps"
+guid = "{1c4f5690-8aae-455e-83f0-cbcc1f63f5b6}"
+name = "MK1 Footsteps"
 
-[sub_resource type="ParameterAsset" id="ParameterAsset_bsp65"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_r25i2")
-path = "parameter:/drill_attack"
-guid = "{89602517-ea96-466b-8fec-3b8a0513cf39}"
-name = "drill_attack"
+[sub_resource type="EventAsset" id="EventAsset_ffyrj"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/MK1/MK1 Gun"
+guid = "{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}"
+name = "MK1 Gun"
+
+[sub_resource type="EventAsset" id="EventAsset_3t6bp"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Damage"
+guid = "{e3d97641-b413-4e1f-b89f-06c10c5d95ea}"
+name = "Rover Damage"
+
+[sub_resource type="EventAsset" id="EventAsset_kjdb5"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Dies"
+guid = "{e2098359-7a59-4fed-b832-97aedb5fa777}"
+name = "Rover Dies"
+
+[sub_resource type="EventAsset" id="EventAsset_k7yp4"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Footsteps"
+guid = "{27442397-ff6a-4853-b2bd-eb10cf8b7e3b}"
+name = "Rover Footsteps"
+
+[sub_resource type="EventAsset" id="EventAsset_4hfnl"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Turns"
+guid = "{dff508d9-10fe-4511-96b3-51ea620a5080}"
+name = "Rover Turns"
+
+[sub_resource type="EventAsset" id="EventAsset_2ssxr"]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Spaceship/Spaceship Sounds"
+guid = "{247e961d-b559-41b2-858e-123e77e8dc67}"
+name = "Spaceship Sounds"
+
+[sub_resource type="EventAsset" id="EventAsset_tkddh"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/UI/Back"
+guid = "{cc6278d4-b513-4976-a1a4-af5410c1021f}"
+name = "Back"
+
+[sub_resource type="EventAsset" id="EventAsset_n5lcd"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/UI/Navigate"
+guid = "{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}"
+name = "Navigate"
+
+[sub_resource type="EventAsset" id="EventAsset_8akyh"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/UI/Select"
+guid = "{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}"
+name = "Select"
+
+[sub_resource type="EventAsset" id="EventAsset_73b6w"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/UI/Start Game"
+guid = "{4f640811-9d33-405c-a613-27de805dfebb}"
+name = "Start Game"
 
 [resource]
 banks = {
@@ -95,14 +238,39 @@ banks = {
 "{fcee2631-dc64-03d5-10a8-5d167737c50b}": ExtResource("2_3w7un")
 }
 events = {
-"{20211b87-581d-42a4-9c0e-863c6366b234}": SubResource("EventAsset_gjynd"),
-"{3e3ae0df-22b2-415b-862a-13fc792bef92}": SubResource("EventAsset_uq4tv"),
-"{5886d81e-0d2d-4b80-a5f9-b5951b325f95}": SubResource("EventAsset_0sddm"),
-"{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}": SubResource("EventAsset_4q81y"),
-"{b7203881-92e6-4b1b-a4cf-d2369fb46842}": SubResource("EventAsset_8ewyl"),
-"{cc94d5ab-f44b-4107-8d6f-9bba0057010b}": SubResource("EventAsset_i0lng"),
-"{dcca9f04-5273-4358-be00-372335871df8}": SubResource("EventAsset_ywcqc"),
-"{f3850399-665b-48be-bf11-33033c90cf47}": ExtResource("5_46i4q")
+"{0daeace2-dcef-435c-a668-e5575642b6f0}": SubResource("EventAsset_lpdx7"),
+"{0f128135-8b1b-4b7d-a006-dd9575b8a1da}": SubResource("EventAsset_36s8w"),
+"{1c4f5690-8aae-455e-83f0-cbcc1f63f5b6}": SubResource("EventAsset_t0jpv"),
+"{20211b87-581d-42a4-9c0e-863c6366b234}": ExtResource("7_eqnio"),
+"{215f14e0-eb51-40d5-bf9b-6ba380860e00}": SubResource("EventAsset_kjffq"),
+"{247e961d-b559-41b2-858e-123e77e8dc67}": SubResource("EventAsset_2ssxr"),
+"{27442397-ff6a-4853-b2bd-eb10cf8b7e3b}": SubResource("EventAsset_k7yp4"),
+"{2c74d59d-7ce6-4636-a3cb-25e3ce94a8cf}": SubResource("EventAsset_rp580"),
+"{321924e5-e46b-4cfc-8fbd-fc2d7e17e3bb}": SubResource("EventAsset_ob4un"),
+"{35370fea-686f-4097-8ec6-d51475762293}": SubResource("EventAsset_ra5sl"),
+"{3e3ae0df-22b2-415b-862a-13fc792bef92}": ExtResource("12_agrfs"),
+"{4f640811-9d33-405c-a613-27de805dfebb}": SubResource("EventAsset_73b6w"),
+"{5886d81e-0d2d-4b80-a5f9-b5951b325f95}": ExtResource("11_imhla"),
+"{8356e32e-72b4-4c26-a3c9-ece918b05206}": SubResource("EventAsset_tgtqw"),
+"{84c5df55-5467-400c-9ff7-c0a47971c23d}": SubResource("EventAsset_uy3r6"),
+"{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}": ExtResource("10_aai4p"),
+"{91a06109-16c7-40cd-9d3f-49f8cdd7730b}": SubResource("EventAsset_onm82"),
+"{94d34c99-1460-45e3-857f-581ccf531ce4}": SubResource("EventAsset_pe2av"),
+"{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}": SubResource("EventAsset_n5lcd"),
+"{b5e70fca-0543-46e9-9385-d02ca7b3a26b}": SubResource("EventAsset_wln0e"),
+"{b7203881-92e6-4b1b-a4cf-d2369fb46842}": ExtResource("9_t12gb"),
+"{bc2c4842-224d-4564-8258-1640169b9d5c}": SubResource("EventAsset_7elgk"),
+"{cc6278d4-b513-4976-a1a4-af5410c1021f}": SubResource("EventAsset_tkddh"),
+"{cc94d5ab-f44b-4107-8d6f-9bba0057010b}": ExtResource("8_xyrqt"),
+"{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}": SubResource("EventAsset_ffyrj"),
+"{dcca9f04-5273-4358-be00-372335871df8}": ExtResource("6_h3iry"),
+"{dff508d9-10fe-4511-96b3-51ea620a5080}": SubResource("EventAsset_4hfnl"),
+"{e2098359-7a59-4fed-b832-97aedb5fa777}": SubResource("EventAsset_kjdb5"),
+"{e3d97641-b413-4e1f-b89f-06c10c5d95ea}": SubResource("EventAsset_3t6bp"),
+"{eac5da5e-3481-41ec-9eff-383b007c980d}": SubResource("EventAsset_0uu18"),
+"{f37614f7-3b8a-4f28-86ed-79a7a860a162}": SubResource("EventAsset_6lgnm"),
+"{f3850399-665b-48be-bf11-33033c90cf47}": ExtResource("5_46i4q"),
+"{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}": SubResource("EventAsset_8akyh")
 }
 busses = {
 "{33081084-5725-4053-a870-42ec617217f5}": ExtResource("4_7tx6x"),
@@ -111,7 +279,7 @@ busses = {
 parameters = {
 "{01f40d11-8630-4966-92fe-eb44b9b83cfe}": ExtResource("7_24vfp"),
 "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": ExtResource("9_ekh6l"),
-"{89602517-ea96-466b-8fec-3b8a0513cf39}": SubResource("ParameterAsset_bsp65"),
+"{89602517-ea96-466b-8fec-3b8a0513cf39}": ExtResource("13_hhnax"),
 "{ce84adbf-057d-4527-9fcd-c12ce71f87db}": ExtResource("6_niucd"),
 "{dc034953-c562-401b-9c83-c5cfa0b8e436}": ExtResource("5_8ivsl")
 }
@@ -136,47 +304,239 @@ event_tree = [{
 "resource": ExtResource("5_46i4q")
 }, {
 "children": [{
+"children": [{
 "children": [],
 "item_type": 1,
-"node_name": "Drill Long",
-"path": "event:/SFX/Drill Long",
-"resource": SubResource("EventAsset_i0lng")
+"node_name": "Alien Damage",
+"path": "event:/SFX/Alien/Alien Damage",
+"resource": SubResource("EventAsset_tgtqw")
 }, {
 "children": [],
 "item_type": 1,
-"node_name": "Explosion",
-"path": "event:/SFX/Explosion",
-"resource": SubResource("EventAsset_uq4tv")
+"node_name": "Alien Dies",
+"path": "event:/SFX/Alien/Alien Dies",
+"resource": SubResource("EventAsset_wln0e")
 }, {
 "children": [],
 "item_type": 1,
-"node_name": "Laser Gun Long",
-"path": "event:/SFX/Laser Gun Long",
-"resource": SubResource("EventAsset_8ewyl")
+"node_name": "Alien Footsteps",
+"path": "event:/SFX/Alien/Alien Footsteps",
+"resource": SubResource("EventAsset_rp580")
 }, {
 "children": [],
 "item_type": 1,
-"node_name": "Laser Gun Short",
-"path": "event:/SFX/Laser Gun Short",
-"resource": SubResource("EventAsset_ywcqc")
+"node_name": "Alien Laser Gun",
+"path": "event:/SFX/Alien/Alien Laser Gun",
+"resource": ExtResource("6_h3iry")
+}],
+"item_type": 7,
+"node_name": "Alien",
+"path": "",
+"resource": null
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Charging",
+"path": "event:/SFX/Gameplay/Charging",
+"resource": SubResource("EventAsset_onm82")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Healing",
+"path": "event:/SFX/Gameplay/Healing",
+"resource": SubResource("EventAsset_kjffq")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Low Battery",
+"path": "event:/SFX/Gameplay/Low Battery",
+"resource": SubResource("EventAsset_6lgnm")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Low Health",
+"path": "event:/SFX/Gameplay/Low Health",
+"resource": SubResource("EventAsset_0uu18")
+}],
+"item_type": 7,
+"node_name": "Gameplay",
+"path": "",
+"resource": null
 }, {
 "children": [],
 "item_type": 1,
 "node_name": "Mech Damage",
 "path": "event:/SFX/Mech Damage",
-"resource": SubResource("EventAsset_gjynd")
+"resource": ExtResource("7_eqnio")
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Mech Area Attack",
+"path": "event:/SFX/Mech/Mech Area Attack",
+"resource": SubResource("EventAsset_lpdx7")
 }, {
 "children": [],
 "item_type": 1,
-"node_name": "Mine Deployed",
-"path": "event:/SFX/Mine Deployed",
-"resource": SubResource("EventAsset_0sddm")
+"node_name": "Mech Dies",
+"path": "event:/SFX/Mech/Mech Dies",
+"resource": SubResource("EventAsset_pe2av")
 }, {
 "children": [],
 "item_type": 1,
-"node_name": "Shield Removed",
-"path": "event:/SFX/Shield Removed",
-"resource": SubResource("EventAsset_4q81y")
+"node_name": "Mech Drill Long",
+"path": "event:/SFX/Mech/Mech Drill Long",
+"resource": ExtResource("8_xyrqt")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Footsteps",
+"path": "event:/SFX/Mech/Mech Footsteps",
+"resource": SubResource("EventAsset_ob4un")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Jump",
+"path": "event:/SFX/Mech/Mech Jump",
+"resource": SubResource("EventAsset_36s8w")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Laser Gun",
+"path": "event:/SFX/Mech/Mech Laser Gun",
+"resource": ExtResource("9_t12gb")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Normal Attack",
+"path": "event:/SFX/Mech/Mech Normal Attack",
+"resource": SubResource("EventAsset_7elgk")
+}],
+"item_type": 7,
+"node_name": "Mech",
+"path": "",
+"resource": null
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "MK1 Damage",
+"path": "event:/SFX/MK1/MK1 Damage",
+"resource": SubResource("EventAsset_ra5sl")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "MK1 Dies",
+"path": "event:/SFX/MK1/MK1 Dies",
+"resource": SubResource("EventAsset_uy3r6")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "MK1 Footsteps",
+"path": "event:/SFX/MK1/MK1 Footsteps",
+"resource": SubResource("EventAsset_t0jpv")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "MK1 Gun",
+"path": "event:/SFX/MK1/MK1 Gun",
+"resource": SubResource("EventAsset_ffyrj")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "MK1 Shield Removed",
+"path": "event:/SFX/MK1/MK1 Shield Removed",
+"resource": ExtResource("10_aai4p")
+}],
+"item_type": 7,
+"node_name": "MK1",
+"path": "",
+"resource": null
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Rover Damage",
+"path": "event:/SFX/Rover/Rover Damage",
+"resource": SubResource("EventAsset_3t6bp")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Rover Dies",
+"path": "event:/SFX/Rover/Rover Dies",
+"resource": SubResource("EventAsset_kjdb5")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Rover Footsteps",
+"path": "event:/SFX/Rover/Rover Footsteps",
+"resource": SubResource("EventAsset_k7yp4")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Rover Mine Deployed",
+"path": "event:/SFX/Rover/Rover Mine Deployed",
+"resource": ExtResource("11_imhla")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Rover Mine Explosion",
+"path": "event:/SFX/Rover/Rover Mine Explosion",
+"resource": ExtResource("12_agrfs")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Rover Turns",
+"path": "event:/SFX/Rover/Rover Turns",
+"resource": SubResource("EventAsset_4hfnl")
+}],
+"item_type": 7,
+"node_name": "Rover",
+"path": "",
+"resource": null
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Spaceship Sounds",
+"path": "event:/SFX/Spaceship/Spaceship Sounds",
+"resource": SubResource("EventAsset_2ssxr")
+}],
+"item_type": 7,
+"node_name": "Spaceship",
+"path": "",
+"resource": null
+}, {
+"children": [{
+"children": [],
+"item_type": 1,
+"node_name": "Back",
+"path": "event:/SFX/UI/Back",
+"resource": SubResource("EventAsset_tkddh")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Navigate",
+"path": "event:/SFX/UI/Navigate",
+"resource": SubResource("EventAsset_n5lcd")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Select",
+"path": "event:/SFX/UI/Select",
+"resource": SubResource("EventAsset_8akyh")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Start Game",
+"path": "event:/SFX/UI/Start Game",
+"resource": SubResource("EventAsset_73b6w")
+}],
+"item_type": 7,
+"node_name": "UI",
+"path": "",
+"resource": null
 }],
 "item_type": 7,
 "node_name": "SFX",
@@ -201,7 +561,7 @@ parameter_tree = [{
 "item_type": 6,
 "node_name": "drill_attack",
 "path": "parameter:/drill_attack",
-"resource": SubResource("ParameterAsset_bsp65")
+"resource": ExtResource("13_hhnax")
 }, {
 "children": [],
 "item_type": 6,

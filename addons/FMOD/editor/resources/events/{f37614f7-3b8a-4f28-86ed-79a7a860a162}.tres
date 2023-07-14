@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://luqu4o1sd0fk"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Gameplay/Low Battery"
+guid = "{f37614f7-3b8a-4f28-86ed-79a7a860a162}"
+name = "Low Battery"

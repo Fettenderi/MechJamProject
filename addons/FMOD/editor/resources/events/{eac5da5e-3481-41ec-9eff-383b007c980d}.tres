@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bx3p3c1c1b31u"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Gameplay/Low Health"
+guid = "{eac5da5e-3481-41ec-9eff-383b007c980d}"
+name = "Low Health"

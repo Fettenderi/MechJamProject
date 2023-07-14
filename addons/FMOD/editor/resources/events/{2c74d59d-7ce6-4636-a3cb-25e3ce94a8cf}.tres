@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://n5648sh2lq6d"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Alien/Alien Footsteps"
+guid = "{2c74d59d-7ce6-4636-a3cb-25e3ce94a8cf}"
+name = "Alien Footsteps"

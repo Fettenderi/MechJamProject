@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://m46ixpnvs7qm"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/MK1/MK1 Gun"
+guid = "{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}"
+name = "MK1 Gun"

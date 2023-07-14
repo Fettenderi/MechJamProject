@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://c6v840x1eupop"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Footsteps"
+guid = "{27442397-ff6a-4853-b2bd-eb10cf8b7e3b}"
+name = "Rover Footsteps"

@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://nmvwo6baoh6a"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Jump"
+guid = "{0f128135-8b1b-4b7d-a006-dd9575b8a1da}"
+name = "Mech Jump"

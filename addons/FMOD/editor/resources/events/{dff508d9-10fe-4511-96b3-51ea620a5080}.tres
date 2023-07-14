@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://kvfevfkkmes1"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Turns"
+guid = "{dff508d9-10fe-4511-96b3-51ea620a5080}"
+name = "Rover Turns"

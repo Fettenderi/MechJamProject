@@ -273,10 +273,13 @@ visible = false
 [node name="MechaWithDrill" parent="Rotating" instance=ExtResource("3_m3lao")]
 
 [node name="mecha" parent="Rotating/MechaWithDrill/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0905442, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.209599, 0.203125)
+
+[node name="chest" parent="Rotating/MechaWithDrill/Node2/mecha/body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/MechaWithDrill/Node2/mecha" index="1"]
-transform = Transform3D(0.923879, 0.0960329, 0.370437, -1.56462e-07, 0.968001, -0.250946, -0.382683, 0.231844, 0.894316, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.923878, 0.0681334, 0.37657, 6.33299e-08, 0.984023, -0.178041, -0.382684, 0.164488, 0.909118, -0.6875, 3.375, 0.15625)
 
 [node name="leftLowerArm" parent="Rotating/MechaWithDrill/Node2/mecha/leftUpperArm" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.125, -0.125)
@@ -291,7 +294,7 @@ transform = Transform3D(0.707108, -0.707106, 0, 0.707106, 0.707107, 0, 0, 0, 1, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.31404)
 
 [node name="rightUpperArm" parent="Rotating/MechaWithDrill/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0960329, -0.370437, 1.56462e-07, 0.968001, -0.250946, 0.382683, 0.231844, 0.894316, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.923879, -0.0681334, -0.37657, -6.33299e-08, 0.984023, -0.178041, 0.382684, 0.164488, 0.909118, 0.6875, 3.375, 0.15625)
 
 [node name="rightLowerArm" parent="Rotating/MechaWithDrill/Node2/mecha/rightUpperArm" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.125, -0.125)
@@ -300,22 +303,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.125, -0.125)
 transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.923879, 0.3125, -0.875, -1)
 
 [node name="leftUpperLeg" parent="Rotating/MechaWithDrill/Node2/mecha/lowerBody" index="1"]
-transform = Transform3D(0.953717, 0.186534, 0.235858, -2.6077e-07, 0.784348, -0.620321, -0.300706, 0.591611, 0.748046, -0.5, -0.1875, -0.0625)
+transform = Transform3D(0.953717, 0.214438, 0.210809, -1.04308e-07, 0.701048, -0.713114, -0.300706, 0.680109, 0.668601, -0.5, -0.1875, -0.0625)
 
 [node name="leftLowerLeg" parent="Rotating/MechaWithDrill/Node2/mecha/lowerBody/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.662277, 0.749259, 0, -0.749259, 0.662277, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.540765, 0.841173, 0, -0.841173, 0.540765, 0, -1.1875, -5.55112e-17)
 
 [node name="leftFoot" parent="Rotating/MechaWithDrill/Node2/mecha/lowerBody/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.984237, -0.176855, 0, 0.176855, 0.984237, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.978517, -0.206165, 0, 0.206165, 0.978517, 0, -1.20833, 0.0275673)
 
 [node name="rightUpperLeg" parent="Rotating/MechaWithDrill/Node2/mecha/lowerBody" index="2"]
-transform = Transform3D(0.953717, -0.186534, -0.235858, 2.6077e-07, 0.784348, -0.620321, 0.300706, 0.591611, 0.748046, 0.625, -0.1875, -0.0625)
+transform = Transform3D(0.953717, -0.214438, -0.210809, 1.04308e-07, 0.701048, -0.713114, 0.300706, 0.680109, 0.668601, 0.625, -0.1875, -0.0625)
 
 [node name="rightLowerLeg" parent="Rotating/MechaWithDrill/Node2/mecha/lowerBody/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.662277, 0.749259, 0, -0.749259, 0.662277, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.540765, 0.841173, 0, -0.841173, 0.540765, 0, -1.1875, -5.55112e-17)
 
 [node name="rightFoot" parent="Rotating/MechaWithDrill/Node2/mecha/lowerBody/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.984237, -0.176854, 0, 0.176854, 0.984237, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.978517, -0.206165, 0, 0.206165, 0.978517, 0, -1.20833, 0.0275673)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")

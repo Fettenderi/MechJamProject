@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://yohivhck8srv"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Normal Attack"
+guid = "{bc2c4842-224d-4564-8258-1640169b9d5c}"
+name = "Mech Normal Attack"

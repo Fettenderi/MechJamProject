@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cpktxna20m6rx"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Alien/Alien Damage"
+guid = "{8356e32e-72b4-4c26-a3c9-ece918b05206}"
+name = "Alien Damage"

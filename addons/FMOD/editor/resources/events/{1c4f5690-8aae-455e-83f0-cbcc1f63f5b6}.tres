@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://b8s1pbvmju7bb"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/MK1/MK1 Footsteps"
+guid = "{1c4f5690-8aae-455e-83f0-cbcc1f63f5b6}"
+name = "MK1 Footsteps"

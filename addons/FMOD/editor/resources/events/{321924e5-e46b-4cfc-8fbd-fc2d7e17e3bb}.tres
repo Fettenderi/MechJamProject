@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://duu3otvamiqyb"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Footsteps"
+guid = "{321924e5-e46b-4cfc-8fbd-fc2d7e17e3bb}"
+name = "Mech Footsteps"

@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://ck8f3jijjxcml"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Alien/Alien Dies"
+guid = "{b5e70fca-0543-46e9-9385-d02ca7b3a26b}"
+name = "Alien Dies"

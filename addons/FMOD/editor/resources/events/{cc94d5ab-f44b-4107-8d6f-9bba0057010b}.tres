@@ -4,6 +4,6 @@
 is_3d = true
 min_distance = 1.0
 max_distance = 20.0
-path = "event:/SFX/Drill Long"
+path = "event:/SFX/Mech/Mech Drill Long"
 guid = "{cc94d5ab-f44b-4107-8d6f-9bba0057010b}"
-name = "Drill Long"
+name = "Mech Drill Long"

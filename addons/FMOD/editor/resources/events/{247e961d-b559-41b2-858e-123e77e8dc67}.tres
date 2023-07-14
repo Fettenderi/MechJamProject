@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://darfablxiveo7"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Spaceship/Spaceship Sounds"
+guid = "{247e961d-b559-41b2-858e-123e77e8dc67}"
+name = "Spaceship Sounds"

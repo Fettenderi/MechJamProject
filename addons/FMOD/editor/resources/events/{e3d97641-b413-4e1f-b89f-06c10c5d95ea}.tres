@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://m4gl6bot3y1i"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Rover/Rover Damage"
+guid = "{e3d97641-b413-4e1f-b89f-06c10c5d95ea}"
+name = "Rover Damage"
