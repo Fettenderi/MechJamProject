@@ -68,6 +68,13 @@ func _ready():
 	PlayerStats.connect("energy_changed", energy_has_changed)
 	PlayerStats.connect("health_changed", health_has_changed)
 
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.available_weapons))
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons - 1) % (len(PlayerStats.available_weapons))
+
 func _physics_process(delta) -> void:
 	# Add gravity or attack.
 	var on_floor := is_on_floor()
@@ -133,8 +140,6 @@ func handle_attacks(delta: float):
 				can_attack = true
 	elif Input.is_action_just_released("player_attack") and PlayerStats.run_selected_weapons == Stats.AttackType.DRILL:
 		PlayerStats.drill_usage = 0
-	elif Input.is_action_just_pressed("player_switch_weapon"):
-		PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.available_weapons))
 
 func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consumption_bonus : float = 0.0):
 	if PlayerStats.energy > PlayerStats.weapon_energy_consumption[attack_type] + 10 + consumption_bonus:

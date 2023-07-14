@@ -21,6 +21,8 @@ func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop
 	return Color(remap(value, istart, istop, ostart.r, ostop.r), remap(value, istart, istop, ostart.g, ostop.g), remap(value, istart, istop, ostart.b, ostop.b))
 
 func _ready():
+#	PlayerStats.connect("max_health_changed", update_health)
+#	PlayerStats.connect("max_energy_changed", update_energy)
 	PlayerStats.connect("health_changed", update_health)
 	PlayerStats.connect("energy_changed", update_energy)
 	PlayerStats.connect("change_selected_weapon", update_selected_weapon)

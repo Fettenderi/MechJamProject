@@ -3,10 +3,11 @@ extends Stats
 const MAX_KILLS_TO_WAVE = 5
 const MAX_WAVES_TO_BOSS = 5
 
-@export_range(1,100) var max_energy: float = 100
+@export_range(1,100) var max_energy: float = 100:
+	set(value):
+		max_energy = value
+		emit_signal("max_energy_changed", max_energy)
 @onready var energy := max_energy :
-	get:
-		return energy
 	set(value):
 		energy = clamp(value, 0, max_energy)
 		if energy <= 0:
@@ -67,7 +68,8 @@ var waves : int = 0 :
 		emit_signal("waves_changed", value)
 
 signal energy_changed(value)
-signal change_selected_weapon(value)
+signal max_energy_changed(value)
+signal change_sele_cted_weapon(value)
 signal charge_jump(value)
 signal charge_drill_usage(value)
 signal jump_fully_charged()
