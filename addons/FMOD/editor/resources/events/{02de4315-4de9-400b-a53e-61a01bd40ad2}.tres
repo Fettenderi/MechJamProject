@@ -1,0 +1,10 @@
+[gd_resource type="EventAsset" format=3 uid="uid://c7k3gfcpj3lq4"]
+
+[resource]
+is_3d = true
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Damage"
+guid = "{02de4315-4de9-400b-a53e-61a01bd40ad2}"
+name = "Mech Damage"
