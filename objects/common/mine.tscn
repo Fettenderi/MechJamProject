@@ -30,6 +30,7 @@ gravity = Vector3(0, -2, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 scale_curve = SubResource("CurveTexture_l8lh3")
+attractor_interaction_enabled = false
 
 [sub_resource type="SphereMesh" id="SphereMesh_g6b83"]
 radius = 1.0

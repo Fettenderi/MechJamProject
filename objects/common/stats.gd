@@ -42,11 +42,13 @@ func get_damage(type: AttackType) -> float:
 	
 	match type:
 		AttackType.GUN:
-			result = result * 1.4
+			result = result * 2
+		AttackType.DRILL:
+			result = result * 4
 		AttackType.FOTONIC:
-			result = result * 1.7
+			result = result * 3
 		AttackType.POUND:
-			result = result * 1.5
+			result = result * 2
 		_:
 			pass
 	

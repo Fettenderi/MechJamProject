@@ -6,6 +6,7 @@ extends Area3D
 @export var delay_time : float
 @export var stats : Stats
 @export var attack_type : Stats.AttackType
+@export var particles_in_sync : bool = true
 
 @onready var shape := $Shape
 @onready var duration_timer := $DurationTimer
@@ -31,6 +32,9 @@ func start_attack(particle_parameter: float = 1.0) -> void:
 		particle_parameters = particle_parameter
 		delay_timer.start(delay_time)
 		attacking = true
+	else:
+		if not particles_in_sync:
+			emit_particles(particle_parameters)
 
 func initiate_attack():
 	emit_signal("is_attacking")

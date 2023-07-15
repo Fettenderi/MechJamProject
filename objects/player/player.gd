@@ -49,6 +49,8 @@ var previous_health := PlayerStats.max_health
 
 
 func _ready():
+#	available_weapons_changed()
+	
 	Input.set_custom_mouse_cursor(cursor_image)
 	
 	area_attack.stats = get_node("/root/PlayerStats")
@@ -71,9 +73,9 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.available_weapons))
+			PlayerStats.selected_weapon = PlayerStats.available_weapons[(PlayerStats.available_weapons.find(PlayerStats.selected_weapon) + 1) % PlayerStats.available_weapons.size()]
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons - 1) % (len(PlayerStats.available_weapons))
+			PlayerStats.selected_weapon = PlayerStats.available_weapons[(PlayerStats.available_weapons.find(PlayerStats.selected_weapon) - 1) % PlayerStats.available_weapons.size()]
 
 func _physics_process(delta) -> void:
 	# Add gravity or attack.
@@ -90,14 +92,14 @@ func _physics_process(delta) -> void:
 	var input_dir := Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
 	var movement_direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if PlayerStats.run_selected_weapons != Stats.AttackType.POUND and movement_direction:
+	if PlayerStats.selected_weapon != Stats.AttackType.POUND and movement_direction:
 		move(movement_direction, delta)
 	else:
 		stop_moving(delta)
 		
 	update_rotation()
 	
-	handle_animations(on_floor, attacking, PlayerStats.run_selected_weapons, movement_direction)
+	handle_animations(on_floor, attacking, PlayerStats.selected_weapon, movement_direction)
 	
 	attacking = false
 	
@@ -107,24 +109,25 @@ func _physics_process(delta) -> void:
 func handle_pound(delta: float):
 	if Input.is_action_just_pressed("player_attack"):
 		velocity.y = - JUMP_VELOCITY * PlayerStats.jump_charge / PlayerStats.max_jump_charge
-		previous_weapon = PlayerStats.run_selected_weapons
-		PlayerStats.run_selected_weapons = Stats.AttackType.POUND
+		previous_weapon = PlayerStats.selected_weapon
+		PlayerStats.selected_weapon = Stats.AttackType.POUND
 	else:
 		velocity.y -= gravity * delta
 	PlayerStats.jump_charge = clamp(PlayerStats.jump_charge - 3 * PlayerStats.jump_charge_speed * delta, 0, PlayerStats.max_jump_charge)
 
 func handle_attacks(delta: float):
-	if PlayerStats.run_selected_weapons == Stats.AttackType.POUND:
-		PlayerStats.run_selected_weapons = previous_weapon
+	if PlayerStats.selected_weapon == Stats.AttackType.POUND:
+		PlayerStats.selected_weapon = previous_weapon
 		PlayerStats.damage_boosts[Stats.AttackType.POUND] = pow(2, PlayerStats.jump_charge / float(PlayerStats.max_jump_charge)) * 1.3 - 1
 		area_attack.start_attack(PlayerStats.jump_charge / float(PlayerStats.max_jump_charge))
 		moving_elapsed = 0
 		PlayerStats.jump_charge = 0
 		PlayerStats.drill_usage = 0
+		PlayerStats.fotonic_usage = 0
 	elif Input.is_action_pressed("player_attack"):
 		if can_attack:
 			attacking = true
-			match PlayerStats.run_selected_weapons:
+			match PlayerStats.selected_weapon:
 				Stats.AttackType.NORMAL:
 					normal_attack.start_attack()
 					
@@ -132,14 +135,20 @@ func handle_attacks(delta: float):
 					PlayerStats.drill_usage += delta
 					if PlayerStats.drill_usage >= PlayerStats.min_drill_usage:
 						handle_single_attack(drill_attack, Stats.AttackType.DRILL, PlayerStats.drill_usage)
-						
+					
+				Stats.AttackType.FOTONIC:
+					PlayerStats.fotonic_usage += delta
+					if PlayerStats.fotonic_usage >= PlayerStats.min_fotonic_usage:
+						handle_single_attack(fotonic_cannon, Stats.AttackType.FOTONIC, PlayerStats.fotonic_usage)
+				
 				Stats.AttackType.GUN:
 					handle_single_attack(gun, Stats.AttackType.GUN)
 		else:
 			if PlayerStats.energy >= 10:
 				can_attack = true
-	elif Input.is_action_just_released("player_attack") and PlayerStats.run_selected_weapons == Stats.AttackType.DRILL:
+	elif Input.is_action_just_released("player_attack") and PlayerStats.selected_weapon == Stats.AttackType.DRILL:
 		PlayerStats.drill_usage = 0
+		PlayerStats.fotonic_usage = 0
 
 func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consumption_bonus : float = 0.0):
 	if PlayerStats.energy > PlayerStats.weapon_energy_consumption[attack_type] + 10 + consumption_bonus:
@@ -172,10 +181,13 @@ func handle_animations(on_floor: bool, is_attacking: bool, weapon_state: Stats.A
 			Stats.AttackType.DRILL:
 				if signal_recieved:
 					signal_recieved = false
-					state_machine.travel("drill_attack")
-				else:
-					state_machine.travel("drill_charge")
-					
+					state_machine.start("drill_attack")
+			
+			Stats.AttackType.FOTONIC:
+				if signal_recieved:
+					signal_recieved = false
+					state_machine.travel("cannon_attack")
+			
 			Stats.AttackType.GUN:
 				if signal_recieved:
 					signal_recieved = false

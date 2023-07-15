@@ -11,9 +11,9 @@ var dead_sfx : StudioEventEmitter3D
 
 func _ready():
 	connect("area_entered", take_damage)
-	if hit_sfx:
+	if get_node_or_null("HitSfx"):
 		hit_sfx = $HitSfx
-	if dead_sfx:
+	if get_node_or_null("DeadSfx"):
 		dead_sfx = $DeadSfx
 	if has_shield:
 		shields.connect("no_shield", func(): has_shield = false)
@@ -26,7 +26,8 @@ func take_damage(area: Area3D):
 	
 	if not is_enemy:
 		GameMachine.add_trauma(0.5)
-		hit_sfx.play()
+		if hit_sfx:
+			hit_sfx.play()
 		
 
 func get_damage() -> float:
@@ -35,5 +36,6 @@ func get_damage() -> float:
 func die():
 	if is_enemy:
 		PlayerStats.kills += 1
-	dead_sfx.play()
+	if dead_sfx:
+		dead_sfx.play()
 	get_parent().get_parent().queue_free()

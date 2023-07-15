@@ -40,7 +40,7 @@ func _ready():
 	
 	bus = FMODStudioModule.get_studio_system().get_bus(bus_asset.path)
 	bus.set_volume(volume)
-	add_spaceship()
+#	add_spaceship()
 
 func _physics_process(delta):
 	

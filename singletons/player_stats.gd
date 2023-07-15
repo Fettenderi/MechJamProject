@@ -32,6 +32,12 @@ var drill_usage := 0.0 :
 		drill_usage = value
 		emit_signal("charge_drill_usage", value)
 
+@export var fotonic_usage_speed : float = 20
+@export var min_fotonic_usage : float = 2
+var fotonic_usage := 0.0 :
+	set(value):
+		fotonic_usage = value
+		emit_signal("charge_fotonic_usage", value)
 
 var unlocked_weapons : Array[int] = [0] :
 	set(value):
@@ -39,12 +45,14 @@ var unlocked_weapons : Array[int] = [0] :
 
 var available_weapons : Array[int] = [
 	Stats.AttackType.NORMAL,
-	Stats.AttackType.GUN
+	Stats.AttackType.GUN,
+	Stats.AttackType.FOTONIC,
+	Stats.AttackType.DRILL
 ]
 
-var run_selected_weapons : int = 0 :
+var selected_weapon : int = 0 :
 	set(value):
-		run_selected_weapons = value
+		selected_weapon = value
 		emit_signal("change_selected_weapon", value)
 
 @export var weapon_energy_consumption : Array[float] = zeros(AttackType.size()) # :
@@ -69,9 +77,10 @@ var waves : int = 0 :
 
 signal energy_changed(value)
 signal max_energy_changed(value)
-signal change_sele_cted_weapon(value)
+signal change_selected_weapon(value)
 signal charge_jump(value)
 signal charge_drill_usage(value)
+signal charge_fotonic_usage(value)
 signal jump_fully_charged()
 #signal weapon_ammos_updated(value)
 signal kills_changed(value)

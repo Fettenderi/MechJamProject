@@ -48,6 +48,7 @@ func always_behaviour(_delta: float):
 
 
 func wander(delta: float):
+	update_rotation(direction, delta)
 	match state:
 		States.WAITING:
 			pass
@@ -77,7 +78,8 @@ func velocity_lerp(end_velocity: Vector3, delta: float):
 	puppet.velocity.z = move_toward(puppet.velocity.z, end_velocity.z, delta)
 
 @warning_ignore("shadowed_variable")
-func update_rotation(direction: Vector3, delta: float) -> void:
+func update_rotation(direction: Vector3, delta: float = 1) -> void:
+#	rotating.look_at(direction)
 	var final_angle := acos(Vector3.RIGHT.dot(direction))
 	if direction.z > 0:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, -final_angle, delta * ROTATION_SPEED)

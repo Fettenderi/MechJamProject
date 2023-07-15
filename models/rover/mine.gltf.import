@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://df1cn5ge1ql0x"
-path="res://.godot/imported/mecha.gltf-edd6ec1c5c15632d55ce9b48a15ff36d.scn"
+uid="uid://ctx17tol8b0op"
+path="res://.godot/imported/mine.gltf-015ea6a4f57dc8adc7a8bdb2ae1345b1.scn"
 
 [deps]
 
-source_file="res://models/mecha/mecha.gltf"
-dest_files=["res://.godot/imported/mecha.gltf-edd6ec1c5c15632d55ce9b48a15ff36d.scn"]
+source_file="res://models/rover/mine.gltf"
+dest_files=["res://.godot/imported/mine.gltf-015ea6a4f57dc8adc7a8bdb2ae1345b1.scn"]
 
 [params]
 
