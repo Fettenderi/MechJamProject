@@ -1,35 +1,40 @@
-[gd_scene load_steps=18 format=3 uid="uid://c762fmdasbdxk"]
+[gd_scene load_steps=22 format=3 uid="uid://c762fmdasbdxk"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_ku4gj"]
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_mgllf"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_xmwm6"]
+[ext_resource type="EventAsset" uid="uid://n5648sh2lq6d" path="res://addons/FMOD/editor/resources/events/{2c74d59d-7ce6-4636-a3cb-25e3ce94a8cf}.tres" id="2_c3pdy"]
 [ext_resource type="PackedScene" uid="uid://cft83snc22ixv" path="res://objects/common/basic_projectile.tscn" id="2_g608w"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_xfy16"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_xabsb"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="4_2omcr"]
+[ext_resource type="EventAsset" uid="uid://cn2yfxtnygwod" path="res://addons/FMOD/editor/resources/events/{dcca9f04-5273-4358-be00-372335871df8}.tres" id="4_my8nw"]
 [ext_resource type="PackedScene" uid="uid://csyixh8fqh0ui" path="res://models/alien/alien_mesh.tscn" id="4_or6g4"]
 [ext_resource type="PackedScene" uid="uid://cuthnbuh2wmht" path="res://objects/common/attacker_animation_tree.tscn" id="5_uip58"]
 [ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="6_ogdb3"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_8k36b"]
+[ext_resource type="EventAsset" uid="uid://cpktxna20m6rx" path="res://addons/FMOD/editor/resources/events/{8356e32e-72b4-4c26-a3c9-ece918b05206}.tres" id="8_o5ox6"]
+[ext_resource type="EventAsset" uid="uid://ck8f3jijjxcml" path="res://addons/FMOD/editor/resources/events/{b5e70fca-0543-46e9-9385-d02ca7b3a26b}.tres" id="9_h2nu5"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="10_w6dty"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spnsk"]
 height = 1.6
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_4div5"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_pn85u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
-radius = 11.0
+radius = 22.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6tlqf"]
-radius = 8.0
+radius = 16.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_otoo4"]
-radius = 17.0
+radius = 35.0
 
 [node name="NoobAlien" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_xmwm6")
+footsteps_sfx = ExtResource("2_c3pdy")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -48,46 +53,52 @@ layer = 64
 mask = 2
 attack_type = 2
 
+[node name="SFXEmitter" parent="Rotating/Gun" index="4"]
+event = ExtResource("4_my8nw")
+
 [node name="AlienMesh" parent="Rotating" instance=ExtResource("4_or6g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="alien" parent="Rotating/AlienMesh/Node2" index="0"]
-transform = Transform3D(1, -0.000165022, -1.06792e-05, 0.000165005, 0.999998, -0.00165247, 1.09519e-05, 0.00165247, 0.999998, 0, -0.0596709, -0.00216955)
+transform = Transform3D(0.999999, -0.00108309, -6.50946e-05, 0.00108232, 0.99994, -0.0108424, 7.68341e-05, 0.0108424, 0.999941, 0, -0.0613164, -0.0142371)
 
 [node name="body" parent="Rotating/AlienMesh/Node2/alien" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 2.125, 0)
 
 [node name="leftArm" parent="Rotating/AlienMesh/Node2/alien/body" index="2"]
-transform = Transform3D(0.34409, -0.938937, 0, 0.938937, 0.34409, 0, 0, 0, 1, -0.4375, 0.15625, 0)
+transform = Transform3D(0.355571, -0.934651, 0, 0.934651, 0.355571, 0, 0, 0, 1, -0.4375, 0.15625, 0)
 
 [node name="rightArm" parent="Rotating/AlienMesh/Node2/alien/body" index="3"]
-transform = Transform3D(0.343056, 0.939316, 0, -0.939316, 0.343056, 0, 0, 0, 1, 0.4375, 0.15625, 0)
+transform = Transform3D(0.348804, 0.937196, 0, -0.937196, 0.348804, 0, 0, 0, 1, 0.4375, 0.15625, 0)
 
 [node name="leftUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="4"]
 transform = Transform3D(0.991445, 0.0602703, 0.115778, 9.31323e-09, 0.887011, -0.461749, -0.130526, 0.457798, 0.879422, -0.25, -0.5, 0)
 
 [node name="leftLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.885479, 0.464677, 0, -0.464677, 0.885479, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.876789, 0.480874, 0, -0.480874, 0.876789, 0, -0.75, 0)
 
 [node name="leftFoot" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(0.99967, -0.0256817, 7.13186e-05, 0.025079, 0.975603, -0.218106, 0.00553175, 0.218035, 0.975925, 0, -0.75, 0)
+transform = Transform3D(0.999737, -0.0229248, 0.000452469, 0.0224273, 0.973553, -0.227356, 0.00477159, 0.227306, 0.973811, 0, -0.75, 0)
 
 [node name="rightUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="5"]
 transform = Transform3D(0.991445, -0.0602703, -0.115778, -9.31323e-09, 0.88701, -0.461749, 0.130526, 0.457798, 0.879422, 0.25, -0.5, 0)
 
 [node name="rightLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.8775, 0.479576, 0, -0.479576, 0.8775, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.870051, 0.492961, 0, -0.492961, 0.870051, 0, -0.75, 0)
 
 [node name="rightFoot" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(0.999395, 0.0347894, -4.10443e-05, -0.0338293, 0.971536, -0.234463, -0.00811696, 0.234323, 0.972125, 0, -0.75, 0)
+transform = Transform3D(0.999416, 0.0341765, -0.000267111, -0.0332408, 0.970175, -0.240112, -0.00794705, 0.23998, 0.970745, 0, -0.75, 0)
 
 [node name="head" parent="Rotating/AlienMesh/Node2/alien/body" index="6"]
-transform = Transform3D(0.999161, 0.0409783, -2.7536e-05, -0.0390954, 0.953047, -0.300285, -0.0122789, 0.300034, 0.95385, 0.00852273, 0.436506, 0)
+transform = Transform3D(0.999656, 0.0262833, -0.000201915, -0.0251498, 0.95425, -0.297948, -0.0076384, 0.29785, 0.954582, 0.00852273, 0.436506, 0)
+
+[node name="AnimationPlayer" parent="Rotating/AlienMesh" index="1"]
+speed_scale = 2.0
 
 [node name="AlienAnimationTree" parent="Rotating" instance=ExtResource("5_uip58")]
 anim_player = NodePath("../AlienMesh/AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4div5")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_pn85u")
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -100,6 +111,12 @@ stats = NodePath("../../Stats")
 [node name="Shape" parent="Fixed/HitBox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304878, 0)
 shape = SubResource("CapsuleShape3D_spnsk")
+
+[node name="HitSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]
+event = ExtResource("8_o5ox6")
+
+[node name="DeadSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]
+event = ExtResource("9_h2nu5")
 
 [node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("3_xabsb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61186, 0)
@@ -132,7 +149,7 @@ shape = SubResource("CylinderShape3D_6tlqf")
 
 [node name="WanderingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "stats") instance=ExtResource("10_w6dty")]
 rotating = NodePath("../../Rotating")
-switching_behaviour_distance = 8
+switching_behaviour_distance = 22
 stats = NodePath("../../Stats")
 
 [node name="TargetRangeArea" parent="Fixed/WanderingBrain" index="0"]
@@ -146,11 +163,15 @@ shape = SubResource("CylinderShape3D_otoo4")
 script = ExtResource("4_2omcr")
 max_health = 10.0
 damage = 1.0
-speed = 0.5
+speed = 2.0
+
+[node name="FootstepsTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="is_attacking" from="Rotating/Gun" to="Rotating/AlienAnimationTree" method="set_attacking"]
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
+[editable path="Rotating/Gun"]
 [editable path="Rotating/AlienMesh"]
 [editable path="Fixed/HitBox"]
 [editable path="Fixed/FollowingBrain"]

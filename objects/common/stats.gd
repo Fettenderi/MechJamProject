@@ -11,10 +11,12 @@ enum AttackType {
 	POUND
 }
 
-@export_range(1,100) var max_health: float
+@export_range(1,100) var max_health: float:
+	set(value):
+		max_health = value
+		emit_signal("max_health_changed", max_health)
+
 @onready var health := max_health :
-	get:
-		return health
 	set(value):
 		health = clamp(value, 0, max_health)
 		if health <= 0:
@@ -27,6 +29,7 @@ enum AttackType {
 @export var speed: float
 
 signal health_changed(value)
+signal max_health_changed(value)
 signal dead
 
 func zeros(n: int) -> Array[float]:
@@ -40,11 +43,13 @@ func get_damage(type: AttackType) -> float:
 	
 	match type:
 		AttackType.GUN:
-			result = result * 1.4
+			result = result * 2
+		AttackType.DRILL:
+			result = result * 4
 		AttackType.FOTONIC:
-			result = result * 1.7
+			result = result * 3
 		AttackType.POUND:
-			result = result * 1.5
+			result = result * 2
 		_:
 			pass
 	

@@ -18,11 +18,15 @@ func target_entered_in_range(area: Area3D):
 	target = area
 	PlayerStats.can_discharge = false
 	can_charge = true
+	primary_particles.call_deferred("set_emitting", true)
+	secondary_particles.call_deferred("set_emitting", true)
 
 func target_exited_from_range(_area: Area3D):
 	target = null
 	PlayerStats.can_discharge = true
 	can_charge = false
+	primary_particles.call_deferred("set_emitting", false)
+	secondary_particles.call_deferred("set_emitting", false)
 
 func set_can_charge():
 	if target is Area3D:
@@ -30,11 +34,13 @@ func set_can_charge():
 		charge_timer.start(charge_time)
 
 func _physics_process(_delta):
+	if PlayerStats.energy == PlayerStats.max_energy:
+		can_charge = false
+		primary_particles.call_deferred("set_emitting", false)
+		secondary_particles.call_deferred("set_emitting", false)
+	
 	if can_charge:
 		can_charge = false
-		primary_particles.call_deferred("set_emitting", true)
-		secondary_particles.call_deferred("set_emitting", true)
-		
 		charge_timer.start(charge_time)
 		
 		PlayerStats.energy = clamp(PlayerStats.energy + 5, 0, PlayerStats.max_energy)

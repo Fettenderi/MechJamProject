@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://but0hqh11514f"]
+[gd_scene load_steps=13 format=3 uid="uid://but0hqh11514f"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_frdvk"]
+[ext_resource type="PackedScene" uid="uid://blcj5yunb4vk" path="res://models/spaceship/spaceship_mesh.tscn" id="1_x8fin"]
 [ext_resource type="Script" path="res://objects/common/hitbox.gd" id="2_j5i36"]
 [ext_resource type="PackedScene" uid="uid://cd2li80rf5gwo" path="res://objects/common/health_bar.tscn" id="3_6tw0r"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="4_3frsc"]
@@ -10,28 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cjgcqq3o1837l" path="res://objects/enemies/mk1.tscn" id="7_7bxkc"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_gpict"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="9_mu8ys"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfl6s"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(1, 0.0705882, 0.890196, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_tk6xh"]
-material = SubResource("StandardMaterial3D_vfl6s")
-top_radius = 3.0
-bottom_radius = 4.0
-height = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25s23"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.631373, 0.0431373, 0.560784, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_g1n2s"]
-material = SubResource("StandardMaterial3D_25s23")
-top_radius = 4.0
-bottom_radius = 3.0
-height = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_82rkq"]
 height = 16.0
@@ -46,15 +25,8 @@ disabled = true
 
 [node name="Rotating" type="Node3D" parent="."]
 
-[node name="Mesh" type="MeshInstance3D" parent="Rotating"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("CylinderMesh_tk6xh")
-skeleton = NodePath("../..")
-
-[node name="Mesh2" type="MeshInstance3D" parent="Rotating"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("CylinderMesh_g1n2s")
-skeleton = NodePath("../..")
+[node name="spaceship" parent="Rotating" instance=ExtResource("1_x8fin")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, -0.5, 0)
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -73,7 +45,7 @@ color_high = Color(0.301961, 0.952941, 0.301961, 1)
 [node name="EnemySpawner" parent="Fixed" instance=ExtResource("4_44p1j")]
 normal_enemies_pool = Array[PackedScene]([ExtResource("5_siaj1"), ExtResource("5_siaj1"), ExtResource("5_siaj1"), ExtResource("6_74ajc"), ExtResource("6_74ajc")])
 special_enemies_pool = Array[PackedScene]([ExtResource("7_7bxkc")])
-enemy_amount = 3
+enemy_amount = 5
 
 [node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("rotating", "far_attack", "stats") instance=ExtResource("8_gpict")]
 rotating = NodePath("../../Rotating")
@@ -102,7 +74,7 @@ shape = SubResource("CylinderShape3D_82rkq")
 script = ExtResource("4_3frsc")
 max_health = 10.0
 damage = 1.0
-speed = 3.0
+speed = 5.0
 
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 

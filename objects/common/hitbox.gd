@@ -4,13 +4,17 @@ extends Area3D
 @export var shields : Shield
 
 @onready var has_shield := shields is Shield
+@onready var is_enemy := stats != PlayerStats
 
-var sfx_emitter : StudioEventEmitter3D
+var hit_sfx : StudioEventEmitter3D
+var dead_sfx : StudioEventEmitter3D
 
 func _ready():
 	connect("area_entered", take_damage)
-	if sfx_emitter:
-		sfx_emitter = $SFXEmitter
+	if get_node_or_null("HitSfx"):
+		hit_sfx = $HitSfx
+	if get_node_or_null("DeadSfx"):
+		dead_sfx = $DeadSfx
 	if has_shield:
 		shields.connect("no_shield", func(): has_shield = false)
 
@@ -20,14 +24,18 @@ func take_damage(area: Area3D):
 	else:
 		stats.health -= area.get_damage()
 	
-	if stats == PlayerStats:
+	if not is_enemy:
 		GameMachine.add_trauma(0.5)
-		sfx_emitter.play()
+		if hit_sfx:
+			hit_sfx.play()
 		
 
 func get_damage() -> float:
 	return stats.get_damage(Stats.AttackType.NORMAL)
 
 func die():
-	PlayerStats.kills += 1
+	if is_enemy:
+		PlayerStats.kills += 1
+	if dead_sfx:
+		dead_sfx.play()
 	get_parent().get_parent().queue_free()

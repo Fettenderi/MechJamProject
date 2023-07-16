@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bqjcj417e22e0"]
 
 [ext_resource type="Script" path="res://objects/common/shield.gd" id="1_gbx8d"]
+[ext_resource type="EventAsset" uid="uid://b46gp5thkm00i" path="res://addons/FMOD/editor/resources/events/{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}.tres" id="2_hp2ia"]
 
 [sub_resource type="Gradient" id="Gradient_xrgle"]
 colors = PackedColorArray(0.34902, 1, 1, 0.309804, 0.901961, 1, 1, 0.309804)
@@ -25,6 +26,7 @@ emission_ring_inner_radius = 1.5
 gravity = Vector3(0, 2, 0)
 scale_curve = SubResource("CurveTexture_bvqe0")
 color_ramp = SubResource("GradientTexture1D_iktkj")
+attractor_interaction_enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je7lu"]
 vertex_color_use_as_albedo = true
@@ -33,15 +35,6 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_je7lu")
 radius = 0.4
 height = 0.8
-
-[sub_resource type="EventAsset" id="EventAsset_4q81y"]
-is_3d = true
-is_oneshot = true
-min_distance = 1.0
-max_distance = 20.0
-path = "event:/SFX/Shield Removed"
-guid = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
-name = "Shield Removed"
 
 [node name="Shield" type="Node3D"]
 script = ExtResource("1_gbx8d")
@@ -53,4 +46,4 @@ process_material = SubResource("ParticleProcessMaterial_ln8gy")
 draw_pass_1 = SubResource("SphereMesh_mx8mv")
 
 [node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
-event = SubResource("EventAsset_4q81y")
+event = ExtResource("2_hp2ia")

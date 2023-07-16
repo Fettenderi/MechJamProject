@@ -8,10 +8,19 @@ const JUMP_VELOCITY = 7.0
 const ROTATION_SPEED = 10.0
 
 @export var camera : Camera3D
+@export var footsteps : EventAsset
 
 @onready var jump_cooldown := $JumpCooldown
 @onready var energy_timer := $EnergyTimer
 @onready var weapon_consumption_timer := $WeaponConsumptionTimer
+@onready var footsteps_timer := $FootstepsTimer
+
+@onready var charging_sfx := $ChargingSfx
+@onready var healing_sfx := $HealingSfx
+@onready var low_battery_sfx := $LowBatterySfx
+@onready var low_health_sfx := $LowHealthSfx
+@onready var footsteps_sfx := $FootstepsSfx
+@onready var jump_sfx := $JumpSfx
 
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
@@ -22,9 +31,11 @@ const ROTATION_SPEED = 10.0
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
 @onready var animation_tree := $Rotating/AnimationTree
+
 @onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var cursor_image := preload("res://objects/player/cursor.png")
 
+var attributes: FMOD_3D_ATTRIBUTES = FMOD_3D_ATTRIBUTES.new()
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var can_jump := true
@@ -34,11 +45,21 @@ var can_remove_energy := true
 var previous_weapon := 0
 var moving_elapsed := 0.0
 var attacking := false
+var needs_charging := false
+var is_charging := false
+var is_walking := false
 
 var ray_origin := Vector3.ZERO
 var ray_target := Vector3.ZERO
 
+var previous_energy := PlayerStats.max_energy
+var previous_health := PlayerStats.max_health
+
+
 func _ready():
+#	available_weapons_changed()
+	randomize()
+	
 	Input.set_custom_mouse_cursor(cursor_image)
 	
 	area_attack.stats = get_node("/root/PlayerStats")
@@ -48,12 +69,23 @@ func _ready():
 	hitbox.stats = get_node("/root/PlayerStats")
 	gun.stats = get_node("/root/PlayerStats")
 	
-	PlayerStats.connect("dead", die)
-	PlayerStats.connect("jump_fully_charged", jump_fully_charged_effect)
 	GameMachine.connect("new_weapon_unlocked", available_weapons_changed)
 	jump_cooldown.connect("timeout", jump_cooldown_ended)
 	energy_timer.connect("timeout", energy_timer_ended)
 	weapon_consumption_timer.connect("timeout", can_remove_energy_for_weapon)
+	footsteps_timer.connect("timeout", do_footstep_sound)
+	PlayerStats.connect("jump_fully_charged", jump_fully_charged_effect)
+	PlayerStats.connect("dead", die)
+	
+	PlayerStats.connect("energy_changed", energy_has_changed)
+	PlayerStats.connect("health_changed", health_has_changed)
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			PlayerStats.selected_weapon = PlayerStats.available_weapons[(PlayerStats.available_weapons.find(PlayerStats.selected_weapon) + 1) % PlayerStats.available_weapons.size()]
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			PlayerStats.selected_weapon = PlayerStats.available_weapons[(PlayerStats.available_weapons.find(PlayerStats.selected_weapon) - 1) % PlayerStats.available_weapons.size()]
 
 func _physics_process(delta) -> void:
 	# Add gravity or attack.
@@ -70,14 +102,14 @@ func _physics_process(delta) -> void:
 	var input_dir := Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
 	var movement_direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if PlayerStats.run_selected_weapons != Stats.AttackType.POUND and movement_direction:
+	if PlayerStats.selected_weapon != Stats.AttackType.POUND and movement_direction:
 		move(movement_direction, delta)
 	else:
 		stop_moving(delta)
 		
 	update_rotation()
 	
-	handle_animations(on_floor, attacking, PlayerStats.run_selected_weapons, movement_direction)
+	handle_animations(on_floor, PlayerStats.selected_weapon, movement_direction)
 	
 	attacking = false
 	
@@ -87,41 +119,60 @@ func _physics_process(delta) -> void:
 func handle_pound(delta: float):
 	if Input.is_action_just_pressed("player_attack"):
 		velocity.y = - JUMP_VELOCITY * PlayerStats.jump_charge / PlayerStats.max_jump_charge
-		previous_weapon = PlayerStats.run_selected_weapons
-		PlayerStats.run_selected_weapons = Stats.AttackType.POUND
+		previous_weapon = PlayerStats.selected_weapon
+		PlayerStats.selected_weapon = Stats.AttackType.POUND
 	else:
 		velocity.y -= gravity * delta
 	PlayerStats.jump_charge = clamp(PlayerStats.jump_charge - 3 * PlayerStats.jump_charge_speed * delta, 0, PlayerStats.max_jump_charge)
 
 func handle_attacks(delta: float):
-	if PlayerStats.run_selected_weapons == Stats.AttackType.POUND:
-		PlayerStats.run_selected_weapons = previous_weapon
+	if PlayerStats.selected_weapon == Stats.AttackType.POUND:
+		PlayerStats.selected_weapon = previous_weapon
 		PlayerStats.damage_boosts[Stats.AttackType.POUND] = pow(2, PlayerStats.jump_charge / float(PlayerStats.max_jump_charge)) * 1.3 - 1
 		area_attack.start_attack(PlayerStats.jump_charge / float(PlayerStats.max_jump_charge))
 		moving_elapsed = 0
 		PlayerStats.jump_charge = 0
 		PlayerStats.drill_usage = 0
+		PlayerStats.fotonic_usage = 0
 	elif Input.is_action_pressed("player_attack"):
-		if can_attack:
-			attacking = true
-			match PlayerStats.run_selected_weapons:
-				Stats.AttackType.NORMAL:
-					normal_attack.start_attack()
-					
-				Stats.AttackType.DRILL:
+		match PlayerStats.selected_weapon:
+			Stats.AttackType.NORMAL:
+				attacking = true
+				normal_attack.start_attack()
+				
+			Stats.AttackType.DRILL:
+				if can_attack:
+					attacking = true
+					needs_charging = true
 					PlayerStats.drill_usage += delta
 					if PlayerStats.drill_usage >= PlayerStats.min_drill_usage:
+						needs_charging = false
+						is_charging = false
 						handle_single_attack(drill_attack, Stats.AttackType.DRILL, PlayerStats.drill_usage)
-						
-				Stats.AttackType.GUN:
+				
+			Stats.AttackType.FOTONIC:
+				if can_attack:
+					attacking = true
+					needs_charging = true
+					PlayerStats.fotonic_usage += delta
+					if PlayerStats.fotonic_usage >= PlayerStats.min_fotonic_usage:
+						needs_charging = false
+						is_charging = false
+						handle_single_attack(fotonic_cannon, Stats.AttackType.FOTONIC, PlayerStats.fotonic_usage)
+			
+			Stats.AttackType.GUN:
+				if can_attack:
+					attacking = true
 					handle_single_attack(gun, Stats.AttackType.GUN)
-		else:
-			if PlayerStats.energy >= 10:
-				can_attack = true
-	elif Input.is_action_just_released("player_attack") and PlayerStats.run_selected_weapons == Stats.AttackType.DRILL:
+				
+	elif Input.is_action_just_released("player_attack"):
 		PlayerStats.drill_usage = 0
-	elif Input.is_action_just_pressed("player_switch_weapon"):
-		PlayerStats.run_selected_weapons = (PlayerStats.run_selected_weapons + 1) % (len(PlayerStats.available_weapons))
+		PlayerStats.fotonic_usage = 0
+		needs_charging = false
+		is_charging = false
+	
+	if PlayerStats.energy >= 10:
+		can_attack = true
 
 func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consumption_bonus : float = 0.0):
 	if PlayerStats.energy > PlayerStats.weapon_energy_consumption[attack_type] + 10 + consumption_bonus:
@@ -131,6 +182,9 @@ func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consump
 			weapon_consumption_timer.start(1)
 			PlayerStats.energy -= PlayerStats.weapon_energy_consumption[attack_type] + consumption_bonus
 	else:
+		is_charging = false
+		attacking = false
+		needs_charging = true
 		can_attack = false
 
 func handle_jump(on_floor: bool, delta: float):
@@ -140,24 +194,34 @@ func handle_jump(on_floor: bool, delta: float):
 		if Input.is_action_pressed("player_jump"):
 			PlayerStats.jump_charge = clamp(PlayerStats.jump_charge + PlayerStats.jump_charge_speed * delta, 0, PlayerStats.max_jump_charge)
 		if Input.is_action_just_released("player_jump"):
+			jump_sfx.play()
 			velocity.y = JUMP_VELOCITY * PlayerStats.jump_charge / PlayerStats.max_jump_charge
 			jump_cooldown.start()
 			can_jump = false
 
-func handle_animations(on_floor: bool, is_attacking: bool, weapon_state: Stats.AttackType, direction: Vector3):
-	if is_attacking:
+func handle_animations(on_floor: bool, weapon_state: Stats.AttackType, direction: Vector3):
+	if attacking:
 		match weapon_state:
 			Stats.AttackType.NORMAL:
 				state_machine.travel("normal_attack")
 			Stats.AttackType.POUND:
 				state_machine.travel("jump_land")
 			Stats.AttackType.DRILL:
+				if needs_charging and not is_charging:
+					is_charging = true
+					state_machine.travel("drill_charge")
 				if signal_recieved:
 					signal_recieved = false
 					state_machine.travel("drill_attack")
-				else:
-					state_machine.travel("drill_charge")
-					
+			
+			Stats.AttackType.FOTONIC:
+				if needs_charging and not is_charging:
+					is_charging = true
+					state_machine.travel("cannon_charge")
+				if signal_recieved:
+					signal_recieved = false
+					state_machine.travel("cannon_attack")
+			
 			Stats.AttackType.GUN:
 				if signal_recieved:
 					signal_recieved = false
@@ -179,16 +243,21 @@ func handle_animations(on_floor: bool, is_attacking: bool, weapon_state: Stats.A
 
 func move(direction : Vector3, delta: float):
 	if is_on_floor():
+		if footsteps_timer.time_left == 0:
+			footsteps_timer.start(randf_range(0.3, 2.0))
+		is_walking = true
 		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
 			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
 			velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
 			moving_elapsed += delta
 		else:
-			velocity_lerp(direction * PlayerStats.speed * 0.6 * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
+			velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
 	else:
+		is_walking = false
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
 
 func stop_moving(delta: float):
+	is_walking = false
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)
 	moving_elapsed = 0
 
@@ -237,6 +306,34 @@ func set_signal_recieved():
 func available_weapons_changed():
 	if PlayerStats.available_weapons.has(Stats.AttackType.DRILL):
 		$Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand/drill.set_deferred("visible", true) 
+
+func do_footstep_sound():
+	if is_walking:
+#		RuntimeManager.play_one_shot_attached(footsteps, global_position)
+#		RuntimeManager.attach_instance_to_node()
+		footsteps_sfx.play()
+		footsteps_timer.start(randf_range(0.3, 2.0))
+
+func energy_has_changed(new_energy):
+	if new_energy > PlayerStats.max_energy / 4:
+		low_battery_sfx.stop()
+	else:
+		low_battery_sfx.play()
+	
+	if new_energy > previous_energy:
+		charging_sfx.play()
+	previous_energy = new_energy
+
+func health_has_changed(new_health):
+	if new_health > PlayerStats.max_health / 4:
+		low_health_sfx.stop()
+	else:
+		low_health_sfx.play()
+	
+	if new_health > previous_health:
+		healing_sfx.play()
+	previous_health = new_health
+
 
 func die():
 	queue_free()

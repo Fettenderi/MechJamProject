@@ -4,8 +4,8 @@
 
 [node name="PlayerStats" type="Node"]
 script = ExtResource("1_8txsw")
-weapon_energy_consumption = Array[float]([0.0, 4.0, 1.0, 0.0, 0.0, 0.0])
+weapon_energy_consumption = Array[float]([0.0, 1.0, 3.0, 0.0, 0.0, 0.0])
 max_health = 100.0
 damage = 1.0
 damage_boosts = Array[float]([0.0, 1.0, 0.0, 3.0, 0.0, 0.0])
-speed = 7.0
+speed = 10.0
