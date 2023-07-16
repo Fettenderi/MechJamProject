@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn1n3236ap2am"]
+[gd_scene load_steps=9 format=3 uid="uid://bn1n3236ap2am"]
 
 [ext_resource type="Script" path="res://singletons/game_machine.gd" id="1_8f465"]
 [ext_resource type="PackedScene" uid="uid://btrios0aarsv" path="res://level/level2.tscn" id="2_264o7"]
@@ -14,25 +14,6 @@ max_distance = 20.0
 path = "event:/Music"
 guid = "{f3850399-665b-48be-bf11-33033c90cf47}"
 name = "Music"
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_0eksj"]
-data1 = 3132564451
-data2 = 2962156741
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_cq4l2"]
-name = "intensity"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_0eksj")
-minimum = 1.0
-maximum = 10.0
-default_value = 1.0
-flags = 12
-guid = "{01f40d11-8630-4966-92fe-eb44b9b83cfe}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_ha0ng"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_cq4l2")
-path = "parameter:/intensity"
-guid = "{01f40d11-8630-4966-92fe-eb44b9b83cfe}"
-name = "intensity"
 
 [sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_2c7tx"]
 data1 = 2601016181
@@ -64,10 +45,6 @@ volume = 0.5
 
 [node name="EventEmitter" type="StudioEventEmitter3D" parent="."]
 event = SubResource("EventAsset_p0ic5")
-
-[node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
-parameter = SubResource("ParameterAsset_ha0ng")
-value = 1.0
 
 [node name="PlayerDiedController" type="StudioGlobalParameterTrigger" parent="."]
 parameter = SubResource("ParameterAsset_qqt0c")

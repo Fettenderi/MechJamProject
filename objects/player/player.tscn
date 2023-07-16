@@ -337,34 +337,34 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.143855, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179427, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.923879, 0.0834814, 0.373468, 2.34693e-07, 0.975916, -0.218148, -0.382684, 0.201542, 0.901629, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0767417, 0.374909, -1.52737e-07, 0.979687, -0.200536, -0.382683, 0.185271, 0.905113, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.923879, -0.0834814, -0.373468, -2.34693e-07, 0.975916, -0.218148, 0.382684, 0.201542, 0.901629, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0767417, -0.374909, 1.52737e-07, 0.979687, -0.200536, 0.382683, 0.185271, 0.905113, 0.6875, 3.375, 0.15625)
 
 [node name="leftUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="1"]
-transform = Transform3D(0.953717, 0.199415, 0.225073, -2.01166e-07, 0.748483, -0.663154, -0.300706, 0.632462, 0.71384, -0.5, -0.1875, -0.0625)
+transform = Transform3D(0.953717, 0.207665, 0.217484, -1.56462e-07, 0.723245, -0.690592, -0.300706, 0.65863, 0.68977, -0.5, -0.1875, -0.0625)
 
 [node name="leftLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.609606, 0.792704, 0, -0.792704, 0.609606, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.572864, 0.819649, 0, -0.819649, 0.572864, 0, -1.1875, -5.55112e-17)
 
 [node name="leftFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.981761, -0.190122, 0, 0.190122, 0.981761, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.980365, -0.19719, 0, 0.19719, 0.980365, 0, -1.20833, 0.0275673)
 
 [node name="rightUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="2"]
-transform = Transform3D(0.953717, -0.199414, -0.225073, 2.01166e-07, 0.748482, -0.663154, 0.300706, 0.632462, 0.71384, 0.625, -0.1875, -0.0625)
+transform = Transform3D(0.953717, -0.207665, -0.217484, 1.56462e-07, 0.723244, -0.690592, 0.300706, 0.658629, 0.68977, 0.625, -0.1875, -0.0625)
 
 [node name="rightLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.609606, 0.792704, 0, -0.792704, 0.609606, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.572864, 0.819649, 0, -0.819649, 0.572864, 0, -1.1875, -5.55112e-17)
 
 [node name="rightFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.981761, -0.190122, 0, 0.190122, 0.981761, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.980365, -0.19719, 0, 0.19719, 0.980365, 0, -1.20833, 0.0275673)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -552,7 +552,7 @@ event = ExtResource("21_x7iqi")
 event = ExtResource("22_ewbfk")
 
 [node name="FootstepsSfx" type="StudioEventEmitter3D" parent="." node_paths=PackedStringArray("rigidbody")]
-event = ExtResource("11_u8q1e")
+event = ExtResource("22_ewbfk")
 rigidbody = NodePath("..")
 
 [node name="StudioListener3D" type="StudioListener3D" parent="."]

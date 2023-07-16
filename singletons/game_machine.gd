@@ -19,7 +19,6 @@ extends Node
 @onready var camera := get_node("Level/PlayerFollower/CameraPlayer")
 @onready var event_emitter := $EventEmitter
 @onready var player_died_controller := $PlayerDiedController
-@onready var intensity_controller := $IntensityController
 @onready var spaceship := preload("res://objects/enemies/spaceship.tscn")
 
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
@@ -31,18 +30,17 @@ var is_screen_shaking := false
 var enemy_count := 0
 
 signal new_weapon_unlocked
+signal enemies_diminuished(value)
 signal enemies_all_dead
 
 func _ready():
 	randomize()
 	
-#	PlayerStats.connect("waves_changed", add_spaceship)
 	PlayerStats.connect("kills_changed", update_enemy_count)
 	PlayerStats.connect("dead", player_died)
 	
 	bus = FMODStudioModule.get_studio_system().get_bus(bus_asset.path)
 	bus.set_volume(volume)
-#	add_spaceship()
 
 func _physics_process(delta):
 	
@@ -65,8 +63,6 @@ func add_prop(prop: Node3D):
 	get_node("Level/Props").add_child(prop)
 
 func add_entity(entity: Node3D):
-	intensity_controller.value = min(intensity_controller.value + enemies_per_intensity, 7.0)
-	intensity_controller.trigger()
 	get_node("Level/Entities").add_child(entity)
 
 func add_spaceship(_value: int = 0):
@@ -83,12 +79,9 @@ func player_died():
 	player_died_controller.value = float((int(player_died_controller.value) + 1) % 2)
 	player_died_controller.trigger()
 
-func increase_intensity(_value):
-	intensity_controller.value = max(intensity_controller.value - enemies_per_intensity, 0.0)
-	intensity_controller.trigger()
-
 func update_enemy_count(_value):
 	enemy_count = get_node("Level/Entities").get_child_count() - 1
+	emit_signal("enemies_diminuished", enemy_count)
 	if enemy_count == 0:
 		emit_signal("enemies_all_dead")
 
