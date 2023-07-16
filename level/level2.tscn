@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://btrios0aarsv"]
+[gd_scene load_steps=15 format=3 uid="uid://btrios0aarsv"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_gldgd"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_oje66"]
 [ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="2_pxlxk"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="3_nbgyd"]
-[ext_resource type="PackedScene" uid="uid://but0hqh11514f" path="res://objects/enemies/spaceship.tscn" id="5_f6pna"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -110,8 +109,5 @@ font_size = 128
 [node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("3_nbgyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15443, 1, 3)
 camera = NodePath("../../PlayerFollower/CameraPlayer")
-
-[node name="Spaceship" parent="Entities" instance=ExtResource("5_f6pna")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -8)
 
 [node name="Props" type="Node3D" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=43 format=3 uid="uid://cjgcqq3o1837l"]
+[gd_scene load_steps=44 format=3 uid="uid://cjgcqq3o1837l"]
 
 [ext_resource type="PackedScene" uid="uid://b0dqe05b86gyt" path="res://objects/common/gun.tscn" id="1_aybfs"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_nlux1"]
+[ext_resource type="EventAsset" uid="uid://b8s1pbvmju7bb" path="res://addons/FMOD/editor/resources/events/{1c4f5690-8aae-455e-83f0-cbcc1f63f5b6}.tres" id="2_nejo3"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="3_stq0h"]
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="4_16kiu"]
 [ext_resource type="Material" uid="uid://cqbc6u6k8lsmp" path="res://objects/common/particles/particles_material.tres" id="4_ioxtw"]
@@ -99,7 +100,7 @@ scale_curve = SubResource("CurveTexture_4g3ka")
 color_ramp = ExtResource("5_ny0xu")
 attractor_interaction_enabled = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_40hpe"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7bcjd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
 radius = 25.0
@@ -116,6 +117,7 @@ radius = 25.0
 [node name="MK1" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_nlux1")
+footsteps_sfx = ExtResource("2_nejo3")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -225,7 +227,7 @@ event = ExtResource("8_em8a2")
 [node name="AttackerAnimationTree" parent="Rotating" instance=ExtResource("8_2jfml")]
 anim_player = NodePath("../MK1/AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_40hpe")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7bcjd")
 
 [node name="Fixed" type="Node3D" parent="."]
 
@@ -311,6 +313,9 @@ script = ExtResource("9_q1fbs")
 max_health = 20.0
 damage = 1.5
 speed = 6.0
+
+[node name="FootstepsTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="is_attacking" from="Rotating/FotonicGun" to="Rotating/AttackerAnimationTree" method="set_attacking"]
 [connection signal="is_attacking" from="Rotating/DrillAttack" to="Rotating/AttackerAnimationTree" method="set_attacking"]

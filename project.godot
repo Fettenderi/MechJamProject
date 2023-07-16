@@ -21,6 +21,7 @@ RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 PlayerStats="*res://singletons/player_stats.tscn"
 Gui="*res://ui/gui.tscn"
 GameMachine="*res://singletons/game_machine.tscn"
+WaveManager="*res://singletons/wave_manager.tscn"
 
 [display]
 

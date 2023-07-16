@@ -28,14 +28,16 @@ var bus: Bus
 var trauma := 0.0
 var time := 0.0
 var is_screen_shaking := false
+var enemy_count := 0
 
 signal new_weapon_unlocked
+signal enemies_all_dead
 
 func _ready():
 	randomize()
 	
-	PlayerStats.connect("waves_changed", add_spaceship)
-	PlayerStats.connect("kills_changed", increase_intensity)
+#	PlayerStats.connect("waves_changed", add_spaceship)
+	PlayerStats.connect("kills_changed", update_enemy_count)
 	PlayerStats.connect("dead", player_died)
 	
 	bus = FMODStudioModule.get_studio_system().get_bus(bus_asset.path)
@@ -85,7 +87,10 @@ func increase_intensity(_value):
 	intensity_controller.value = max(intensity_controller.value - enemies_per_intensity, 0.0)
 	intensity_controller.trigger()
 
-
+func update_enemy_count(_value):
+	enemy_count = get_node("Level/Entities").get_child_count() - 1
+	if enemy_count == 0:
+		emit_signal("enemies_all_dead")
 
 
 func screen_shake(delta):

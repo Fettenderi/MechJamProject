@@ -47,6 +47,8 @@ func initiate_attack():
 
 func end_attack() -> void:
 	attacking = false
+	delay_timer.stop()
+	duration_timer.stop()
 	shape.set_deferred("disabled", true)
 
 func emit_particles(particle_parameter: float = 1.0) -> void:

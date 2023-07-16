@@ -33,7 +33,7 @@ var drill_usage := 0.0 :
 		emit_signal("charge_drill_usage", value)
 
 @export var fotonic_usage_speed : float = 20
-@export var min_fotonic_usage : float = 2
+@export var min_fotonic_usage : float = 4
 var fotonic_usage := 0.0 :
 	set(value):
 		fotonic_usage = value
