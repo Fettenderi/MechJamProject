@@ -6,7 +6,7 @@ extends Control
 
 @onready var health_bar:= $HealthBar
 @onready var energy_bar:= $EnergyBar
-@onready var weapon:= $Container/Weapon
+@onready var weapon:= $Weapon
 @onready var kill_counter:= $KillCounter
 @onready var waves_counter:= $WavesCounter
 

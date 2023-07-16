@@ -23,6 +23,7 @@ name = "intensity"
 
 [node name="WaveManager" type="Node"]
 script = ExtResource("1_jjuc3")
+is_debug = true
 
 [node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
 parameter = SubResource("ParameterAsset_ryo31")

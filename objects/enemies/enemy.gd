@@ -17,9 +17,9 @@ func _physics_process(delta):
 	
 	is_walking = velocity.length() >= 0.2
 	if is_walking and footsteps_timer.time_left == 0:
-		footsteps_timer.start(randf_range(0.3, 2.0))
+		footsteps_timer.start(randf_range(2, 5))
 
 func do_footstep_sound():
 	if is_walking:
 		RuntimeManager.play_one_shot_attached(footsteps_sfx, global_position)
-		footsteps_timer.start(randf_range(0.3, 2.0))
+		footsteps_timer.start(randf_range(2, 5))

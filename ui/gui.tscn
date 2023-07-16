@@ -19,17 +19,10 @@ color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
 [node name="Weapon" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -171.0
-offset_top = -26.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_top = 58.0
+offset_right = 171.0
+offset_bottom = 84.0
 text = "Weapon"
-horizontal_alignment = 2
 
 [node name="KillCounter" type="Label" parent="."]
 layout_mode = 1

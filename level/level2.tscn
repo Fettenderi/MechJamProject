@@ -1,9 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://btrios0aarsv"]
+[gd_scene load_steps=18 format=3 uid="uid://btrios0aarsv"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_gldgd"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_oje66"]
 [ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="2_pxlxk"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="3_nbgyd"]
+[ext_resource type="PackedScene" uid="uid://c762fmdasbdxk" path="res://objects/enemies/noob_alien.tscn" id="5_gogt0"]
+[ext_resource type="PackedScene" uid="uid://cacw160g18oyo" path="res://objects/enemies/rover.tscn" id="6_g2uly"]
+[ext_resource type="PackedScene" uid="uid://cjgcqq3o1837l" path="res://objects/enemies/mk1.tscn" id="7_k3ply"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -109,5 +112,68 @@ font_size = 128
 [node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("3_nbgyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15443, 1, 3)
 camera = NodePath("../../PlayerFollower/CameraPlayer")
+
+[node name="NoobAlien" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.5, 0)
+
+[node name="NoobAlien2" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.5, 0)
+
+[node name="NoobAlien3" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 0)
+
+[node name="NoobAlien4" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -5)
+
+[node name="NoobAlien5" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, -5)
+
+[node name="NoobAlien6" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, -8)
+
+[node name="NoobAlien7" parent="Entities" instance=ExtResource("5_gogt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.5, -8)
+
+[node name="Rover" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.5, 0)
+
+[node name="Rover2" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.5, 0)
+
+[node name="Rover3" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.5, -5)
+
+[node name="Rover4" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, -5)
+
+[node name="Rover5" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, -10)
+
+[node name="Rover6" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 0)
+
+[node name="Rover7" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 7)
+
+[node name="Rover8" parent="Entities" instance=ExtResource("6_g2uly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0.5, 7)
+
+[node name="MK1" parent="Entities" instance=ExtResource("7_k3ply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, 18.6)
+
+[node name="MK2" parent="Entities" instance=ExtResource("7_k3ply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.5, 18.6)
+
+[node name="MK3" parent="Entities" instance=ExtResource("7_k3ply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.5, 11.6)
+
+[node name="MK4" parent="Entities" instance=ExtResource("7_k3ply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0.5, 11.6)
+
+[node name="MK5" parent="Entities" instance=ExtResource("7_k3ply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0.5, 23.6)
+
+[node name="MK6" parent="Entities" instance=ExtResource("7_k3ply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.5, 23.6)
 
 [node name="Props" type="Node3D" parent="."]
