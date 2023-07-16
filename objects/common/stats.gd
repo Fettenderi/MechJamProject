@@ -15,6 +15,7 @@ enum AttackType {
 	set(value):
 		max_health = value
 		emit_signal("max_health_changed", max_health)
+
 @onready var health := max_health :
 	set(value):
 		health = clamp(value, 0, max_health)
