@@ -9,6 +9,7 @@ extends Node
 
 var current_wave : int = 0
 var current_subwave : int = 0
+var subwave_count : int = 0
 var current_max_intensity : int = 0
 var can_chill_out := false
 var max_enemies_per_wave := 0
@@ -18,9 +19,9 @@ signal wave_changed(value)
 func _ready():
 	if not is_debug:
 		GameMachine.connect("enemies_all_dead", advance_waves)
-		subwave_advance_timer.connect("timeout", advance_waves)
 		GameMachine.connect("enemies_diminuished", update_intensity)
-		# start_tutorial
+		subwave_advance_timer.connect("timeout", advance_waves)
+		subwave_advance_timer.start(subwave_time)
 
 func start_waves():
 	if not is_debug:
@@ -31,11 +32,9 @@ func _physics_process(_delta):
 		advance_waves()
 
 func advance_waves():
-	if not is_debug:
-		GameMachine.add_spaceship()
-		subwave_advance_timer.start(subwave_time)
 	if current_wave <= 5:
 		current_subwave += 1
+		subwave_count += 1
 		if current_subwave == current_wave:
 			can_chill_out = true
 			current_max_intensity = current_subwave
@@ -47,6 +46,9 @@ func advance_waves():
 		intensity_controller.trigger()
 		if is_debug:
 			print("Ondata: ", current_wave, ", Sotto ondata: ", current_subwave)
+		else:
+			GameMachine.add_spaceship(subwave_count)
+			subwave_advance_timer.start(subwave_time)
 
 func update_intensity(current_enemies: int):
 	if can_chill_out:
