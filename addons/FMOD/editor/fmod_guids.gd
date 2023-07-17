@@ -1,0 +1,75 @@
+#
+   # fmod_guids.gd - FMOD Studio API
+
+   # Generated GUIDs for project 'MechJam.fspro'
+#
+
+class_name FMODGuids
+
+class Events:
+	const MUSIC_MUSIC = "{f3850399-665b-48be-bf11-33033c90cf47}"
+	const SFX_ALIEN_ALIEN_DAMAGE = "{8356e32e-72b4-4c26-a3c9-ece918b05206}"
+	const SFX_ALIEN_ALIEN_DIES = "{b5e70fca-0543-46e9-9385-d02ca7b3a26b}"
+	const SFX_ALIEN_ALIEN_FOOTSTEPS = "{2c74d59d-7ce6-4636-a3cb-25e3ce94a8cf}"
+	const SFX_ALIEN_ALIEN_LASER_GUN = "{dcca9f04-5273-4358-be00-372335871df8}"
+	const SFX_GAMEPLAY_CHARGING = "{91a06109-16c7-40cd-9d3f-49f8cdd7730b}"
+	const SFX_GAMEPLAY_HEALING = "{215f14e0-eb51-40d5-bf9b-6ba380860e00}"
+	const SFX_GAMEPLAY_LOW_BATTERY = "{f37614f7-3b8a-4f28-86ed-79a7a860a162}"
+	const SFX_GAMEPLAY_LOW_HEALTH = "{eac5da5e-3481-41ec-9eff-383b007c980d}"
+	const SFX_MECH_MECH_AREA_ATTACK = "{0daeace2-dcef-435c-a668-e5575642b6f0}"
+	const SFX_MECH_MECH_CANNON = "{82be8b1e-1b30-417e-8a76-7c189dfd9745}"
+	const SFX_MECH_MECH_DAMAGE = "{02de4315-4de9-400b-a53e-61a01bd40ad2}"
+	const SFX_MECH_MECH_DIES = "{94d34c99-1460-45e3-857f-581ccf531ce4}"
+	const SFX_MECH_MECH_DRILL_LONG = "{cc94d5ab-f44b-4107-8d6f-9bba0057010b}"
+	const SFX_MECH_MECH_JETPACK = "{e7294330-dfac-40de-bf66-51f6b17268da}"
+	const SFX_MECH_MECH_JUMP = "{0f128135-8b1b-4b7d-a006-dd9575b8a1da}"
+	const SFX_MECH_MECH_LASER_GUN = "{b7203881-92e6-4b1b-a4cf-d2369fb46842}"
+	const SFX_MECH_MECH_NORMAL_ATTACK = "{bc2c4842-224d-4564-8258-1640169b9d5c}"
+	const SFX_MK1_MK1_DAMAGE = "{fbf70e58-7ed4-4e82-9382-7ea8bef6cf43}"
+	const SFX_MK1_MK1_DIES = "{84c5df55-5467-400c-9ff7-c0a47971c23d}"
+	const SFX_MK1_MK1_FOOTSTEPS = "{1c4f5690-8aae-455e-83f0-cbcc1f63f5b6}"
+	const SFX_MK1_MK1_GUN = "{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}"
+	const SFX_MK1_MK1_SHIELD_REMOVED = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
+	const SFX_ROVER_ROVER_DAMAGE = "{e3d97641-b413-4e1f-b89f-06c10c5d95ea}"
+	const SFX_ROVER_ROVER_DIES = "{e2098359-7a59-4fed-b832-97aedb5fa777}"
+	const SFX_ROVER_ROVER_FOOTSTEPS = "{27442397-ff6a-4853-b2bd-eb10cf8b7e3b}"
+	const SFX_ROVER_ROVER_MINE_DEPLOYED = "{5886d81e-0d2d-4b80-a5f9-b5951b325f95}"
+	const SFX_ROVER_ROVER_MINE_EXPLOSION = "{3e3ae0df-22b2-415b-862a-13fc792bef92}"
+	const SFX_ROVER_ROVER_TURNS = "{dff508d9-10fe-4511-96b3-51ea620a5080}"
+	const SFX_SPACESHIP_SPACESHIP_SOUNDS = "{247e961d-b559-41b2-858e-123e77e8dc67}"
+	const SFX_UI_BACK = "{cc6278d4-b513-4976-a1a4-af5410c1021f}"
+	const SFX_UI_NAVIGATE = "{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}"
+	const SFX_UI_SELECT = "{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}"
+	const SFX_UI_START_GAME = "{4f640811-9d33-405c-a613-27de805dfebb}"
+
+class Busses:
+	const MASTER_BUS = "{5e22bac0-3f00-4935-8a02-38325683d9fc}"
+	const MUSIC = "{501f818c-9a4a-48d4-98a6-2ebe889f0675}"
+	const REVERB = "{33081084-5725-4053-a870-42ec617217f5}"
+	const SFX = "{c0c6a49a-0a2b-496b-aaa8-40d9ce38ec58}"
+	const SFX_ENEMIES = "{96e85122-644b-4e31-8703-5b69a6aab773}"
+	const SFX_ENEMIES_ALIEN = "{dbb1a3ec-f20d-47b8-b3ca-b34acfbe6f23}"
+	const SFX_ENEMIES_MK1 = "{d783e0ce-89e0-48e4-861f-34d7d8db5668}"
+	const SFX_ENEMIES_ROVER = "{800f6c26-5be0-4272-963d-9bde7c4bba0b}"
+	const SFX_GAMEPLAY = "{3336ff87-6b5f-4670-b42d-8d6255399f60}"
+	const SFX_PLAYER = "{ab9f6752-173c-4a98-9c83-9e8450a76cb5}"
+	const SFX_SPACESHIP = "{e115e6e2-c20b-4b15-b328-b947bb38ca8e}"
+	const SFX_UI = "{05379924-f410-413e-bed2-1b84523a1218}"
+
+class Snapshots:
+	const BATTERY_LOW = "{383d9850-1503-4677-9e93-d5d08104c427}"
+	const HEALTH_LOW = "{3a5c6e69-968f-4da5-a711-84fed51d8f52}"
+
+class Banks:
+	const MASTER = "{64f306e5-ad1f-4f97-96e1-d7e886c4c393}"
+
+class Parameters:
+	const DRILL_ATTACK = "{ed241e7a-320d-4773-9518-a2733a6cf462}"
+	const GAME_STARTS = "{aeb95a14-a2c6-4361-adae-9a008f467c79}"
+	const INTENSITY = "{4015e5df-192f-4ac4-9e55-35ce689b597f}"
+	const INTENSITY_OLD = "{e08a946e-7620-48f0-ba70-6c16cbfe8532}"
+	const LOW_BATTERY = "{9b01fb87-1f32-4ff9-93c8-3369cc0b97c7}"
+	const LOW_HEALTH = "{c1b83e07-87c1-4371-bc9e-fc73dfbbe554}"
+	const PLAYER_DEAD = "{94def00b-20b8-4470-9cbd-2426eac9a9c3}"
+	const PLAYER_MOVING = "{ef3c7da3-b0e9-4969-ab8c-eab9d73223da}"
+

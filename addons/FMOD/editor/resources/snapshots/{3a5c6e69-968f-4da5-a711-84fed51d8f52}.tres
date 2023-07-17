@@ -1,0 +1,7 @@
+[gd_resource type="EventAsset" format=3 uid="uid://dmtaxbj4v5sjc"]
+
+[resource]
+is_snapshot = true
+path = "snapshot:/Health Low"
+guid = "{3a5c6e69-968f-4da5-a711-84fed51d8f52}"
+name = "Health Low"

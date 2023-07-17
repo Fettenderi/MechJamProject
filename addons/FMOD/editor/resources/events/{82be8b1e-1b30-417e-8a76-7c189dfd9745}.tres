@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://b004tam2pkggx"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Cannon"
+guid = "{82be8b1e-1b30-417e-8a76-7c189dfd9745}"
+name = "Mech Cannon"
