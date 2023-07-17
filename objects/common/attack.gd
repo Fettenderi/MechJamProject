@@ -7,6 +7,7 @@ extends Area3D
 @export var stats : Stats
 @export var attack_type : Stats.AttackType
 @export var particles_in_sync : bool = true
+@export var custom_sfx : bool = false
 
 @onready var shape := $Shape
 @onready var duration_timer := $DurationTimer
@@ -38,7 +39,8 @@ func start_attack(particle_parameter: float = 1.0) -> void:
 
 func initiate_attack():
 	emit_signal("is_attacking")
-	sfx_emitter.play()
+	if not custom_sfx:
+		sfx_emitter.play()
 	duration_timer.start(duration_time)
 	
 	emit_particles(particle_parameters)

@@ -19,6 +19,8 @@ const ROTATION_SPEED = 10.0
 @onready var low_health_sfx := $LowHealthSfx
 @onready var footsteps_sfx := $FootstepsSfx
 @onready var jump_sfx := $JumpSfx
+@onready var drill_sfx := $DrillSfx
+@onready var drill_parameter := $DrillParameter
 
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
@@ -46,6 +48,8 @@ var attacking := false
 var needs_charging := false
 var is_charging := false
 var is_walking := false
+
+var once_drill := false
 
 var ray_origin := Vector3.ZERO
 var ray_target := Vector3.ZERO
@@ -77,6 +81,7 @@ func _ready():
 	
 	PlayerStats.connect("energy_changed", energy_has_changed)
 	PlayerStats.connect("health_changed", health_has_changed)
+	
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -144,6 +149,11 @@ func handle_attacks(delta: float):
 					needs_charging = true
 					PlayerStats.drill_usage += delta
 					if PlayerStats.drill_usage >= PlayerStats.min_drill_usage:
+						if not once_drill:
+							drill_sfx.play()
+							drill_parameter.value = 0
+							drill_parameter.trigger()
+							once_drill = true
 						needs_charging = false
 						is_charging = false
 						handle_single_attack(drill_attack, Stats.AttackType.DRILL, PlayerStats.drill_usage)
@@ -166,6 +176,9 @@ func handle_attacks(delta: float):
 	elif Input.is_action_just_released("player_attack"):
 		PlayerStats.drill_usage = 0
 		PlayerStats.fotonic_usage = 0
+		drill_parameter.value = 1
+		drill_parameter.trigger()
+		once_drill = false
 		needs_charging = false
 		is_charging = false
 	

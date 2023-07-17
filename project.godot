@@ -21,12 +21,14 @@ RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 PlayerStats="*res://singletons/player_stats.tscn"
 GameMachine="*res://singletons/game_machine.tscn"
 WaveManager="*res://singletons/wave_manager.tscn"
+Gui="*res://ui/gui.tscn"
 
 [display]
 
 window/size/viewport_width=512
 window/size/viewport_height=288
 window/size/mode=2
+window/size/always_on_top=true
 window/size/window_width_override=1024
 window/size/window_height_override=576
 window/stretch/aspect="expand"

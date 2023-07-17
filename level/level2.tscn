@@ -11,10 +11,11 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
 shader = ExtResource("2_oje66")
+shader_parameter/pixel_size = 4
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a8j7f"]
 material = SubResource("ShaderMaterial_haw7x")
-size = Vector2(40, 30)
+size = Vector2(50, 50)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwau"]
@@ -58,12 +59,13 @@ player = NodePath("../Entities/Player")
 lerp_weight = 10.0
 
 [node name="CameraPlayer" type="Camera3D" parent="PlayerFollower"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8.02416, 4.83808)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8.54245, 6.01915)
 current = true
+fov = 90.0
 size = 10.0
 
 [node name="Pixelator" type="MeshInstance3D" parent="PlayerFollower/CameraPlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565686, -0.464466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548696, -1.49389)
 mesh = SubResource("PlaneMesh_a8j7f")
 skeleton = NodePath("../..")
 

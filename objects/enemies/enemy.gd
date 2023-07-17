@@ -21,5 +21,5 @@ func _physics_process(delta):
 
 func do_footstep_sound():
 	if is_walking:
-		RuntimeManager.play_one_shot_attached(footsteps_sfx, global_position)
+		RuntimeManager.play_one_shot_attached(footsteps_sfx, self)
 		footsteps_timer.start(randf_range(2, 5))

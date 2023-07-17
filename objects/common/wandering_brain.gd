@@ -27,7 +27,7 @@ var is_rotating := false
 
 func on_brain_start():
 	randomize()
-#	if $RotatingSfx:
+#	if get_node_or_null("RotatingSfx"):
 #		rotating_sfx = $RotatingSfx
 	general_timer.connect("timeout", maybe_change_state)
 	direction = Vector3(randi_range(-1, 1), 0, randi_range(-1, 1)).normalized()
@@ -90,6 +90,9 @@ func velocity_lerp(end_velocity: Vector3, delta: float):
 
 @warning_ignore("shadowed_variable")
 func update_rotation(direction: Vector3, delta: float = 1) -> void:
+#	if rotating_sfx:
+#		pass
+	
 	var final_angle := acos(Vector3.RIGHT.dot(direction))
 	if direction.z > 0:
 		rotating.rotation.y = lerp_angle(rotating.rotation.y, -final_angle, delta * ROTATION_SPEED)

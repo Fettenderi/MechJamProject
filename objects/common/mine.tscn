@@ -1,14 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb765ivlpooki"]
+[gd_scene load_steps=15 format=3 uid="uid://bb765ivlpooki"]
 
 [ext_resource type="Script" path="res://objects/common/mine.gd" id="1_xcnvx"]
 [ext_resource type="EventAsset" uid="uid://cla5ty2u2isf5" path="res://addons/FMOD/editor/resources/events/{3e3ae0df-22b2-415b-862a-13fc792bef92}.tres" id="2_fd7jy"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chdyt"]
-albedo_color = Color(0.909804, 0.2, 0.247059, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_alip7"]
-material = SubResource("StandardMaterial3D_chdyt")
-size = Vector3(1, 0.1, 1)
+[ext_resource type="PackedScene" uid="uid://hjrh48pd41rs" path="res://models/rover/mine_mesh.tscn" id="2_hsjnw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u2ec1"]
 size = Vector3(1.5, 1, 1.5)
@@ -36,12 +30,30 @@ attractor_interaction_enabled = false
 radius = 1.0
 height = 2.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r8guu"]
+animation = &"exploding"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mq4wu"]
+animation = &"priming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ss0cl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ic1a1"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_36sal"]
+states/exploding/node = SubResource("AnimationNodeAnimation_r8guu")
+states/exploding/position = Vector2(674.4, 100.08)
+states/priming/node = SubResource("AnimationNodeAnimation_mq4wu")
+states/priming/position = Vector2(415.2, 99.12)
+transitions = ["Start", "priming", SubResource("AnimationNodeStateMachineTransition_ss0cl"), "priming", "exploding", SubResource("AnimationNodeStateMachineTransition_ic1a1")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_4fscn"]
+
 [node name="Mine" type="Area3D"]
 script = ExtResource("1_xcnvx")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0525044, 0)
-mesh = SubResource("BoxMesh_alip7")
+[node name="MineMesh" parent="." instance=ExtResource("2_hsjnw")]
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -65,5 +77,18 @@ one_shot = true
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ActivationTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
 [node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
 event = ExtResource("2_fd7jy")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_36sal")
+anim_player = NodePath("../MineMesh/AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4fscn")
+
+[editable path="MineMesh"]

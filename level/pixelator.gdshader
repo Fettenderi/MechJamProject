@@ -4,7 +4,7 @@ render_mode unshaded;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
 //resolution must be divisible by pixel_size
-const int pixel_size = 4; 
+uniform int pixel_size = 2; 
 
 // References to built-in functions 
 // https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/spatial_shader.html#fragment-built-ins
