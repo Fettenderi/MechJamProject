@@ -26,8 +26,8 @@ func take_damage(area: Area3D):
 	
 	if not is_enemy:
 		GameMachine.add_trauma(0.5)
-		if hit_sfx:
-			hit_sfx.play()
+	if hit_sfx:
+		hit_sfx.play()
 		
 
 func get_damage() -> float:

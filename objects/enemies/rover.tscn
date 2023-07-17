@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cacw160g18oyo"]
+[gd_scene load_steps=23 format=3 uid="uid://cacw160g18oyo"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_413aq"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_vipsk"]
@@ -11,6 +11,7 @@
 [ext_resource type="EventAsset" uid="uid://m4gl6bot3y1i" path="res://addons/FMOD/editor/resources/events/{e3d97641-b413-4e1f-b89f-06c10c5d95ea}.tres" id="5_icyqp"]
 [ext_resource type="PackedScene" uid="uid://bb765ivlpooki" path="res://objects/common/mine.tscn" id="6_bd11u"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="7_7vx1u"]
+[ext_resource type="EventAsset" uid="uid://b1dygxj5tk6t8" path="res://addons/FMOD/editor/resources/events/{e2098359-7a59-4fed-b832-97aedb5fa777}.tres" id="7_lohxy"]
 [ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="8_0epa2"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="8_hitik"]
 
@@ -79,7 +80,7 @@ shape = SubResource("SphereShape3D_kv7y8")
 event = ExtResource("5_icyqp")
 
 [node name="DeadSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]
-event = ExtResource("5_icyqp")
+event = ExtResource("7_lohxy")
 
 [node name="HealthBar" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("3_k67lf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
