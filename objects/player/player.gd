@@ -15,8 +15,6 @@ const ROTATION_SPEED = 10.0
 @onready var weapon_consumption_timer := $WeaponConsumptionTimer
 @onready var footsteps_timer := $FootstepsTimer
 
-@onready var charging_sfx := $ChargingSfx
-@onready var healing_sfx := $HealingSfx
 @onready var low_battery_sfx := $LowBatterySfx
 @onready var low_health_sfx := $LowHealthSfx
 @onready var footsteps_sfx := $FootstepsSfx
@@ -320,8 +318,6 @@ func energy_has_changed(new_energy):
 	else:
 		low_battery_sfx.play()
 	
-	if new_energy > previous_energy:
-		charging_sfx.play()
 	previous_energy = new_energy
 
 func health_has_changed(new_health):
@@ -330,8 +326,6 @@ func health_has_changed(new_health):
 	else:
 		low_health_sfx.play()
 	
-	if new_health > previous_health:
-		healing_sfx.play()
 	previous_health = new_health
 
 

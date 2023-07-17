@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx6yf3f0ghhw8"]
+[gd_scene load_steps=13 format=3 uid="uid://dx6yf3f0ghhw8"]
 
 [ext_resource type="Script" path="res://objects/player/energy_supplier.gd" id="1_nsgsv"]
+[ext_resource type="EventAsset" uid="uid://gg6rckoxf8nn" path="res://addons/FMOD/editor/resources/events/{91a06109-16c7-40cd-9d3f-49f8cdd7730b}.tres" id="2_ap3u4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chdyt"]
 albedo_color = Color(0.113725, 0.658824, 0.690196, 1)
@@ -71,3 +72,6 @@ emitting = false
 one_shot = true
 
 [node name="ChargeTimer" type="Timer" parent="."]
+
+[node name="ChargingSfx" type="StudioEventEmitter3D" parent="."]
+event = ExtResource("2_ap3u4")

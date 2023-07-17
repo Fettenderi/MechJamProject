@@ -5,6 +5,7 @@ extends Area3D
 @onready var primary_particles := $PrimaryParticles
 @onready var secondary_particles := $SecondaryParticles
 @onready var charge_timer := $ChargeTimer
+@onready var charging_sfx := $ChargingSfx
 
 var can_charge := false
 var target : Area3D
@@ -18,6 +19,7 @@ func target_entered_in_range(area: Area3D):
 	target = area
 	PlayerStats.can_discharge = false
 	can_charge = true
+	charging_sfx.play()
 	primary_particles.call_deferred("set_emitting", true)
 	secondary_particles.call_deferred("set_emitting", true)
 
@@ -25,6 +27,7 @@ func target_exited_from_range(_area: Area3D):
 	target = null
 	PlayerStats.can_discharge = true
 	can_charge = false
+	charging_sfx.stop()
 	primary_particles.call_deferred("set_emitting", false)
 	secondary_particles.call_deferred("set_emitting", false)
 
