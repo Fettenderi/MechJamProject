@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://btrios0aarsv"]
+[gd_scene load_steps=18 format=3 uid="uid://btrios0aarsv"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_gldgd"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_oje66"]
 [ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="2_pxlxk"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="3_nbgyd"]
-[ext_resource type="PackedScene" uid="uid://b8e14ykg88vyd" path="res://ui/gui.tscn" id="3_pr8pd"]
 [ext_resource type="PackedScene" uid="uid://c762fmdasbdxk" path="res://objects/enemies/noob_alien.tscn" id="5_gogt0"]
 [ext_resource type="PackedScene" uid="uid://cacw160g18oyo" path="res://objects/enemies/rover.tscn" id="6_g2uly"]
 [ext_resource type="PackedScene" uid="uid://cjgcqq3o1837l" path="res://objects/enemies/mk1.tscn" id="7_k3ply"]
@@ -67,9 +66,6 @@ size = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565686, -0.464466)
 mesh = SubResource("PlaneMesh_a8j7f")
 skeleton = NodePath("../..")
-
-[node name="GUI" parent="PlayerFollower/CameraPlayer" instance=ExtResource("3_pr8pd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 2.61051, -4.27846)
 
 [node name="WorldElements" type="Node3D" parent="."]
 
