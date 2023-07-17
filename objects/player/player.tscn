@@ -164,7 +164,7 @@ states/normal_attack/position = Vector2(552.096, -99.6762)
 states/walk/node = SubResource("AnimationNodeAnimation_kbhsm")
 states/walk/position = Vector2(667.6, 98.2494)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_sd2wq"), "drill_charge", "drill_attack", SubResource("AnimationNodeStateMachineTransition_wigkb"), "drill_attack", "drill_release", SubResource("AnimationNodeStateMachineTransition_nbw4c"), "idle", "drill_charge", SubResource("AnimationNodeStateMachineTransition_ctcqt"), "idle", "normal_attack", SubResource("AnimationNodeStateMachineTransition_ljvcg"), "idle", "gun_attack", SubResource("AnimationNodeStateMachineTransition_7elln"), "gun_attack", "idle", SubResource("AnimationNodeStateMachineTransition_kqx7s"), "normal_attack", "idle", SubResource("AnimationNodeStateMachineTransition_8yogd"), "drill_release", "idle", SubResource("AnimationNodeStateMachineTransition_63wfc"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_ach1k"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_keptg"), "walk", "gun_attack", SubResource("AnimationNodeStateMachineTransition_m6s55"), "gun_attack", "walk", SubResource("AnimationNodeStateMachineTransition_k4sp3"), "normal_attack", "walk", SubResource("AnimationNodeStateMachineTransition_hcxtt"), "walk", "normal_attack", SubResource("AnimationNodeStateMachineTransition_yvyhb"), "walk", "drill_charge", SubResource("AnimationNodeStateMachineTransition_mohnc"), "drill_release", "walk", SubResource("AnimationNodeStateMachineTransition_lxpwi"), "jump_charge", "fall", SubResource("AnimationNodeStateMachineTransition_agvk4"), "fall", "jump_land", SubResource("AnimationNodeStateMachineTransition_3vivb"), "jump_land", "walk", SubResource("AnimationNodeStateMachineTransition_763t1"), "jump_land", "idle", SubResource("AnimationNodeStateMachineTransition_3yfj5"), "idle", "jump_charge", SubResource("AnimationNodeStateMachineTransition_88xi2"), "idle", "cannon_charge", SubResource("AnimationNodeStateMachineTransition_0uews"), "cannon_charge", "cannon_attack", SubResource("AnimationNodeStateMachineTransition_t7okv"), "cannon_attack", "cannon_release", SubResource("AnimationNodeStateMachineTransition_mswwx"), "cannon_release", "walk", SubResource("AnimationNodeStateMachineTransition_4trwq")]
-graph_offset = Vector2(-89, 74)
+graph_offset = Vector2(173.872, 314.554)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_80d1m"]
 
@@ -337,34 +337,31 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30067, 0.203125)
-
-[node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22352, 0.203125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.04669, 0.379825, 2.98023e-08, 0.99253, -0.122007, -0.382684, 0.11272, 0.916978, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.923879, 0.0648681, 0.377147, 2.6077e-08, 0.985529, -0.169508, -0.382684, 0.156605, 0.91051, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.04669, -0.379825, -2.98023e-08, 0.99253, -0.122007, 0.382684, 0.11272, 0.916978, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.923879, -0.0648681, -0.377147, -2.6077e-08, 0.985529, -0.169508, 0.382684, 0.156605, 0.91051, 0.6875, 3.375, 0.15625)
 
 [node name="leftUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="1"]
-transform = Transform3D(0.953717, 0.233553, 0.189413, 5.21541e-08, 0.629895, -0.77668, -0.300706, 0.740734, 0.600741, -0.5, -0.1875, -0.0625)
+transform = Transform3D(0.953717, 0.21749, 0.207658, -8.9407e-08, 0.69057, -0.723266, -0.300706, 0.689792, 0.658607, -0.5, -0.1875, -0.0625)
 
 [node name="leftLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.439182, 0.898397, 0, -0.898397, 0.439182, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.52568, 0.850681, 0, -0.850681, 0.52568, 0, -1.1875, -5.55112e-17)
 
 [node name="leftFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.973592, -0.228297, 0, 0.228297, 0.973592, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.977796, -0.209555, 0, 0.209555, 0.977796, 0, -1.20833, 0.0275673)
 
 [node name="rightUpperLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody" index="2"]
-transform = Transform3D(0.953717, -0.233552, -0.189413, -5.21541e-08, 0.629894, -0.77668, 0.300706, 0.740732, 0.600741, 0.625, -0.1875, -0.0625)
+transform = Transform3D(0.953717, -0.21749, -0.207658, 8.9407e-08, 0.690569, -0.723266, 0.300706, 0.68979, 0.658607, 0.625, -0.1875, -0.0625)
 
 [node name="rightLowerLeg" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.439182, 0.898397, 0, -0.898397, 0.439182, 0, -1.1875, -5.55112e-17)
+transform = Transform3D(1, 0, 0, 0, 0.52568, 0.850681, 0, -0.850681, 0.52568, 0, -1.1875, -5.55112e-17)
 
 [node name="rightFoot" parent="Rotating/PlayerMesh/Node2/mecha/lowerBody/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.973592, -0.228297, 0, 0.228297, 0.973592, 0, -1.20833, 0.0275673)
+transform = Transform3D(1, 0, 0, 0, 0.977796, -0.209555, 0, 0.209555, 0.977796, 0, -1.20833, 0.0275673)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
