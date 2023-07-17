@@ -1,0 +1,6 @@
+[gd_resource type="BusAsset" format=3 uid="uid://1jmf2booc6o3"]
+
+[resource]
+path = "bus:/SFX/UI"
+guid = "{05379924-f410-413e-bed2-1b84523a1218}"
+name = "UI"

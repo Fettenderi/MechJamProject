@@ -1,0 +1,18 @@
+[gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://bg7xmerh60nl8"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_va22u"]
+data1 = 2418014613
+data2 = 3624414374
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_weoal"]
+name = "low_health"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_va22u")
+maximum = 1.0
+flags = 12
+guid = "{e394a3ef-4ebb-4bad-8212-c1b4b696b5b1}"
+
+[resource]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_weoal")
+path = "parameter:/low_health"
+guid = "{e394a3ef-4ebb-4bad-8212-c1b4b696b5b1}"
+name = "low_health"
