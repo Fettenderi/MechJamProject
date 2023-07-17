@@ -223,7 +223,7 @@ func handle_animations(on_floor: bool, weapon_state: Stats.AttackType, direction
 					state_machine.travel("drill_charge")
 				if signal_recieved:
 					signal_recieved = false
-					state_machine.travel("drill_attack")
+					state_machine.start("drill_attack")
 			
 			Stats.AttackType.FOTONIC:
 				if needs_charging and not is_charging:
@@ -231,7 +231,7 @@ func handle_animations(on_floor: bool, weapon_state: Stats.AttackType, direction
 					state_machine.travel("cannon_charge")
 				if signal_recieved:
 					signal_recieved = false
-					state_machine.travel("cannon_attack")
+					state_machine.start("cannon_attack")
 			
 			Stats.AttackType.GUN:
 				if signal_recieved:

@@ -60,37 +60,37 @@ event = ExtResource("4_my8nw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="alien" parent="Rotating/AlienMesh/Node2" index="0"]
-transform = Transform3D(0.999983, -0.00577176, -0.000211274, 0.00574996, 0.998317, -0.0576913, 0.000543898, 0.057689, 0.998334, 0, -0.0690436, -0.0709028)
+transform = Transform3D(0.999999, -0.00131342, -7.74186e-05, 0.00131229, 0.999912, -0.0131472, 9.46797e-05, 0.0131471, 0.999913, 0, -0.0615772, -0.0161497)
 
 [node name="body" parent="Rotating/AlienMesh/Node2/alien" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 2.125, 0)
 
 [node name="leftArm" parent="Rotating/AlienMesh/Node2/alien/body" index="2"]
-transform = Transform3D(0.413259, -0.910614, 0, 0.910614, 0.413259, 0, 0, 0, 1, -0.4375, 0.15625, 0)
+transform = Transform3D(0.35844, -0.933554, 0, 0.933554, 0.35844, 0, 0, 0, 1, -0.4375, 0.15625, 0)
 
 [node name="rightArm" parent="Rotating/AlienMesh/Node2/alien/body" index="3"]
-transform = Transform3D(0.377919, 0.925839, 0, -0.925839, 0.377919, 0, 0, 0, 1, 0.4375, 0.15625, 0)
+transform = Transform3D(0.350244, 0.936659, 0, -0.936659, 0.350244, 0, 0, 0, 1, 0.4375, 0.15625, 0)
 
 [node name="leftUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="4"]
 transform = Transform3D(0.991445, 0.0602703, 0.115778, 9.31323e-09, 0.887011, -0.461749, -0.130526, 0.457798, 0.879422, -0.25, -0.5, 0)
 
 [node name="leftLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.831248, 0.555901, 0, -0.555901, 0.831248, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.874563, 0.48491, 0, -0.48491, 0.874563, 0, -0.75, 0)
 
 [node name="leftFoot" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(0.999959, -0.00881096, 0.00198855, 0.0090185, 0.961624, -0.274221, 0.000503917, 0.274228, 0.961664, 0, -0.75, 0)
+transform = Transform3D(0.999752, -0.0222329, 0.000543948, 0.0217635, 0.973024, -0.229673, 0.00457703, 0.229628, 0.973267, 0, -0.75, 0)
 
 [node name="rightUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="5"]
 transform = Transform3D(0.991445, -0.0602703, -0.115778, -9.31323e-09, 0.88701, -0.461749, 0.130526, 0.457798, 0.879422, 0.25, -0.5, 0)
 
 [node name="rightLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.828919, 0.559369, 0, -0.559369, 0.828919, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.868151, 0.4963, 0, -0.4963, 0.868151, 0, -0.75, 0)
 
 [node name="rightFoot" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(0.999518, 0.0310302, -0.00136473, -0.0302549, 0.962718, -0.268805, -0.00702725, 0.268716, 0.963194, 0, -0.75, 0)
+transform = Transform3D(0.999421, 0.0340226, -0.000323271, -0.0330934, 0.969828, -0.241529, -0.00790392, 0.241399, 0.970394, 0, -0.75, 0)
 
 [node name="head" parent="Rotating/AlienMesh/Node2/alien/body" index="6"]
-transform = Transform3D(0.998814, -0.0486845, -0.00165028, 0.0461788, 0.9571, -0.286052, 0.0155058, 0.285637, 0.958212, 0.00852273, 0.436506, 0)
+transform = Transform3D(0.999746, 0.0225975, -0.000251277, -0.02165, 0.954519, -0.297362, -0.0064798, 0.297291, 0.954764, 0.00852273, 0.436506, 0)
 
 [node name="AnimationPlayer" parent="Rotating/AlienMesh" index="1"]
 speed_scale = 2.0

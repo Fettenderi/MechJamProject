@@ -49,6 +49,7 @@ func initiate_attack():
 
 func end_attack() -> void:
 	delay_timer.stop()
+	sfx_emitter.stop()
 	reload_timer.stop()
 	can_shoot = true
 

@@ -9,6 +9,7 @@ extends Area3D
 
 var can_charge := false
 var target : Area3D
+var once_charged := false
 
 func _ready() -> void:
 	charge_timer.connect("timeout", set_can_charge)
@@ -16,14 +17,15 @@ func _ready() -> void:
 	connect("area_exited", target_exited_from_range)
 
 func target_entered_in_range(area: Area3D):
+	
 	target = area
 	PlayerStats.can_discharge = false
 	can_charge = true
-	charging_sfx.play()
 	primary_particles.call_deferred("set_emitting", true)
 	secondary_particles.call_deferred("set_emitting", true)
 
 func target_exited_from_range(_area: Area3D):
+	once_charged = false
 	target = null
 	PlayerStats.can_discharge = true
 	can_charge = false
@@ -39,10 +41,14 @@ func set_can_charge():
 func _physics_process(_delta):
 	if PlayerStats.energy == PlayerStats.max_energy:
 		can_charge = false
+		charging_sfx.stop()
 		primary_particles.call_deferred("set_emitting", false)
 		secondary_particles.call_deferred("set_emitting", false)
 	
 	if can_charge:
+		if not once_charged:
+			charging_sfx.play()
+			once_charged = true
 		can_charge = false
 		charge_timer.start(charge_time)
 		

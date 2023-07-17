@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=97 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://q2u5nrl82cid" path="res://objects/common/particles/sparkles_colors_2.tres" id="8_5fb3j"]
 [ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="8_xrhl3"]
 [ext_resource type="EventAsset" uid="uid://cjj5rmmhkokbb" path="res://addons/FMOD/editor/resources/events/{b7203881-92e6-4b1b-a4cf-d2369fb46842}.tres" id="11_u8q1e"]
+[ext_resource type="EventAsset" uid="uid://b004tam2pkggx" path="res://addons/FMOD/editor/resources/events/{82be8b1e-1b30-417e-8a76-7c189dfd9745}.tres" id="12_axu1q"]
 [ext_resource type="PackedScene" uid="uid://bxs7ih6h1ojsg" path="res://objects/common/fotonic_projectile.tscn" id="12_d1k7w"]
 [ext_resource type="EventAsset" uid="uid://coc7vr025c2jb" path="res://addons/FMOD/editor/resources/events/{20211b87-581d-42a4-9c0e-863c6366b234}.tres" id="12_jtkdk"]
 [ext_resource type="EventAsset" uid="uid://d3uafrow3peip" path="res://addons/FMOD/editor/resources/events/{0daeace2-dcef-435c-a668-e5575642b6f0}.tres" id="16_kq6hf"]
@@ -370,16 +371,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.372316, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.354891, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.03424, 0.381148, -3.91156e-08, 0.99599, -0.0894734, -0.382683, 0.0826627, 0.920174, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0338475, 0.381184, 4.28408e-08, 0.996082, -0.0884478, -0.382684, 0.0817152, 0.920258, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.03424, -0.381148, 3.91156e-08, 0.995989, -0.0894734, 0.382683, 0.0826626, 0.920174, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0338475, -0.381184, -4.28408e-08, 0.996081, -0.0884478, 0.382684, 0.0817151, 0.920258, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -482,6 +483,9 @@ explosiveness = 0.5
 process_material = SubResource("ParticleProcessMaterial_73prc")
 draw_pass_1 = SubResource("BoxMesh_h4hdo")
 
+[node name="SFXEmitter" parent="Rotating/FotonicCannon" index="4"]
+event = ExtResource("12_axu1q")
+
 [node name="GPUParticlesAttractorBox3D" type="GPUParticlesAttractorBox3D" parent="Rotating/FotonicCannon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0919647, 0, -1.49012e-08)
 strength = 300.0
@@ -514,6 +518,8 @@ event = ExtResource("16_ngku1")
 [node name="AreaAttack" parent="Fixed" instance=ExtResource("2_7spae")]
 collision_layer = 2
 collision_mask = 4
+duration_time = 0.1
+delay_time = 0.1
 attack_type = 4
 
 [node name="Shape" parent="Fixed/AreaAttack" index="0"]
