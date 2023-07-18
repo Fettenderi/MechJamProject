@@ -4,12 +4,18 @@ extends Control
 @export var color_high: Color
 @export var max_size: Vector2 = Vector2(200, 20)
 
-@onready var health_bar:= $HealthBar
-@onready var energy_bar:= $EnergyBar
-@onready var weapon:= $Weapon
-@onready var kill_counter:= $KillCounter
-@onready var waves_counter:= $WavesCounter
-@onready var minimap_display:= $Minimap
+@onready var health_bar := $HealthBar
+@onready var energy_bar := $EnergyBar
+@onready var weapon := $Weapon
+@onready var kill_counter := $KillCounter
+@onready var waves_counter := $WavesCounter
+@onready var minimap_display := $Minimap
+
+@onready var interaction_prompt := $InteractionPrompt
+@onready var interaction_title := $InteractionTitle
+@onready var interaction_description := $InteractionTitle/InteractionDescription
+
+@onready var corruption_warning := $CorruptionWarning
 
 @onready var minimap_viewport : Viewport = GameMachine.minimap
 
@@ -24,7 +30,8 @@ func _ready():
 	PlayerStats.connect("energy_changed", update_energy)
 	PlayerStats.connect("change_selected_weapon", update_selected_weapon)
 	PlayerStats.connect("kills_changed", update_kill_counter)
-	WaveManager.connect("wave_changed", update_waves_counter)
+	
+	ZoneManager.connect("some_zone_was_corrupted", show_corruption_warning)
 	
 	minimap_display.texture = minimap_viewport.get_texture()
 	kill_counter.text = "0"
@@ -66,5 +73,21 @@ func update_selected_weapon(new_selected_weapon):
 func update_kill_counter(new_kills):
 	kill_counter.text = str(new_kills)
 
-func update_waves_counter(new_wave):
-	waves_counter.text = str(new_wave)
+
+func show_interaction_prompt(title: String, description: String):
+	interaction_prompt.visible = true
+	interaction_title.text = title
+	interaction_title.visible = true
+	interaction_description.text = description
+	interaction_description.visible = true
+
+func hide_interaction_prompt():
+	interaction_prompt.visible = false
+	interaction_title.visible = false
+	interaction_description.visible = false
+
+func show_corruption_warning():
+	corruption_warning.visible = true
+	await get_tree().create_timer(1).timeout
+	corruption_warning.visible = false
+	
