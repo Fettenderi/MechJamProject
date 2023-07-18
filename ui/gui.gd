@@ -9,6 +9,9 @@ extends Control
 @onready var weapon:= $Weapon
 @onready var kill_counter:= $KillCounter
 @onready var waves_counter:= $WavesCounter
+@onready var minimap_display:= $Minimap
+
+@onready var minimap_viewport : Viewport = GameMachine.minimap
 
 
 func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop: Color) -> Color:
@@ -23,6 +26,7 @@ func _ready():
 	PlayerStats.connect("kills_changed", update_kill_counter)
 	WaveManager.connect("wave_changed", update_waves_counter)
 	
+	minimap_display.texture = minimap_viewport.get_texture()
 	kill_counter.text = "0"
 	waves_counter.text = "0"
 	health_bar.size = max_size

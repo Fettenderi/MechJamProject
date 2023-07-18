@@ -1,6 +1,7 @@
 extends Node
 
 @export var max_player_distance := 30
+@export var max_mutual_distance := 5
 @export_group("ShakeScreen")
 @export var trauma_reduction_rate := 1.0
 
@@ -17,13 +18,15 @@ extends Node
 @onready var intensity_delta := 1.0 / enemies_per_intensity
 
 @onready var camera := get_node("Level/PlayerFollower/CameraPlayer")
+@onready var minimap := get_node("Level/PlayerFollower/Minimap")
 @onready var player := get_node("Level/Entities/Player")
 @onready var music := $AllMusic
 @onready var player_died_controller := $PlayerDiedController
 @onready var low_battery_controller := $LowBatteryController
 @onready var low_health_emitter := $LowHealthEmitter
 @onready var low_health_controller := $LowHealthController
-@onready var spaceship := preload("res://objects/enemies/spaceship.tscn")
+
+
 
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
 
@@ -57,15 +60,14 @@ func _physics_process(delta):
 		low_health_controller.value = (int(low_health_controller.value) + 1) % 2
 		low_health_controller.trigger()
 		if low_health_controller.value == 0:
-			low_health_emitter.stop()
+#			low_health_emitter.stop()
+			pass
 		else:
 			low_health_emitter.play()
 		print(low_health_controller.value)
-	
+
 	if Input.is_action_just_pressed("debug_button_1"):
-		low_health_controller.value = (int(low_health_controller.value) + 1) % 2
-		low_health_controller.trigger()
-		print(low_health_controller.value)
+		WaveManager.advance_waves()
 	
 	if is_screen_shaking:
 		screen_shake(delta)
@@ -77,13 +79,15 @@ func add_prop(prop: Node3D):
 func add_entity(entity: Node3D):
 	get_node("Level/Entities").add_child(entity)
 
-func add_spaceship(amount: int = 1):
-	for _i in range(amount):
-		var spaceship_node : CharacterBody3D = spaceship.instantiate()
-		
-		spaceship_node.position = Vector3(randi_range(-max_player_distance, max_player_distance), 5, randi_range(-max_player_distance, max_player_distance)) + Vector3(player.global_position.x, 0, player.global_position.z)
-		
-		get_node("Level/Entities").add_child(spaceship_node)
+func add_enemy(enemy_scene: PackedScene, amount: int = 1, height: int = 1):
+	if amount != 0:
+		var cluster_position = Vector3(randi_range(-max_player_distance, max_player_distance), height, randi_range(-max_player_distance, max_player_distance)) + Vector3(player.global_position.x, 0, player.global_position.z)
+		for _i in range(amount):
+			var enemy_scene_node : CharacterBody3D = enemy_scene.instantiate()
+			
+			enemy_scene_node.position = cluster_position + Vector3(randi_range(-max_mutual_distance, max_mutual_distance), 0, randi_range(-max_mutual_distance, max_mutual_distance))
+			
+			get_node("Level/Entities").add_child(enemy_scene_node)
 
 func energy_changed(new_energy):
 	low_battery_controller.value = clamp(remap(new_energy, 2, PlayerStats.max_energy / 4, 1.0, 0.0), 0.0, 0.8)

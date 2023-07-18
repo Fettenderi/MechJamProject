@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8e14ykg88vyd"]
+[gd_scene load_steps=3 format=3 uid="uid://b8e14ykg88vyd"]
 
 [ext_resource type="Script" path="res://ui/gui.gd" id="1_6pff1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4d7cv"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -18,16 +20,19 @@ color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
 [node name="Weapon" type="Label" parent="."]
+layout_mode = 0
 offset_top = 58.0
 offset_right = 171.0
 offset_bottom = 84.0
 text = "Weapon"
 
 [node name="HealthBar" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 20.0
 
 [node name="EnergyBar" type="ColorRect" parent="."]
+layout_mode = 0
 offset_top = 31.0
 offset_right = 200.0
 offset_bottom = 51.0
@@ -39,7 +44,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -64.0
-offset_bottom = 26.0
+offset_top = 96.0
+offset_bottom = 122.0
 grow_horizontal = 0
 text = "Waves"
 horizontal_alignment = 2
@@ -56,3 +62,28 @@ offset_bottom = 54.0
 grow_horizontal = 0
 text = "Kills"
 horizontal_alignment = 2
+
+[node name="Minimap" type="TextureRect" parent="."]
+z_index = 1
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture = SubResource("ViewportTexture_4d7cv")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -209.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 209.0
+grow_horizontal = 0

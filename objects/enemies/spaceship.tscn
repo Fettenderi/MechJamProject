@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://but0hqh11514f"]
+[gd_scene load_steps=14 format=3 uid="uid://but0hqh11514f"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_frdvk"]
 [ext_resource type="PackedScene" uid="uid://blcj5yunb4vk" path="res://models/spaceship/spaceship_mesh.tscn" id="1_x8fin"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cjgcqq3o1837l" path="res://objects/enemies/mk1.tscn" id="7_7bxkc"]
 [ext_resource type="PackedScene" uid="uid://ir1rhi0onuum" path="res://objects/common/attacking_brain.tscn" id="8_gpict"]
 [ext_resource type="PackedScene" uid="uid://6i15mylsminn" path="res://objects/common/wandering_brain.tscn" id="9_mu8ys"]
+[ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="11_kg2s8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_82rkq"]
 height = 16.0
@@ -69,6 +70,10 @@ collision_mask = 8
 
 [node name="TargetRangeShape" parent="Fixed/WanderingBrain/TargetRangeArea" index="0"]
 shape = SubResource("CylinderShape3D_82rkq")
+
+[node name="MinimapIcon" type="Sprite3D" parent="Fixed"]
+transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 15, 0)
+texture = ExtResource("11_kg2s8")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("4_3frsc")

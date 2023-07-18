@@ -62,9 +62,16 @@ fov = 90.0
 size = 10.0
 
 [node name="Pixelator" type="MeshInstance3D" parent="PlayerFollower/CameraPlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548696, -1.49389)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548697, -1.49389)
 mesh = SubResource("PlaneMesh_a8j7f")
 skeleton = NodePath("../..")
+
+[node name="Minimap" type="SubViewport" parent="PlayerFollower"]
+
+[node name="MinimapCamera" type="Camera3D" parent="PlayerFollower/Minimap"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 2.793)
+projection = 1
+size = 100.0
 
 [node name="WorldElements" type="Node3D" parent="."]
 
@@ -95,6 +102,7 @@ skeleton = NodePath("../..")
 
 [node name="Label3D" type="Label3D" parent="WorldElements"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
+visible = false
 billboard = 1
 text = "<^v> per muoversi
 SHIFT stai fermo

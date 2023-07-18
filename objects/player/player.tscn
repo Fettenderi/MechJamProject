@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=98 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -22,6 +22,7 @@
 [ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="21_vqg7v"]
 [ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="21_x7iqi"]
 [ext_resource type="EventAsset" uid="uid://duu3otvamiqyb" path="res://addons/FMOD/editor/resources/events/{321924e5-e46b-4cfc-8fbd-fc2d7e17e3bb}.tres" id="22_ewbfk"]
+[ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="23_7q4f3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
 
@@ -371,16 +372,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.354891, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.416507, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0338475, 0.381184, 4.28408e-08, 0.996082, -0.0884478, -0.382684, 0.0817152, 0.920258, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0244226, 0.381903, -3.72529e-09, 0.997963, -0.0638192, -0.382683, 0.0589614, 0.921996, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0338475, -0.381184, -4.28408e-08, 0.996081, -0.0884478, 0.382684, 0.0817151, 0.920258, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0244226, -0.381903, 3.72529e-09, 0.997962, -0.0638192, 0.382683, 0.0589613, 0.921996, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -547,6 +548,11 @@ draw_pass_1 = SubResource("BoxMesh_ic7o4")
 
 [node name="SFXEmitter" parent="Fixed/AreaAttack" index="5"]
 event = ExtResource("16_kq6hf")
+
+[node name="MinimapIcon" type="Sprite3D" parent="Fixed"]
+transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 25, 0)
+modulate = Color(1, 1, 0, 1)
+texture = ExtResource("23_7q4f3")
 
 [node name="JumpCooldown" type="Timer" parent="."]
 wait_time = 0.5

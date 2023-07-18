@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cacw160g18oyo"]
+[gd_scene load_steps=24 format=3 uid="uid://cacw160g18oyo"]
 
 [ext_resource type="PackedScene" uid="uid://4v1dhdlky4sl" path="res://objects/common/box.tscn" id="1_413aq"]
 [ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_vipsk"]
@@ -14,6 +14,7 @@
 [ext_resource type="EventAsset" uid="uid://b1dygxj5tk6t8" path="res://addons/FMOD/editor/resources/events/{e2098359-7a59-4fed-b832-97aedb5fa777}.tres" id="7_lohxy"]
 [ext_resource type="PackedScene" uid="uid://dokek0pfjolrv" path="res://objects/common/following_brain.tscn" id="8_0epa2"]
 [ext_resource type="Script" path="res://objects/common/stats.gd" id="8_hitik"]
+[ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="14_nbaoc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv7y8"]
 radius = 0.7
@@ -141,6 +142,11 @@ collision_mask = 16
 
 [node name="TargetRangeShape" parent="Fixed/FollowingBrain/TargetRangeArea" index="0"]
 shape = SubResource("CylinderShape3D_vy3oj")
+
+[node name="MinimapIcon" type="Sprite3D" parent="Fixed"]
+transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 20, 0)
+modulate = Color(0, 0.882353, 0, 1)
+texture = ExtResource("14_nbaoc")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("8_hitik")

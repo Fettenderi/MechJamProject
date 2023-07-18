@@ -41,6 +41,7 @@ max_x = 5.0
 max_y = 5.0
 noise = SubResource("FastNoiseLite_mukuy")
 bus_asset = ExtResource("2_uugg7")
+volume = 0.0
 
 [node name="Level" parent="." instance=ExtResource("3_6sq3d")]
 
@@ -49,13 +50,12 @@ play_event = 1
 event = SubResource("EventAsset_p0ic5")
 
 [node name="LowHealthEmitter" type="StudioEventEmitter3D" parent="."]
-play_event = 1
 event = ExtResource("4_72wx6")
 
 [node name="LowHealthController" type="StudioGlobalParameterTrigger" parent="."]
 trigger_on = 1
 parameter = ExtResource("4_men58")
-value = 1.0
+value = 0.0
 
 [node name="PlayerDiedController" type="StudioGlobalParameterTrigger" parent="."]
 parameter = SubResource("ParameterAsset_qqt0c")
