@@ -5,6 +5,7 @@ extends Node
 @export var killed_enemies_for_health := 5
 
 @export var health_pellet : PackedScene
+@export var energy_pellet : PackedScene
 
 @export_group("ShakeScreen")
 @export var trauma_reduction_rate := 1.0
@@ -111,7 +112,10 @@ func update_enemy_count(_value):
 	enemy_for_health -= 1
 	if enemy_for_health <= 0:
 		enemy_for_health = killed_enemies_for_health
-		add_prop_at_random_location(health_pellet)
+		if randf_range(0.0, 1.0) >= 0.3:
+			add_prop_at_random_location(health_pellet)
+		else:
+			add_prop_at_random_location(energy_pellet)
 	
 	enemy_count = get_node("Level/Entities").get_child_count() - 2
 	emit_signal("enemies_diminuished", enemy_count)

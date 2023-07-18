@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://6ujugi61e0nl"]
+[gd_scene load_steps=17 format=3 uid="uid://6ujugi61e0nl"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_n4lux"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_sc1m4"]
 [ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="3_ix6bw"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="4_gk6y6"]
 [ext_resource type="PackedScene" uid="uid://cgb16sopesu7p" path="res://objects/player/health_pellet.tscn" id="5_h5db7"]
+[ext_resource type="PackedScene" uid="uid://b43bucurt026m" path="res://objects/player/energy_pellet.tscn" id="6_fhoor"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -124,4 +125,7 @@ camera = NodePath("../../PlayerFollower/CameraPlayer")
 [node name="Props" type="Node3D" parent="."]
 
 [node name="HealthPellet" parent="Props" instance=ExtResource("5_h5db7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59043, 0, -7.7)
+
+[node name="EnergyPellet" parent="Props" instance=ExtResource("6_fhoor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64643, 0, -7.66669)

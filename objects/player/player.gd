@@ -13,11 +13,11 @@ const ROTATION_SPEED = 10.0
 @onready var jump_cooldown := $JumpCooldown
 @onready var energy_timer := $EnergyTimer
 @onready var weapon_consumption_timer := $WeaponConsumptionTimer
-@onready var footsteps_timer := $FootstepsTimer
 
 @onready var low_battery_sfx := $LowBatterySfx
 @onready var low_health_sfx := $LowHealthSfx
 @onready var footsteps_sfx := $FootstepsSfx
+@onready var footsteps_trigger := $FootstepsTrigger
 @onready var jump_sfx := $JumpSfx
 @onready var drill_sfx := $DrillSfx
 @onready var drill_parameter := $DrillParameter
@@ -75,7 +75,6 @@ func _ready():
 	jump_cooldown.connect("timeout", jump_cooldown_ended)
 	energy_timer.connect("timeout", energy_timer_ended)
 	weapon_consumption_timer.connect("timeout", can_remove_energy_for_weapon)
-	footsteps_timer.connect("timeout", do_footstep_sound)
 	PlayerStats.connect("jump_fully_charged", jump_fully_charged_effect)
 	PlayerStats.connect("dead", die)
 	
@@ -254,9 +253,10 @@ func handle_animations(on_floor: bool, weapon_state: Stats.AttackType, direction
 
 func move(direction : Vector3, delta: float):
 	if is_on_floor():
-		if footsteps_timer.time_left == 0:
-			footsteps_timer.start(randf_range(0.3, 2.0))
 		is_walking = true
+		footsteps_trigger.parameter_player_moving = 0
+		footsteps_trigger.trigger()
+		footsteps_sfx.play()
 		velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
 #		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
 #			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
@@ -264,6 +264,9 @@ func move(direction : Vector3, delta: float):
 #			moving_elapsed += delta
 #		else:
 	else:
+#		footsteps_trigger.parameter_player_moving = 0
+#		footsteps_trigger.trigger()
+#		footsteps_sfx.stop()
 		is_walking = false
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
 
@@ -316,15 +319,7 @@ func set_signal_recieved():
 
 func available_weapons_changed():
 	if PlayerStats.available_weapons.has(Stats.AttackType.DRILL):
-		$Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand/drill.set_deferred("visible", true) 
-
-func do_footstep_sound():
-	if is_walking:
-#		RuntimeManager.play_one_shot_attached(footsteps, global_position)
-#		RuntimeManager.attach_instance_to_node()
-		footsteps_sfx.play()
-		footsteps_timer.start(randf_range(0.3, 2.0))
-	
+		$Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand/drill.set_deferred("visible", true)
 
 func energy_has_changed(new_energy):
 	if new_energy > PlayerStats.max_energy / 4:
