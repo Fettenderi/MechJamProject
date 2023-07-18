@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn1n3236ap2am"]
+[gd_scene load_steps=13 format=3 uid="uid://bn1n3236ap2am"]
 
 [ext_resource type="Script" path="res://singletons/game_machine.gd" id="1_8f465"]
+[ext_resource type="PackedScene" uid="uid://cgb16sopesu7p" path="res://objects/player/health_pellet.tscn" id="2_qlf0c"]
 [ext_resource type="BusAsset" uid="uid://dgy4bt0lm21kc" path="res://addons/FMOD/editor/resources/busses/{5e22bac0-3f00-4935-8a02-38325683d9fc}.tres" id="2_uugg7"]
 [ext_resource type="PackedScene" uid="uid://6ujugi61e0nl" path="res://level/level3.tscn" id="3_6sq3d"]
 [ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="4_72wx6"]
@@ -37,11 +38,12 @@ name = "player_dead"
 
 [node name="GameMachine" type="Node"]
 script = ExtResource("1_8f465")
+health_pellet = ExtResource("2_qlf0c")
 max_x = 5.0
 max_y = 5.0
 noise = SubResource("FastNoiseLite_mukuy")
 bus_asset = ExtResource("2_uugg7")
-volume = 0.5
+volume = 0.0
 
 [node name="Level" parent="." instance=ExtResource("3_6sq3d")]
 

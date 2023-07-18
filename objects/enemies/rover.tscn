@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="14_nbaoc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv7y8"]
-radius = 0.7
+radius = 1.04642
 
 [sub_resource type="Curve" id="Curve_ituy7"]
 _data = [Vector2(0.101504, 0.65343), 0.0, -4.5832, 0, 0, Vector2(0.58427, 0), -0.125548, 0.0, 0, 0]
@@ -74,7 +74,7 @@ script = ExtResource("2_x7bhh")
 stats = NodePath("../../Stats")
 
 [node name="Shape" parent="Fixed/HitBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.202676, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53529, 0)
 shape = SubResource("SphereShape3D_kv7y8")
 
 [node name="HitSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]

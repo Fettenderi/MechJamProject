@@ -257,12 +257,12 @@ func move(direction : Vector3, delta: float):
 		if footsteps_timer.time_left == 0:
 			footsteps_timer.start(randf_range(0.3, 2.0))
 		is_walking = true
-		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
-			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
-			velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
-			moving_elapsed += delta
-		else:
-			velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
+		velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
+#		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
+#			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
+#			velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
+#			moving_elapsed += delta
+#		else:
 	else:
 		is_walking = false
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
