@@ -2,6 +2,10 @@ extends Node
 
 @export var max_player_distance := 30
 @export var max_mutual_distance := 5
+@export var killed_enemies_for_health := 5
+
+@export var health_pellet : PackedScene
+
 @export_group("ShakeScreen")
 @export var trauma_reduction_rate := 1.0
 
@@ -26,8 +30,6 @@ extends Node
 @onready var low_health_emitter := $LowHealthEmitter
 @onready var low_health_controller := $LowHealthController
 
-
-
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
 
 var bus: Bus
@@ -35,6 +37,7 @@ var trauma := 0.0
 var time := 0.0
 var is_screen_shaking := false
 var enemy_count := 0
+var enemy_for_health := killed_enemies_for_health
 var previous_energy := PlayerStats.max_energy
 
 signal new_weapon_unlocked
@@ -76,6 +79,13 @@ func _physics_process(delta):
 func add_prop(prop: Node3D):
 	get_node("Level/Props").add_child(prop)
 
+func add_prop_at_random_location(prop_scene: PackedScene):
+	var prop_scene_node : Node3D = prop_scene.instantiate()
+	
+	prop_scene_node.position = Vector3(randi_range(-max_player_distance, max_player_distance), 1, randi_range(-max_player_distance, max_player_distance)) + Vector3(player.global_position.x, 0, player.global_position.z)
+	
+	get_node("Level/Props").add_child(prop_scene_node)
+
 func add_entity(entity: Node3D):
 	get_node("Level/Entities").add_child(entity)
 
@@ -98,7 +108,12 @@ func player_died():
 	player_died_controller.trigger()
 
 func update_enemy_count(_value):
-	enemy_count = get_node("Level/Entities").get_child_count() - 1
+	enemy_for_health -= 1
+	if enemy_for_health <= 0:
+		enemy_for_health = killed_enemies_for_health
+		add_prop_at_random_location(health_pellet)
+	
+	enemy_count = get_node("Level/Entities").get_child_count() - 2
 	emit_signal("enemies_diminuished", enemy_count)
 	if enemy_count == 0:
 		emit_signal("enemies_all_dead")

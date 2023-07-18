@@ -70,11 +70,13 @@ func update_intensity(current_enemies: int):
 			intensity_controller.trigger()
 
 func spawn_wave():
-	if not is_player_dead:
+	if not is_player_dead: # and current_subwave != 0:
 		GameMachine.add_enemy(noob_alien, 5 * subwave_count)
 		GameMachine.add_enemy(rover, 2 * subwave_count)
 		GameMachine.add_enemy(mk1, ceil(clamp(remap(subwave_count, 8, 15, 1, 10), 0, 10)))
 		GameMachine.add_enemy(spaceship, ceil(clamp(remap(subwave_count, 12, 15, 1, 4), 0, 4)), 5)
+#	elif current_subwave == 0:
+#		subwave_count -= 1
 
 func update_deadiness():
 	is_player_dead = true

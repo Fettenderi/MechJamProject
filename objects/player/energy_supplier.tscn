@@ -4,12 +4,14 @@
 [ext_resource type="EventAsset" uid="uid://gg6rckoxf8nn" path="res://addons/FMOD/editor/resources/events/{91a06109-16c7-40cd-9d3f-49f8cdd7730b}.tres" id="2_ap3u4"]
 [ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="3_vt5uw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chdyt"]
-albedo_color = Color(0.113725, 0.658824, 0.690196, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6jvs"]
+albedo_color = Color(0.290196, 0.976471, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3l88t"]
-material = SubResource("StandardMaterial3D_chdyt")
-size = Vector3(1, 0.1, 1)
+[sub_resource type="CylinderMesh" id="CylinderMesh_vbvql"]
+material = SubResource("StandardMaterial3D_h6jvs")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u2ec1"]
 size = Vector3(3, 2, 3)
@@ -54,8 +56,8 @@ collision_mask = 8
 script = ExtResource("1_nsgsv")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0525044, 0)
-mesh = SubResource("BoxMesh_3l88t")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102634, 0)
+mesh = SubResource("CylinderMesh_vbvql")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

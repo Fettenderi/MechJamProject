@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=98 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -358,34 +358,6 @@ scale_curve = SubResource("CurveTexture_bth36")
 color_ramp = ExtResource("8_5fb3j")
 attractor_interaction_enabled = false
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_r3nxr"]
-data1 = 2311265973
-data2 = 4167048216
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_8cy1y"]
-name = "player_moving"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_r3nxr")
-maximum = 1.0
-flags = 8
-guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_ffdf5"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_8cy1y")
-path = "parameter:/player_moving"
-guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
-name = "player_moving"
-
-[sub_resource type="EventAsset" id="EventAsset_vd1jp"]
-is_3d = true
-min_distance = 1.0
-max_distance = 20.0
-parameters = {
-"{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}": SubResource("ParameterAsset_ffdf5")
-}
-path = "event:/SFX/Mech/Mech Jetpack"
-guid = "{e7294330-dfac-40de-bf66-51f6b17268da}"
-name = "Mech Jetpack"
-
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_wi0po")
 footsteps = ExtResource("11_u8q1e")
@@ -400,16 +372,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.351332, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07813, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0388944, 0.380701, -5.96047e-08, 0.994824, -0.101636, -0.382683, 0.0938994, 0.919095, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0987083, 0.369733, -1.71363e-07, 0.966163, -0.257937, -0.382683, 0.238303, 0.892617, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0388944, -0.380701, 5.96047e-08, 0.994823, -0.101636, 0.382683, 0.0938993, 0.919095, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0987082, -0.369733, 1.71363e-07, 0.966162, -0.257937, 0.382683, 0.238303, 0.892617, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -601,13 +573,12 @@ event = ExtResource("20_yqf51")
 
 [node name="LowHealthSfx" type="StudioEventEmitter3D" parent="."]
 event = ExtResource("21_x7iqi")
-trigger_once = true
 
 [node name="JumpSfx" type="StudioEventEmitter3D" parent="."]
 event = ExtResource("22_ewbfk")
 
 [node name="FootstepsSfx" type="StudioEventEmitter3D" parent="." node_paths=PackedStringArray("rigidbody")]
-event = SubResource("EventAsset_vd1jp")
+event = ExtResource("22_ewbfk")
 rigidbody = NodePath("..")
 
 [node name="PlayerEars" type="StudioListener3D" parent="."]
