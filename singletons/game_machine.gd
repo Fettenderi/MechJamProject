@@ -21,6 +21,7 @@ extends Node
 @onready var music := $AllMusic
 @onready var player_died_controller := $PlayerDiedController
 @onready var low_battery_controller := $LowBatteryController
+@onready var low_health_emitter := $LowHealthEmitter
 @onready var low_health_controller := $LowHealthController
 @onready var spaceship := preload("res://objects/enemies/spaceship.tscn")
 
@@ -55,6 +56,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("debug_button"):
 		low_health_controller.value = (int(low_health_controller.value) + 1) % 2
 		low_health_controller.trigger()
+		if low_health_controller.value == 0:
+			low_health_emitter.stop()
+		else:
+			low_health_emitter.play()
 		print(low_health_controller.value)
 	
 	if Input.is_action_just_pressed("debug_button_1"):
