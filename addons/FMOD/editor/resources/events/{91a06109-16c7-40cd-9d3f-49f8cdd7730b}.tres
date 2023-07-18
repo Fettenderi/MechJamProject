@@ -3,7 +3,7 @@
 [resource]
 is_3d = true
 min_distance = 1.0
-max_distance = 20.0
+max_distance = 7.0
 path = "event:/SFX/Gameplay/Charging"
 guid = "{91a06109-16c7-40cd-9d3f-49f8cdd7730b}"
 name = "Charging"

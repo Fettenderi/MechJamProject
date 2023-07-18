@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=61 format=3 uid="uid://brkpamkfn8adt"]
+[gd_resource type="ProjectCache" load_steps=56 format=3 uid="uid://brkpamkfn8adt"]
 
 [ext_resource type="BankAsset" uid="uid://cn3dyi01ahsri" path="res://addons/FMOD/editor/resources/banks/{64f306e5-ad1f-4f97-96e1-d7e886c4c393}.tres" id="1_rg3f4"]
 [ext_resource type="BankAsset" uid="uid://boh83y8yln5dn" path="res://addons/FMOD/editor/resources/banks/{fcee2631-dc64-03d5-10a8-5d167737c50b}.tres" id="2_3w7un"]
@@ -30,7 +30,6 @@
 [ext_resource type="BusAsset" uid="uid://bkkkyw46f8h3s" path="res://addons/FMOD/editor/resources/busses/{ab9f6752-173c-4a98-9c83-9e8450a76cb5}.tres" id="12_gfah8"]
 [ext_resource type="EventAsset" uid="uid://luqu4o1sd0fk" path="res://addons/FMOD/editor/resources/events/{f37614f7-3b8a-4f28-86ed-79a7a860a162}.tres" id="12_qod30"]
 [ext_resource type="BusAsset" uid="uid://bai8d7vdfk7ew" path="res://addons/FMOD/editor/resources/busses/{e115e6e2-c20b-4b15-b328-b947bb38ca8e}.tres" id="13_3ch1x"]
-[ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="13_hhnax"]
 [ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="13_xl3qp"]
 [ext_resource type="BusAsset" uid="uid://1jmf2booc6o3" path="res://addons/FMOD/editor/resources/busses/{05379924-f410-413e-bed2-1b84523a1218}.tres" id="14_774yd"]
 [ext_resource type="EventAsset" uid="uid://d3uafrow3peip" path="res://addons/FMOD/editor/resources/events/{0daeace2-dcef-435c-a668-e5575642b6f0}.tres" id="15_iulv2"]
@@ -45,6 +44,7 @@
 [ext_resource type="EventAsset" uid="uid://m4gl6bot3y1i" path="res://addons/FMOD/editor/resources/events/{e3d97641-b413-4e1f-b89f-06c10c5d95ea}.tres" id="27_ydwf8"]
 [ext_resource type="EventAsset" uid="uid://b1dygxj5tk6t8" path="res://addons/FMOD/editor/resources/events/{e2098359-7a59-4fed-b832-97aedb5fa777}.tres" id="28_p1ruj"]
 [ext_resource type="EventAsset" uid="uid://c6v840x1eupop" path="res://addons/FMOD/editor/resources/events/{27442397-ff6a-4853-b2bd-eb10cf8b7e3b}.tres" id="29_nt25n"]
+[ext_resource type="EventAsset" uid="uid://c7bsm8emqn4tg" path="res://addons/FMOD/editor/resources/events/{e7294330-dfac-40de-bf66-51f6b17268da}.tres" id="29_w5spc"]
 [ext_resource type="EventAsset" uid="uid://r2tw6e28r5ul" path="res://addons/FMOD/editor/resources/events/{fbf70e58-7ed4-4e82-9382-7ea8bef6cf43}.tres" id="32_al87w"]
 [ext_resource type="EventAsset" uid="uid://kvfevfkkmes1" path="res://addons/FMOD/editor/resources/events/{dff508d9-10fe-4511-96b3-51ea620a5080}.tres" id="32_mw4wq"]
 [ext_resource type="EventAsset" uid="uid://darfablxiveo7" path="res://addons/FMOD/editor/resources/events/{247e961d-b559-41b2-858e-123e77e8dc67}.tres" id="33_6irce"]
@@ -53,37 +53,8 @@
 [ext_resource type="EventAsset" uid="uid://bwkshwmfrdchc" path="res://addons/FMOD/editor/resources/events/{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}.tres" id="36_f4pkg"]
 [ext_resource type="EventAsset" uid="uid://cqs7yhflex0q" path="res://addons/FMOD/editor/resources/events/{4f640811-9d33-405c-a613-27de805dfebb}.tres" id="37_6bfeq"]
 [ext_resource type="ParameterAsset" uid="uid://2etww4f7vaey" path="res://addons/FMOD/editor/resources/parameters/{e2465a31-f636-4fee-96fd-e0d8dfefeb69}.tres" id="52_cimqp"]
-[ext_resource type="ParameterAsset" uid="uid://bg7xmerh60nl8" path="res://addons/FMOD/editor/resources/parameters/{e394a3ef-4ebb-4bad-8212-c1b4b696b5b1}.tres" id="53_mljpd"]
 [ext_resource type="EventAsset" uid="uid://bxq3eb7n25a4f" path="res://addons/FMOD/editor/resources/snapshots/{383d9850-1503-4677-9e93-d5d08104c427}.tres" id="55_gh5x1"]
 [ext_resource type="EventAsset" uid="uid://dmtaxbj4v5sjc" path="res://addons/FMOD/editor/resources/snapshots/{3a5c6e69-968f-4da5-a711-84fed51d8f52}.tres" id="56_3tg12"]
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_r3nxr"]
-data1 = 2311265973
-data2 = 4167048216
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_8cy1y"]
-name = "player_moving"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_r3nxr")
-maximum = 1.0
-flags = 8
-guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_ffdf5"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_8cy1y")
-path = "parameter:/player_moving"
-guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
-name = "player_moving"
-
-[sub_resource type="EventAsset" id="EventAsset_vd1jp"]
-is_3d = true
-min_distance = 1.0
-max_distance = 20.0
-parameters = {
-"{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}": SubResource("ParameterAsset_ffdf5")
-}
-path = "event:/SFX/Mech/Mech Jetpack"
-guid = "{e7294330-dfac-40de-bf66-51f6b17268da}"
-name = "Mech Jetpack"
 
 [resource]
 banks = {
@@ -119,7 +90,7 @@ events = {
 "{dff508d9-10fe-4511-96b3-51ea620a5080}": ExtResource("32_mw4wq"),
 "{e2098359-7a59-4fed-b832-97aedb5fa777}": ExtResource("28_p1ruj"),
 "{e3d97641-b413-4e1f-b89f-06c10c5d95ea}": ExtResource("27_ydwf8"),
-"{e7294330-dfac-40de-bf66-51f6b17268da}": SubResource("EventAsset_vd1jp"),
+"{e7294330-dfac-40de-bf66-51f6b17268da}": ExtResource("29_w5spc"),
 "{eac5da5e-3481-41ec-9eff-383b007c980d}": ExtResource("13_xl3qp"),
 "{f37614f7-3b8a-4f28-86ed-79a7a860a162}": ExtResource("12_qod30"),
 "{f3850399-665b-48be-bf11-33033c90cf47}": ExtResource("5_46i4q"),
@@ -147,11 +118,9 @@ busses = {
 parameters = {
 "{01f40d11-8630-4966-92fe-eb44b9b83cfe}": ExtResource("7_24vfp"),
 "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": ExtResource("9_ekh6l"),
-"{89602517-ea96-466b-8fec-3b8a0513cf39}": ExtResource("13_hhnax"),
 "{ce84adbf-057d-4527-9fcd-c12ce71f87db}": ExtResource("6_niucd"),
 "{dc034953-c562-401b-9c83-c5cfa0b8e436}": ExtResource("5_8ivsl"),
-"{e2465a31-f636-4fee-96fd-e0d8dfefeb69}": ExtResource("52_cimqp"),
-"{e394a3ef-4ebb-4bad-8212-c1b4b696b5b1}": ExtResource("53_mljpd")
+"{e2465a31-f636-4fee-96fd-e0d8dfefeb69}": ExtResource("52_cimqp")
 }
 bank_tree = [{
 "children": [],
@@ -269,7 +238,7 @@ event_tree = [{
 "item_type": 1,
 "node_name": "Mech Jetpack",
 "path": "event:/SFX/Mech/Mech Jetpack",
-"resource": SubResource("EventAsset_vd1jp")
+"resource": ExtResource("29_w5spc")
 }, {
 "children": [],
 "item_type": 1,
@@ -508,12 +477,6 @@ bus_tree = [{
 parameter_tree = [{
 "children": [],
 "item_type": 6,
-"node_name": "drill_attack",
-"path": "parameter:/drill_attack",
-"resource": ExtResource("13_hhnax")
-}, {
-"children": [],
-"item_type": 6,
 "node_name": "Game Starts",
 "path": "parameter:/Game Starts",
 "resource": ExtResource("6_niucd")
@@ -535,12 +498,6 @@ parameter_tree = [{
 "node_name": "low_battery",
 "path": "parameter:/low_battery",
 "resource": ExtResource("52_cimqp")
-}, {
-"children": [],
-"item_type": 6,
-"node_name": "low_health",
-"path": "parameter:/low_health",
-"resource": ExtResource("53_mljpd")
 }, {
 "children": [],
 "item_type": 6,
