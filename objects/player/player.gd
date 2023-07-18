@@ -324,6 +324,7 @@ func do_footstep_sound():
 #		RuntimeManager.attach_instance_to_node()
 		footsteps_sfx.play()
 		footsteps_timer.start(randf_range(0.3, 2.0))
+	
 
 func energy_has_changed(new_energy):
 	if new_energy > PlayerStats.max_energy / 4:
@@ -335,8 +336,10 @@ func energy_has_changed(new_energy):
 
 func health_has_changed(new_health):
 	if new_health > PlayerStats.max_health / 4:
-		low_health_sfx.stop()
+		low_health_sfx.parameter_low_health = 0
+		#low_health_sfx.stop()
 	else:
+		low_health_sfx.parameter_low_health = 1
 		low_health_sfx.play()
 	
 	previous_health = new_health
