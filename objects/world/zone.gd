@@ -31,8 +31,6 @@ enum EnemyType {
 @onready var subwave_timer := $SubwaveTimer
 @onready var corruption_timer := $CorruptionTimer
 
-@onready var intensity_controller := $IntensityController
-
 @onready var bonus := preload("res://objects/world/bonus.tscn")
 
 @onready var enemies := [
@@ -59,20 +57,18 @@ func _ready():
 	randomize()
 	ZoneManager.connect("started_second_phase", start_second_phase)
 	ZoneManager.connect("some_zone_was_corrupted", maybe_start_corrupting)
-	zone_detector.connect("area_entered", update_clear_percentage)
-	zone_detector.connect("area_exited", update_clear_percentage)
+	zone_detector.connect("area_exited", maybe_zone_cleared)
 	subwave_timer.connect("timeout", advance_subwave)
 	corruption_timer.connect("timeout", corrupt_zone)
 	if is_current_zone:
 		start_corrupting()
 
-func update_clear_percentage(_area: Area3D = null):
+func _process(delta):
 	var current_children_count := zone_children.get_child_count()
 	if current_children_count > max_child_count:
 		max_child_count = current_children_count
-	if current_children_count == 0:
-		set_zone_cleared()
-	totem_percentage.mesh.height = clamp(MAX_TOTEM_HEIGHT * (1.0 - float(current_children_count) / max_child_count), MIN_TOTEM_HEIGHT, MAX_TOTEM_HEIGHT)
+
+	totem_percentage.mesh.height = clamp(lerp(totem_percentage.mesh.height, MAX_TOTEM_HEIGHT * (1.0 - float(current_children_count) / max_child_count), delta * 20), MIN_TOTEM_HEIGHT, MAX_TOTEM_HEIGHT)
 
 func advance_subwave():
 	if missing_subwaves > 0:
@@ -82,8 +78,7 @@ func advance_subwave():
 		else:
 			spawn_first()
 		if missing_subwaves == 0:
-			intensity_controller.value = max(fighting_ost, intensity_controller.value)
-			intensity_controller.trigger()
+			GameMachine.set_intensity(max(fighting_ost, GameMachine.get_intensity()))
 		subwave_timer.start(rcc(missing_subwaves, MAX_SUBWAVES, 0, 60, 40))
 	else:
 		if not is_second_phase and id + 1 <= 3:
@@ -104,24 +99,24 @@ func corrupt_zone():
 	if is_current_zone:
 		PlayerStats.can_discharge = false
 	if is_second_phase:
-		intensity_controller.value = clamp(intensity_controller.value + 1, 1, 6)
-		intensity_controller.trigger()
+		GameMachine.set_intensity(clamp(GameMachine.get_intensity() + 1, 1, 6))
 	else:
-		intensity_controller.value = starting_ost
-		intensity_controller.trigger()
+		GameMachine.set_intensity(starting_ost)
 	energy_supplier.is_active = false
 	totem_percentage.mesh.height = MIN_TOTEM_HEIGHT
 	advance_subwave()
+
+func maybe_zone_cleared(_area: Area3D = null):
+	if zone_children.get_child_count() == 0 and missing_subwaves == 0:
+		set_zone_cleared()
 
 func set_zone_cleared():
 	emit_signal("zone_cleared")
 	activation_particles.set_deferred("set_emitting", true)
 	if is_second_phase:
-		intensity_controller.value = clamp(intensity_controller.value - 1, 1, 6)
-		intensity_controller.trigger()
+		GameMachine.set_intensity(clamp(GameMachine.get_intensity() - 1, 1, 6))
 	else:
-		intensity_controller.value = 1
-		intensity_controller.trigger()
+		GameMachine.set_intensity(1)
 	is_current_zone = true
 	energy_supplier.is_active = true
 	corruption_timer.start(next_corruption_timer)

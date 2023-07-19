@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4dsmmfjtrces"]
+[gd_scene load_steps=16 format=3 uid="uid://d4dsmmfjtrces"]
 
 [ext_resource type="Script" path="res://objects/world/zone.gd" id="1_wtqg8"]
 [ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="2_4j255"]
-[ext_resource type="ParameterAsset" uid="uid://7vo5twaru018" path="res://addons/FMOD/editor/resources/parameters/{01f40d11-8630-4966-92fe-eb44b9b83cfe}.tres" id="3_obbw5"]
 [ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="3_tjnon"]
 
 [sub_resource type="Gradient" id="Gradient_6db8e"]
@@ -79,6 +78,8 @@ process_material = SubResource("ParticleProcessMaterial_yiq0l")
 draw_pass_1 = SubResource("BoxMesh_0h0d6")
 
 [node name="EnergySupplier" parent="." instance=ExtResource("2_4j255")]
+collision_mask = 10
+is_active = true
 
 [node name="ZoneChildren" type="Node3D" parent="."]
 
@@ -103,10 +104,6 @@ one_shot = true
 [node name="SubwaveTimer" type="Timer" parent="."]
 wait_time = 60.0
 one_shot = true
-
-[node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
-parameter = ExtResource("3_obbw5")
-value = 1.0
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
 transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 21, 0)

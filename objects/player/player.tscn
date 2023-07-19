@@ -373,16 +373,19 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.181486, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41991, 0.203125)
+
+[node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0762922, 0.375001, -1.56462e-07, 0.979927, -0.199361, -0.382683, 0.184186, 0.905335, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0226744, 0.382011, 1.67638e-08, 0.998244, -0.0592511, -0.382683, 0.0547409, 0.922257, -0.6875, 3.375, 0.15625)
 
 [node name="drill" parent="Rotating/PlayerMesh/Node2/mecha/leftUpperArm/leftLowerArm/leftHand" index="1"]
 visible = false
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0762921, -0.375001, 1.56462e-07, 0.979926, -0.199361, 0.382683, 0.184185, 0.905335, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0226744, -0.382011, -1.67638e-08, 0.998243, -0.0592511, 0.382683, 0.0547409, 0.922257, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")

@@ -29,6 +29,8 @@ extends Node
 @onready var player_died_controller := $PlayerDiedController
 @onready var low_battery_controller := $LowBatteryController
 
+@onready var intensity_controller := $IntensityController
+
 @onready var sound_test_emitter := $SoundTestEmitter
 @onready var sound_test_controller := $SoundTestController
 
@@ -63,12 +65,11 @@ func _physics_process(delta):
 		
 
 	if Input.is_action_just_pressed("debug_button"):
-		$StudioGlobalParameterTrigger.value += 1
-		$StudioGlobalParameterTrigger.trigger()
+		set_intensity(4)
+		
 
 	if Input.is_action_just_pressed("debug_button_1"):
-#		WaveManager.advance_waves()
-		pass
+		set_intensity(5)
 	
 	if is_screen_shaking:
 		screen_shake(delta)
@@ -123,6 +124,22 @@ func get_noise_from_seed(seed : int) -> float:
 	noise.seed = seed
 	return noise.get_noise_1d(time * noise_speed)
 
+
+func set_intensity(num: int):
+	var distance : int = num - intensity_controller.value
+	if distance > 0:
+		for _i in range(distance):
+			intensity_controller.value = intensity_controller.value + 1
+			intensity_controller.trigger()
+			await get_tree().create_timer(4).timeout
+	elif distance < 0:
+		for _i in range(-distance):
+			intensity_controller.value = intensity_controller.value - 1
+			intensity_controller.trigger()
+			await get_tree().create_timer(4).timeout
+
+func get_intensity():
+	return intensity_controller.value
 
 # Sblocca DRILL
 

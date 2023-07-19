@@ -69,6 +69,7 @@ value = 0.0
 parameter = ExtResource("4_q3cy5")
 value = 0.0
 
-[node name="StudioGlobalParameterTrigger" type="StudioGlobalParameterTrigger" parent="."]
+[node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
+trigger_on = 1
 parameter = ExtResource("9_h6665")
 value = 1.0

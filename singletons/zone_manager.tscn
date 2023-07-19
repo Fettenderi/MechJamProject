@@ -1,29 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b511pfsdg1acs"]
+[gd_scene load_steps=2 format=3 uid="uid://b511pfsdg1acs"]
 
 [ext_resource type="Script" path="res://singletons/zone_manager.gd" id="1_fc17q"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_2cxu8"]
-data1 = 3132564451
-data2 = 2962156741
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_cq4l2"]
-name = "intensity"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_2cxu8")
-minimum = 1.0
-maximum = 10.0
-default_value = 1.0
-flags = 12
-guid = "{01f40d11-8630-4966-92fe-eb44b9b83cfe}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_ryo31"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_cq4l2")
-path = "parameter:/intensity"
-guid = "{01f40d11-8630-4966-92fe-eb44b9b83cfe}"
-name = "intensity"
-
 [node name="ZoneManager" type="Node"]
 script = ExtResource("1_fc17q")
-
-[node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
-parameter = SubResource("ParameterAsset_ryo31")
-value = 1.0
