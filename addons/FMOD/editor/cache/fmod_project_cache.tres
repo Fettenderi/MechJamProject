@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=58 format=3 uid="uid://brkpamkfn8adt"]
+[gd_resource type="ProjectCache" load_steps=62 format=3 uid="uid://brkpamkfn8adt"]
 
 [ext_resource type="BankAsset" uid="uid://cn3dyi01ahsri" path="res://addons/FMOD/editor/resources/banks/{64f306e5-ad1f-4f97-96e1-d7e886c4c393}.tres" id="1_rg3f4"]
 [ext_resource type="BankAsset" uid="uid://boh83y8yln5dn" path="res://addons/FMOD/editor/resources/banks/{fcee2631-dc64-03d5-10a8-5d167737c50b}.tres" id="2_3w7un"]
@@ -58,6 +58,31 @@
 [ext_resource type="EventAsset" uid="uid://bxq3eb7n25a4f" path="res://addons/FMOD/editor/resources/snapshots/{383d9850-1503-4677-9e93-d5d08104c427}.tres" id="55_gh5x1"]
 [ext_resource type="EventAsset" uid="uid://dmtaxbj4v5sjc" path="res://addons/FMOD/editor/resources/snapshots/{3a5c6e69-968f-4da5-a711-84fed51d8f52}.tres" id="56_3tg12"]
 
+[sub_resource type="EventAsset" id="EventAsset_u2vut"]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Fotonic"
+guid = "{d9c1ccab-690d-47e7-a2ed-baaac28c8f85}"
+name = "Mech Fotonic"
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_ceh1l"]
+data1 = 2506342315
+data2 = 2652609975
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_14y0i"]
+name = "cannon_charging"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_ceh1l")
+maximum = 1.0
+flags = 4
+guid = "{507fcf57-0da1-4ed9-8b2d-b419d9c6e9e1}"
+
+[sub_resource type="ParameterAsset" id="ParameterAsset_n5joc"]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_14y0i")
+path = "parameter:/cannon_charging"
+guid = "{507fcf57-0da1-4ed9-8b2d-b419d9c6e9e1}"
+name = "cannon_charging"
+
 [resource]
 banks = {
 "{64f306e5-ad1f-4f97-96e1-d7e886c4c393}": ExtResource("1_rg3f4"),
@@ -87,6 +112,7 @@ events = {
 "{bc2c4842-224d-4564-8258-1640169b9d5c}": ExtResource("21_nd7h4"),
 "{cc6278d4-b513-4976-a1a4-af5410c1021f}": ExtResource("34_tmsmk"),
 "{cc94d5ab-f44b-4107-8d6f-9bba0057010b}": ExtResource("8_xyrqt"),
+"{d9c1ccab-690d-47e7-a2ed-baaac28c8f85}": SubResource("EventAsset_u2vut"),
 "{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}": ExtResource("25_fn6ma"),
 "{dcca9f04-5273-4358-be00-372335871df8}": ExtResource("6_h3iry"),
 "{dff508d9-10fe-4511-96b3-51ea620a5080}": ExtResource("32_mw4wq"),
@@ -120,6 +146,7 @@ busses = {
 parameters = {
 "{01f40d11-8630-4966-92fe-eb44b9b83cfe}": ExtResource("7_24vfp"),
 "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": ExtResource("9_ekh6l"),
+"{507fcf57-0da1-4ed9-8b2d-b419d9c6e9e1}": SubResource("ParameterAsset_n5joc"),
 "{89602517-ea96-466b-8fec-3b8a0513cf39}": ExtResource("49_lbtyn"),
 "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}": ExtResource("55_afkhn"),
 "{ce84adbf-057d-4527-9fcd-c12ce71f87db}": ExtResource("6_niucd"),
@@ -237,6 +264,12 @@ event_tree = [{
 "node_name": "Mech Drill Long",
 "path": "event:/SFX/Mech/Mech Drill Long",
 "resource": ExtResource("8_xyrqt")
+}, {
+"children": [],
+"item_type": 1,
+"node_name": "Mech Fotonic",
+"path": "event:/SFX/Mech/Mech Fotonic",
+"resource": SubResource("EventAsset_u2vut")
 }, {
 "children": [],
 "item_type": 1,
@@ -479,6 +512,12 @@ bus_tree = [{
 "resource": ExtResource("3_slqr4")
 }]
 parameter_tree = [{
+"children": [],
+"item_type": 6,
+"node_name": "cannon_charging",
+"path": "parameter:/cannon_charging",
+"resource": SubResource("ParameterAsset_n5joc")
+}, {
 "children": [],
 "item_type": 6,
 "node_name": "drill_attack",
