@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccavajljl8ed6"]
+[gd_scene load_steps=10 format=3 uid="uid://388nrmf13m5p"]
 
-[ext_resource type="Script" path="res://objects/world/upgrades/unlock_cannon.gd" id="1_mloim"]
-[ext_resource type="PackedScene" uid="uid://dqgeua3fep6i1" path="res://models/upgrades/fotonic_gun.tscn" id="2_vaqn4"]
+[ext_resource type="Script" path="res://objects/world/upgrades/upgrade_gun.gd" id="1_sgdr0"]
+[ext_resource type="PackedScene" uid="uid://cqnd0hnj64vrj" path="res://models/upgrades/damage_gun.tscn" id="2_y3erv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq0ej"]
 albedo_color = Color(0.298039, 0.196078, 0.298039, 1)
@@ -38,13 +38,11 @@ attractor_interaction_enabled = false
 radius = 1.0
 height = 2.0
 
-[node name="UnlockCannon" type="Area3D"]
+[node name="UpgradeGun" type="Area3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_layer = 128
 collision_mask = 128
-script = ExtResource("1_mloim")
-title = "Unlock Fotonic Cannon"
-description = "Througth the power of light now you can thrash enemies in a wide area, but be carefull it uses a lot of energy"
+script = ExtResource("1_sgdr0")
 
 [node name="BaseMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
@@ -68,5 +66,5 @@ draw_pass_1 = SubResource("SphereMesh_g6b83")
 
 [node name="Mesh" type="Node3D" parent="."]
 
-[node name="gun" parent="Mesh" instance=ExtResource("2_vaqn4")]
+[node name="gun" parent="Mesh" instance=ExtResource("2_y3erv")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 3.15411e-08, 0.9, -0.360788)
