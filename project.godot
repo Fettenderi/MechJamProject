@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 PlayerStats="*res://singletons/player_stats.tscn"
 GameMachine="*res://singletons/game_machine.tscn"
-WaveManager="*res://singletons/wave_manager.tscn"
 Gui="*res://singletons/gui.tscn"
+ZoneManager="*res://singletons/zone_manager.tscn"
 
 [display]
 
@@ -113,6 +113,11 @@ debug_button={
 debug_button_1={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":106,"echo":false,"script":null)
+]
+}
+interaction={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
 ]
 }
 

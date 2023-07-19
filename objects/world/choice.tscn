@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cokv88td2oj5f"]
+
+[ext_resource type="Script" path="res://objects/world/choice.gd" id="1_6nc0h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3380"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="Curve" id="Curve_ituy7"]
+_data = [Vector2(0.101504, 0.65343), 0.0, -4.5832, 0, 0, Vector2(0.58427, 0), -0.125548, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bdut6"]
+curve = SubResource("Curve_ituy7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mr8mn"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_curve = SubResource("CurveTexture_bdut6")
+attractor_interaction_enabled = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_g6b83"]
+radius = 1.0
+height = 2.0
+
+[node name="Choice" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+script = ExtResource("1_6nc0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_a3380")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0588888, 0)
+emitting = false
+amount = 10
+lifetime = 4.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mr8mn")
+draw_pass_1 = SubResource("SphereMesh_g6b83")

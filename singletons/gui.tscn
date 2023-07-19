@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8e14ykg88vyd"]
+[gd_scene load_steps=4 format=3 uid="uid://b8e14ykg88vyd"]
 
 [ext_resource type="Script" path="res://singletons/gui.gd" id="1_6pff1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4d7cv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uhxeu"]
+font_size = 8
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -37,18 +40,6 @@ offset_top = 31.0
 offset_right = 200.0
 offset_bottom = 51.0
 color = Color(0.121569, 0.92549, 1, 1)
-
-[node name="WavesCounter" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -64.0
-offset_top = 96.0
-offset_bottom = 122.0
-grow_horizontal = 0
-text = "Waves"
-horizontal_alignment = 2
 
 [node name="KillCounter" type="Label" parent="."]
 visible = false
@@ -87,3 +78,61 @@ offset_top = -9.0
 offset_right = 9.0
 offset_bottom = 209.0
 grow_horizontal = 0
+
+[node name="InteractionPrompt" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press E to select"
+horizontal_alignment = 1
+
+[node name="InteractionTitle" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -11.5
+offset_right = -62.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drill"
+horizontal_alignment = 1
+
+[node name="InteractionDescription" type="Label" parent="InteractionTitle"]
+visible = false
+offset_left = -40.0
+offset_top = 21.0
+offset_right = 80.0
+offset_bottom = 73.0
+text = "It unlocks a new weapon that consumes more energy but does more damage"
+label_settings = SubResource("LabelSettings_uhxeu")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CorruptionWarning" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "A zone has been corrupted"
+horizontal_alignment = 1
+vertical_alignment = 1

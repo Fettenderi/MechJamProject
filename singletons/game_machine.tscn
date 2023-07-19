@@ -5,9 +5,9 @@
 [ext_resource type="BusAsset" uid="uid://dgy4bt0lm21kc" path="res://addons/FMOD/editor/resources/busses/{5e22bac0-3f00-4935-8a02-38325683d9fc}.tres" id="2_uugg7"]
 [ext_resource type="PackedScene" uid="uid://6ujugi61e0nl" path="res://level/level3.tscn" id="3_6sq3d"]
 [ext_resource type="PackedScene" uid="uid://b43bucurt026m" path="res://objects/player/energy_pellet.tscn" id="3_p7agy"]
-[ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="4_72wx6"]
-[ext_resource type="ParameterAsset" uid="uid://bg7xmerh60nl8" path="res://addons/FMOD/editor/resources/parameters/{e394a3ef-4ebb-4bad-8212-c1b4b696b5b1}.tres" id="4_men58"]
 [ext_resource type="ParameterAsset" uid="uid://2etww4f7vaey" path="res://addons/FMOD/editor/resources/parameters/{e2465a31-f636-4fee-96fd-e0d8dfefeb69}.tres" id="4_q3cy5"]
+[ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="6_ee2kt"]
+[ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="7_fjmyl"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mukuy"]
 noise_type = 0
@@ -53,12 +53,11 @@ volume = 0.5
 play_event = 1
 event = SubResource("EventAsset_p0ic5")
 
-[node name="LowHealthEmitter" type="StudioEventEmitter3D" parent="."]
-event = ExtResource("4_72wx6")
+[node name="SoundTestEmitter" type="StudioEventEmitter3D" parent="."]
+event = ExtResource("6_ee2kt")
 
-[node name="LowHealthController" type="StudioGlobalParameterTrigger" parent="."]
-trigger_on = 1
-parameter = ExtResource("4_men58")
+[node name="SoundTestController" type="StudioGlobalParameterTrigger" parent="."]
+parameter = ExtResource("7_fjmyl")
 value = 0.0
 
 [node name="PlayerDiedController" type="StudioGlobalParameterTrigger" parent="."]

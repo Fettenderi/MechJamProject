@@ -129,3 +129,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59043, 0, -7.7)
 
 [node name="EnergyPellet" parent="Props" instance=ExtResource("6_fhoor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64643, 0, -7.66669)
+
+[node name="Zones" type="Node3D" parent="."]

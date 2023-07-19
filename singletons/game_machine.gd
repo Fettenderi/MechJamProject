@@ -28,8 +28,9 @@ extends Node
 @onready var music := $AllMusic
 @onready var player_died_controller := $PlayerDiedController
 @onready var low_battery_controller := $LowBatteryController
-@onready var low_health_emitter := $LowHealthEmitter
-@onready var low_health_controller := $LowHealthController
+
+@onready var sound_test_emitter := $SoundTestEmitter
+@onready var sound_test_controller := $SoundTestController
 
 @onready var initial_rotation : Vector3 = camera.rotation_degrees
 
@@ -59,16 +60,15 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("debug_exit"):
 		get_tree().quit()
-	
+		
+
 	if Input.is_action_just_pressed("debug_button"):
-		low_health_controller.value = (int(low_health_controller.value) + 1) % 2
-		low_health_controller.trigger()
-		if low_health_controller.value == 0:
-#			low_health_emitter.stop()
-			pass
+		if sound_test_controller.value == 0:
+			sound_test_controller.value = 1
+			sound_test_emitter.play()
 		else:
-			low_health_emitter.play()
-		print(low_health_controller.value)
+			sound_test_controller.value = 0
+			sound_test_emitter.stop()
 
 	if Input.is_action_just_pressed("debug_button_1"):
 		WaveManager.advance_waves()
@@ -87,18 +87,18 @@ func add_prop_at_random_location(prop_scene: PackedScene):
 	
 	get_node("Level/Props").add_child(prop_scene_node)
 
-func add_entity(entity: Node3D):
-	get_node("Level/Entities").add_child(entity)
-
-func add_enemy(enemy_scene: PackedScene, amount: int = 1, height: int = 1):
-	if amount != 0:
-		var cluster_position = Vector3(randi_range(-max_player_distance, max_player_distance), height, randi_range(-max_player_distance, max_player_distance)) + Vector3(player.global_position.x, 0, player.global_position.z)
-		for _i in range(amount):
-			var enemy_scene_node : CharacterBody3D = enemy_scene.instantiate()
-			
-			enemy_scene_node.position = cluster_position + Vector3(randi_range(-max_mutual_distance, max_mutual_distance), 0, randi_range(-max_mutual_distance, max_mutual_distance))
-			
-			get_node("Level/Entities").add_child(enemy_scene_node)
+#func add_entity(entity: Node3D):
+#	get_node("Level/Entities").add_child(entity)
+#
+#func add_enemy(enemy_scene: PackedScene, amount: int = 1, height: int = 1):
+#	if amount != 0:
+#		var cluster_position = Vector3(randi_range(-max_player_distance, max_player_distance), height, randi_range(-max_player_distance, max_player_distance)) + Vector3(player.global_position.x, 0, player.global_position.z)
+#		for _i in range(amount):
+#			var enemy_scene_node : CharacterBody3D = enemy_scene.instantiate()
+#
+#			enemy_scene_node.position = cluster_position + Vector3(randi_range(-max_mutual_distance, max_mutual_distance), 0, randi_range(-max_mutual_distance, max_mutual_distance))
+#
+#			get_node("Level/Entities").add_child(enemy_scene_node)
 
 func energy_changed(new_energy):
 	low_battery_controller.value = clamp(remap(new_energy, 2, PlayerStats.max_energy / 4, 1.0, 0.0), 0.0, 0.8)
@@ -116,11 +116,11 @@ func update_enemy_count(_value):
 			add_prop_at_random_location(health_pellet)
 		else:
 			add_prop_at_random_location(energy_pellet)
-	
-	enemy_count = get_node("Level/Entities").get_child_count() - 2
-	emit_signal("enemies_diminuished", enemy_count)
-	if enemy_count == 0:
-		emit_signal("enemies_all_dead")
+
+#	enemy_count = get_node("Level/Entities").get_child_count() - 2
+#	emit_signal("enemies_diminuished", enemy_count)
+#	if enemy_count == 0:
+#		emit_signal("enemies_all_dead")
 
 
 func screen_shake(delta):
