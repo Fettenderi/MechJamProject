@@ -1,0 +1,18 @@
+[gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://cbxoitpyctibc"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_c06vc"]
+data1 = 2311265973
+data2 = 4167048216
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_wdskc"]
+name = "player_moving"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_c06vc")
+maximum = 1.0
+flags = 4
+guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
+
+[resource]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_wdskc")
+path = "parameter:/player_moving"
+guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
+name = "player_moving"

@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://byk6gypu4xfcf"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_srixp"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_ncvio"]
 data1 = 2601016181
 data2 = 3254717881
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_1c08b"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_23ucs"]
 name = "player_dead"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_srixp")
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_ncvio")
 maximum = 1.0
 flags = 12
 guid = "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_1c08b")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_23ucs")
 path = "parameter:/player_dead"
 guid = "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}"
 name = "player_dead"
