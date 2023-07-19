@@ -33,7 +33,7 @@ func start_attack() -> void:
 		
 		enemy_node.position = global_position
 		
-		get_parent().get_parent().get_parent().get_parent().add_entity(enemy_node)
+		get_parent().get_parent().get_parent().get_parent().add_enemy_for_spaceship(enemy_node)
 		
 		primary_particles.call_deferred("set_emitting", true)
 		secondary_particles.call_deferred("set_emitting", true)

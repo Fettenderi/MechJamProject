@@ -79,7 +79,6 @@ draw_pass_1 = SubResource("BoxMesh_0h0d6")
 
 [node name="EnergySupplier" parent="." instance=ExtResource("2_4j255")]
 collision_mask = 10
-is_active = true
 
 [node name="ZoneChildren" type="Node3D" parent="."]
 

@@ -31,6 +31,7 @@ func _ready():
 	PlayerStats.connect("kills_changed", update_kill_counter)
 	
 	ZoneManager.connect("some_zone_was_corrupted", show_corruption_warning)
+	ZoneManager.connect("some_zone_was_corrupted_first_phase", show_corruption_warning)
 	
 	minimap_display.texture = minimap_viewport.get_texture()
 	kill_counter.text = "0"
@@ -86,6 +87,6 @@ func hide_interaction_prompt():
 
 func show_corruption_warning():
 	corruption_warning.visible = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(5).timeout
 	corruption_warning.visible = false
 	

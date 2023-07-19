@@ -6,6 +6,8 @@ var is_second_phase := false
 signal some_zone_was_corrupted
 signal started_second_phase
 
+signal some_zone_was_corrupted_first_phase
+
 func _ready():
 	GameMachine.get_node("Level/Zones/Zone3").connect("zone_cleared", second_phase_started)
 
@@ -27,3 +29,5 @@ func some_zone_cleared():
 
 func corrupt_next(id: int):
 	GameMachine.get_node("Level/Zones/Zone" + str(id)).start_corrupting()
+	await get_tree().create_timer(29).timeout
+	emit_signal("some_zone_was_corrupted_first_phase")

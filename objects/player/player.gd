@@ -16,8 +16,6 @@ const ROTATION_SPEED = 10.0
 
 @onready var low_battery_sfx := $LowBatterySfx
 @onready var low_health_sfx := $LowHealthSfx
-@onready var jetpack_sfx := $JetpackSfx
-@onready var jetpack_parameter := $JetpackParameter
 @onready var jump_sfx := $JumpSfx
 @onready var drill_sfx := $DrillSfx
 @onready var drill_parameter := $DrillParameter
@@ -255,10 +253,10 @@ func handle_animations(on_floor: bool, weapon_state: Stats.AttackType, direction
 func move(direction : Vector3, delta: float):
 	if is_on_floor():
 		is_walking = true
-		if not once_walk:
-			once_walk = true
-			FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
-			print("Muoviti")
+#		if not once_walk:
+#			once_walk = true
+#			FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
+#			print("Muoviti")
 		velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
 #		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
 #			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
@@ -270,10 +268,10 @@ func move(direction : Vector3, delta: float):
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
 
 func stop_moving(delta: float):
-	if once_walk:
-		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 0.0, false)
-		once_walk = false
-		print("Fermati")
+#	if once_walk:
+#		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 0.0, false)
+#		once_walk = false
+#		print("Fermati")
 		
 	is_walking = false
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)

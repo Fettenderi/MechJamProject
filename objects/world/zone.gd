@@ -61,7 +61,7 @@ func _ready():
 	subwave_timer.connect("timeout", advance_subwave)
 	corruption_timer.connect("timeout", corrupt_zone)
 	if is_current_zone:
-		start_corrupting()
+		ZoneManager.corrupt_next(id)
 
 func _process(delta):
 	var current_children_count := zone_children.get_child_count()
@@ -107,7 +107,7 @@ func corrupt_zone():
 	advance_subwave()
 
 func maybe_zone_cleared(_area: Area3D = null):
-	if zone_children.get_child_count() == 0 and missing_subwaves == 0:
+	if zone_children.get_child_count() == 0 and missing_subwaves == 1:
 		set_zone_cleared()
 
 func set_zone_cleared():
@@ -127,21 +127,30 @@ func start_second_phase():
 	is_second_phase = true
 
 func spawn_first():
-	add_enemy(enemies[base_enemy], rcc(missing_subwaves, MAX_SUBWAVES, 0, 5, 8))
-	add_enemy(enemies[special_enemy], rcc(missing_subwaves, MAX_SUBWAVES, 0, 1, 4))
+	add_enemy(base_enemy, rcc(missing_subwaves, MAX_SUBWAVES, 0, 5, 8))
+	add_enemy(special_enemy, rcc(missing_subwaves, MAX_SUBWAVES, 0, 1, 4))
 
 func spawn_wave():
-	add_enemy(enemies[EnemyType.ALIEN], rcc(zone_level, 0, 15, 6, 30))
-	add_enemy(enemies[EnemyType.ROVER], rcc(zone_level, 1, 15, 2, 15))
-	add_enemy(enemies[EnemyType.MK1], rcc(zone_level, 5, 15, 0, 10))
-	add_enemy(enemies[EnemyType.SPACESHIP], rcc(zone_level, 8, 15, 0, 4), 5)
+	add_enemy(EnemyType.ALIEN, rcc(zone_level, 0, 15, 6, 30))
+	add_enemy(EnemyType.ROVER, rcc(zone_level, 1, 15, 2, 15))
+	add_enemy(EnemyType.MK1, rcc(zone_level, 5, 15, 0, 10))
+	add_enemy(EnemyType.SPACESHIP, rcc(zone_level, 8, 15, 0, 4))
 
 func add_bonus():
 	var bonus_scene_node := bonus.instantiate()
 	bonus_scene_node.position = global_position + Vector3(randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE), 1, randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE))
 	zone_bonus.add_child(bonus_scene_node)
 
-func add_enemy(enemy_scene: PackedScene, amount: int = 1, height: float = 1.5):
+func add_enemy(enemy_type: EnemyType, amount: int = 1):
+	
+	var enemy_scene : PackedScene = enemies[enemy_type]
+	var height : float
+	
+	if enemy_type == EnemyType.SPACESHIP:
+		height = 5
+	else:
+		height = 1.5
+	
 	if amount != 0:
 		for _i in range(amount):
 			var enemy_scene_node : CharacterBody3D = enemy_scene.instantiate()

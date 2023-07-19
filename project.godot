@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 RuntimeManager="*res://addons/FMOD/runtime/runtime_manager.gd"
 PlayerStats="*res://singletons/player_stats.tscn"
 GameMachine="*res://singletons/game_machine.tscn"
-Gui="*res://singletons/gui.tscn"
 ZoneManager="*res://singletons/zone_manager.tscn"
+Gui="*res://singletons/gui.tscn"
 
 [display]
 
