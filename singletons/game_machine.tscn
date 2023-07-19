@@ -46,7 +46,7 @@ max_x = 5.0
 max_y = 5.0
 noise = SubResource("FastNoiseLite_mukuy")
 bus_asset = ExtResource("2_uugg7")
-volume = 0.5
+volume = 0.3
 
 [node name="Level" parent="." instance=ExtResource("3_6sq3d")]
 

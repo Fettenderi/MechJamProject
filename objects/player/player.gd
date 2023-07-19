@@ -18,13 +18,13 @@ const ROTATION_SPEED = 10.0
 @onready var low_health_sfx := $LowHealthSfx
 @onready var jump_sfx := $JumpSfx
 @onready var drill_sfx := $DrillSfx
-@onready var drill_parameter := $DrillParameter
 
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
 @onready var drill_attack := $Rotating/DrillAttack
 @onready var gun := $Rotating/Gun
 @onready var fotonic_cannon := $Rotating/FotonicCannon
+@onready var fotonic_cannon_chaging_particles := $Rotating/FotonicCannon/ChargingParticles
 
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
@@ -48,6 +48,7 @@ var is_charging := false
 var is_walking := false
 
 var once_drill := false
+var once_cannon := false
 var once_walk := false
 
 var ray_origin := Vector3.ZERO
@@ -155,9 +156,7 @@ func handle_attacks(delta: float):
 					PlayerStats.drill_usage += delta
 					if PlayerStats.drill_usage >= PlayerStats.min_drill_usage:
 						if not once_drill:
-							drill_parameter.value = 0
-							drill_parameter.trigger()
-							drill_sfx.play()
+							FMODStudioModule.get_studio_system().set_parameter_by_name("drill_attack", 1.0, false)
 							once_drill = true
 						needs_charging = false
 						is_charging = false
@@ -169,9 +168,17 @@ func handle_attacks(delta: float):
 					needs_charging = true
 					PlayerStats.fotonic_usage += delta
 					if PlayerStats.fotonic_usage >= PlayerStats.min_fotonic_usage:
+						if once_cannon:
+							fotonic_cannon_chaging_particles.set_deferred("emitting", false)
+							once_cannon = true
 						needs_charging = false
 						is_charging = false
 						handle_single_attack(fotonic_cannon, Stats.AttackType.FOTONIC, PlayerStats.fotonic_usage)
+					else:
+						if not once_cannon:
+							fotonic_cannon_chaging_particles.set_deferred("emitting", true)
+							once_cannon = true
+						fotonic_cannon_chaging_particles.set_deferred("amount", clamp(ceil(remap(PlayerStats.fotonic_usage, 0, 4, 100, 200)), 100, 200))
 			
 			Stats.AttackType.GUN:
 				if can_attack:
@@ -181,9 +188,10 @@ func handle_attacks(delta: float):
 	elif Input.is_action_just_released("player_attack"):
 		PlayerStats.drill_usage = 0
 		PlayerStats.fotonic_usage = 0
-		drill_parameter.value = 1
-		drill_parameter.trigger()
+		FMODStudioModule.get_studio_system().set_parameter_by_name("drill_attack", 0.0, false)
+		fotonic_cannon_chaging_particles.set_deferred("emitting", false)
 		once_drill = false
+		once_cannon = false
 		needs_charging = false
 		is_charging = false
 	
@@ -262,14 +270,8 @@ func move(direction : Vector3, delta: float):
 		is_walking = true
 		if not once_walk:
 			once_walk = true
-		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
-		print("Muoviti")
+			FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
 		velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
-#		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
-#			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
-#			velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
-#			moving_elapsed += delta
-#		else:
 	else:
 		is_walking = false
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
@@ -278,7 +280,6 @@ func stop_moving(delta: float):
 	if once_walk:
 		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 0.0, false)
 		once_walk = false
-		print("Fermati")
 		
 	is_walking = false
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)

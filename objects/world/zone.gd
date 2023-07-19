@@ -4,6 +4,7 @@ const MAX_SUBWAVES = 3
 const MAX_TOTEM_HEIGHT = 11
 const MIN_TOTEM_HEIGHT = 0.001
 const MAX_MUTUAL_ENEMY_DISTANCE = 5
+const MAX_BONUS_DISTANCE = 1
 const MINUTE = 60
 
 enum EnemyType {
@@ -138,7 +139,7 @@ func spawn_wave():
 
 func add_bonus():
 	var bonus_scene_node := bonus.instantiate()
-	bonus_scene_node.position = global_position + Vector3(randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE), 1, randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE))
+	bonus_scene_node.position = global_position + Vector3(randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE), 1, randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE))
 	add_child(bonus_scene_node, true)
 	bonus_scene_node.connect("choice_made", zone_looted)
 

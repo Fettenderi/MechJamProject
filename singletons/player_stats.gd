@@ -43,7 +43,9 @@ var unlocked_weapons : Array[int] = [0] :
 
 var available_weapons : Array[int] = [
 	Stats.AttackType.NORMAL,
-	Stats.AttackType.GUN
+	Stats.AttackType.GUN,
+	Stats.AttackType.DRILL,
+	Stats.AttackType.FOTONIC
 ]
 
 var selected_weapon : int = 0 :

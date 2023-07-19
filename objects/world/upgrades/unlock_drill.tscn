@@ -1,10 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc4liqpk2204h"]
+[gd_scene load_steps=10 format=3 uid="uid://cc4liqpk2204h"]
 
 [ext_resource type="Script" path="res://objects/world/upgrades/unlock_drill.gd" id="1_fe5cw"]
 [ext_resource type="PackedScene" uid="uid://dbsnraxpfy4ov" path="res://models/upgrades/drill.gltf" id="2_1yi72"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq0ej"]
+albedo_color = Color(0.298039, 0.196078, 0.298039, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vtyib"]
+material = SubResource("StandardMaterial3D_kq0ej")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_a3380"]
-size = Vector3(2, 1, 2)
+size = Vector3(0.5, 2, 0.5)
 
 [sub_resource type="Curve" id="Curve_ituy7"]
 _data = [Vector2(0.101504, 0.65343), 0.0, -4.5832, 0, 0, Vector2(0.58427, 0), -0.125548, 0.0, 0, 0]
@@ -30,13 +39,19 @@ radius = 1.0
 height = 2.0
 
 [node name="UnlockDrill" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 0
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 128
+collision_mask = 128
 script = ExtResource("1_fe5cw")
 title = "Unlock Drill"
 description = "Grants you a very powerfull drill, it is good for destroying strong foes "
 
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("CylinderMesh_vtyib")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_a3380")
 
 [node name="Particles" type="GPUParticles3D" parent="."]
@@ -51,5 +66,7 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mr8mn")
 draw_pass_1 = SubResource("SphereMesh_g6b83")
 
-[node name="Mesh" parent="." instance=ExtResource("2_1yi72")]
-transform = Transform3D(1, -8.74228e-08, -1.51421e-07, 0, 0.866025, -0.5, 1.74846e-07, 0.5, 0.866025, 0, 0, -0.2)
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="drill" parent="Mesh" instance=ExtResource("2_1yi72")]
+transform = Transform3D(1, 8.74228e-08, 1.51421e-07, 0, 0.866025, -0.5, -1.74846e-07, 0.5, 0.866025, 0.0208631, 0.5, -0.142627)
