@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://6ujugi61e0nl"]
+[gd_scene load_steps=23 format=3 uid="uid://6ujugi61e0nl"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_n4lux"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_sc1m4"]
-[ext_resource type="PackedScene" uid="uid://dnad18frkfr4v" path="res://objects/world/bonus.tscn" id="4_5i8xk"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="4_gk6y6"]
 [ext_resource type="PackedScene" uid="uid://d4dsmmfjtrces" path="res://objects/world/zone.tscn" id="4_ye2ly"]
+[ext_resource type="PackedScene" uid="uid://b7nf4bmijfjhh" path="res://objects/world/obstacles/building_1.tscn" id="5_2gyg7"]
+[ext_resource type="PackedScene" uid="uid://bd2rk2jkm2jri" path="res://objects/world/obstacles/building_3.tscn" id="6_v6rpu"]
+[ext_resource type="PackedScene" uid="uid://cviuul2ur7ec7" path="res://objects/world/obstacles/building_2.tscn" id="7_5j8h8"]
+[ext_resource type="PackedScene" uid="uid://cfhdfbfioudvs" path="res://objects/world/obstacles/building_5.tscn" id="8_8toc6"]
+[ext_resource type="PackedScene" uid="uid://cbknrcginos42" path="res://objects/world/obstacles/building_4.tscn" id="9_xkuk7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -42,6 +46,25 @@ sky = SubResource("Sky_53jql")
 tonemap_mode = 2
 fog_light_color = Color(0.607843, 0.505882, 0.654902, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybwlx"]
+albedo_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ue2q"]
+material = SubResource("StandardMaterial3D_ybwlx")
+size = Vector3(65, 0.1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x35om"]
+material = SubResource("StandardMaterial3D_ybwlx")
+size = Vector3(74.998, 0.1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rkicw"]
+material = SubResource("StandardMaterial3D_ybwlx")
+size = Vector3(74.911, 0.1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_al7t1"]
+material = SubResource("StandardMaterial3D_ybwlx")
+size = Vector3(73.556, 0.1, 3)
+
 [node name="Level" type="Node3D"]
 
 [node name="PlayerFollower" type="Node3D" parent="." node_paths=PackedStringArray("player")]
@@ -66,7 +89,7 @@ skeleton = NodePath("../..")
 [node name="MinimapCamera" type="Camera3D" parent="PlayerFollower/Minimap"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 2.793)
 projection = 1
-size = 100.0
+size = 110.0
 
 [node name="WorldElements" type="Node3D" parent="."]
 
@@ -95,27 +118,1417 @@ camera = NodePath("../../PlayerFollower/CameraPlayer")
 
 [node name="Props" type="Node3D" parent="."]
 
-[node name="Bonus" parent="Props" instance=ExtResource("4_5i8xk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.83589)
-
 [node name="Zones" type="Node3D" parent="."]
 
 [node name="Zone1" parent="Zones" instance=ExtResource("4_ye2ly")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 28.1475)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0125)
 is_current_zone = true
 base_enemy = 1
 
 [node name="Zone2" parent="Zones" instance=ExtResource("4_ye2ly")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 28.1475)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 28.1475)
 starting_ost = 3
 fighting_ost = 4
-id = 2
 special_enemy = 2
 
 [node name="Zone3" parent="Zones" instance=ExtResource("4_ye2ly")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 28.1475)
 starting_ost = 5
 fighting_ost = 6
 id = 3
 base_enemy = 2
 special_enemy = 3
+
+[node name="Deco" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 24.68, 0, -28.6468)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building21" parent="Deco/MeshInstance3D" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 30.9821, 0, 2.2664)
+
+[node name="Building11" parent="Deco/MeshInstance3D" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building22" parent="Deco/MeshInstance3D" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -33.3167, 0, 0.0707703)
+
+[node name="Building19" parent="Deco/MeshInstance3D" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 55.6883, 0, 5.28148)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D3" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D3" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D3" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D3" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D3" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D3" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D3" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D3" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D3" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D3" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D3" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(0.999998, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 0.999998, 25.5077, 0, 2.24394)
+
+[node name="Building12" parent="Deco/MeshInstance3D3" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D3" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D3" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building21" parent="Deco/MeshInstance3D3" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.707106, 0, -0.707105, 0, 1, 0, 0.707105, 0, 0.707106, 33.0493, 0, -2.04887)
+
+[node name="Building15" parent="Deco/MeshInstance3D3" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D3" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D3" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D3" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building22" parent="Deco/MeshInstance3D3" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -33.2584, 0, 0.0707731)
+
+[node name="Building19" parent="Deco/MeshInstance3D3" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D3" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.0843239, 0, 51.3677)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building21" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -33.3051, 0, 0.0385734)
+
+[node name="Building2" parent="Deco/MeshInstance3D8" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, -2.45966, 0, -2.14432)
+
+[node name="Building3" parent="Deco/MeshInstance3D8" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D8" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D8" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 1.84737, 0, -2.16307)
+
+[node name="Building7" parent="Deco/MeshInstance3D8" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D8" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D8" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building22" parent="Deco/MeshInstance3D8" instance=ExtResource("8_8toc6")]
+transform = Transform3D(1.31134e-07, 0, -0.999999, 0, 1, 0, 0.999999, 0, 1.31134e-07, 34.0757, 0, -0.0533457)
+
+[node name="Building10" parent="Deco/MeshInstance3D8" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D8" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 1.89186, 0, 2.0988)
+
+[node name="Building13" parent="Deco/MeshInstance3D8" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D8" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D8" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, -2.57438, 0, 2.03219)
+
+[node name="Building17" parent="Deco/MeshInstance3D8" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D8" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D8" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D8" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -55.688, 0, 5.28102)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D4" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D4" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building4" parent="Deco/MeshInstance3D4" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D4" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D4" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D4" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D4" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building21" parent="Deco/MeshInstance3D4" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 33.0972, 0, 2.11486)
+
+[node name="Building9" parent="Deco/MeshInstance3D4" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D4" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 28.9114, 0, -2.09503)
+
+[node name="Building11" parent="Deco/MeshInstance3D4" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D4" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D4" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D4" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D4" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D4" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D4" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D4" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D4" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building22" parent="Deco/MeshInstance3D4" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -33.4821, 0, -0.0182657)
+
+[node name="Building20" parent="Deco/MeshInstance3D4" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -59.888, 0, 51.0914)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D5" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D5" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D5" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building21" parent="Deco/MeshInstance3D5" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, -32.2624, 0, -1.27256)
+
+[node name="Building4" parent="Deco/MeshInstance3D5" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D5" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D5" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D5" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D5" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D5" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D5" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D5" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D5" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D5" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D5" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D5" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D5" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D5" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D5" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D5" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D5" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -0.275165, 0, 51.0918)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D6" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building3" parent="Deco/MeshInstance3D6" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D6" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D6" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building7" parent="Deco/MeshInstance3D6" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D6" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D6" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D6" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D6" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building13" parent="Deco/MeshInstance3D6" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D6" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D6" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building17" parent="Deco/MeshInstance3D6" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D6" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D6" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D6" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -69.2121, 0, -28.5824)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D9" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building21" parent="Deco/MeshInstance3D9" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -33.2368, 0, -0.0290604)
+
+[node name="Building2" parent="Deco/MeshInstance3D9" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, -2.45966, 0, -2.14432)
+
+[node name="Building3" parent="Deco/MeshInstance3D9" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D9" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D9" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D9" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 1.84737, 0, -2.16307)
+
+[node name="Building7" parent="Deco/MeshInstance3D9" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D9" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D9" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D9" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D9" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D9" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 1.89186, 0, 2.0988)
+
+[node name="Building13" parent="Deco/MeshInstance3D9" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D9" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D9" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D9" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, -2.57438, 0, 2.03219)
+
+[node name="Building17" parent="Deco/MeshInstance3D9" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D9" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D9" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D9" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -69.5716, 0, -29.0582)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D10" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building3" parent="Deco/MeshInstance3D10" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D10" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D10" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building7" parent="Deco/MeshInstance3D10" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D10" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D10" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building11" parent="Deco/MeshInstance3D10" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building13" parent="Deco/MeshInstance3D10" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D10" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D10" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building17" parent="Deco/MeshInstance3D10" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D10" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D10" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D10" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="Building21" parent="Deco/MeshInstance3D10" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-0.999998, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999998, -33.4149, 0, -0.0860519)
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 68.3789, 0, -28.6824)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D11" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D11" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, -2.45966, 0, -2.14432)
+
+[node name="Building3" parent="Deco/MeshInstance3D11" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D11" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D11" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building21" parent="Deco/MeshInstance3D11" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -33.2908, 0, 0.0138092)
+
+[node name="Building6" parent="Deco/MeshInstance3D11" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 1.84737, 0, -2.16307)
+
+[node name="Building7" parent="Deco/MeshInstance3D11" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D11" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D11" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D11" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D11" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D11" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 1.89186, 0, 2.0988)
+
+[node name="Building13" parent="Deco/MeshInstance3D11" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D11" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D11" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D11" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, -2.57438, 0, 2.03219)
+
+[node name="Building17" parent="Deco/MeshInstance3D11" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D11" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D11" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D11" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 68.0194, 0, -29.0582)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D12" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building3" parent="Deco/MeshInstance3D12" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D12" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D12" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building7" parent="Deco/MeshInstance3D12" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D12" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D12" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building12" parent="Deco/MeshInstance3D12" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999999, 33.3394, 0, -0.0405865)
+
+[node name="Building10" parent="Deco/MeshInstance3D12" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D12" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building13" parent="Deco/MeshInstance3D12" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D12" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D12" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building17" parent="Deco/MeshInstance3D12" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D12" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D12" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D12" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 59.9754, 0, 51.0918)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D7" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D7" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D7" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D7" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D7" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D7" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D7" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D7" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D7" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D7" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D7" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D7" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D7" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D7" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D7" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D7" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D7" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D7" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D7" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building21" parent="Deco/MeshInstance3D7" instance=ExtResource("8_8toc6")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -34.1632, 0, -0.0635986)
+
+[node name="Building20" parent="Deco/MeshInstance3D7" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -59.888, 0, 99.0519)
+mesh = SubResource("BoxMesh_x35om")
+
+[node name="Building" parent="Deco/MeshInstance3D19" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D19" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D19" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building11" parent="Deco/MeshInstance3D19" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -31.7938, 0, -2.30901)
+
+[node name="Building4" parent="Deco/MeshInstance3D19" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D19" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D19" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D19" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D19" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D19" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D19" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 66.8956, 0, 99.0519)
+mesh = SubResource("BoxMesh_x35om")
+
+[node name="Building" parent="Deco/MeshInstance3D21" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D21" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D21" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building11" parent="Deco/MeshInstance3D21" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -31.7938, 0, -2.30901)
+
+[node name="Building4" parent="Deco/MeshInstance3D21" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D21" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D21" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D21" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D21" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D21" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D21" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -0.275165, 0, 99.0524)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building11" parent="Deco/MeshInstance3D20" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D20" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -4.597, 0, 2.64393)
+
+[node name="Building13" parent="Deco/MeshInstance3D20" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D20" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D20" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D20" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 1.27248, 0, 2.35093)
+
+[node name="Building17" parent="Deco/MeshInstance3D20" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D20" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D20" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D20" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 64.3763, 0, -101.608)
+mesh = SubResource("BoxMesh_x35om")
+
+[node name="Building" parent="Deco/MeshInstance3D25" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D25" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D25" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building11" parent="Deco/MeshInstance3D25" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -31.7938, 0, -2.30901)
+
+[node name="Building4" parent="Deco/MeshInstance3D25" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D25" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D25" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D25" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D25" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D25" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D25" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -62.4073, 0, -101.608)
+mesh = SubResource("BoxMesh_x35om")
+
+[node name="Building" parent="Deco/MeshInstance3D26" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D26" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D26" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building11" parent="Deco/MeshInstance3D26" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -31.7938, 0, -2.30901)
+
+[node name="Building4" parent="Deco/MeshInstance3D26" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D26" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D26" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D26" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D26" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D26" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D26" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 4.76343, 0, -101.608)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building11" parent="Deco/MeshInstance3D27" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D27" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -4.597, 0, 2.64393)
+
+[node name="Building13" parent="Deco/MeshInstance3D27" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D27" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D27" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D27" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 1.27248, 0, 2.35093)
+
+[node name="Building17" parent="Deco/MeshInstance3D27" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D27" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D27" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D27" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -59.888, 0, -78.6886)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D22" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D22" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D22" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D22" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D22" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D22" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D22" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D22" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D22" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D22" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D22" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D22" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D22" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D22" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D22" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building21" parent="Deco/MeshInstance3D22" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 57.5232, 0, -2.309)
+
+[node name="Building22" parent="Deco/MeshInstance3D22" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 63.5232, 0, -3.091)
+
+[node name="Building23" parent="Deco/MeshInstance3D22" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37114e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37114e-08, 66.6746, 0, 2.64391)
+
+[node name="Building24" parent="Deco/MeshInstance3D22" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 54.5232, 0, 2.29194)
+
+[node name="Building25" parent="Deco/MeshInstance3D22" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 60.5231, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D22" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D22" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D22" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D22" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D22" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -0.275165, 0, -78.6882)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D23" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building3" parent="Deco/MeshInstance3D23" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building5" parent="Deco/MeshInstance3D23" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building7" parent="Deco/MeshInstance3D23" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D23" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D23" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D23" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D23" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building13" parent="Deco/MeshInstance3D23" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D23" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D23" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building17" parent="Deco/MeshInstance3D23" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D23" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D23" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D23" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 59.9754, 0, -78.6882)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D24" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D24" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D24" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D24" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D24" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D24" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D24" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D24" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D24" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building10" parent="Deco/MeshInstance3D24" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D24" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D24" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D24" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D24" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D24" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D24" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D24" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D24" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building21" parent="Deco/MeshInstance3D24" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -33.3475, 0, 0.0828934)
+
+[node name="Building19" parent="Deco/MeshInstance3D24" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D24" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.6801, 0, -28.6466)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building" parent="Deco/MeshInstance3D2" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
+
+[node name="Building2" parent="Deco/MeshInstance3D2" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building3" parent="Deco/MeshInstance3D2" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -13.4922, 0, -2.309)
+
+[node name="Building4" parent="Deco/MeshInstance3D2" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D2" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -19.4922, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D2" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D2" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building8" parent="Deco/MeshInstance3D2" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 16.5077, 0, -2.309)
+
+[node name="Building9" parent="Deco/MeshInstance3D2" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
+
+[node name="Building21" parent="Deco/MeshInstance3D2" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 33.2458, 0, 0.00562859)
+
+[node name="Building10" parent="Deco/MeshInstance3D2" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
+
+[node name="Building11" parent="Deco/MeshInstance3D2" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D2" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D2" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D2" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D2" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D2" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D2" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D2" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D2" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D2" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -98.5115, 0, -67.7205)
+mesh = SubResource("BoxMesh_rkicw")
+
+[node name="Building11" parent="Deco/MeshInstance3D13" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D13" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D13" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building21" parent="Deco/MeshInstance3D13" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 30.214, 0, 2.29195)
+
+[node name="Building14" parent="Deco/MeshInstance3D13" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D13" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D13" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D13" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D13" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D13" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D13" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -98.5115, 0, 8.60983)
+mesh = SubResource("BoxMesh_al7t1")
+
+[node name="Building11" parent="Deco/MeshInstance3D14" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D14" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D14" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building21" parent="Deco/MeshInstance3D14" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 31.4724, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D14" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D14" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D14" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D14" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D14" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D14" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D14" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -98.5115, 0, 70.6282)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building11" parent="Deco/MeshInstance3D15" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D15" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D15" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D15" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D15" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D15" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D15" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D15" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D15" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 100.198, 0, 63.1512)
+mesh = SubResource("BoxMesh_rkicw")
+
+[node name="Building11" parent="Deco/MeshInstance3D16" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D16" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D16" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building21" parent="Deco/MeshInstance3D16" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 30.214, 0, 2.29195)
+
+[node name="Building14" parent="Deco/MeshInstance3D16" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D16" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D16" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D16" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D16" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D16" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D16" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 100.198, 0, -13.1791)
+mesh = SubResource("BoxMesh_al7t1")
+
+[node name="Building11" parent="Deco/MeshInstance3D17" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D17" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D17" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building21" parent="Deco/MeshInstance3D17" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 31.4724, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D17" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D17" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D17" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D17" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D17" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D17" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
+
+[node name="Building20" parent="Deco/MeshInstance3D17" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 100.198, 0, -75.1975)
+mesh = SubResource("BoxMesh_7ue2q")
+
+[node name="Building11" parent="Deco/MeshInstance3D18" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999998, 0, 1, 0, -0.999998, 0, -4.37113e-08, 25.5077, 0, 2.64394)
+
+[node name="Building12" parent="Deco/MeshInstance3D18" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building13" parent="Deco/MeshInstance3D18" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 13.5077, 0, 2.29193)
+
+[node name="Building14" parent="Deco/MeshInstance3D18" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D18" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, 19.5077, 0, 2.35094)
+
+[node name="Building16" parent="Deco/MeshInstance3D18" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D18" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
+
+[node name="Building18" parent="Deco/MeshInstance3D18" instance=ExtResource("7_5j8h8")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -16.4922, 0, 2.29194)
+
+[node name="Building19" parent="Deco/MeshInstance3D18" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, -22.4922, 0, 3.07394)
