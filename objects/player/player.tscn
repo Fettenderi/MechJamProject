@@ -399,16 +399,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23073, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.279189, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.923879, 0.0631751, 0.377434, 1.49012e-08, 0.986282, -0.165084, -0.382684, 0.152518, 0.911205, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0548474, 0.378733, -1.28522e-07, 0.989679, -0.143323, -0.382683, 0.132413, 0.914343, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.923879, -0.063175, -0.377434, -1.49012e-08, 0.98628, -0.165084, 0.382684, 0.152518, 0.911205, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0548473, -0.378733, 1.28522e-07, 0.989676, -0.143323, 0.382683, 0.132413, 0.914343, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -496,7 +496,7 @@ event = ExtResource("11_u8q1e")
 
 [node name="FotonicCannon" parent="Rotating" instance=ExtResource("5_auxup")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, 0.4, -2)
-duration_time = 0.9
+duration_time = 0.8
 delay_time = 0.1
 projectile = ExtResource("12_d1k7w")
 layer = 32
