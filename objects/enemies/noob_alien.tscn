@@ -21,7 +21,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spnsk"]
 height = 1.6
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_n5k5w"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0gu3c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dxb0f"]
 radius = 22.0
@@ -61,34 +61,37 @@ event = ExtResource("4_my8nw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="alien" parent="Rotating/AlienMesh/Node2" index="0"]
-transform = Transform3D(0.999958, -0.00919912, -0.000179054, 0.0091438, 0.99573, -0.091847, 0.0010232, 0.0918415, 0.995772, 0, -0.074781, -0.112977)
+transform = Transform3D(0.999997, -0.00243843, -0.000129967, 0.00243453, 0.999698, -0.0243995, 0.000189424, 0.0243991, 0.999701, 0, -0.0637442, -0.0320409)
+
+[node name="body" parent="Rotating/AlienMesh/Node2/alien" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 2.125, 0)
 
 [node name="leftArm" parent="Rotating/AlienMesh/Node2/alien/body" index="2"]
-transform = Transform3D(0.454403, -0.890797, 0, 0.890797, 0.454403, 0, 0, 0, 1, -0.4375, 0.15625, 0)
+transform = Transform3D(0.372409, -0.928069, 0, 0.928069, 0.372409, 0, 0, 0, 1, -0.4375, 0.15625, 0)
 
 [node name="rightArm" parent="Rotating/AlienMesh/Node2/alien/body" index="3"]
-transform = Transform3D(0.398962, 0.916968, 0, -0.916968, 0.398962, 0, 0, 0, 1, 0.4375, 0.15625, 0)
+transform = Transform3D(0.357261, 0.934005, 0, -0.934005, 0.357261, 0, 0, 0, 1, 0.4375, 0.15625, 0)
 
 [node name="leftUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="4"]
 transform = Transform3D(0.991445, 0.0602703, 0.115778, 9.31323e-09, 0.887011, -0.461749, -0.130526, 0.457798, 0.879422, -0.25, -0.5, 0)
 
 [node name="leftLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.794338, 0.607476, 0, -0.607476, 0.794338, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.863428, 0.504471, 0, -0.504471, 0.863428, 0, -0.75, 0)
 
 [node name="leftFoot" parent="Rotating/AlienMesh/Node2/alien/body/leftUpperLeg/leftLowerLeg" index="1"]
-transform = Transform3D(0.999994, 0.00154114, 0.00267787, -0.000641202, 0.951362, -0.308073, -0.00302241, 0.30807, 0.951359, 0, -0.75, 0)
+transform = Transform3D(0.999821, -0.0188508, 0.000966969, 0.0185283, 0.970356, -0.240968, 0.00360414, 0.240943, 0.970533, 0, -0.75, 0)
 
 [node name="rightUpperLeg" parent="Rotating/AlienMesh/Node2/alien/body" index="5"]
 transform = Transform3D(0.991445, -0.0602703, -0.115778, -9.31323e-09, 0.88701, -0.461749, 0.130526, 0.457798, 0.879422, 0.25, -0.5, 0)
 
 [node name="rightLowerLeg" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.795652, 0.605754, 0, -0.605754, 0.795652, 0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 0.85869, 0.512496, 0, -0.512496, 0.85869, 0, -0.75, 0)
 
 [node name="rightFoot" parent="Rotating/AlienMesh/Node2/alien/body/rightUpperLeg/rightLowerLeg" index="1"]
-transform = Transform3D(0.999585, 0.0287111, -0.00210736, -0.0280908, 0.956727, -0.289623, -0.00629925, 0.289562, 0.957139, 0, -0.75, 0)
+transform = Transform3D(0.999446, 0.0332698, -0.000594166, -0.0323744, 0.968106, -0.248434, -0.00769013, 0.248315, 0.968649, 0, -0.75, 0)
 
 [node name="head" parent="Rotating/AlienMesh/Node2/alien/body" index="6"]
-transform = Transform3D(0.995124, -0.0985958, -0.00313433, 0.0938378, 0.95594, -0.278158, 0.0304215, 0.276507, 0.960529, 0.00852273, 0.436506, 0)
+transform = Transform3D(0.999991, 0.00459466, -0.00052489, -0.00454549, 0.955639, -0.294502, -0.000851534, 0.294501, 0.95565, 0.00852273, 0.436506, 0)
 
 [node name="AnimationPlayer" parent="Rotating/AlienMesh" index="1"]
 speed_scale = 2.0
@@ -96,7 +99,7 @@ speed_scale = 2.0
 [node name="AlienAnimationTree" parent="Rotating" instance=ExtResource("5_uip58")]
 anim_player = NodePath("../AlienMesh/AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_n5k5w")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_0gu3c")
 
 [node name="Fixed" type="Node3D" parent="."]
 

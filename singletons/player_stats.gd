@@ -12,7 +12,7 @@ extends Stats
 			emit_signal("dead")
 		emit_signal("energy_changed", energy)
 
-var can_discharge := true
+var can_discharge := false
 
 @export var jump_charge_speed : float = 20
 @export var max_jump_charge : float = 100
@@ -43,9 +43,7 @@ var unlocked_weapons : Array[int] = [0] :
 
 var available_weapons : Array[int] = [
 	Stats.AttackType.NORMAL,
-	Stats.AttackType.GUN,
-	Stats.AttackType.FOTONIC,
-	Stats.AttackType.DRILL
+	Stats.AttackType.GUN
 ]
 
 var selected_weapon : int = 0 :

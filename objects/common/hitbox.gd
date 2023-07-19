@@ -3,6 +3,8 @@ extends Area3D
 @export var stats : Stats
 @export var shields : Shield
 
+@onready var shape := $Shape
+
 @onready var has_shield := shields is Shield
 @onready var is_enemy := stats != PlayerStats
 
@@ -36,6 +38,14 @@ func get_damage() -> float:
 func die():
 	if is_enemy:
 		PlayerStats.kills += 1
+	
+	shape.set_deferred("disabled", true)
+	
+	if hit_sfx:
+		hit_sfx.stop()
 	if dead_sfx:
 		dead_sfx.play()
+		await get_tree().create_timer(2).timeout
+		dead_sfx.stop()
+		
 	get_parent().get_parent().queue_free()

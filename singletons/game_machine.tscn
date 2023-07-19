@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn1n3236ap2am"]
+[gd_scene load_steps=15 format=3 uid="uid://bn1n3236ap2am"]
 
 [ext_resource type="Script" path="res://singletons/game_machine.gd" id="1_8f465"]
 [ext_resource type="PackedScene" uid="uid://cgb16sopesu7p" path="res://objects/player/health_pellet.tscn" id="2_qlf0c"]
@@ -8,6 +8,7 @@
 [ext_resource type="ParameterAsset" uid="uid://2etww4f7vaey" path="res://addons/FMOD/editor/resources/parameters/{e2465a31-f636-4fee-96fd-e0d8dfefeb69}.tres" id="4_q3cy5"]
 [ext_resource type="EventAsset" uid="uid://28ow7w04xojo" path="res://addons/FMOD/editor/resources/events/{cc94d5ab-f44b-4107-8d6f-9bba0057010b}.tres" id="6_ee2kt"]
 [ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="7_fjmyl"]
+[ext_resource type="ParameterAsset" uid="uid://7vo5twaru018" path="res://addons/FMOD/editor/resources/parameters/{01f40d11-8630-4966-92fe-eb44b9b83cfe}.tres" id="9_j3gjb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mukuy"]
 noise_type = 0
@@ -67,3 +68,8 @@ value = 0.0
 [node name="LowBatteryController" type="StudioGlobalParameterTrigger" parent="."]
 parameter = ExtResource("4_q3cy5")
 value = 0.0
+
+[node name="IntensityController" type="StudioGlobalParameterTrigger" parent="."]
+trigger_on = 1
+parameter = ExtResource("9_j3gjb")
+value = 1.0

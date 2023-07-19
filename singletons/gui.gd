@@ -8,7 +8,6 @@ extends Control
 @onready var energy_bar := $EnergyBar
 @onready var weapon := $Weapon
 @onready var kill_counter := $KillCounter
-@onready var waves_counter := $WavesCounter
 @onready var minimap_display := $Minimap
 
 @onready var interaction_prompt := $InteractionPrompt
@@ -35,7 +34,6 @@ func _ready():
 	
 	minimap_display.texture = minimap_viewport.get_texture()
 	kill_counter.text = "0"
-	waves_counter.text = "0"
 	health_bar.size = max_size
 	health_bar.color = color_high
 
