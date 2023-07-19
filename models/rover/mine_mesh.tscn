@@ -75,24 +75,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_37yps")
 
-[sub_resource type="Animation" id="Animation_6dhy5"]
-resource_name = "priming"
-length = 4.0
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2/plate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.075, 0, 4, 1, 0, 0, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node2/plate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 6.12323e-17, 3.96667, 1, 0, 0.0130896, 0, 0.999914, 4, 1, 0, 0, 0, 1)
-
 [sub_resource type="Animation" id="Animation_uwvel"]
 resource_name = "exploding"
 length = 0.25
@@ -110,6 +92,24 @@ tracks/1/path = NodePath("Node2/plate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.25, 1, 0, 1, 0, 6.12323e-17)
+
+[sub_resource type="Animation" id="Animation_6dhy5"]
+resource_name = "priming"
+length = 4.0
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2/plate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.075, 0, 4, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2/plate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 6.12323e-17, 3.96667, 1, 0, 0.0130896, 0, 0.999914, 4, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h0syf"]
 _data = {

@@ -4,7 +4,7 @@
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
-max_distance = 20.0
+max_distance = 30.0
 path = "event:/SFX/Alien/Alien Laser Gun"
 guid = "{dcca9f04-5273-4358-be00-372335871df8}"
 name = "Alien Laser Gun"
