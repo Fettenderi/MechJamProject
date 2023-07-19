@@ -65,7 +65,8 @@ func _physics_process(delta):
 		
 
 	if Input.is_action_just_pressed("debug_button"):
-		set_intensity(4)
+#		print(range(-1, 2, 1))
+		pass
 		
 
 	if Input.is_action_just_pressed("debug_button_1"):

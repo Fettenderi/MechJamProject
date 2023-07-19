@@ -1,5 +1,12 @@
 extends Node
 
+@onready var upgrades := [
+	preload("res://objects/world/upgrades/unlock_drill.tscn"),
+	preload("res://objects/world/upgrades/upgrade_parts_stability.tscn"),
+	preload("res://objects/world/upgrades/upgrade_energy_bank.tscn"),
+	preload("res://objects/world/upgrades/unlock_cannon.tscn")
+]
+
 var current_corrupted := 0
 var is_second_phase := false
 
