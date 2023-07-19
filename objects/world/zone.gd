@@ -29,7 +29,9 @@ enum EnemyType {
 @onready var subwave_timer := $SubwaveTimer
 @onready var corruption_timer := $CorruptionTimer
 
-@onready var bonus := preload("res://objects/enemies/noob_alien.tscn")
+@onready var intensity_controller := $IntensityController
+
+@onready var bonus := preload("res://objects/world/bonus.tscn")
 
 @onready var enemies := [
 	preload("res://objects/enemies/noob_alien.tscn"),
@@ -46,13 +48,15 @@ var missing_subwaves := MAX_SUBWAVES
 var clear_percentage := 1.0
 var max_child_count := 1
 
+var next_corruption_timer := 1
+
 signal zone_corrupted
 signal zone_cleared
 
 func _ready():
 	randomize()
 	ZoneManager.connect("started_second_phase", start_second_phase)
-#	ZoneManager.connect("started_second_phase", start_second_phase) connetti some_zone_corrupted e imposta next_timer se non è già in corso il timer, senno aggiungi minuti
+#	ZoneManager.connect("some_zone_was_corrupted", maybe_start_corrupting)
 	zone_detector.connect("area_entered", update_clear_percentage)
 	zone_detector.connect("area_exited", update_clear_percentage)
 	subwave_timer.connect("timeout", advance_subwave)
@@ -76,21 +80,48 @@ func advance_subwave():
 		else:
 			spawn_first()
 		subwave_timer.start()
+	else:
+		if is_second_phase:
+			intensity_controller.value = max(fighting_ost, intensity_controller.value)
+			intensity_controller.trigger()
+		else:
+			intensity_controller.value = max(fighting_ost, intensity_controller.value)
+			intensity_controller.trigger()
+
+func maybe_start_corrupting():
+	if corruption_timer.wait_time == 0:
+		next_corruption_timer = randi_range(4 * MINUTE, 6 * MINUTE)
+	else:
+		corruption_timer.start(randi_range(2 * MINUTE, 4 * MINUTE))
 
 func start_corrupting():
 	corruption_timer.start(30)
 
 func corrupt_zone():
 	emit_signal("zone_corrupted")
+	if is_current_zone:
+		PlayerStats.can_discharge = false
+	if is_second_phase:
+		intensity_controller.value = clamp(intensity_controller.value + 1, 1, 6)
+		intensity_controller.trigger()
+	else:
+		intensity_controller.value = starting_ost
+		intensity_controller.trigger()
 	energy_supplier.is_active = false
 	totem_percentage.mesh.height = MIN_TOTEM_HEIGHT
 	advance_subwave()
 
 func set_zone_cleared():
 	emit_signal("zone_cleared")
+	if is_second_phase:
+		intensity_controller.value = clamp(intensity_controller.value - 1, 0, 6)
+		intensity_controller.trigger()
+	else:
+		intensity_controller.value = 0
+		intensity_controller.trigger()
 	is_current_zone = true
 	energy_supplier.is_active = true
-	corruption_timer.start(randi_range(2 * MINUTE, 4 * MINUTE))
+	corruption_timer.start(next_corruption_timer)
 	add_bonus()
 
 func start_second_phase():
@@ -117,7 +148,7 @@ func add_enemy(enemy_scene: PackedScene, amount: int = 1, height: int = 1):
 		for _i in range(amount):
 			var enemy_scene_node : CharacterBody3D = enemy_scene.instantiate()
 			
-			enemy_scene_node.position = global_position + Vector3(randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE), height, randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE))
+			enemy_scene_node.position = Vector3(randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE), height, randi_range(-MAX_MUTUAL_ENEMY_DISTANCE, MAX_MUTUAL_ENEMY_DISTANCE))
 			
 			zone_children.add_child(enemy_scene_node)
 			

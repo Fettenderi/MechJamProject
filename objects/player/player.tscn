@@ -373,16 +373,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0804696, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.292504, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0982044, 0.369868, -1.63913e-07, 0.966513, -0.25662, -0.382683, 0.237087, 0.892941, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0519093, 0.379146, -1.13621e-07, 0.990758, -0.135645, -0.382683, 0.12532, 0.915341, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0982043, -0.369868, 1.63913e-07, 0.966512, -0.25662, 0.382683, 0.237086, 0.892941, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0519092, -0.379146, 1.13621e-07, 0.990757, -0.135645, 0.382683, 0.12532, 0.915341, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -560,7 +560,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EnergyTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
 autostart = true
 
 [node name="WeaponConsumptionTimer" type="Timer" parent="."]

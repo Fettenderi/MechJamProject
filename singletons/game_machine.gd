@@ -71,7 +71,8 @@ func _physics_process(delta):
 			sound_test_emitter.stop()
 
 	if Input.is_action_just_pressed("debug_button_1"):
-		WaveManager.advance_waves()
+#		WaveManager.advance_waves()
+		pass
 	
 	if is_screen_shaking:
 		screen_shake(delta)
@@ -87,19 +88,6 @@ func add_prop_at_random_location(prop_scene: PackedScene):
 	
 	get_node("Level/Props").add_child(prop_scene_node)
 
-#func add_entity(entity: Node3D):
-#	get_node("Level/Entities").add_child(entity)
-#
-#func add_enemy(enemy_scene: PackedScene, amount: int = 1, height: int = 1):
-#	if amount != 0:
-#		var cluster_position = Vector3(randi_range(-max_player_distance, max_player_distance), height, randi_range(-max_player_distance, max_player_distance)) + Vector3(player.global_position.x, 0, player.global_position.z)
-#		for _i in range(amount):
-#			var enemy_scene_node : CharacterBody3D = enemy_scene.instantiate()
-#
-#			enemy_scene_node.position = cluster_position + Vector3(randi_range(-max_mutual_distance, max_mutual_distance), 0, randi_range(-max_mutual_distance, max_mutual_distance))
-#
-#			get_node("Level/Entities").add_child(enemy_scene_node)
-
 func energy_changed(new_energy):
 	low_battery_controller.value = clamp(remap(new_energy, 2, PlayerStats.max_energy / 4, 1.0, 0.0), 0.0, 0.8)
 	low_battery_controller.trigger()
@@ -112,16 +100,10 @@ func update_enemy_count(_value):
 	enemy_for_health -= 1
 	if enemy_for_health <= 0:
 		enemy_for_health = killed_enemies_for_health
-		if randf_range(0.0, 1.0) >= 0.3:
+		if randf_range(0.0, 1.0) >= 0.5:
 			add_prop_at_random_location(health_pellet)
 		else:
 			add_prop_at_random_location(energy_pellet)
-
-#	enemy_count = get_node("Level/Entities").get_child_count() - 2
-#	emit_signal("enemies_diminuished", enemy_count)
-#	if enemy_count == 0:
-#		emit_signal("enemies_all_dead")
-
 
 func screen_shake(delta):
 	time += delta
