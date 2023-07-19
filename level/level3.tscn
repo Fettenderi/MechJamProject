@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://6ujugi61e0nl"]
+[gd_scene load_steps=18 format=3 uid="uid://6ujugi61e0nl"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_n4lux"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_sc1m4"]
-[ext_resource type="PackedScene" uid="uid://dnad18frkfr4v" path="res://objects/world/bonus.tscn" id="4_5i8xk"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="4_gk6y6"]
 [ext_resource type="PackedScene" uid="uid://d4dsmmfjtrces" path="res://objects/world/zone.tscn" id="4_ye2ly"]
+[ext_resource type="PackedScene" uid="uid://b7nf4bmijfjhh" path="res://objects/world/obstacles/building_1.tscn" id="5_6onya"]
+[ext_resource type="PackedScene" uid="uid://cviuul2ur7ec7" path="res://objects/world/obstacles/building_2.tscn" id="6_bfs6s"]
+[ext_resource type="PackedScene" uid="uid://bd2rk2jkm2jri" path="res://objects/world/obstacles/building_3.tscn" id="7_bejju"]
+[ext_resource type="PackedScene" uid="uid://cbknrcginos42" path="res://objects/world/obstacles/building_4.tscn" id="8_uly2g"]
+[ext_resource type="PackedScene" uid="uid://cfhdfbfioudvs" path="res://objects/world/obstacles/building_5.tscn" id="9_nsd51"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -39,8 +43,9 @@ sky_material = SubResource("ProceduralSkyMaterial_k1txa")
 [sub_resource type="Environment" id="Environment_ohbxq"]
 background_mode = 2
 sky = SubResource("Sky_53jql")
-tonemap_mode = 2
-fog_light_color = Color(0.607843, 0.505882, 0.654902, 1)
+fog_light_color = Color(0.576471, 0.415686, 0.65098, 1)
+fog_light_energy = 0.1
+fog_sun_scatter = 0.5
 
 [node name="Level" type="Node3D"]
 
@@ -57,7 +62,6 @@ size = 10.0
 
 [node name="Pixelator" type="MeshInstance3D" parent="PlayerFollower/CameraPlayer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548697, -1.49389)
-visible = false
 mesh = SubResource("PlaneMesh_a8j7f")
 skeleton = NodePath("../..")
 
@@ -82,7 +86,10 @@ shape = SubResource("BoxShape3D_q261p")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldElements"]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.901961, 0.917647, 1, 1)
+light_energy = 1.3
 shadow_enabled = true
+shadow_bias = 0.968
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="WorldElements"]
 environment = SubResource("Environment_ohbxq")
@@ -90,13 +97,10 @@ environment = SubResource("Environment_ohbxq")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("4_gk6y6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15443, 1, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
 camera = NodePath("../../PlayerFollower/CameraPlayer")
 
 [node name="Props" type="Node3D" parent="."]
-
-[node name="Bonus" parent="Props" instance=ExtResource("4_5i8xk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.83589)
 
 [node name="Zones" type="Node3D" parent="."]
 
@@ -119,3 +123,623 @@ fighting_ost = 6
 id = 3
 base_enemy = 2
 special_enemy = 3
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Building" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -10)
+
+[node name="Building22" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.2, 0, -13.7)
+
+[node name="Building13" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.5, 0, -13.7)
+
+[node name="Building14" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 31.5, 0, -11.9)
+
+[node name="Building16" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -20.5, 0, -11.9)
+
+[node name="Building2" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="Building18" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, 0, -11.8)
+
+[node name="Building3" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -1)
+
+[node name="Building6" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.3)
+
+[node name="Building7" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="Building8" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47.9)
+
+[node name="Building26" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.6)
+
+[node name="Building21" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3, 0, 8)
+
+[node name="Building51" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.9, 0, 8)
+
+[node name="Building52" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 8)
+
+[node name="Building35" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 0, 8)
+
+[node name="Building36" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 8)
+
+[node name="Building37" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 8)
+
+[node name="Building4" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, -8)
+
+[node name="Building12" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -53.5, 0, -11.7)
+
+[node name="Building55" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -73.5, 0, -11.7)
+
+[node name="Building5" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, 0, -1)
+
+[node name="Building15" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20.8, 0, -1)
+
+[node name="Building19" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 53.5, 0, -11.9)
+
+[node name="Building20" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.7, 0, -11.8)
+
+[node name="Building23" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7, 0, -0.9)
+
+[node name="Building24" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -42.5, 0, -11.9)
+
+[node name="Building25" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.7, 0, -0.9)
+
+[node name="Building17" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 42.8, 0, -1)
+
+[node name="Building9" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42.5, 0, -1)
+
+[node name="Building31" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31.5, 0, -11.7)
+
+[node name="Building33" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31.5, 0, -0.799998)
+
+[node name="Building34" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 53.5, 0, -0.799998)
+
+[node name="Building76" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 31.5, 0, -39.9)
+
+[node name="Building77" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, 0, -39.8)
+
+[node name="Building78" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 0, -20)
+
+[node name="Building121" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9, 0, 8)
+
+[node name="Building122" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9, 0, -20)
+
+[node name="Building79" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -20)
+
+[node name="Building80" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -20)
+
+[node name="Building81" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20.8, 0, -29)
+
+[node name="Building82" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 53.5, 0, -39.9)
+
+[node name="Building83" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.7, 0, -39.8)
+
+[node name="Building84" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 42.8, 0, -29)
+
+[node name="Building85" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31.5, 0, -28.8)
+
+[node name="Building86" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 53.5, 0, -28.8)
+
+[node name="Building87" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 74.3, 0, -11.9)
+
+[node name="Building88" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5, 0, -11.8)
+
+[node name="Building89" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3, 0, 8)
+
+[node name="Building90" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8, 0, 8)
+
+[node name="Building91" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.8, 0, 8)
+
+[node name="Building92" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63.6, 0, -1)
+
+[node name="Building93" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 96.3, 0, -11.9)
+
+[node name="Building94" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 0, -11.8)
+
+[node name="Building95" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 85.6, 0, -1)
+
+[node name="Building96" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3, 0, -0.799998)
+
+[node name="Building97" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 96.3, 0, -0.799998)
+
+[node name="Building98" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 74.3, 0, -39.9)
+
+[node name="Building99" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5, 0, -39.8)
+
+[node name="Building100" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3, 0, -20)
+
+[node name="Building101" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8, 0, -20)
+
+[node name="Building102" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.8, 0, -20)
+
+[node name="Building103" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63.6, 0, -29)
+
+[node name="Building104" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 96.3, 0, -39.9)
+
+[node name="Building105" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 0, -39.8)
+
+[node name="Building106" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 85.6, 0, -29)
+
+[node name="Building107" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3, 0, -28.8)
+
+[node name="Building108" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 96.3, 0, -28.8)
+
+[node name="Building151" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 0, 65.1752)
+
+[node name="Building152" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 53.5, 0, 45.2752)
+
+[node name="Building153" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 53.5, 0, 56.3752)
+
+[node name="Building154" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 0, 37.1752)
+
+[node name="Building158" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 53.5, 0, 18.0862)
+
+[node name="Building159" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 53.5, 0, 28.3752)
+
+[node name="Building160" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 74.3, 0, 45.2752)
+
+[node name="Building161" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5, 0, 45.3752)
+
+[node name="Building162" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3, 0, 65.1752)
+
+[node name="Building163" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8, 0, 65.1752)
+
+[node name="Building164" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.8, 0, 65.1752)
+
+[node name="Building165" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63.6, 0, 56.1752)
+
+[node name="Building166" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 96.3, 0, 45.2752)
+
+[node name="Building167" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 0, 45.3752)
+
+[node name="Building179" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 85.6, 0, 56.1752)
+
+[node name="Building180" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3, 0, 56.3752)
+
+[node name="Building181" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 96.3, 0, 56.3752)
+
+[node name="Building182" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 74.3, 0, 18.0862)
+
+[node name="Building183" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5, 0, 18.1862)
+
+[node name="Building184" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3, 0, 37.1752)
+
+[node name="Building185" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8, 0, 37.1752)
+
+[node name="Building186" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.8, 0, 37.1752)
+
+[node name="Building187" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63.6, 0, 28.1752)
+
+[node name="Building188" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 96.3, 0, 18.0862)
+
+[node name="Building189" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 0, 18.1862)
+
+[node name="Building190" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 85.6, 0, 28.1752)
+
+[node name="Building191" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3, 0, 28.3752)
+
+[node name="Building192" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 96.3, 0, 28.3752)
+
+[node name="Building196" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 0, 96.1752)
+
+[node name="Building197" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 53.5, 0, 76.2752)
+
+[node name="Building198" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 53.5, 0, 87.3752)
+
+[node name="Building210" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 74.3, 0, 76.2752)
+
+[node name="Building211" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5, 0, 76.3752)
+
+[node name="Building212" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3, 0, 96.1752)
+
+[node name="Building213" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8, 0, 96.1752)
+
+[node name="Building214" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.8, 0, 96.1752)
+
+[node name="Building215" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63.6, 0, 87.1752)
+
+[node name="Building216" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 96.3, 0, 76.2752)
+
+[node name="Building217" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.5, 0, 76.3752)
+
+[node name="Building218" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 85.6, 0, 87.1752)
+
+[node name="Building219" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3, 0, 87.3752)
+
+[node name="Building220" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 96.3, 0, 87.3752)
+
+[node name="Building32" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20.5, 0, -1)
+
+[node name="Building29" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -20.5, 0, -39.9)
+
+[node name="Building30" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3, 0, -20)
+
+[node name="Building56" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1, 0, 8)
+
+[node name="Building57" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1, 0, -20)
+
+[node name="Building53" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.9, 0, -20)
+
+[node name="Building62" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -20)
+
+[node name="Building38" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -53.5, 0, -39.7)
+
+[node name="Building39" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7, 0, -28.9)
+
+[node name="Building40" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -42.5, 0, -39.9)
+
+[node name="Building41" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.7, 0, -28.9)
+
+[node name="Building10" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42.5, 0, -29)
+
+[node name="Building42" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31.5, 0, -39.7)
+
+[node name="Building43" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20.5, 0, -29)
+
+[node name="Building44" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.7, 0, -11.9)
+
+[node name="Building45" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.5, 0, 8)
+
+[node name="Building63" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1, 0, 8)
+
+[node name="Building64" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.2, 0, 8)
+
+[node name="Building46" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -95.7, 0, -11.7)
+
+[node name="Building47" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.9, 0, -0.9)
+
+[node name="Building48" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -84.7, 0, -11.9)
+
+[node name="Building49" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -95.9, 0, -0.9)
+
+[node name="Building11" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.7, 0, -1)
+
+[node name="Building50" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.7, 0, -1)
+
+[node name="Building65" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.7, 0, -39.9)
+
+[node name="Building66" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.5, 0, -20)
+
+[node name="Building67" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1, 0, -20)
+
+[node name="Building68" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.2, 0, -20)
+
+[node name="Building69" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.7, 0, -39.7)
+
+[node name="Building70" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.9, 0, -28.9)
+
+[node name="Building71" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -84.7, 0, -39.9)
+
+[node name="Building72" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -95.9, 0, -28.9)
+
+[node name="Building73" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.7, 0, -29)
+
+[node name="Building74" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -73.7, 0, -39.7)
+
+[node name="Building75" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.7, 0, -29)
+
+[node name="Building123" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -53.5, 0, 46.3)
+
+[node name="Building124" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -73.5, 0, 46.3)
+
+[node name="Building125" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.7, 0, 57.1)
+
+[node name="Building126" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1, 0, 66)
+
+[node name="Building127" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1, 0, 38)
+
+[node name="Building128" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -53.5, 0, 18.3)
+
+[node name="Building129" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.7, 0, 29.1)
+
+[node name="Building130" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.7, 0, 46.1)
+
+[node name="Building131" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.5, 0, 66)
+
+[node name="Building132" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1, 0, 66)
+
+[node name="Building133" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.2, 0, 66)
+
+[node name="Building134" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -95.7, 0, 46.3)
+
+[node name="Building135" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.9, 0, 57.1)
+
+[node name="Building136" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -84.7, 0, 46.1)
+
+[node name="Building137" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -95.9, 0, 57.1)
+
+[node name="Building138" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.7, 0, 57)
+
+[node name="Building139" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.7, 0, 57)
+
+[node name="Building140" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.7, 0, 18.1)
+
+[node name="Building141" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.5, 0, 38)
+
+[node name="Building142" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1, 0, 38)
+
+[node name="Building143" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.2, 0, 38)
+
+[node name="Building144" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.7, 0, 18.3)
+
+[node name="Building145" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.9, 0, 29.1)
+
+[node name="Building146" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -84.7, 0, 18.1)
+
+[node name="Building147" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -95.9, 0, 29.1)
+
+[node name="Building148" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.7, 0, 29)
+
+[node name="Building149" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -73.7, 0, 18.3)
+
+[node name="Building150" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.7, 0, 29)
+
+[node name="Building155" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1, 0, 96)
+
+[node name="Building156" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -53.5, 0, 76.3)
+
+[node name="Building157" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.7, 0, 87.1)
+
+[node name="Building168" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.7, 0, 76.1)
+
+[node name="Building169" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.5, 0, 96)
+
+[node name="Building170" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1, 0, 96)
+
+[node name="Building171" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.2, 0, 96)
+
+[node name="Building172" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.7, 0, 76.3)
+
+[node name="Building173" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.9, 0, 87.1)
+
+[node name="Building174" parent="Obstacles" instance=ExtResource("5_6onya")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -84.7, 0, 76.1)
+
+[node name="Building175" parent="Obstacles" instance=ExtResource("6_bfs6s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -95.9, 0, 87.1)
+
+[node name="Building176" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.7, 0, 87)
+
+[node name="Building177" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -73.7, 0, 76.3)
+
+[node name="Building178" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.7, 0, 87)
+
+[node name="Building58" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 30.8)
+
+[node name="Building59" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 20.1)
+
+[node name="Building60" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 20.1)
+
+[node name="Building61" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 30.8)
+
+[node name="Building109" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 53.4)
+
+[node name="Building110" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 42.7)
+
+[node name="Building111" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 42.7)
+
+[node name="Building112" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 53.4)
+
+[node name="Building27" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 70.5)
+
+[node name="Building28" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 59.2)
+
+[node name="Building54" parent="Obstacles" instance=ExtResource("7_bejju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 81.8)
+
+[node name="Building113" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 76)
+
+[node name="Building114" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 65.3)
+
+[node name="Building115" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 65.3)
+
+[node name="Building116" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 76)
+
+[node name="Building117" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 98.6)
+
+[node name="Building118" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.4, 0, 87.9)
+
+[node name="Building119" parent="Obstacles" instance=ExtResource("9_nsd51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 87.9)
+
+[node name="Building120" parent="Obstacles" instance=ExtResource("8_uly2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, 98.6)
