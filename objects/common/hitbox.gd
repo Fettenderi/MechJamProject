@@ -41,11 +41,7 @@ func die():
 	
 	shape.set_deferred("disabled", true)
 	
-	if hit_sfx:
-		hit_sfx.stop()
 	if dead_sfx:
 		dead_sfx.play()
-		await get_tree().create_timer(2).timeout
-		dead_sfx.stop()
-		
+	
 	get_parent().get_parent().queue_free()

@@ -63,12 +63,8 @@ func _physics_process(delta):
 		
 
 	if Input.is_action_just_pressed("debug_button"):
-		if sound_test_controller.value == 0:
-			sound_test_controller.value = 1
-			sound_test_emitter.play()
-		else:
-			sound_test_controller.value = 0
-			sound_test_emitter.stop()
+		$StudioGlobalParameterTrigger.value += 1
+		$StudioGlobalParameterTrigger.trigger()
 
 	if Input.is_action_just_pressed("debug_button_1"):
 #		WaveManager.advance_waves()
