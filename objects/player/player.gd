@@ -160,7 +160,7 @@ func handle_attacks(delta: float):
 							once_drill = true
 						needs_charging = false
 						is_charging = false
-						handle_single_attack(drill_attack, Stats.AttackType.DRILL, PlayerStats.drill_usage)
+						handle_single_attack(drill_attack, Stats.AttackType.DRILL, PlayerStats.drill_usage, "drill_attack")
 				
 			Stats.AttackType.FOTONIC:
 				if can_attack:
@@ -198,7 +198,7 @@ func handle_attacks(delta: float):
 	if PlayerStats.energy >= 10:
 		can_attack = true
 
-func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consumption_bonus : float = 0.0):
+func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consumption_bonus : float = 0.0, sfx_parameter: String = ""):
 	if PlayerStats.energy > PlayerStats.weapon_energy_consumption[attack_type] + 10 + consumption_bonus:
 		attack.start_attack()
 		if can_remove_energy:
@@ -206,6 +206,8 @@ func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consump
 			weapon_consumption_timer.start(1)
 			PlayerStats.energy -= PlayerStats.weapon_energy_consumption[attack_type] + consumption_bonus
 	else:
+		if sfx_parameter != "":
+			FMODStudioModule.get_studio_system().set_parameter_by_name(sfx_parameter, 0.0, false)
 		is_charging = false
 		attacking = false
 		needs_charging = true
