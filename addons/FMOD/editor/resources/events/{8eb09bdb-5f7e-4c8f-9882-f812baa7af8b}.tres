@@ -4,7 +4,7 @@
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
-max_distance = 20.0
+max_distance = 30.0
 path = "event:/SFX/MK1/MK1 Shield Removed"
 guid = "{8eb09bdb-5f7e-4c8f-9882-f812baa7af8b}"
 name = "MK1 Shield Removed"

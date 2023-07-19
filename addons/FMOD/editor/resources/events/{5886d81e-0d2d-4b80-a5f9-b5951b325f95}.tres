@@ -4,7 +4,7 @@
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
-max_distance = 20.0
+max_distance = 30.0
 path = "event:/SFX/Rover/Rover Mine Deployed"
 guid = "{5886d81e-0d2d-4b80-a5f9-b5951b325f95}"
 name = "Rover Mine Deployed"

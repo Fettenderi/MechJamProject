@@ -4,7 +4,7 @@
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
-max_distance = 20.0
+max_distance = 30.0
 path = "event:/SFX/Rover/Rover Damage"
 guid = "{e3d97641-b413-4e1f-b89f-06c10c5d95ea}"
 name = "Rover Damage"

@@ -4,7 +4,7 @@
 is_3d = true
 is_oneshot = true
 min_distance = 1.0
-max_distance = 20.0
+max_distance = 30.0
 path = "event:/SFX/MK1/MK1 Gun"
 guid = "{dc0a89a3-05be-44bd-9fe6-4e1c686d7955}"
 name = "MK1 Gun"
