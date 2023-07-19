@@ -25,7 +25,7 @@ enum EnemyType {
 @onready var zone_children := $ZoneChildren
 @onready var zone_bonus := $ZoneBonus
 @onready var zone_detector := $ZoneDetector
-@onready var totem_percentage := $TotemBase
+@onready var totem_percentage := $TotemPercentage
 @onready var subwave_timer := $SubwaveTimer
 @onready var corruption_timer := $CorruptionTimer
 

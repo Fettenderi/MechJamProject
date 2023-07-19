@@ -30,11 +30,11 @@ func explode(_area: Area3D = null) -> void:
 	if can_explode:
 		state_machine.travel("exploding")
 		GameMachine.add_trauma(3)
-		sfx_emitter.play()
 		primary_particles.call_deferred("set_emitting", true)
 		secondary_particles.call_deferred("set_emitting", true)
 		mesh.visible = false
 		shape.call_deferred("set_disabled", true)
+		sfx_emitter.play()
 		despawn_timer.start(despawn_time)
 
 func primed():
