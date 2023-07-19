@@ -83,6 +83,7 @@ one_shot = true
 autostart = true
 
 [node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("2_fd7jy")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

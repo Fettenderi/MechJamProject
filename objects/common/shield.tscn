@@ -46,4 +46,5 @@ process_material = SubResource("ParticleProcessMaterial_ln8gy")
 draw_pass_1 = SubResource("SphereMesh_mx8mv")
 
 [node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("2_hp2ia")

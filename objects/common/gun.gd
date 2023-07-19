@@ -48,9 +48,6 @@ func initiate_attack():
 	secondary_particles.call_deferred("set_emitting", true)
 
 func end_attack() -> void:
-	delay_timer.stop()
-	sfx_emitter.stop()
-	reload_timer.stop()
 	can_shoot = true
 
 func get_damage() -> float:

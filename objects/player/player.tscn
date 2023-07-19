@@ -171,7 +171,7 @@ graph_offset = Vector2(-89, 74)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_80d1m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dyf46"]
-size = Vector3(3.14308, 0.5, 2.5)
+size = Vector3(3.14308, 1.02118, 2.83021)
 
 [sub_resource type="Curve" id="Curve_6bv2f"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -373,16 +373,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.292504, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.396294, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0519093, 0.379146, -1.13621e-07, 0.990758, -0.135645, -0.382683, 0.12532, 0.915341, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0289154, 0.381589, -1.95578e-08, 0.997142, -0.0755597, -0.382683, 0.069808, 0.92124, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0519092, -0.379146, 1.13621e-07, 0.990757, -0.135645, 0.382683, 0.12532, 0.915341, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0289154, -0.381589, 1.95578e-08, 0.997141, -0.0755597, 0.382683, 0.069808, 0.92124, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -398,7 +398,7 @@ duration_time = 0.7
 delay_time = 0.3
 
 [node name="Shape" parent="Rotating/NormalAttack" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13619, 0, -1.59027e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97329, 0, 2.06883e-08)
 shape = SubResource("BoxShape3D_dyf46")
 
 [node name="PrimaryParticles" parent="Rotating/NormalAttack" index="1"]
@@ -570,26 +570,28 @@ one_shot = true
 one_shot = true
 
 [node name="LowBatterySfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("20_yqf51")
 
 [node name="LowHealthSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("21_x7iqi")
 
 [node name="JumpSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("22_ewbfk")
 
-[node name="FootstepsSfx" type="StudioEventEmitter3D" parent="." node_paths=PackedStringArray("rigidbody")]
+[node name="FootstepsSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("22_h4o4r")
-trigger_once = true
-rigidbody = NodePath("..")
 
 [node name="PlayerEars" type="StudioListener3D" parent="."]
 
 [node name="DrillSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("8_xrhl3")
 
 [node name="DrillParameter" type="StudioGlobalParameterTrigger" parent="."]
-trigger_on = 1
 parameter = ExtResource("21_vqg7v")
 value = 0.0
 

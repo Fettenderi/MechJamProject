@@ -75,6 +75,7 @@ emitting = false
 one_shot = true
 
 [node name="HealingSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("2_vk84v")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
