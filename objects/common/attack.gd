@@ -62,4 +62,5 @@ func emit_particles(particle_parameter: float = 1.0) -> void:
 	secondary_particles.call_deferred("set_emitting", true)
 
 func get_damage() -> float:
+	shape.set_deferred("disabled", true)
 	return stats.get_damage(attack_type)

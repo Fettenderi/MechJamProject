@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd2rk2jkm2jri"]
+
+[ext_resource type="PackedScene" uid="uid://d72m1aiqceyj" path="res://models/decorations/building3.gltf" id="1_f1wdt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4424"]
+size = Vector3(2.97851, 2.89552, 2.24764)
+
+[node name="Building" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4594, 0.144686)
+shape = SubResource("BoxShape3D_r4424")
+
+[node name="building3" parent="." instance=ExtResource("1_f1wdt")]

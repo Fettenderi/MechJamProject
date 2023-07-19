@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="14_nbaoc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv7y8"]
-radius = 1.04642
+radius = 0.781237
 
 [sub_resource type="Curve" id="Curve_ituy7"]
 _data = [Vector2(0.101504, 0.65343), 0.0, -4.5832, 0, 0, Vector2(0.58427, 0), -0.125548, 0.0, 0, 0]
@@ -43,6 +43,7 @@ radius = 1.0
 height = 2.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_75e1n"]
+height = 4.18052
 radius = 18.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j7yn2"]
@@ -58,23 +59,47 @@ footsteps_sfx = ExtResource("2_e3waj")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199821, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.793726, 0)
 shape = SubResource("SphereShape3D_kv7y8")
 
 [node name="Rotating" type="Node3D" parent="."]
 
 [node name="Rover" parent="Rotating" instance=ExtResource("2_tic2k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="MineDeployer" parent="Rotating" node_paths=PackedStringArray("stats") instance=ExtResource("5_flw3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+duration_time = 10.0
+stats = NodePath("../../Stats")
+mine = ExtResource("6_bd11u")
+layer = 4
+mask = 2
+attack_type = 4
+
+[node name="PrimaryParticles" parent="Rotating/MineDeployer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.510671, 0)
+amount = 10
+lifetime = 4.0
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mr8mn")
+draw_pass_1 = SubResource("SphereMesh_g6b83")
+
+[node name="ReloadTimer" parent="Rotating/MineDeployer" index="2"]
+wait_time = 2.0
 
 [node name="Fixed" type="Node3D" parent="."]
 
 [node name="HitBox" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("1_413aq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.417345, 0)
 collision_layer = 4
 collision_mask = 34
 script = ExtResource("2_x7bhh")
 stats = NodePath("../../Stats")
 
 [node name="Shape" parent="Fixed/HitBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53529, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.378188, 0)
 shape = SubResource("SphereShape3D_kv7y8")
 
 [node name="HitSfx" type="StudioEventEmitter3D" parent="Fixed/HitBox"]
@@ -89,30 +114,8 @@ stats = NodePath("../../Stats")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
 
-[node name="MineDeployer" parent="Fixed" node_paths=PackedStringArray("stats") instance=ExtResource("5_flw3d")]
-duration_time = 10.0
-stats = NodePath("../../Stats")
-mine = ExtResource("6_bd11u")
-layer = 4
-mask = 2
-attack_type = 4
-
-[node name="PrimaryParticles" parent="Fixed/MineDeployer" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.510671, 0)
-amount = 10
-lifetime = 4.0
-speed_scale = 2.0
-explosiveness = 1.0
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_mr8mn")
-draw_pass_1 = SubResource("SphereMesh_g6b83")
-
-[node name="ReloadTimer" parent="Fixed/MineDeployer" index="2"]
-wait_time = 2.0
-
 [node name="AttackingBrain" parent="Fixed" node_paths=PackedStringArray("far_attack", "stats") instance=ExtResource("4_p4dgr")]
-far_attack = NodePath("../MineDeployer")
-switching_behaviour_distance = 3
+far_attack = NodePath("../../Rotating/MineDeployer")
 stats = NodePath("../../Stats")
 
 [node name="TargetRangeArea" parent="Fixed/AttackingBrain" index="0"]
@@ -160,8 +163,8 @@ one_shot = true
 
 [connection signal="dead" from="Stats" to="Fixed/HitBox" method="die"]
 
+[editable path="Rotating/MineDeployer"]
 [editable path="Fixed/HitBox"]
-[editable path="Fixed/MineDeployer"]
 [editable path="Fixed/AttackingBrain"]
 [editable path="Fixed/WanderingBrain"]
 [editable path="Fixed/FollowingBrain"]

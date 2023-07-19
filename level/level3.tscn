@@ -57,6 +57,7 @@ size = 10.0
 
 [node name="Pixelator" type="MeshInstance3D" parent="PlayerFollower/CameraPlayer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548697, -1.49389)
+visible = false
 mesh = SubResource("PlaneMesh_a8j7f")
 skeleton = NodePath("../..")
 
