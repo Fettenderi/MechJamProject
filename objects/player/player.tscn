@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=99 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -19,10 +19,11 @@
 [ext_resource type="EventAsset" uid="uid://d3uafrow3peip" path="res://addons/FMOD/editor/resources/events/{0daeace2-dcef-435c-a668-e5575642b6f0}.tres" id="16_kq6hf"]
 [ext_resource type="EventAsset" uid="uid://do0ktyve22hc4" path="res://addons/FMOD/editor/resources/events/{94d34c99-1460-45e3-857f-581ccf531ce4}.tres" id="16_ngku1"]
 [ext_resource type="EventAsset" uid="uid://luqu4o1sd0fk" path="res://addons/FMOD/editor/resources/events/{f37614f7-3b8a-4f28-86ed-79a7a860a162}.tres" id="20_yqf51"]
+[ext_resource type="EventAsset" uid="uid://nmvwo6baoh6a" path="res://addons/FMOD/editor/resources/events/{0f128135-8b1b-4b7d-a006-dd9575b8a1da}.tres" id="21_bvu3u"]
 [ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="21_vqg7v"]
 [ext_resource type="EventAsset" uid="uid://bx3p3c1c1b31u" path="res://addons/FMOD/editor/resources/events/{eac5da5e-3481-41ec-9eff-383b007c980d}.tres" id="21_x7iqi"]
-[ext_resource type="EventAsset" uid="uid://duu3otvamiqyb" path="res://addons/FMOD/editor/resources/events/{321924e5-e46b-4cfc-8fbd-fc2d7e17e3bb}.tres" id="22_ewbfk"]
 [ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="23_7q4f3"]
+[ext_resource type="EventAsset" uid="uid://c7bsm8emqn4tg" path="res://addons/FMOD/editor/resources/events/{e7294330-dfac-40de-bf66-51f6b17268da}.tres" id="24_37vmw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m7l1m"]
 
@@ -372,16 +373,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214588, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.403954, 0.203125)
 
 [node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.92388, 0.0669638, 0.37678, 4.84288e-08, 0.984572, -0.174985, -0.382684, 0.161665, 0.909626, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, 0.0272133, 0.381715, -1.39698e-08, 0.997469, -0.0711117, -0.382683, 0.0656987, 0.921542, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.92388, -0.0669637, -0.37678, -4.84288e-08, 0.984571, -0.174985, 0.382684, 0.161664, 0.909626, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.92388, -0.0272132, -0.381715, 1.39698e-08, 0.997468, -0.0711117, 0.382683, 0.0656986, 0.921542, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -578,9 +579,15 @@ event = ExtResource("21_x7iqi")
 
 [node name="JumpSfx" type="StudioEventEmitter3D" parent="."]
 stop_event = 3
-event = ExtResource("22_ewbfk")
+event = ExtResource("21_bvu3u")
 
 [node name="PlayerEars" type="StudioListener3D" parent="."]
+
+[node name="JetPackSfx" type="StudioEventEmitter3D" parent="."]
+play_event = 1
+stop_event = 3
+event = ExtResource("24_37vmw")
+trigger_once = true
 
 [node name="DrillSfx" type="StudioEventEmitter3D" parent="."]
 stop_event = 3
