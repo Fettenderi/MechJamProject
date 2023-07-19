@@ -1,13 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://6ujugi61e0nl"]
+[gd_scene load_steps=21 format=3 uid="uid://6ujugi61e0nl"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_n4lux"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_sc1m4"]
+[ext_resource type="PackedScene" uid="uid://dnad18frkfr4v" path="res://objects/world/bonus.tscn" id="4_5i8xk"]
 [ext_resource type="PackedScene" uid="uid://c762fmdasbdxk" path="res://objects/enemies/noob_alien.tscn" id="4_dqdcd"]
 [ext_resource type="PackedScene" uid="uid://0kc0gxu63wag" path="res://objects/player/player.tscn" id="4_gk6y6"]
 [ext_resource type="PackedScene" uid="uid://d4dsmmfjtrces" path="res://objects/world/zone.tscn" id="4_ye2ly"]
 [ext_resource type="PackedScene" uid="uid://cacw160g18oyo" path="res://objects/enemies/rover.tscn" id="5_6o3yl"]
 [ext_resource type="PackedScene" uid="uid://cjgcqq3o1837l" path="res://objects/enemies/mk1.tscn" id="6_hujsp"]
 [ext_resource type="PackedScene" uid="uid://but0hqh11514f" path="res://objects/enemies/spaceship.tscn" id="7_3ix2r"]
+[ext_resource type="PackedScene" uid="uid://cgb16sopesu7p" path="res://objects/player/health_pellet.tscn" id="8_w1nex"]
+[ext_resource type="PackedScene" uid="uid://b43bucurt026m" path="res://objects/player/energy_pellet.tscn" id="9_4lu2s"]
+[ext_resource type="PackedScene" uid="uid://dx6yf3f0ghhw8" path="res://objects/player/energy_supplier.tscn" id="10_hrrjr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haw7x"]
 render_priority = 0
@@ -106,9 +110,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.2, 0.5, -10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 0.5, -10)
 
 [node name="Spaceship" parent="Entities" instance=ExtResource("7_3ix2r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.1, 0.5, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.1, 5, -9)
+
+[node name="EnemySpawner" parent="Entities/Spaceship/Fixed" index="2"]
+script = null
+
+[node name="AttackingBrain" parent="Entities/Spaceship/Fixed" index="3" node_paths=PackedStringArray("far_attack")]
+far_attack = NodePath("")
 
 [node name="Props" type="Node3D" parent="."]
+
+[node name="HealthPellet" parent="Props" instance=ExtResource("8_w1nex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="EnergyPellet" parent="Props" instance=ExtResource("9_4lu2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+
+[node name="EnergySupplier" parent="Props" instance=ExtResource("10_hrrjr")]
+
+[node name="Bonus" parent="Props" instance=ExtResource("4_5i8xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 
 [node name="Zones" type="Node3D" parent="."]
 
@@ -133,3 +154,8 @@ base_enemy = 2
 special_enemy = 3
 
 [node name="Deco" type="Node3D" parent="."]
+
+[editable path="Entities/Spaceship"]
+[editable path="Entities/Spaceship/Fixed/HitBox"]
+[editable path="Entities/Spaceship/Fixed/AttackingBrain"]
+[editable path="Entities/Spaceship/Fixed/WanderingBrain"]
