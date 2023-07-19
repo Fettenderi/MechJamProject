@@ -149,9 +149,9 @@ func handle_attacks(delta: float):
 					PlayerStats.drill_usage += delta
 					if PlayerStats.drill_usage >= PlayerStats.min_drill_usage:
 						if not once_drill:
-							drill_sfx.play()
 							drill_parameter.value = 0
 							drill_parameter.trigger()
+							drill_sfx.play()
 							once_drill = true
 						needs_charging = false
 						is_charging = false

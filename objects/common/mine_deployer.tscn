@@ -18,4 +18,5 @@ one_shot = true
 [node name="ReloadTimer" type="Timer" parent="."]
 
 [node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("2_8f3sr")

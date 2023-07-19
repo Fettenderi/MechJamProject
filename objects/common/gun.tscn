@@ -20,3 +20,4 @@ one_shot = true
 one_shot = true
 
 [node name="SFXEmitter" type="StudioEventEmitter3D" parent="."]
+stop_event = 3

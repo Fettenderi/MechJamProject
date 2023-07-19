@@ -67,6 +67,7 @@ one_shot = true
 [node name="ChargeTimer" type="Timer" parent="."]
 
 [node name="ChargingSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
 event = ExtResource("2_ap3u4")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
