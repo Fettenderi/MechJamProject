@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://0kc0gxu63wag"]
+[gd_scene load_steps=102 format=3 uid="uid://0kc0gxu63wag"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_wi0po"]
 [ext_resource type="PackedScene" uid="uid://bmd03mfrn325s" path="res://objects/common/attack.tscn" id="2_7spae"]
@@ -377,6 +377,14 @@ scale_curve = SubResource("CurveTexture_bth36")
 color_ramp = ExtResource("8_5fb3j")
 attractor_interaction_enabled = false
 
+[sub_resource type="EventAsset" id="EventAsset_u2vut"]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Fotonic"
+guid = "{d9c1ccab-690d-47e7-a2ed-baaac28c8f85}"
+name = "Mech Fotonic"
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_wi0po")
 footsteps = ExtResource("11_u8q1e")
@@ -391,13 +399,16 @@ shape = SubResource("CapsuleShape3D_m7l1m")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0971407, 0.203125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.248256, 0.203125)
+
+[node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
 
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
-transform = Transform3D(0.923879, 0.0946096, 0.370804, -1.56462e-07, 0.96896, -0.247227, -0.382683, 0.228408, 0.895202, -0.6875, 3.375, 0.15625)
+transform = Transform3D(0.923879, 0.0590543, 0.378101, 1.67638e-08, 0.988024, -0.154316, -0.382684, 0.142569, 0.912814, -0.6875, 3.375, 0.15625)
 
 [node name="rightUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="2"]
-transform = Transform3D(0.923879, -0.0946094, -0.370804, 1.56462e-07, 0.968958, -0.247227, 0.382683, 0.228407, 0.895202, 0.6875, 3.375, 0.15625)
+transform = Transform3D(0.923879, -0.0590541, -0.378101, -1.67638e-08, 0.988022, -0.154316, 0.382684, 0.142569, 0.912814, 0.6875, 3.375, 0.15625)
 
 [node name="AnimationTree" type="AnimationTree" parent="Rotating"]
 tree_root = SubResource("AnimationNodeStateMachine_rj1cx")
@@ -618,6 +629,11 @@ play_event = 1
 stop_event = 3
 event = ExtResource("24_37vmw")
 trigger_once = true
+
+[node name="FotonicSfx" type="StudioEventEmitter3D" parent="."]
+play_event = 1
+stop_event = 3
+event = SubResource("EventAsset_u2vut")
 
 [node name="DrillSfx" type="StudioEventEmitter3D" parent="."]
 play_event = 1

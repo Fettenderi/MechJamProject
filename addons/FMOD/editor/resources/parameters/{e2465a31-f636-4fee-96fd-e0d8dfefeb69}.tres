@@ -1,18 +1,18 @@
 [gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://2etww4f7vaey"]
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_ljj6c"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_rdr4y"]
 data1 = 1669581400
 data2 = 1355732270
 
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_6wnf4"]
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_5tmd4"]
 name = "low_battery"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_ljj6c")
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_rdr4y")
 maximum = 1.0
 flags = 4
 guid = "{e2465a31-f636-4fee-96fd-e0d8dfefeb69}"
 
 [resource]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_6wnf4")
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_5tmd4")
 path = "parameter:/low_battery"
 guid = "{e2465a31-f636-4fee-96fd-e0d8dfefeb69}"
 name = "low_battery"

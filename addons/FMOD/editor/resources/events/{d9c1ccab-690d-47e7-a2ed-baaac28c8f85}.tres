@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bvjo27yw6jr01"]
+
+[resource]
+is_3d = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/SFX/Mech/Mech Fotonic"
+guid = "{d9c1ccab-690d-47e7-a2ed-baaac28c8f85}"
+name = "Mech Fotonic"

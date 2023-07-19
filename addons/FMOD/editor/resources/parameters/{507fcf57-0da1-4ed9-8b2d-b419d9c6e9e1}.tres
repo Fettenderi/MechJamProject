@@ -1,0 +1,18 @@
+[gd_resource type="ParameterAsset" load_steps=3 format=3 uid="uid://5cf7jmrgrpl3"]
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_ceh1l"]
+data1 = 2506342315
+data2 = 2652609975
+
+[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_14y0i"]
+name = "cannon_charging"
+id = SubResource("FMOD_STUDIO_PARAMETER_ID_ceh1l")
+maximum = 1.0
+flags = 4
+guid = "{507fcf57-0da1-4ed9-8b2d-b419d9c6e9e1}"
+
+[resource]
+parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_14y0i")
+path = "parameter:/cannon_charging"
+guid = "{507fcf57-0da1-4ed9-8b2d-b419d9c6e9e1}"
+name = "cannon_charging"
