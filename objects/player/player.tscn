@@ -393,9 +393,6 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1, 0)
 [node name="mecha" parent="Rotating/PlayerMesh/Node2" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0971407, 0.203125)
 
-[node name="chest" parent="Rotating/PlayerMesh/Node2/mecha/body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1.11022e-16, 2.96875, -0.3125)
-
 [node name="leftUpperArm" parent="Rotating/PlayerMesh/Node2/mecha" index="1"]
 transform = Transform3D(0.923879, 0.0946096, 0.370804, -1.56462e-07, 0.96896, -0.247227, -0.382683, 0.228408, 0.895202, -0.6875, 3.375, 0.15625)
 
