@@ -24,6 +24,7 @@ const ROTATION_SPEED = 10.0
 @onready var drill_attack := $Rotating/DrillAttack
 @onready var gun := $Rotating/Gun
 @onready var fotonic_cannon := $Rotating/FotonicCannon
+@onready var fotonic_cannon_chaging_particles := $Rotating/FotonicCannon/ChargingParticles
 
 @onready var hitbox := $Fixed/Hitbox
 @onready var rotating := $Rotating
@@ -47,6 +48,7 @@ var is_charging := false
 var is_walking := false
 
 var once_drill := false
+var once_cannon := false
 var once_walk := false
 
 var ray_origin := Vector3.ZERO
@@ -166,9 +168,17 @@ func handle_attacks(delta: float):
 					needs_charging = true
 					PlayerStats.fotonic_usage += delta
 					if PlayerStats.fotonic_usage >= PlayerStats.min_fotonic_usage:
+						if once_cannon:
+							fotonic_cannon_chaging_particles.set_deferred("emitting", false)
+							once_cannon = true
 						needs_charging = false
 						is_charging = false
 						handle_single_attack(fotonic_cannon, Stats.AttackType.FOTONIC, PlayerStats.fotonic_usage)
+					else:
+						if not once_cannon:
+							fotonic_cannon_chaging_particles.set_deferred("emitting", true)
+							once_cannon = true
+						fotonic_cannon_chaging_particles.set_deferred("amount", clamp(ceil(remap(PlayerStats.fotonic_usage, 0, 4, 100, 200)), 100, 200))
 			
 			Stats.AttackType.GUN:
 				if can_attack:
@@ -179,7 +189,9 @@ func handle_attacks(delta: float):
 		PlayerStats.drill_usage = 0
 		PlayerStats.fotonic_usage = 0
 		FMODStudioModule.get_studio_system().set_parameter_by_name("drill_attack", 0.0, false)
+		fotonic_cannon_chaging_particles.set_deferred("emitting", false)
 		once_drill = false
+		once_cannon = false
 		needs_charging = false
 		is_charging = false
 	
