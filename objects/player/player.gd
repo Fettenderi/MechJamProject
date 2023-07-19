@@ -259,7 +259,6 @@ func move(direction : Vector3, delta: float):
 		if not once_walk:
 			once_walk = true
 			FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
-			print("Muoviti")
 		velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
 	else:
 		is_walking = false
@@ -269,7 +268,6 @@ func stop_moving(delta: float):
 	if once_walk:
 		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 0.0, false)
 		once_walk = false
-		print("Fermati")
 		
 	is_walking = false
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)
