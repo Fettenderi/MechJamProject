@@ -1,4 +1,4 @@
-[gd_resource type="ProjectCache" load_steps=60 format=3 uid="uid://brkpamkfn8adt"]
+[gd_resource type="ProjectCache" load_steps=58 format=3 uid="uid://brkpamkfn8adt"]
 
 [ext_resource type="BankAsset" uid="uid://cn3dyi01ahsri" path="res://addons/FMOD/editor/resources/banks/{64f306e5-ad1f-4f97-96e1-d7e886c4c393}.tres" id="1_rg3f4"]
 [ext_resource type="BankAsset" uid="uid://boh83y8yln5dn" path="res://addons/FMOD/editor/resources/banks/{fcee2631-dc64-03d5-10a8-5d167737c50b}.tres" id="2_3w7un"]
@@ -54,25 +54,9 @@
 [ext_resource type="EventAsset" uid="uid://cqs7yhflex0q" path="res://addons/FMOD/editor/resources/events/{4f640811-9d33-405c-a613-27de805dfebb}.tres" id="37_6bfeq"]
 [ext_resource type="ParameterAsset" uid="uid://dh3h0icqu2yim" path="res://addons/FMOD/editor/resources/parameters/{89602517-ea96-466b-8fec-3b8a0513cf39}.tres" id="49_lbtyn"]
 [ext_resource type="ParameterAsset" uid="uid://2etww4f7vaey" path="res://addons/FMOD/editor/resources/parameters/{e2465a31-f636-4fee-96fd-e0d8dfefeb69}.tres" id="52_cimqp"]
+[ext_resource type="ParameterAsset" uid="uid://cbxoitpyctibc" path="res://addons/FMOD/editor/resources/parameters/{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}.tres" id="55_afkhn"]
 [ext_resource type="EventAsset" uid="uid://bxq3eb7n25a4f" path="res://addons/FMOD/editor/resources/snapshots/{383d9850-1503-4677-9e93-d5d08104c427}.tres" id="55_gh5x1"]
 [ext_resource type="EventAsset" uid="uid://dmtaxbj4v5sjc" path="res://addons/FMOD/editor/resources/snapshots/{3a5c6e69-968f-4da5-a711-84fed51d8f52}.tres" id="56_3tg12"]
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_ID" id="FMOD_STUDIO_PARAMETER_ID_c06vc"]
-data1 = 2311265973
-data2 = 4167048216
-
-[sub_resource type="FMOD_STUDIO_PARAMETER_DESCRIPTION" id="FMOD_STUDIO_PARAMETER_DESCRIPTION_wdskc"]
-name = "player_moving"
-id = SubResource("FMOD_STUDIO_PARAMETER_ID_c06vc")
-maximum = 1.0
-flags = 4
-guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
-
-[sub_resource type="ParameterAsset" id="ParameterAsset_qup5p"]
-parameter_description = SubResource("FMOD_STUDIO_PARAMETER_DESCRIPTION_wdskc")
-path = "parameter:/player_moving"
-guid = "{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}"
-name = "player_moving"
 
 [resource]
 banks = {
@@ -137,7 +121,7 @@ parameters = {
 "{01f40d11-8630-4966-92fe-eb44b9b83cfe}": ExtResource("7_24vfp"),
 "{0ed29245-8db1-4ec0-98b6-026b5e7fcfef}": ExtResource("9_ekh6l"),
 "{89602517-ea96-466b-8fec-3b8a0513cf39}": ExtResource("49_lbtyn"),
-"{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}": SubResource("ParameterAsset_qup5p"),
+"{b99d97df-fd85-4ea4-a8ae-d3632a4073c0}": ExtResource("55_afkhn"),
 "{ce84adbf-057d-4527-9fcd-c12ce71f87db}": ExtResource("6_niucd"),
 "{dc034953-c562-401b-9c83-c5cfa0b8e436}": ExtResource("5_8ivsl"),
 "{e2465a31-f636-4fee-96fd-e0d8dfefeb69}": ExtResource("52_cimqp")
@@ -535,5 +519,5 @@ parameter_tree = [{
 "item_type": 6,
 "node_name": "player_moving",
 "path": "parameter:/player_moving",
-"resource": SubResource("ParameterAsset_qup5p")
+"resource": ExtResource("55_afkhn")
 }]

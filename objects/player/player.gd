@@ -18,7 +18,6 @@ const ROTATION_SPEED = 10.0
 @onready var low_health_sfx := $LowHealthSfx
 @onready var jump_sfx := $JumpSfx
 @onready var drill_sfx := $DrillSfx
-@onready var drill_parameter := $DrillParameter
 
 @onready var area_attack := $Fixed/AreaAttack
 @onready var normal_attack := $Rotating/NormalAttack
@@ -57,6 +56,8 @@ var previous_energy := PlayerStats.max_energy
 var previous_health := PlayerStats.max_health
 
 
+
+
 func _ready():
 #	available_weapons_changed()
 	randomize()
@@ -79,6 +80,8 @@ func _ready():
 	
 	PlayerStats.connect("energy_changed", energy_has_changed)
 	PlayerStats.connect("health_changed", health_has_changed)
+	
+	
 	
 
 func _input(event):
@@ -114,8 +117,11 @@ func _physics_process(delta) -> void:
 	
 	attacking = false
 	
+	
+	
 	move_and_slide()
-
+	
+	
 
 func handle_pound(delta: float):
 	if Input.is_action_just_pressed("player_attack"):
@@ -148,9 +154,7 @@ func handle_attacks(delta: float):
 					PlayerStats.drill_usage += delta
 					if PlayerStats.drill_usage >= PlayerStats.min_drill_usage:
 						if not once_drill:
-							drill_parameter.value = 0
-							drill_parameter.trigger()
-							drill_sfx.play()
+							FMODStudioModule.get_studio_system().set_parameter_by_name("drill_attack", 1.0, false)
 							once_drill = true
 						needs_charging = false
 						is_charging = false
@@ -174,8 +178,7 @@ func handle_attacks(delta: float):
 	elif Input.is_action_just_released("player_attack"):
 		PlayerStats.drill_usage = 0
 		PlayerStats.fotonic_usage = 0
-		drill_parameter.value = 1
-		drill_parameter.trigger()
+		FMODStudioModule.get_studio_system().set_parameter_by_name("drill_attack", 0.0, false)
 		once_drill = false
 		needs_charging = false
 		is_charging = false
@@ -253,25 +256,20 @@ func handle_animations(on_floor: bool, weapon_state: Stats.AttackType, direction
 func move(direction : Vector3, delta: float):
 	if is_on_floor():
 		is_walking = true
-#		if not once_walk:
-#			once_walk = true
-#			FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
-#			print("Muoviti")
+		if not once_walk:
+			once_walk = true
+			FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 1.0, false)
+			print("Muoviti")
 		velocity_lerp(direction * PlayerStats.speed * 0.6 * (1 - 0.4 * min(PlayerStats.drill_usage + PlayerStats.fotonic_usage, 1)) * clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0), ACCELERATION * delta)
-#		if PlayerStats.health <= PlayerStats.max_health / 4 or PlayerStats.energy <= PlayerStats.max_energy / 4:
-#			var saw_movement : float = clamp(1 - PlayerStats.jump_charge / PlayerStats.max_jump_charge, 0.2, 1.0) * saw_tooth(moving_elapsed)
-#			velocity_lerp(direction * PlayerStats.speed * saw_movement, ACCELERATION * delta)
-#			moving_elapsed += delta
-#		else:
 	else:
 		is_walking = false
 		velocity_lerp(direction * PlayerStats.speed * 0.6, ACCELERATION * delta)
 
 func stop_moving(delta: float):
-#	if once_walk:
-#		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 0.0, false)
-#		once_walk = false
-#		print("Fermati")
+	if once_walk:
+		FMODStudioModule.get_studio_system().set_parameter_by_name("player_moving", 0.0, false)
+		once_walk = false
+		print("Fermati")
 		
 	is_walking = false
 	velocity_lerp(Vector3.ZERO, DECELERATION * delta)
