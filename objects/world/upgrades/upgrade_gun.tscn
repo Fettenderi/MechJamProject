@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://388nrmf13m5p"]
+[gd_scene load_steps=12 format=3 uid="uid://388nrmf13m5p"]
 
 [ext_resource type="Script" path="res://objects/world/upgrades/upgrade_gun.gd" id="1_sgdr0"]
 [ext_resource type="PackedScene" uid="uid://cqnd0hnj64vrj" path="res://models/upgrades/damage_gun.tscn" id="2_y3erv"]
+[ext_resource type="EventAsset" uid="uid://5fy4ne3r1ntw" path="res://addons/FMOD/editor/resources/events/{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}.tres" id="3_4sr04"]
+[ext_resource type="EventAsset" uid="uid://bwkshwmfrdchc" path="res://addons/FMOD/editor/resources/events/{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}.tres" id="4_j0215"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq0ej"]
 albedo_color = Color(0.298039, 0.196078, 0.298039, 1)
@@ -68,3 +70,11 @@ draw_pass_1 = SubResource("SphereMesh_g6b83")
 
 [node name="gun" parent="Mesh" instance=ExtResource("2_y3erv")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 3.15411e-08, 0.9, -0.360788)
+
+[node name="NavigateSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("3_4sr04")
+
+[node name="SelectSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("4_j0215")

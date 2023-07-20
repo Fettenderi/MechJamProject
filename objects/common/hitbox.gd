@@ -44,4 +44,5 @@ func die():
 	if dead_sfx:
 		dead_sfx.play()
 	
+	await get_tree().create_timer(0.5).timeout
 	get_parent().get_parent().queue_free()

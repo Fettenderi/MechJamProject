@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc4liqpk2204h"]
+[gd_scene load_steps=12 format=3 uid="uid://cc4liqpk2204h"]
 
 [ext_resource type="Script" path="res://objects/world/upgrades/unlock_drill.gd" id="1_fe5cw"]
 [ext_resource type="PackedScene" uid="uid://dbsnraxpfy4ov" path="res://models/upgrades/drill.gltf" id="2_1yi72"]
+[ext_resource type="EventAsset" uid="uid://5fy4ne3r1ntw" path="res://addons/FMOD/editor/resources/events/{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}.tres" id="3_x2802"]
+[ext_resource type="EventAsset" uid="uid://bwkshwmfrdchc" path="res://addons/FMOD/editor/resources/events/{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}.tres" id="4_aih6r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq0ej"]
 albedo_color = Color(0.298039, 0.196078, 0.298039, 1)
@@ -70,3 +72,11 @@ draw_pass_1 = SubResource("SphereMesh_g6b83")
 
 [node name="drill" parent="Mesh" instance=ExtResource("2_1yi72")]
 transform = Transform3D(1, 8.74228e-08, 1.51421e-07, 0, 0.866025, -0.5, -1.74846e-07, 0.5, 0.866025, 0.0208631, 0.5, -0.142627)
+
+[node name="NavigateSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("3_x2802")
+
+[node name="SelectSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("4_aih6r")

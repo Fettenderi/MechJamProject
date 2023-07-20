@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bik4pa1khsr6b"]
+
+[ext_resource type="FontFile" uid="uid://cjsarq3h46f2t" path="res://fonts/Ubuntu-Bold.ttf" id="1_1ndki"]
+
+[resource]
+default_font = ExtResource("1_1ndki")
+default_font_size = 20

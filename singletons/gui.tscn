@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8e14ykg88vyd"]
+[gd_scene load_steps=5 format=3 uid="uid://b8e14ykg88vyd"]
 
 [ext_resource type="Script" path="res://singletons/gui.gd" id="1_6pff1"]
+[ext_resource type="Theme" uid="uid://bik4pa1khsr6b" path="res://fonts/gui_theme.tres" id="1_vmg6a"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4d7cv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_idbx0"]
-font_size = 10
+font_size = 20
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -18,6 +19,7 @@ offset_right = -20.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_vmg6a")
 script = ExtResource("1_6pff1")
 color_low = Color(0.74902, 0.203922, 0.203922, 1)
 color_high = Color(0.301961, 0.952941, 0.301961, 1)
@@ -27,7 +29,8 @@ layout_mode = 0
 offset_top = 58.0
 offset_right = 171.0
 offset_bottom = 84.0
-text = "Weapon"
+theme_override_font_sizes/font_size = 25
+text = "Punch"
 
 [node name="HealthBar" type="ColorRect" parent="."]
 layout_mode = 0
@@ -109,6 +112,7 @@ offset_right = 20.0
 offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 40
 text = "Drill"
 horizontal_alignment = 1
 
@@ -125,20 +129,17 @@ offset_right = 20.0
 offset_bottom = 48.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 40
 text = "Drill"
 label_settings = SubResource("LabelSettings_idbx0")
 horizontal_alignment = 1
 
-[node name="CorruptionWarning" type="Label" parent="."]
-visible = false
+[node name="NotificationContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 40.0
 grow_horizontal = 2
-text = "A zone has been corrupted"
-horizontal_alignment = 1
-vertical_alignment = 1

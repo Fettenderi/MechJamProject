@@ -14,10 +14,12 @@ extends Control
 @onready var interaction_title := $InteractionTitle
 @onready var interaction_description := $InteractionTitle/InteractionDescription
 
-@onready var corruption_warning := $CorruptionWarning
+@onready var notification_container := $NotificationContainer
 
 @onready var minimap_viewport : Viewport = GameMachine.minimap
 
+@onready var notification_scene := preload("res://objects/ui/notification.tscn")
+@onready var warning_scene := preload("res://objects/ui/warning.tscn")
 
 func remap_color(value: float, istart: float, istop: float, ostart: Color, ostop: Color) -> Color:
 	return Color(remap(value, istart, istop, ostart.r, ostop.r), remap(value, istart, istop, ostart.g, ostop.g), remap(value, istart, istop, ostart.b, ostop.b))
@@ -29,9 +31,6 @@ func _ready():
 	PlayerStats.connect("energy_changed", update_energy)
 	PlayerStats.connect("change_selected_weapon", update_selected_weapon)
 	PlayerStats.connect("kills_changed", update_kill_counter)
-	
-	ZoneManager.connect("some_zone_was_corrupted", show_corruption_warning)
-	ZoneManager.connect("some_zone_was_corrupted_first_phase", show_corruption_warning)
 	
 	minimap_display.texture = minimap_viewport.get_texture()
 	kill_counter.text = "0"
@@ -59,7 +58,7 @@ func update_max_energy(new_max_energy):
 func update_selected_weapon(new_selected_weapon):
 	match new_selected_weapon:
 		Stats.AttackType.NORMAL:
-			weapon.text = "Normal"
+			weapon.text = "Punch"
 		Stats.AttackType.DRILL:
 			weapon.text = "Drill"
 		Stats.AttackType.GUN:
@@ -67,7 +66,7 @@ func update_selected_weapon(new_selected_weapon):
 		Stats.AttackType.FOTONIC:
 			weapon.text = "Fotonic"
 		Stats.AttackType.POUND:
-			weapon.text = "Pound"
+			weapon.text = ""
 
 func update_kill_counter(new_kills):
 	kill_counter.text = str(new_kills)
@@ -85,8 +84,12 @@ func hide_interaction_prompt():
 	interaction_title.visible = false
 	interaction_description.visible = false
 
-func show_corruption_warning():
-	corruption_warning.visible = true
-	await get_tree().create_timer(5).timeout
-	corruption_warning.visible = false
-	
+func add_notification(notification_message: String):
+	var notification_node := notification_scene.instantiate()
+	notification_node.notification_text = notification_message
+	notification_container.add_child(notification_node)
+
+func add_warning(warning_message: String):
+	var warning_node := warning_scene.instantiate()
+	warning_node.notification_text = warning_message
+	notification_container.add_child(warning_node)

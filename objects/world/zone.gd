@@ -80,7 +80,7 @@ func advance_subwave():
 			spawn_wave()
 		else:
 			spawn_first()
-		if missing_subwaves == 0:
+		if missing_subwaves == 1:
 			GameMachine.set_intensity(max(fighting_ost, GameMachine.get_intensity()))
 		subwave_timer.start(rcc(missing_subwaves, MAX_SUBWAVES, 0, 60, 40))
 
@@ -95,6 +95,7 @@ func start_corrupting():
 
 func corrupt_zone():
 	emit_signal("zone_corrupted")
+	Gui.add_warning("Zone " + str(id) + " has been invaded!")
 	once_cleared = false
 	if is_current_zone:
 		PlayerStats.can_discharge = false
@@ -109,6 +110,7 @@ func corrupt_zone():
 func set_zone_cleared():
 	once_cleared = true
 	emit_signal("zone_cleared")
+	Gui.add_notification("Zone Clear! Don't forget to check the area, we have some upgrades for you.")
 	if is_second_phase:
 		GameMachine.set_intensity(clamp(GameMachine.get_intensity() - 1, 1, 6))
 	else:
@@ -116,6 +118,7 @@ func set_zone_cleared():
 	add_bonus()
 
 func zone_looted():
+	zone_level += 1
 	activation_particles.set_deferred("set_emitting", true)
 	is_current_zone = true
 	energy_supplier.set_deferred("is_active", true)
@@ -128,8 +131,8 @@ func start_second_phase():
 	is_second_phase = true
 
 func spawn_first():
-	add_enemy(base_enemy, rcc(missing_subwaves, MAX_SUBWAVES, 0, 5, 8))
-	add_enemy(special_enemy, rcc(missing_subwaves, MAX_SUBWAVES, 0, 1, 4))
+	add_enemy(base_enemy, 4)
+	add_enemy(special_enemy, rcc(missing_subwaves, MAX_SUBWAVES, 0, 1, 2))
 
 func spawn_wave():
 	add_enemy(EnemyType.ALIEN, rcc(zone_level, 0, 15, 6, 30))
@@ -139,7 +142,7 @@ func spawn_wave():
 
 func add_bonus():
 	var bonus_scene_node := bonus.instantiate()
-	bonus_scene_node.position = global_position + Vector3(randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE), 1.5, randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE))
+	bonus_scene_node.position = Vector3(randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE), 0, randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE))
 	add_child(bonus_scene_node, true)
 	bonus_scene_node.connect("choice_made", zone_looted)
 
