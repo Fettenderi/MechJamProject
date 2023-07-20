@@ -46,11 +46,11 @@ max_x = 5.0
 max_y = 5.0
 noise = SubResource("FastNoiseLite_mukuy")
 bus_asset = ExtResource("2_uugg7")
-volume = 0.3
-
-[node name="Level" parent="." instance=ExtResource("3_6sq3d")]
+volume = 0.5
 
 [node name="AllMusic" type="StudioEventEmitter3D" parent="."]
+play_event = 1
+stop_event = 3
 event = SubResource("EventAsset_p0ic5")
 
 [node name="SoundTestEmitter" type="StudioEventEmitter3D" parent="."]
@@ -72,3 +72,5 @@ value = 0.0
 trigger_on = 1
 parameter = ExtResource("9_h6665")
 value = 1.0
+
+[node name="Level" parent="." instance=ExtResource("3_6sq3d")]

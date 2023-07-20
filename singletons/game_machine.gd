@@ -39,6 +39,8 @@ extends Node
 var bus: Bus
 var trauma := 0.0
 var time := 0.0
+var exiting := 0.0
+var once_exiting := 0.0
 var is_screen_shaking := false
 var enemy_count := 0
 var enemy_for_health := killed_enemies_for_health
@@ -60,8 +62,20 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if Input.is_action_just_pressed("debug_exit"):
-		get_tree().quit()
+	if Input.is_action_pressed("debug_exit"):
+		exiting += delta
+		if not once_exiting:
+			Gui.add_notification("Unplugging the controls...")
+			once_exiting = true
+		if exiting >= 2:
+			get_tree().quit()
+	
+	if Input.is_action_just_released("debug_exit"):
+		Gui.remove_last_notification()
+		once_exiting = false
+	
+	if Input.is_action_just_pressed("debug_button"):
+		get_node("Level/PlayerFollower/CameraPlayer/Pixelator").visible = not get_node("Level/PlayerFollower/CameraPlayer/Pixelator").visible
 	
 	if is_screen_shaking:
 		screen_shake(delta)

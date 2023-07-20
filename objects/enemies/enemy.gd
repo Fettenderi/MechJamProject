@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var footsteps_sfx : EventAsset
 
 @onready var footsteps_timer := $FootstepsTimer
+@onready var minimap_icon := $Fixed/MinimapIcon
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -14,6 +15,11 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		minimap_icon.visible = false
+		if velocity.y <= -20:
+			queue_free()
+	else:
+		minimap_icon.visible = true
 	
 	is_walking = velocity.length() >= 0.2
 	if is_walking and footsteps_timer.time_left == 0:

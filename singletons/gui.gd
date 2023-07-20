@@ -84,6 +84,10 @@ func hide_interaction_prompt():
 	interaction_title.visible = false
 	interaction_description.visible = false
 
+func remove_last_notification():
+	if notification_container.get_child(-1):
+		notification_container.get_child(-1).queue_free()
+
 func add_notification(notification_message: String):
 	var notification_node := notification_scene.instantiate()
 	notification_node.notification_text = notification_message

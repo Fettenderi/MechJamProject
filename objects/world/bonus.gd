@@ -5,7 +5,7 @@ signal choice_made
 func _ready():
 	randomize()
 	var choice : PackedScene
-	await ZoneManager.ready
+#	await ZoneManager.ready
 	for i in range(-1, 2, 1):
 		choice = ZoneManager.upgrades.pick_random()
 		var choice_node : Choice = choice.instantiate()

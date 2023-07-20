@@ -142,7 +142,7 @@ func spawn_wave():
 
 func add_bonus():
 	var bonus_scene_node := bonus.instantiate()
-	bonus_scene_node.position = Vector3(randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE), 0, randi_range(-MAX_BONUS_DISTANCE, MAX_BONUS_DISTANCE))
+	bonus_scene_node.position = Vector3(0, 0, 5)
 	add_child(bonus_scene_node, true)
 	bonus_scene_node.connect("choice_made", zone_looted)
 
