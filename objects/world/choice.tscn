@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cokv88td2oj5f"]
+[gd_scene load_steps=11 format=3 uid="uid://cokv88td2oj5f"]
 
 [ext_resource type="Script" path="res://objects/world/choice.gd" id="1_6nc0h"]
+[ext_resource type="EventAsset" uid="uid://bwkshwmfrdchc" path="res://addons/FMOD/editor/resources/events/{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}.tres" id="2_ovnky"]
+[ext_resource type="EventAsset" uid="uid://5fy4ne3r1ntw" path="res://addons/FMOD/editor/resources/events/{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}.tres" id="2_qpxu4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qs1d"]
 albedo_color = Color(0.298039, 0.196078, 0.298039, 1)
@@ -62,3 +64,11 @@ explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mr8mn")
 draw_pass_1 = SubResource("SphereMesh_g6b83")
+
+[node name="NavigateSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("2_qpxu4")
+
+[node name="SelectSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("2_ovnky")

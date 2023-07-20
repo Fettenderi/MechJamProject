@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg6h14vc1wd4e"]
+
+[ext_resource type="Theme" uid="uid://bik4pa1khsr6b" path="res://fonts/gui_theme.tres" id="1_etlay"]
+[ext_resource type="Script" path="res://objects/ui/notification.gd" id="2_2a1yi"]
+
+[node name="Warning" type="Label"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("1_etlay")
+theme_override_colors/font_color = Color(0.901961, 0.0431373, 0.372549, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_2a1yi")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true

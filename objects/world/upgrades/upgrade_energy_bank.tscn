@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsf3nqvat3o2s"]
+[gd_scene load_steps=12 format=3 uid="uid://bsf3nqvat3o2s"]
 
 [ext_resource type="Script" path="res://objects/world/upgrades/upgrade_energy_bank.gd" id="1_2ltuy"]
 [ext_resource type="PackedScene" uid="uid://7iwnp38te1rj" path="res://models/upgrades/backpack.gltf" id="2_ll83d"]
+[ext_resource type="EventAsset" uid="uid://5fy4ne3r1ntw" path="res://addons/FMOD/editor/resources/events/{ad46f69d-7826-45c1-a353-c8f3aa5d6be9}.tres" id="3_0ckls"]
+[ext_resource type="EventAsset" uid="uid://bwkshwmfrdchc" path="res://addons/FMOD/editor/resources/events/{fd3ae21f-35dc-4a02-ae91-5c1bb9b863c0}.tres" id="4_kgi63"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq0ej"]
 albedo_color = Color(0.298039, 0.196078, 0.298039, 1)
@@ -70,3 +72,11 @@ draw_pass_1 = SubResource("SphereMesh_g6b83")
 
 [node name="backpack" parent="Mesh" instance=ExtResource("2_ll83d")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -2.62268e-08, 0.5, 0.3)
+
+[node name="NavigateSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("3_0ckls")
+
+[node name="SelectSfx" type="StudioEventEmitter3D" parent="."]
+stop_event = 3
+event = ExtResource("4_kgi63")

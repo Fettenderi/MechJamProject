@@ -52,6 +52,9 @@ var once_drill := false
 var once_cannon := false
 var once_walk := false
 
+var once_low_health := false
+var once_low_energy := false
+
 var ray_origin := Vector3.ZERO
 var ray_target := Vector3.ZERO
 
@@ -199,7 +202,7 @@ func handle_attacks(delta: float):
 		needs_charging = false
 		is_charging = false
 	
-	if PlayerStats.energy >= 10:
+	if PlayerStats.energy >= 1:
 		can_attack = true
 
 func handle_single_attack(attack: Node3D, attack_type: Stats.AttackType, consumption_bonus : float = 0.0, sfx_parameter: String = ""):
@@ -340,7 +343,11 @@ func available_weapons_changed():
 func energy_has_changed(new_energy):
 	if new_energy > PlayerStats.max_energy / 4:
 		low_battery_sfx.stop()
+		once_low_energy = false
 	else:
+		if not once_low_energy:
+			Gui.add_warning("Battery Low!")
+			once_low_energy = true
 		low_battery_sfx.play()
 	
 	previous_energy = new_energy
@@ -349,7 +356,11 @@ func health_has_changed(new_health):
 	if new_health > PlayerStats.max_health / 4:
 		low_health_sfx.parameter_low_health = 0
 		low_health_sfx.stop()
+		once_low_energy = false
 	else:
+		if not once_low_energy:
+			Gui.add_warning("Warning! Low Health")
+			once_low_energy = true
 		low_health_sfx.parameter_low_health = 1
 		low_health_sfx.play()
 	

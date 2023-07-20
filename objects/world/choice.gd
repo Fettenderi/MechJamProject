@@ -7,12 +7,16 @@ extends Area3D
 
 @onready var particles := $Particles
 @onready var mesh : Node3D = $Mesh
+@onready var shape := $CollisionShape3D
+@onready var navigate_sfx := $NavigateSfx
+@onready var select_sfx := $SelectSfx
 
 signal was_chosen
 
 var time := 0.0
 var id := 0
 var is_being_selected := false
+var once_selected := false
 
 func _ready():
 	connect("area_entered", area_entered)
@@ -23,16 +27,22 @@ func _process(delta):
 	mesh.rotation.y = time
 	
 	if is_being_selected:
-		mesh.scale = lerp(mesh.scale, Vector3(1.5, 1.5, 1.5), delta * 10)
-		mesh.position.y = 1
+		if not once_selected:
+			navigate_sfx.play()
+			once_selected = true
+		mesh.scale = lerp(mesh.scale, Vector3(1.7, 1.7, 1.7), delta * 10)
+		mesh.position.y = 1.2
 		if Input.is_action_just_pressed("interaction"):
+			select_sfx.play()
 			choice_made()
-			emit_signal("was_chosen")
 			ZoneManager.upgrades.remove_at(id)
 			particles.call_deferred("set_emitting", true)
-			await get_tree().create_timer(3).timeout
-			queue_free()
+			shape.set_deferred("disabled", true)
+			await get_tree().create_timer(0.4).timeout
+			emit_signal("was_chosen")
 	else:
+		navigate_sfx.stop()
+		once_selected = false
 		mesh.position.y = (sin(time) + 0.5) * 0.5
 		mesh.scale = lerp(mesh.scale, Vector3(1, 1, 1), delta * 10)
 

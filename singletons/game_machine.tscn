@@ -51,7 +51,6 @@ volume = 0.3
 [node name="Level" parent="." instance=ExtResource("3_6sq3d")]
 
 [node name="AllMusic" type="StudioEventEmitter3D" parent="."]
-play_event = 1
 event = SubResource("EventAsset_p0ic5")
 
 [node name="SoundTestEmitter" type="StudioEventEmitter3D" parent="."]
