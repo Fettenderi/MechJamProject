@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://6ujugi61e0nl"]
+[gd_scene load_steps=24 format=3 uid="uid://6ujugi61e0nl"]
 
 [ext_resource type="Script" path="res://level/player_follower.gd" id="1_n4lux"]
 [ext_resource type="Shader" path="res://level/pixelator.gdshader" id="2_sc1m4"]
@@ -52,6 +52,10 @@ albedo_color = Color(0.290196, 0.290196, 0.290196, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_7ue2q"]
 material = SubResource("StandardMaterial3D_ybwlx")
 size = Vector3(65, 0.1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_45xjx"]
+material = SubResource("StandardMaterial3D_ybwlx")
+size = Vector3(29.614, 0.1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_x35om"]
 material = SubResource("StandardMaterial3D_ybwlx")
@@ -288,9 +292,6 @@ mesh = SubResource("BoxMesh_7ue2q")
 [node name="Building" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
 transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -25.4922, 0, -2.661)
 
-[node name="Building21" parent="Deco/MeshInstance3D8" instance=ExtResource("5_2gyg7")]
-transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -33.3051, 0, 0.0385734)
-
 [node name="Building2" parent="Deco/MeshInstance3D8" instance=ExtResource("6_v6rpu")]
 transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, -2.45966, 0, -2.14432)
 
@@ -417,6 +418,43 @@ transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.99
 
 [node name="Building20" parent="Deco/MeshInstance3D4" instance=ExtResource("9_xkuk7")]
 transform = Transform3D(1.31134e-07, 0, -0.999998, 0, 1, 0, 0.999998, 0, 1.31134e-07, -28.4922, 0, 2.35094)
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Deco"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.0466347, 0, 17.8822)
+mesh = SubResource("BoxMesh_45xjx")
+
+[node name="Building" parent="Deco/MeshInstance3D28" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, -14.5336, 0, 1.1792)
+
+[node name="Building2" parent="Deco/MeshInstance3D28" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -1.49225, 0, -2.187)
+
+[node name="Building4" parent="Deco/MeshInstance3D28" instance=ExtResource("8_8toc6")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -7.49225, 0, -3.091)
+
+[node name="Building5" parent="Deco/MeshInstance3D28" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(-4.37114e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37114e-08, -11.7311, 0, -2.368)
+
+[node name="Building6" parent="Deco/MeshInstance3D28" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 4.50775, 0, -2.661)
+
+[node name="Building7" parent="Deco/MeshInstance3D28" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 10.5077, 0, -2.187)
+
+[node name="Building12" parent="Deco/MeshInstance3D28" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, 1.50774, 0, 2.16994)
+
+[node name="Building14" parent="Deco/MeshInstance3D28" instance=ExtResource("8_8toc6")]
+transform = Transform3D(0.999998, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999998, 7.50773, 0, 3.07394)
+
+[node name="Building15" parent="Deco/MeshInstance3D28" instance=ExtResource("9_xkuk7")]
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, 14.2971, 0.0683864, 1.07664)
+
+[node name="Building16" parent="Deco/MeshInstance3D28" instance=ExtResource("5_2gyg7")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, -4.49225, 0, 2.64394)
+
+[node name="Building17" parent="Deco/MeshInstance3D28" instance=ExtResource("6_v6rpu")]
+transform = Transform3D(0.999999, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999999, -10.4922, 0, 2.16994)
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Deco"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -59.888, 0, 51.0914)
@@ -749,7 +787,7 @@ transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.
 transform = Transform3D(-0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, 22.5077, 0, -3.091)
 
 [node name="Building12" parent="Deco/MeshInstance3D12" instance=ExtResource("8_8toc6")]
-transform = Transform3D(-0.999999, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999999, 33.3394, 0, -0.0405865)
+transform = Transform3D(-0.999999, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999999, 33.3394, 0, -0.0405884)
 
 [node name="Building10" parent="Deco/MeshInstance3D12" instance=ExtResource("9_xkuk7")]
 transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 28.5077, 0, -2.368)
