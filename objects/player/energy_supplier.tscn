@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx6yf3f0ghhw8"]
+[gd_scene load_steps=11 format=3 uid="uid://dx6yf3f0ghhw8"]
 
 [ext_resource type="Script" path="res://objects/player/energy_supplier.gd" id="1_nsgsv"]
 [ext_resource type="EventAsset" uid="uid://gg6rckoxf8nn" path="res://addons/FMOD/editor/resources/events/{91a06109-16c7-40cd-9d3f-49f8cdd7730b}.tres" id="2_ap3u4"]
-[ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="3_vt5uw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6h7c0"]
 radius = 10.0
@@ -69,7 +68,3 @@ one_shot = true
 [node name="ChargingSfx" type="StudioEventEmitter3D" parent="."]
 stop_event = 3
 event = ExtResource("2_ap3u4")
-
-[node name="MinimapIcon" type="Sprite3D" parent="."]
-transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 21, 0)
-texture = ExtResource("3_vt5uw")

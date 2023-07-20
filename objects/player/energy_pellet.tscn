@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://objects/player/energy_pellet.gd" id="1_q2f4e"]
 [ext_resource type="EventAsset" uid="uid://gg6rckoxf8nn" path="res://addons/FMOD/editor/resources/events/{91a06109-16c7-40cd-9d3f-49f8cdd7730b}.tres" id="2_47h2e"]
-[ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="3_65spq"]
+[ext_resource type="Texture2D" uid="uid://dh41uk2cyw114" path="res://icons/energy_pellet.png" id="3_4tawy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw8d0"]
 albedo_color = Color(0.2, 1, 1, 1)
@@ -80,8 +80,9 @@ stop_event = 3
 event = ExtResource("2_47h2e")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
-transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 21, 0)
-texture = ExtResource("3_65spq")
+transform = Transform3D(-40, -6.03983e-06, 6.60024e-15, 0, -1.74846e-06, -1, 6.03983e-06, -40, 4.37114e-08, 0, 21, 0)
+texture_filter = 2
+texture = ExtResource("3_4tawy")
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 3.0

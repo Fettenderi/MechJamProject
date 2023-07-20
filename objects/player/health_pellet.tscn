@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://objects/player/health_pellet.gd" id="1_qy77g"]
 [ext_resource type="EventAsset" uid="uid://bnnc1iswvvvl0" path="res://addons/FMOD/editor/resources/events/{215f14e0-eb51-40d5-bf9b-6ba380860e00}.tres" id="2_vk84v"]
-[ext_resource type="Texture2D" uid="uid://3ghmm7c5yahr" path="res://icon.svg" id="3_odciv"]
+[ext_resource type="Texture2D" uid="uid://cmg583bmcwglp" path="res://icons/health_pellet.png" id="3_7yyqw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chdyt"]
 albedo_color = Color(0.235294, 0.901961, 0.247059, 1)
@@ -79,8 +79,9 @@ stop_event = 3
 event = ExtResource("2_vk84v")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
-transform = Transform3D(-10, -1.50996e-06, 6.60024e-15, 0, -4.37114e-07, -1, 1.50996e-06, -10, 4.37114e-08, 0, 21, 0)
-texture = ExtResource("3_odciv")
+transform = Transform3D(-40, -6.03983e-06, 6.60024e-15, 0, -1.74846e-06, -1, 6.03983e-06, -40, 4.37114e-08, 0, 21, 0)
+texture_filter = 2
+texture = ExtResource("3_7yyqw")
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 3.0

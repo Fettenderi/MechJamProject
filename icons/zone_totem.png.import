@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmts30bnbno61"
-path="res://.godot/imported/mk1.png-cfdc84824f66ced681cb420513829444.ctex"
+uid="uid://c1ygqffrv02k5"
+path="res://.godot/imported/zone_totem.png-2792fbceb768a1ef16542d85a0e70042.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/mk1.png"
-dest_files=["res://.godot/imported/mk1.png-cfdc84824f66ced681cb420513829444.ctex"]
+source_file="res://icons/zone_totem.png"
+dest_files=["res://.godot/imported/zone_totem.png-2792fbceb768a1ef16542d85a0e70042.ctex"]
 
 [params]
 
@@ -20,8 +20,8 @@ compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=1
-mipmaps/generate=false
+compress/channel_pack=0
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
