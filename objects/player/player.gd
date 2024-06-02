@@ -47,6 +47,7 @@ var attacking := false
 var needs_charging := false
 var is_charging := false
 var is_walking := false
+var repair_delta := 0.0
 
 var once_drill := false
 var once_cannon := false
@@ -60,9 +61,6 @@ var ray_target := Vector3.ZERO
 
 var previous_energy := PlayerStats.max_energy
 var previous_health := PlayerStats.max_health
-
-
-
 
 func _ready():
 #	available_weapons_changed()
@@ -147,6 +145,11 @@ func handle_attacks(delta: float):
 		PlayerStats.jump_charge = 0
 		PlayerStats.drill_usage = 0
 		PlayerStats.fotonic_usage = 0
+	elif Input.is_action_pressed("player_repair"):
+		repair_delta += delta
+		if repair_delta >= 3.0:
+			repair_delta = 0.0
+			
 	elif Input.is_action_pressed("player_attack"):
 		match PlayerStats.selected_weapon:
 			Stats.AttackType.NORMAL:

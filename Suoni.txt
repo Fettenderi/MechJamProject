@@ -1,0 +1,34 @@
+
+## Armi ##
+Drill: Suono di trapano
+DrillGun: Trapano che viene lanciato?? Che si allontana
+
+Gun: Pistola laser, possibilmente non troppo alla star wars
+
+Mine: Esplosione
+MineDeployer: Suono di mina che viene piazzata
+
+Shield Removed: Come se un grosso monitor si spegnesse??
+
+AreaAttack: Come se un mecha saltasse in aria e poi atterrasse a terra fortissimo, (possibilmente vorre poter regolare l'intensità del suono)
+
+NormalAttack: Un mecha che tira pugni/colpische il suolo per creare un'onda d'urto (simile ad AreaAttack ma non mi serve il parametro di intensità per questo)
+
+## Nemici ##
+Alien: Alieno di carne viene ferito e poi muore
+Creature Footsteps: Passi normali
+
+MK1 e Mecha (Player): Metallo colpito e magari ferraglia che viene buttata come suono di morte??
+Mecha Footsteps: Pistone che prima carica, sta per qualche secondo e poi rilascia
+
+Rover "Footsteps": Suono di cingoli che si muovono
+Rover Rotates:  Suono simile al pistone di prima ma non c'è nè carica nè rilascio, la fine è secca, possibilmente looppabile (può ruotare per un tempo randomico)
+
+Spaceship Moves: Navicella si avvicina al suolo, si muove per aria, rilascia alieni, si allontana e atterra (non li so descrivere sti suoni vabbè)
+
+
+## Gameplay/UI ##
+Low Energy/Health: Tipo una sirena di allarme ovattato??
+Energy/Health Replanished: Una campanellina ovattata??
+
+UISelect, UIConfirm, UIGoBack: Semplici suoni fatti con synth

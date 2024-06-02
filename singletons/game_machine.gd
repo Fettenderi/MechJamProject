@@ -103,10 +103,10 @@ func update_enemy_count(_value):
 	enemy_for_health -= 1
 	if enemy_for_health <= 0:
 		enemy_for_health = killed_enemies_for_health
-		if randf_range(0.0, 1.0) >= 0.5:
-			add_prop_at_random_location(health_pellet)
-		else:
-			add_prop_at_random_location(energy_pellet)
+		add_prop_at_random_location(energy_pellet)
+#		if randf_range(0.0, 1.0) >= 0.5:
+#			add_prop_at_random_location(health_pellet)
+#		else:
 
 func screen_shake(delta):
 	time += delta

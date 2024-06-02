@@ -12,6 +12,11 @@ extends Stats
 			emit_signal("dead")
 		emit_signal("energy_changed", energy)
 
+@onready var repair_delta := energy :
+	set(value):
+		repair_delta = clamp(value, 0, max_energy)
+		emit_signal("energy_changed", repair_delta)
+
 var can_discharge := false
 
 @export var jump_charge_speed : float = 20
@@ -43,7 +48,9 @@ var unlocked_weapons : Array[int] = [0] :
 
 var available_weapons : Array[int] = [
 	Stats.AttackType.NORMAL,
-	Stats.AttackType.GUN
+	Stats.AttackType.GUN,
+	Stats.AttackType.FOTONIC,
+	Stats.AttackType.DRILL,
 ]
 
 var selected_weapon : int = 0 :
