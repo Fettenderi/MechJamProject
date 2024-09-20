@@ -13,5 +13,5 @@ LMB let's you shoot
 # Credits
 
 ProjectMecha: Alien was developed by:
-- Fettenderi: Game Designer, Programmer, 2D and 3D Artist
-- Unconcious Motifs: Sound Designer, Composer and FMOD Expert
+- [Fettenderi](https://fettenderi.itch.io): Game Designer, Programmer, 2D and 3D Artist
+- [Unconcious Motifs](https://unconscious-motifs.itch.io): Sound Designer, Composer and FMOD Expert
